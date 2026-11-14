@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Orbital Sharp Blade
+  m_EditorClassIdentifier: 
+  nameEnglish: Sharp Blade
+  descriptionEnglish: Adds an axe that orbits and protects the player. Each extra
+    rune increases the blade's damage by (+30%)
+  nameChinese: Sharp Blade
+  descriptionChinese: "\u6DFB\u52A0\u4E00\u628A\u65A7\u5934\u56F4\u7ED5\u5E76\u4FDD\u62A4\u73A9\u5BB6\u3002\u6BCF\u591A\u4E00\u4E2A\u7B26\u6587\uFF0C\u589E\u52A0\u5200\u5203\u4F24\u5BB3(+30%)"
+  namePortuguese: Sharp Blade
+  descriptionPortuguese: Adiciona um machado que orbita e protege o player. Cada
+    runa extra aumenta o dano do machado em (+30%)
+  nameSpanish: Sharp Blade
+  weaponDescriptionSpanish: "A\xF1ade un hacha que orbita y protege al jugador. Cada
+    runa extra aumenta el da\xF1o de la hoja en un (+30%)"
+  statsChanges:
+  - {fileID: 11400000, guid: 8437add8eeb833d479363dc62062d241, type: 2}
+  activeEffects:
+  - {fileID: 11400000, guid: 261e4ba7602cad5479802865b83ca18e, type: 2}
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 500
+  maxPrice: 2500
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 637621663, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 1856698893, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 4

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Golden Shotgun  revolver_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Dragon Breath
+  descriptionEnglish: 'Origin unknown '
+  nameChinese: "\u9F99\u606F"
+  descriptionChinese: "\u8D77\u6E90\u672A\u77E5"
+  namePortuguese: "Bafo de Drag\xE3o"
+  descriptionPortuguese: Origem desconhecida
+  nameSpanish: Dragon Breath
+  weaponDescriptionSpanish: Origen desconocido.
+  sprite: {fileID: 1297684200, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 9600
+  ammoPrice: 3200
+  criticalChance: 30
+  criticalMultiplier: 2
+  damage: 20
+  damageType: 4
+  knockBackForce: 2
+  statusChance: 0.25
+  statusDuration: 10
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -551490448, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 8
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 12
+  maxSpareAmmo: 83
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: efc063f4965172d4bbb65563e9da755c, type: 3}
+  bulletSpeed: 24
+  bulletLifeTime: 5
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 6
+  multipleBulletAngleOffset: 3
+  linedUpBulletsPerShot: 0
+  speedRandomness: 10.09
+  recoilForceOnPlayer: 2
+  recoilAngle: 65
+  recoilDuration: 0.2
+  imprecision: 5
+  camShakeMag: 1.6
+  camShakeDuration: 0.1
+  bulletCapsule: {fileID: 0}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 4d8b6b42254251849b738844b4c3b764, type: 3}
+  shootingVolume: 0.727
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.543
+  startReloadingSFX: {fileID: 8300000, guid: f83f68561bf9fb24697a8fea73907de5, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 91fded43569b97241b3b80436a651a18, type: 3}
+  fireRate: 0.3
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1.5
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.7, y: 0, z: 0}
+  posOffset: {x: 1, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 183.2
+  PricePerDPS: 34.9
+  rarity: 3
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

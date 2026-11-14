@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Dual energy dagger
+  m_EditorClassIdentifier: 
+  nameEnglish: Celestial Cyclone
+  descriptionEnglish: These holy daggers were meant to be thrown separately, but
+    some clever soul connected them together for double the fun! Now you can slice
+    and dice your enemies with ease as they spin through the air, like a deadly fidget
+    spinner!
+  nameChinese: "\u5929\u5802\u65CB\u98CE"
+  descriptionChinese: "\u8FD9\u4E9B\u795E\u5723\u7684\u5315\u9996\u539F\u672C\u662F\u5206\u522B\u6295\u63B7\u7684\uFF0C\u4F46\u662F\u4E00\u4E9B\u806A\u660E\u7684\u4EBA\u5C06\u5B83\u4EEC\u8FDE\u63A5\u5728\u4E00\u8D77\uFF0C\u8BA9\u4F60\u53EF\u4EE5\u5728\u5B83\u4EEC\u50CF\u81F4\u547D\u7684\u624B\u6307\u9640\u87BA\u4E00\u6837\u5728\u7A7A\u4E2D\u65CB\u8F6C\u65F6\u8F7B\u677E\u5730\u5207\u5272\u4F60\u7684\u654C\u4EBA!"
+  namePortuguese: Ciclone Celestial
+  descriptionPortuguese: "Estas adagas sagradas foram feitas para serem arremessadas
+    separadamente, mas algu\xE9m esperto as conectou para dobrar a divers\xE3o! Agora,
+    voc\xEA pode fatiar seus inimigos com facilidade enquanto elas giram pelo ar,
+    como um fidget spinner mortal!"
+  nameSpanish: "Cicl\xF3n Celestial"
+  weaponDescriptionSpanish: "Estas dagas sagradas estaban destinadas a ser arrojadas
+    por separado, \xA1pero alg\xFAn alma ingeniosa las conect\xF3 para duplicar la
+    diversi\xF3n! Ahora puedes cortar y rebanar a tus enemigos con facilidad mientras
+    giran por el aire, como un fidget spinner mortal!"
+  sprite: {fileID: -85166489, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  price: 6500
+  ammoPrice: 50
+  criticalChance: 0
+  criticalMultiplier: 2
+  damage: 50
+  damageType: 8
+  knockBackForce: 7
+  statusChance: 0.25
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -85166489, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: 0
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 3
+  camShakeMagnitude: -0.6
+  flySpeed: 12
+  attackRate: 1.5
+  invulnerableTimer: 0
+  playerImpulse: 0
+  meleeGameObject: {fileID: 8184369042086861504, guid: 66cd4469628247c4ab3f16c0e011353f, type: 3}
+  isPlayerChild: 0
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 0
+  attackSFX: {fileID: 8300000, guid: 6235d77a6ec8d664795a4adf4606dd41, type: 3}
+  volume: 0.539

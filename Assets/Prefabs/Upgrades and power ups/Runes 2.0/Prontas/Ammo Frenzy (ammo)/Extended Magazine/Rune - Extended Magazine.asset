@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Extended Magazine
+  m_EditorClassIdentifier: 
+  nameEnglish: Extended Magazine
+  descriptionEnglish: increases magazine size. Each rune increases the magazine capacity
+    by 5 bullet.
+  nameChinese: Extended Magazine
+  descriptionChinese: "\u589E\u52A0\u5F39\u5323\u5BB9\u91CF\u3002\u6BCF\u591A\u4E00\u4E2A\u7B26\u6587\uFF0C\u5F39\u5323\u5BB9\u91CF\u589E\u52A05\u53D1\u5B50\u5F39\u3002"
+  namePortuguese: Extended Magazine
+  descriptionPortuguese: 'Pente estendido: aumenta o tamanho do pente. Cada runa
+    aumenta em 5 balas a capacidade do pente'
+  nameSpanish: Extended Magazine
+  weaponDescriptionSpanish: "Aumenta el tama\xF1o del cargador. Cada runa aumenta
+    la capacidad del cargador en 5 balas."
+  statsChanges:
+  - {fileID: 11400000, guid: f5e223aa40f6e974aa591d84d31dcf7b, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 350
+  maxPrice: 2000
+  priceMultiplier: 2
+  smallerIcon: {fileID: -1412614489, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: -952605285, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 3

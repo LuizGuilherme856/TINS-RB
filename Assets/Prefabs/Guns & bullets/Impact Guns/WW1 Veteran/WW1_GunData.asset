@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: WW1_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: WW1 Veteran
+  descriptionEnglish: 'Origin unknown '
+  nameChinese: "\u4E00\u6218\u8001\u5175"
+  descriptionChinese: "\u8D77\u6E90\u672A\u77E5"
+  namePortuguese: Veterana da 1 Guerra
+  descriptionPortuguese: Origem desconhecida
+  nameSpanish: Veterana de la 1 Guerra
+  weaponDescriptionSpanish: Origen desconocido.
+  sprite: {fileID: 998165228, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 1800
+  ammoPrice: 600
+  criticalChance: 20
+  criticalMultiplier: 2
+  damage: 25
+  damageType: 2
+  knockBackForce: 1.2
+  statusChance: 0.25
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -652580841, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 21
+  maxSpareAmmo: 273
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 070c8ca824efcf04b8ffd93eeaa9bb29, type: 3}
+  bulletSpeed: 35
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 5
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 1.2
+  recoilAngle: 16
+  recoilDuration: 0.1
+  imprecision: 6.35
+  camShakeMag: 0.4
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 1
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1.3
+  shootingSFX: {fileID: 8300000, guid: 6280eff803028474fbe0b24ee0e8483c, type: 3}
+  shootingVolume: 0.664
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.485
+  startReloadingSFX: {fileID: 8300000, guid: df4cd9d030915f74ea43fc2d83f41032, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: dd31b7eddc3a01540b9ddd3f7df7a9e8, type: 3}
+  fireRate: 0.25
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1.2, y: 0, z: 0}
+  posOffset: {x: 0.89, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 8a7fdbae0a9164446b9a55816763f4fd, type: 2}
+  DPS: 88.6
+  PricePerDPS: 13.5
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

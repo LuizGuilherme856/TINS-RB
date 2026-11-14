@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c057dbbf07014aba1a8cd3bb7eca6, type: 3}
+  m_Name: Priest tutorial Data
+  m_EditorClassIdentifier: 
+  nameEnglish: Gael, The Betrayer
+  descriptionEnglish: 'Where''s Lucifer? '
+  nameChinese: Gael, The Betrayer
+  descriptionChinese: 'Where''s Lucifer? '
+  namePortuguese: Gael, O traidor
+  descriptionPortuguese: "Onde est\xE1 Lucifer? "
+  nameSpanish: Gael, The Betrayer
+  weaponDescriptionSpanish: 'Where''s Lucifer? '
+  EnemyName: Gael, The Betrayer
+  enemyType: 2
+  isFlier: 1
+  bossOrElite: 1
+  spawnPoints: 2
+  giveXp: 1
+  xp: 1000
+  giveBloodPoints: 1
+  health: 2000
+  enemyElement: 3
+  ignoreMassWhenMoving: 0
+  healthUpdateMode: 2
+  healthIncreaseCustomCoefficient: 0.2
+  healthIncreaseCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speed: 8
+  increaseSpeedEveryWave: 1
+  maxSpeed: 1000
+  healthIncreasesEveryWave: 1
+  minDistanceToIncreaseSpeed: 30
+  speedMultiplierWhenNotVisible: 2
+  updatePathInterval: 1
+  increaseHealthOnRainWaves: 1
+  addWaveNumberToHealth: 0
+  speed_easyMode: 6
+  health_easyMode: 2
+  secondFormSpeedMultiplier: 1
+  immuneToStatus: 1
+  immuneToFire: 0
+  immuneToIce: 0
+  immuneToSlash: 0
+  immuneToImpact: 0
+  immuneToPoison: 0
+  immuneToExplosion: 0
+  immuneToInstaKill: 1
+  weakenessToIce: 0
+  attackDamage: 1
+  attackRate: 2
+  minDistanceToAttack: 0
+  attackForce: 20
+  timeAfterRespawnToAttack: 2
+  projectile: {fileID: 0}
+  maxDistanceToShoot: 0
+  ProjectileSpeed: 0
+  fireRate: 4
+  increaseFireRateEveryWave: 1
+  minFireRate: 0.5
+  bulletsPerShot: 0
+  increaseBulletsPerShotEveryXWaves: 15
+  multipleBulletAngleOffset: 0
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}

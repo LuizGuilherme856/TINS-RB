@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Critical Chance
+  m_EditorClassIdentifier: 
+  nameEnglish: Bullet to the Brain
+  descriptionEnglish: Increases critical chance of guns and melee weapons by 15%
+  nameChinese: Bullet to the Brain
+  descriptionChinese: "\u63D0\u9AD815%\u706B\u5668\u548C\u8FD1\u6218\u6B66\u5668\u7684\u66B4\u51FB\u51E0\u7387"
+  namePortuguese: Bullet to the Brain
+  descriptionPortuguese: "Aumenta em 15% a chance cr\xEDtica das armas a dist\xE2ncia
+    e armas corpo a corpo"
+  nameSpanish: Bullet to the Brain
+  weaponDescriptionSpanish: "Aumenta en 15% la probabilidad cr\xEDtica de armas de
+    fuego y cuerpo a cuerpo"
+  statsChanges:
+  - {fileID: 11400000, guid: 44266b9ac90560041bcc2ea4a8f0c1db, type: 2}
+  - {fileID: 11400000, guid: 0df5027b1f03da54ba76e39b29047bd4, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 599652214, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

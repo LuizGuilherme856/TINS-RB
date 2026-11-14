@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Slow Power
+  m_EditorClassIdentifier: 
+  nameEnglish: Slow Power
+  descriptionEnglish: Increases the weapon's base damage by (+20%), but also increases
+    the reload time by {-20%}
+  nameChinese: Slow Power
+  descriptionChinese: "\u589E\u52A0\u6B66\u5668\u7684\u57FA\u7840\u4F24\u5BB3(+20%)\uFF0C\u4F46\u4E5F\u589E\u52A0{-20%}\u7684\u91CD\u88C5\u65F6\u95F4"
+  namePortuguese: Slow Power
+  descriptionPortuguese: "Aumenta o dano base da arma em (+20%), mas aumenta tamb\xE9m
+    o tempo de recarga em {-20%}"
+  nameSpanish: Slow Power
+  weaponDescriptionSpanish: "Aumenta el da\xF1o base del arma en un (+20%), pero
+    tambi\xE9n aumenta el tiempo de recarga en un {-20%}"
+  statsChanges:
+  - {fileID: 11400000, guid: 97540493cb2bb0d4281e3ce0ac444403, type: 2}
+  - {fileID: 11400000, guid: ee1f8d7f4b0c7604f8e1310748193db8, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 2
+  price: 1500
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 520096989, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: -1551357049, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 2

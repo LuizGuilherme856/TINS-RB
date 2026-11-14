@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: fire damage data
+  m_EditorClassIdentifier: 
+  nameEnglish: Glasscalibur
+  descriptionEnglish: This sword is not for the faint of heart. Made of enchanted
+    glass, its attack has a range so wide that it's practically cheating. And don't
+    even think about using it for evil purposes - the sword will shatter in your
+    hands. Stick to slicing and dicing demons, and you'll be just fine.
+  nameChinese: "\u788E\u88C2\u4E00\u51FB"
+  descriptionChinese: "\u8FD9\u628A\u5251\u4E0D\u662F\u7ED9\u80C6\u5C0F\u7684\u4EBA\u7528\u7684\u3002\u5B83\u662F\u7531\u9644\u9B54\u73BB\u7483\u5236\u6210\uFF0C\u653B\u51FB\u8303\u56F4\u975E\u5E38\u5E7F\uFF0C\u51E0\u4E4E\u662F\u4F5C\u5F0A\u3002\u800C\u4E14\u4E0D\u8981\u60F3\u7740\u7528\u5B83\u6765\u505A\u574F\u4E8B
+    - \u5251\u4F1A\u5728\u4F60\u624B\u4E2D\u7834\u788E\uFF0C\u5C31\u50CF\u4E00\u6BB5\u7CDF\u7CD5\u7684\u604B\u60C5\u3002\u4E13\u6CE8\u4E8E\u5207\u5272\u6076\u9B54\uFF0C\u4F60\u5C31\u4F1A\u6CA1\u4E8B\u7684\u3002"
+  namePortuguese: Vidrocalibur
+  descriptionPortuguese: "Essa espada n\xE3o \xE9 para os fracos de cora\xE7\xE3o.
+    Feita de vidro encantado, seu ataque tem um alcance t\xE3o amplo que \xE9 praticamente
+    trapa\xE7a. E nem pense em us\xE1-la para fins mal\xE9ficos - a espada se despeda\xE7ar\xE1
+    em suas m\xE3os. Mantenha-se cortando dem\xF4nios e voc\xEA ficar\xE1 bem."
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  ammoPrice: 50
+  sprite: {fileID: -901627875, guid: 05f9342468d6f044f99917b9b9da6d2b, type: 3}
+  criticalChance: 0
+  criticalMultiplier: 2
+  damage: 2
+  damageType: 4
+  knockBackForce: 0
+  statusChance: 1
+  statusDuration: 2
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -901627875, guid: 05f9342468d6f044f99917b9b9da6d2b, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: 0
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 3
+  camShakeMagnitude: -0.6
+  flySpeed: 0
+  attackRate: 0.3
+  invulnerableTimer: 0
+  playerImpulse: 0
+  meleeGameObject: {fileID: 8184369042086861504, guid: a358f2e73a2692e438ff0a2c26c90701, type: 3}
+  isPlayerChild: 1
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 1
+  attackSFX: {fileID: 8300000, guid: ec509bdb90fe0234a8e5853fc7189390, type: 3}
+  volume: 0.983

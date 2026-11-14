@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: -Golden Mocker_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Mocker
+  descriptionEnglish: Hanba said that one day a guy died using this weapon, and it
+    still mocks him to this day.
+  nameChinese: "\u5632\u7B11\u8005"
+  descriptionChinese: "Hanba\u8BF4\uFF0C\u6709\u4E00\u5929\u4E00\u4E2A\u5BB6\u4F19\u56E0\u4F7F\u7528\u8FD9\u628A\u67AA\u800C\u6B7B\uFF0C\u8FD9\u628A\u6B66\u5668\u81F3\u4ECA\u4ECD\u5728\u5632\u7B11\u90A3\u4E2A\u5BB6\u4F19\u3002"
+  namePortuguese: Zombadora
+  descriptionPortuguese: "Hanba disse que um dia um cara morreu usando essa arma
+    e ela zomba ele at\xE9 hoje"
+  nameSpanish: "Burl\xF3n"
+  weaponDescriptionSpanish: "Hanba dijo que un d\xEDa un tipo muri\xF3 usando esta
+    arma, y todav\xEDa se burla de \xE9l hasta el d\xEDa de hoy."
+  sprite: {fileID: 1973684632, guid: 665f46a75bbdd7a43bd27cd7ee674653, type: 3}
+  price: 8400
+  ammoPrice: 2800
+  criticalChance: 35
+  criticalMultiplier: 2
+  damage: 8
+  damageType: 2
+  knockBackForce: 0
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 1
+  projectileSize: 1.15
+  buyIcon: {fileID: 1555381443, guid: 8fae3f777337c66468c339152023e1f7, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.5
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 33
+  maxSpareAmmo: 585
+  ammoConsumedPerShot: 3
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 3821c31c5a01ad14fbd86190acfa26e1, type: 3}
+  bulletSpeed: 26
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 4.9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 0
+  recoilAngle: 8
+  recoilDuration: 0.1
+  imprecision: 8
+  camShakeMag: 0.19
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1.38
+  shootingSFX: {fileID: 8300000, guid: 301a63be89b5d59439ac649412b7f30f, type: 3}
+  shootingVolume: 0.81
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.514
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 85778f36ac0bf774a95ef8c85b01a210, type: 3}
+  fireRate: 0.2
+  burstSize: 6
+  burstRate: 0.06
+  reloadTime: 0.6
+  gunType: 3
+  hoveringShotName: 
+  firePointOffset: {x: 0.94, y: 0, z: 0}
+  posOffset: {x: 0.98, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 169.7
+  PricePerDPS: 33
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

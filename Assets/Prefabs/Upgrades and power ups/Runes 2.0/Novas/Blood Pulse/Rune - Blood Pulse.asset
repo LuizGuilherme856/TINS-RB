@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Blood Pulse
+  m_EditorClassIdentifier: 
+  nameEnglish: Blood Pulse
+  descriptionEnglish: (+100%) Dash Damage; Dash Damage becomes Slash; {+20%} Dash
+    Cooldown
+  nameChinese: Blood Pulse
+  descriptionChinese: "(+100%) \u51B2\u523A\u4F24\u5BB3\uFF1B\u51B2\u523A\u53D8\u4E3A\u65A9\u51FB\uFF1B{+20%}
+    \u51B2\u523A\u51B7\u5374\u65F6\u95F4"
+  namePortuguese: Blood Pulse
+  descriptionPortuguese: (+100%) Dano de Investida; Dano de Investida vira Corte;
+    {+20%} da Recarga da Investida
+  nameSpanish: Blood Pulse
+  weaponDescriptionSpanish: "(+100%) Da\xF1o de Deslizamiento; Da\xF1o se vuelve
+    Corte; {+20%} Enfriamiento de Deslizamiento"
+  statsChanges:
+  - {fileID: 11400000, guid: b8ad98887d03cc545b205f9a992bb30d, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 2
+  price: 500
+  maxPrice: 3500
+  priceMultiplier: 2
+  smallerIcon: {fileID: -2092700608, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 1378162213, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 0
+  numberOfTimesCanBeBought: 2

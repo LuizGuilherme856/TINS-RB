@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: The Obrez_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: The Obrez
+  descriptionEnglish: What maniac sawed this rifle down to a pistol!? Do they even
+    have a wrist anymore? What about their eardrums? WHY?
+  nameChinese: "\u5965\u5E03\u96F7\u5179"
+  descriptionChinese: "\u8C01TM\u628A\u8FD9\u628A\u6B65\u67AA\u952F\u77ED\uFF0C\u53D8\u6210\u624B\u67AA\u7684\uFF1F 
+    \u90A3\u5BB6\u4F19\u624B\u8155\u8FD8\u5728\u5417?  \u8033\u819C\u5462?  \u90A3\u5BB6\u4F19\u4E3A\u4EC0\u4E48\u8981\u8FD9\u6837\u505A\uFF01"
+  namePortuguese: A Obrez
+  descriptionPortuguese: "Que man\xEDaco serrou esse rifle para fazer uma pistola?
+    Ele ainda tem pulso? E seus t\xEDmpanos?? PORQUE???"
+  nameSpanish: La Obrez
+  weaponDescriptionSpanish: "\xBFQu\xE9 mani\xE1tico serruch\xF3 este rifle hasta
+    convertirlo en una pistola? \xBFTodav\xEDa tienen mu\xF1eca? \xBFY qu\xE9 hay
+    de sus t\xEDmpanos? \xBFPOR QU\xC9?"
+  sprite: {fileID: -1846850840, guid: cc130bff537fd8740b6241e50e93585c, type: 3}
+  price: 520
+  ammoPrice: 173
+  criticalChance: 25
+  criticalMultiplier: 2
+  damage: 14
+  damageType: 2
+  knockBackForce: 2
+  statusChance: 0.6
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 5
+  projectileSize: 1
+  buyIcon: {fileID: 963457899, guid: 92489b975d8f83d4db29f326dca525f4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 5
+  maxSpareAmmo: 250
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: c5ce186e5bfcda246bba2a6cae5bfa9a, type: 3}
+  bulletSpeed: 20
+  bulletLifeTime: 5
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 5
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 2
+  recoilAngle: 30
+  recoilDuration: 0.2
+  imprecision: 15
+  camShakeMag: 0.45
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 1
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 0.6
+  shootingSFX: {fileID: 8300000, guid: 63e2bd89d21dcdc49add668790095723, type: 3}
+  shootingVolume: 0.878
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.485
+  startReloadingSFX: {fileID: 8300000, guid: df4cd9d030915f74ea43fc2d83f41032, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: f4fd9955c8d4a3340a4e1cb1f48264f8, type: 3}
+  fireRate: 0.8
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.8
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.7, y: 0, z: 0}
+  posOffset: {x: 1.14, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: e697e3b6e28ca514d86e1324f71f1f02, type: 2}
+  DPS: 15
+  PricePerDPS: 43.3
+  rarity: 0
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

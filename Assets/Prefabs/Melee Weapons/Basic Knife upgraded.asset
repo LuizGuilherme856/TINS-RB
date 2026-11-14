@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Basic Knife upgraded
+  m_EditorClassIdentifier: 
+  nameEnglish: Zhong Kui's Hunt Knife
+  descriptionEnglish: Those who have witnessed Azaus in battle tell tales of the
+    power that emanates from his blade. With each swing, a brilliant blue energy
+    surges forth, striking fear into the hearts of his demonic foes. Some even whisper
+    that these energies are the very souls of the demons he has slain, forever trapped
+    within the weapon.  Azaus received this knife as a gift from Zhong Kui, one of
+    the renowned Demon slayers.
+  nameChinese: "\u949F\u9997\u730E\u5200"
+  descriptionChinese: "\u90A3\u4E9B\u89C1\u8FC7\u963F\u624E\u65AF\u6218\u6597\u7684\u4EBA\uFF0C\u90FD\u4F20\u9882\u7740\u4ED6\u5200\u4E0A\u6240\u6563\u53D1\u7684\u529B\u91CF\u3002\u6BCF\u4E00\u6B21\u6325\u821E\uFF0C\u90FD\u4F1A\u6D8C\u51FA\u4E00\u80A1\u7480\u74A8\u7684\u84DD\u8272\u80FD\u91CF\uFF0C\u4EE4\u6076\u9B54\u5FC3\u751F\u754F\u60E7\u3002\u6709\u4E9B\u4EBA\u751A\u81F3\u4F20\u8A00\u8FD9\u4E9B\u80FD\u91CF\u662F\u4ED6\u6240\u6740\u6076\u9B54\u7684\u7075\u9B42\uFF0C\u6C38\u8FDC\u88AB\u56F0\u5728\u6B66\u5668\u4E4B\u4E2D\u3002\u963F\u624E\u65AF\u662F\u4ECE\u949F\u9997\u90A3\u91CC\u5F97\u5230\u8FD9\u628A\u5200\u7684\uFF0C\u949F\u9997\u662F\u8457\u540D\u7684\u6076\u9B54\u730E\u624B\u4E4B\u4E00\u3002"
+  namePortuguese: "Faca de Ca\xE7a de Zhong Kui"
+  descriptionPortuguese: "Aqueles que testemunharam Azaus em batalha contam hist\xF3rias
+    do poder que emana de sua l\xE2mina. Com cada golpe, uma energia azul brilhante
+    irrompe, causando medo nos cora\xE7\xF5es de seus inimigos demon\xEDacos. Alguns
+    at\xE9 sussurram que essas energias s\xE3o as almas dos dem\xF4nios que ele matou,
+    para sempre presas na arma. Azaus recebeu esta faca como presente de Zhong Kui,
+    um dos renomados ca\xE7adores de dem\xF4nios."
+  nameSpanish: Cuchillo de caza de Zhong Kui
+  weaponDescriptionSpanish: "Aquellos que han sido testigos de Azaus en batalla cuentan
+    historias del poder que emana de su hoja. Con cada golpe, una energ\xEDa azul
+    brillante surge, infundiendo miedo en los corazones de sus enemigos demon\xEDacos.
+    Algunos incluso susurran que estas energ\xEDas son las almas mismas de los demonios
+    que ha matado, atrapadas para siempre dentro del arma. Azaus recibi\xF3 este
+    cuchillo como regalo de Zhong Kui, uno de los renombrados cazadores de demonios."
+  sprite: {fileID: 539999911, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  price: 1500
+  ammoPrice: 50
+  criticalChance: 10
+  criticalMultiplier: 2
+  damage: 35
+  damageType: 5
+  knockBackForce: 10
+  statusChance: 0.2
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: 539999911, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: -0.3
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 0
+  camShakeMagnitude: -0.6
+  flySpeed: 17
+  attackRate: 1.1
+  invulnerableTimer: 0
+  playerImpulse: 1
+  meleeGameObject: {fileID: 3807465635252126773, guid: 6ffc7eec215ac8947bf61a057bbe3e2a, type: 3}
+  isPlayerChild: 0
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 0
+  attackSFX: {fileID: 8300000, guid: f70cfc29ff195cf40bae6dad082b549c, type: 3}
+  volume: 0.528

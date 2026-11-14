@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: 6 - Rune - Endless Combo
+  m_EditorClassIdentifier: 
+  nameEnglish: Endless Combo
+  descriptionEnglish: Increases the maximum number of attacks in your melee combo
+    by (+2)
+  nameChinese: Endless Combo
+  descriptionChinese: "\u589E\u52A0\u4F60\u8FD1\u6218\u8FDE\u51FB\u4E2D\u7684\u6700\u5927\u653B\u51FB\u6B21\u6570
+    (+2)"
+  namePortuguese: Endless Combo
+  descriptionPortuguese: "Aumenta o n\xFAmero m\xE1ximo de ataques no seu combo corpo
+    a corpo em (+2)"
+  nameSpanish: Endless Combo
+  weaponDescriptionSpanish: "Aumenta el n\xFAmero m\xE1ximo de ataques en tu combo
+    cuerpo a cuerpo en (+2)"
+  statsChanges:
+  - {fileID: 11400000, guid: 8ef61979dd0edae4f84468aceb29c1bf, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 600
+  maxPrice: 10000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 898836157, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 290899061, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 3
+  numberOfTimesCanBeBought: 2

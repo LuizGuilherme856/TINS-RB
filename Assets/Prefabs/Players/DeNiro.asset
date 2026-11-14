@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189d3e3b081dcc84aa2f60926508fda9, type: 3}
+  m_Name: DeNiro
+  m_EditorClassIdentifier: 
+  nameEnglish: DeNiro, The Robber
+  descriptionEnglish: Rabbit DeNiro is a cute white rabbit with a troubled past as
+    a former bank robber. Motivated by a deep fear of hell and a desire for redemption,
+    he now hunts demons, striving to make amends for his sins and secure a place
+    in heaven. His adorable exterior masks a determined and courageous spirit on
+    a mission to avoid a fiery fate.
+  nameChinese: "\u5C0F\u5C3C\u8BFA, \u5F3A\u76D7"
+  descriptionChinese: "\u5C0F\u5C3C\u8BFA\u662F\u4E00\u53EA\u53EF\u7231\u7684\u767D\u8272\u5154\u5B50\uFF0C\u66FE\u7ECF\u662F\u5012\u9709\u7684\u94F6\u884C\u52AB\u532A\u3002\u7531\u4E8E\u5BF9\u5730\u72F1\u6DF1\u6DF1\u7684\u6050\u60E7\u548C\u5BF9\u6551\u8D4E\u7684\u6E34\u671B\uFF0C\u4ED6\u73B0\u5728\u730E\u6740\u6076\u9B54\uFF0C\u52AA\u529B\u5F25\u8865\u81EA\u5DF1\u7684\u7F6A\u884C\uFF0C\u4E89\u53D6\u5728\u5929\u5802\u627E\u5230\u4E00\u4E2A\u5B89\u8EAB\u4E4B\u5904\u3002\u4ED6\u53EF\u7231\u7684\u5916\u8868\u63A9\u76D6\u4E86\u4ED6\u575A\u5B9A\u800C\u52C7\u6562\u7684\u5185\u5FC3\uFF0C\u4ED6\u5C06\u9762\u5BF9\u707C\u70ED\u7684\u547D\u8FD0\u3002"
+  namePortuguese: DeNiro, O Assaltante
+  descriptionPortuguese: "Rabbit DeNiro \xE9 um coelho branco fofo com um passado
+    problem\xE1tico como ex-assaltante de banco. Motivado por um profundo medo do
+    inferno e um desejo de reden\xE7\xE3o, ele agora ca\xE7a dem\xF4nios, buscando
+    reparar seus pecados e assegurar um lugar no para\xEDso. Sua apar\xEAncia ador\xE1vel
+    esconde um esp\xEDrito determinado e corajoso em uma miss\xE3o para evitar um
+    destino ardente."
+  nameSpanish: "DeNiro, El Ladr\xF3n"
+  weaponDescriptionSpanish: "Rabbit DeNiro es un lindo conejo blanco con un pasado
+    problem\xE1tico como antiguo ladr\xF3n de bancos. Motivado por un profundo miedo
+    al infierno y el deseo de redenci\xF3n, ahora caza demonios, esforz\xE1ndose
+    por enmendar sus pecados y asegurar un lugar en el cielo. Su exterior adorable
+    oculta un esp\xEDritu decidido y valiente en una misi\xF3n para evitar un destino
+    ardiente"
+  shortName: DeNiro
+  smallIcon: {fileID: 21300000, guid: 274881b7feffe224b97764e92c63638b, type: 3}
+  bigPortrait: {fileID: -1730273472, guid: c9fbd43157721cc43a7e5a409a2a5016, type: 3}
+  dialoguePortrait: {fileID: -1971504804, guid: 1223324bb37e6c04885a5870123297ea, type: 3}
+  character: 3
+  <defaultGun>k__BackingField: {fileID: 11400000, guid: fcb5bcab4fc72a7448f90704b7e59d6c, type: 2}
+  <defaultMelee>k__BackingField: {fileID: 11400000, guid: 838cd1f920cc4d6429546bd9c8e2897e, type: 2}
+  <defaultSpecialAbility>k__BackingField: {fileID: 11400000, guid: d468144aeec36d046a2d74a3c53297a4, type: 2}
+  <defaultDash>k__BackingField: {fileID: 11400000, guid: a19d62725d896af49aceeef8348e0e52, type: 2}
+  <defaultHp>k__BackingField: 3
+  <initialPoints>k__BackingField: 1500
+  <chanceToIgnoreDamage>k__BackingField: 0
+  <numberOfGunsItCanCarry>k__BackingField: 3
+  <price>k__BackingField: 100
+  <animatorController>k__BackingField: {fileID: 9100000, guid: 41ad1661c5b8f524983d725b30802d5e, type: 2}
+  corpse: {fileID: 5347488892711525149, guid: 743d5545c2a9cd843ac200ba7b8de640, type: 3}
+  hitSfx: {fileID: 8300000, guid: 17511982272dc6145a4cbcbceb005eb1, type: 3}

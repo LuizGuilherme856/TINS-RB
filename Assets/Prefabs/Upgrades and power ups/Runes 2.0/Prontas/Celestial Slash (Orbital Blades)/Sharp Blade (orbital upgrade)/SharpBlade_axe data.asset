@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: SharpBlade_axe data
+  m_EditorClassIdentifier: 
+  nameEnglish: Rusty Spreader
+  descriptionEnglish: This is a dull and rusted blade, barely fit for combat. It
+    looks like it's seen better days and probably should be used only as a last resort.
+    Its only other purpose seems to be spreading butter on bread, if you can find
+    any. You wonder how you'll survive with this pathetic excuse for a weapon.
+  nameChinese: "\u751F\u9508\u7684\u5C0F\u5200"
+  descriptionChinese: "\u8FD9\u662F\u4E00\u628A\u975E\u5E38\u5F31\u7684\u5C0F\u5200\uFF0C\u51E0\u4E4E\u6CA1\u6CD5\u7528\u6765\u6218\u6597\u3002\u5B83\u7684\u950B\u5229\u7A0B\u5EA6\u4E0D\u53CA\u4E00\u6839\u6728\u52FA\uFF0C\u552F\u4E00\u7684\u7528\u9014\u5C31\u662F\u6D82\u62B9\u9762\u5305\u4E0A\u7684\u9EC4\u6CB9\u3002\u5EFA\u8BAE\u4F5C\u4E3A\u6700\u7EC8\u624B\u6BB5\u4F7F"
+  namePortuguese: Espalhadora Enferrujada
+  descriptionPortuguese: "Esta \xE9 uma faca muito fraca e deve ser usada como \xFAltimo
+    recurso. \xC9 t\xE3o afiada quanto uma colher de pau e sua \xFAnica utilidade
+    seria passar manteiga no p\xE3o."
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  sprite: {fileID: 0}
+  price: 300
+  ammoPrice: 50
+  criticalChance: 10
+  criticalMultiplier: 2
+  damage: 20
+  damageType: 1
+  knockBackForce: 7
+  statusChance: 1
+  statusDuration: 5
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: 0}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  freezeFrameTime: 0.1
+  lensDistortion: 0
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 0
+  camShakeMagnitude: -0.6
+  flySpeed: 1
+  attackRate: 0.7
+  invulnerableTimer: 0
+  playerImpulse: 1
+  meleeGameObject: {fileID: 1889272032190042315, guid: d1075d8c7b795cc47816f7f159144b77, type: 3}
+  isPlayerChild: 1
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 1
+  attackSFX: {fileID: 8300000, guid: 6cba453b31e8e054a9131846798c08be, type: 3}
+  randomAttackSFXs: []
+  volume: 0.579

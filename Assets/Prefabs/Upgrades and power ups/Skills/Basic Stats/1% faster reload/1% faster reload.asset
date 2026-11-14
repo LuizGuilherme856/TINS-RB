@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: 1% faster reload
+  m_EditorClassIdentifier: 
+  nameEnglish: Cowboys from Hell
+  descriptionEnglish: Reloads weapons 1% faster
+  nameChinese: Cowboys from Hell
+  descriptionChinese: "\u6B66\u5668\u88C5\u5F39\u901F\u5EA6\u63D0\u9AD8 1%"
+  namePortuguese: Cowboys from Hell
+  descriptionPortuguese: "Recarrega as armas 1% mais r\xE1pido"
+  nameSpanish: Cowboys from Hell
+  weaponDescriptionSpanish: "Recarga las armas un 1% m\xE1s r\xE1pido"
+  statsChanges:
+  - {fileID: 11400000, guid: 31037aff22f7d51488aa6693ee222f03, type: 2}
+  activeEffects: []
+  requirements: []
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}

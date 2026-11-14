@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Equilibrium - Upgrade
+  m_EditorClassIdentifier: 
+  nameEnglish: 
+  descriptionEnglish: "Chance critica de tudo \xE9 aumentada em 2%"
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: 
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  statsChanges:
+  - {fileID: 11400000, guid: 49d83e3f7f8f4404e955432280bb4eb7, type: 2}
+  - {fileID: 11400000, guid: 8afe05bdb59377c42b12e1c1b1e6c799, type: 2}
+  activeEffects: []
+  requirements: []
+  globalStats: {fileID: 0}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

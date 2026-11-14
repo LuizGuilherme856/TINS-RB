@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: 14 - Rune - Enhanced Focus
+  m_EditorClassIdentifier: 
+  nameEnglish: Enhanced Focus
+  descriptionEnglish: Reduces the cooldown of your special ability by (-10%)
+  nameChinese: Enhanced Focus
+  descriptionChinese: "\u51CF\u5C11\u4F60\u7279\u6B8A\u6280\u80FD\u7684\u51B7\u5374\u65F6\u95F4
+    (-10%)\u3002"
+  namePortuguese: Enhanced Focus
+  descriptionPortuguese: Reduz o tempo de recarga da sua habilidade especial em (-10%)
+  nameSpanish: Enhanced Focus
+  weaponDescriptionSpanish: Reduce el tiempo de recarga de tu habilidad especial
+    en (-10%).
+  statsChanges:
+  - {fileID: 11400000, guid: 48c86df07fcbf3e468f15b19c943ae51, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 0}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 600
+  maxPrice: 10000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 898836157, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 290899061, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 3
+  numberOfTimesCanBeBought: 2

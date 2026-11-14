@@ -1,0 +1,1443 @@
+fileFormatVersion: 2
+guid: d00d91c0f4736464fa0df56a8039fb78
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: calice animation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f7a76967acf48489ae31b1df67dd39
+      internalID: -950866505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_1
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066da3e251adfb14a913307431fa44ca
+      internalID: 324698364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_2
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6b89a52fff77e4ba36280969e2a7d6
+      internalID: 926235390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_3
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7178e1f528de551478a6dbec0fd5d730
+      internalID: -1089955302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_4
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7189b9d81bd41644ab824e97e102bdf
+      internalID: -1885038156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_5
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116666f2bd822a54da573c690aa9750f
+      internalID: -1370672857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_6
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0e93027b182f054d8412c0ffab103c5
+      internalID: 1482144647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_7
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 2051
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b6ab7e76d4514243bb71959b3e790eb
+      internalID: -1541863687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2503bbc8e0fec8141871e5c508478ebd
+      internalID: -1444063407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_9
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81eb4cebaa4d6a7438c1a85ea92cef7e
+      internalID: 349600975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_10
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8917b273a96aedf4c950b30f0665466b
+      internalID: -785249394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_11
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c634f3530f1c940993b059f4d8d11f
+      internalID: 1970183510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_12
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74dd0304e2431494faf112438b9808fe
+      internalID: 1544444606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_13
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91001286d48e72142971e0a3d7ebae15
+      internalID: 1159376463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_14
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a35d38293a206499cee0df044c78b8
+      internalID: -1698674714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_15
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1758
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe77c4414e486c4897cbdb3703ae385
+      internalID: 159768393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f938018acffca418804a0c7e04070b
+      internalID: 917554340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_17
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99dbbeba5e1191b46bde966561901fe2
+      internalID: 83875720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_18
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c6e247a596f00a4f8b55a711f1fe341
+      internalID: -702059923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_19
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64679fbcf3afb4f40a8550fd7b67c7f1
+      internalID: -210944498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_20
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5b8009efcd08448b39b3e36cfaccfd
+      internalID: 927040455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_21
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56053d23ec9282644aafee077dddea39
+      internalID: 958767500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_22
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99071abd5aa8fa4f88efabef513ae53
+      internalID: 574494339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_23
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1465
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c704460eeae52247b886c2634fdfa1d
+      internalID: -966176569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad02a1847a34334c879a19acd75c96e
+      internalID: 947619484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_25
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255c4ba7238626845832cb2b1e64dce6
+      internalID: 1767005688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_26
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1914971e3d4aa7543a200c2fad09a747
+      internalID: -1777854389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_27
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c3997872dd5b24599408907363aa29
+      internalID: 281172346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_28
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c891decdce8c04cb22125c62b1a5eb
+      internalID: 328432902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_29
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b4b0d0e8d936547bd78f19c8b6b9a6
+      internalID: -684425111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_30
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64131b2bf39e70459bdaae7d6607df5
+      internalID: -1800138981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_31
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1172
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101c41e203ce6ad408aaf02ab57bebc6
+      internalID: 777808158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f97f1a0047ecfa469794e34e5313fb2
+      internalID: 288587184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_33
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5bdca949afd57f44a0f46da5b45353b
+      internalID: 1678096849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_34
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8814987b799034bbeac862820d3aad
+      internalID: 65453852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_35
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9e57fad831e7f48b920f6c2e517635
+      internalID: 905420589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_36
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 058b0cf5fdd9d134480af1642322c09a
+      internalID: -870740631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_37
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2e4828a8f21a941914034d4c94b9c1
+      internalID: -1219163920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_38
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c0048f250c9dd43a2409745f033471
+      internalID: -1610790770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_39
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 879
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4c9a14c50339947a97f1be41f6c609
+      internalID: 2106088076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc21cfacbc5ae494bb53d18f6410921c
+      internalID: 992143793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_41
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296367b72b58e434999a62fe8b36acea
+      internalID: -213678123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_42
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc7908933d2bbd4483f663704245a08
+      internalID: 1106929827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_43
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dea713c5d223f67458b3e88f8195beb7
+      internalID: -1949965563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_44
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c4fa200bd72aef4a8340569e0b4e4af
+      internalID: -1972971678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_45
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a1cacdd78a0f244a181e5cc989ead0
+      internalID: 1163499772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_46
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb5afc8e7fd2cf4d928d79f1d88b210
+      internalID: -1973795385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_47
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 586
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96af486378f10d34bb054d844e19ccf2
+      internalID: -2140047559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715926d6a07f6c541b9f8cbe7a848a06
+      internalID: -363906869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_49
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41bb23413d55044b900a69bf8b9c119
+      internalID: 1302693202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_50
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 576f6c6c3c0027f428943c4390940ba8
+      internalID: 1564050913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_51
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f313e1550c9759b4fb6643c266999fc2
+      internalID: 1627926446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_52
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd2f2519c716b57468bdf5cedc98384c
+      internalID: -1108056852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_53
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fea626487f9c2f40ab1370caa127c83
+      internalID: 1871743682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_54
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e3b8b599374fa45af0253db66721e2
+      internalID: 1413360111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_55
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 293
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416316d4c17880a4bad0d56d2d4be044
+      internalID: 725213477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39170931a2a5554438931fac5683182b
+      internalID: 1945759383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_57
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 0
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398dc66791d4c424a8d498ddfc45c2c9
+      internalID: -1477501149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_58
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 0
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec0d0a80c01e3046b34e10a52635d42
+      internalID: 1072985090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calice animation_59
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 0
+        width: 366
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c590e782ee73046bb4a22956e921ee
+      internalID: -1810627068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      calice animation_0: -950866505
+      calice animation_1: 324698364
+      calice animation_10: -785249394
+      calice animation_11: 1970183510
+      calice animation_12: 1544444606
+      calice animation_13: 1159376463
+      calice animation_14: -1698674714
+      calice animation_15: 159768393
+      calice animation_16: 917554340
+      calice animation_17: 83875720
+      calice animation_18: -702059923
+      calice animation_19: -210944498
+      calice animation_2: 926235390
+      calice animation_20: 927040455
+      calice animation_21: 958767500
+      calice animation_22: 574494339
+      calice animation_23: -966176569
+      calice animation_24: 947619484
+      calice animation_25: 1767005688
+      calice animation_26: -1777854389
+      calice animation_27: 281172346
+      calice animation_28: 328432902
+      calice animation_29: -684425111
+      calice animation_3: -1089955302
+      calice animation_30: -1800138981
+      calice animation_31: 777808158
+      calice animation_32: 288587184
+      calice animation_33: 1678096849
+      calice animation_34: 65453852
+      calice animation_35: 905420589
+      calice animation_36: -870740631
+      calice animation_37: -1219163920
+      calice animation_38: -1610790770
+      calice animation_39: 2106088076
+      calice animation_4: -1885038156
+      calice animation_40: 992143793
+      calice animation_41: -213678123
+      calice animation_42: 1106929827
+      calice animation_43: -1949965563
+      calice animation_44: -1972971678
+      calice animation_45: 1163499772
+      calice animation_46: -1973795385
+      calice animation_47: -2140047559
+      calice animation_48: -363906869
+      calice animation_49: 1302693202
+      calice animation_5: -1370672857
+      calice animation_50: 1564050913
+      calice animation_51: 1627926446
+      calice animation_52: -1108056852
+      calice animation_53: 1871743682
+      calice animation_54: 1413360111
+      calice animation_55: 725213477
+      calice animation_56: 1945759383
+      calice animation_57: -1477501149
+      calice animation_58: 1072985090
+      calice animation_59: -1810627068
+      calice animation_6: 1482144647
+      calice animation_7: -1541863687
+      calice animation_8: -1444063407
+      calice animation_9: 349600975
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

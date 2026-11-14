@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Familiar sword
+  m_EditorClassIdentifier: 
+  nameEnglish: Familiar Sword
+  descriptionEnglish: It's dangerous to go alone! Take this
+  nameChinese: "\u4F3C\u66FE\u76F8\u8BC6\u7684\u5927\u5E08\u5251"
+  descriptionChinese: "\u72EC\u81EA\u5192\u9669\u662F\u5F88\u5371\u9669\u7684!  
+    \u5E26\u4E0A\u5B83\u5427!"
+  namePortuguese: "Espada Da Fam\xEDlia"
+  descriptionPortuguese: "\xC9 perigoso ir sozinho, leve isso! "
+  nameSpanish: Espada Familiar
+  weaponDescriptionSpanish: Es peligroso ir solo! Toma esto
+  sprite: {fileID: 1444998835, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  price: 500
+  ammoPrice: 50
+  criticalChance: 20
+  criticalMultiplier: 2
+  damage: 20
+  damageType: 1
+  knockBackForce: 7
+  statusChance: 0.35
+  statusDuration: 8
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: 1444998835, guid: 689274b783542c44a97a90b0b1a96d34, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: 0
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 3
+  camShakeMagnitude: -0.6
+  flySpeed: 1
+  attackRate: 0.8
+  invulnerableTimer: 0
+  playerImpulse: 1
+  meleeGameObject: {fileID: 8184369042086861504, guid: fcaae6cea0529b7418be07b3638ee658, type: 3}
+  isPlayerChild: 1
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 0
+  attackSFX: {fileID: 8300000, guid: 95a2ea29b593eb84eb2eeefd5b9bf9f0, type: 3}
+  volume: 0.747

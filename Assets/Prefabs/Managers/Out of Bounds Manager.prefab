@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7659665712825853724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7659665712825853713}
+  - component: {fileID: 7659665712825853726}
+  - component: {fileID: 7659665712825853727}
+  m_Layer: 6
+  m_Name: Out of Bounds Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7659665712825853713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659665712825853724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 73.2, y: -72.8, z: 0.085490875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7659665713045189202}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7659665712825853726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659665712825853724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac43646adc78b3d4eaee8bcbcf56a1dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRespawnPosition: {fileID: 7659665713045189202}
+--- !u!60 &7659665712825853727
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659665712825853724}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -77.02788, y: 6.4318085}
+      - {x: -76.7632, y: 45.066483}
+      - {x: -48.10126, y: 46.186417}
+      - {x: -47.26422, y: 41.429115}
+      - {x: -34.156265, y: 41.625786}
+      - {x: -38.473427, y: 46.562614}
+      - {x: -40.997013, y: 55.95855}
+      - {x: -38.88543, y: 66.60074}
+      - {x: -32.20234, y: 74.68904}
+      - {x: -25.132915, y: 79.06769}
+      - {x: 4.736534, y: 81.58436}
+      - {x: 5.246292, y: 91.98891}
+      - {x: -0.53232574, y: 92.380516}
+      - {x: -0.4914322, y: 94.46849}
+      - {x: -2.0663223, y: 94.87484}
+      - {x: -2.8810806, y: 95.12209}
+      - {x: -3.0726166, y: 98.666626}
+      - {x: -5.1649323, y: 99.082275}
+      - {x: -3.9039993, y: 124.36057}
+      - {x: 8.031792, y: 124.85261}
+      - {x: 7.1578217, y: 160.50073}
+      - {x: 18.80532, y: 163.17305}
+      - {x: 7.048111, y: 166.43921}
+      - {x: -29.328938, y: 103.88261}
+      - {x: -76.64794, y: 61.890427}
+      - {x: -118.47908, y: 2.9673116}
+      - {x: -94.29807, y: -31.588345}
+      - {x: 62.883217, y: -16.083496}
+      - {x: 112.50732, y: 10.672916}
+      - {x: 74.55815, y: 83.218666}
+      - {x: 60.122917, y: 151.06133}
+      - {x: 19.25647, y: 166.42151}
+      - {x: 17.532982, y: 124.343216}
+      - {x: 28.746407, y: 123.99894}
+      - {x: 28.602325, y: 98.70029}
+      - {x: 27.660355, y: 97.872856}
+      - {x: 27.300278, y: 95.10067}
+      - {x: 25.044296, y: 94.46736}
+      - {x: 25.00595, y: 92.302704}
+      - {x: 18.737015, y: 92.449814}
+      - {x: 18.818909, y: 86.68169}
+      - {x: 30.686424, y: 81.18442}
+      - {x: 46.174484, y: 76.361244}
+      - {x: 52.024506, y: 69.69563}
+      - {x: 54.607414, y: 60.49817}
+      - {x: 49.251846, y: 47.448555}
+      - {x: 49.56076, y: 6.7800865}
+--- !u!1 &7659665713045189203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7659665713045189202}
+  m_Layer: 6
+  m_Name: player spawn pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7659665713045189202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659665713045189203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.6, y: 10.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7659665712825853713}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

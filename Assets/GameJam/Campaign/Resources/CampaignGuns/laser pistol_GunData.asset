@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: laser pistol_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Photon Disruptor
+  descriptionEnglish: Are photons particles or waves?
+  nameChinese: "\u6FC0\u5149\u67AA"
+  descriptionChinese: "\u662F\u7C92\u5B50?   \u8FD8\u662F\u5149\u6CE2?"
+  namePortuguese: "Disruptor F\xF3ton"
+  descriptionPortuguese: "F\xF3tons s\xE3o particulas ou ondas? "
+  nameSpanish: Disruptor de Fotones
+  weaponDescriptionSpanish: "\xBFLos fotones son part\xEDculas o ondas?"
+  sprite: {fileID: -1812915491, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 1320
+  ammoPrice: 440
+  criticalChance: 30
+  criticalMultiplier: 2
+  damage: 22
+  damageType: 4
+  knockBackForce: 1
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: 1133018946, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 14
+  maxSpareAmmo: 182
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: c4625683b58f0ff4fbfa0a3232ac5de9, type: 3}
+  bulletSpeed: 45
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 5.8
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 1
+  recoilAngle: 22
+  recoilDuration: 0.2
+  imprecision: 2
+  camShakeMag: 0.3
+  camShakeDuration: 0.1
+  bulletCapsule: {fileID: 0}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 0
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 876518180f06e774bac438a3489e8285, type: 3}
+  shootingVolume: 0.395
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.543
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 85778f36ac0bf774a95ef8c85b01a210, type: 3}
+  fireRate: 0.3
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.7
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.7, y: 0, z: 0}
+  posOffset: {x: 1, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 8652075d8afc81a45a51715ba8a94689, type: 2}
+  DPS: 78.6
+  PricePerDPS: 14
+  rarity: 1
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

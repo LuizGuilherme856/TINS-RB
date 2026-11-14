@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Ammo - current gun
+  m_EditorClassIdentifier: 
+  nameEnglish: Ammo
+  descriptionEnglish: Refil the ammo of your current gun
+  nameChinese: Ammo
+  descriptionChinese: "\u8865\u5145\u5F53\u524D\u6B66\u5668\u7684\u5F39\u836F"
+  namePortuguese: Ammo
+  descriptionPortuguese: "Recarrega a muni\xE7\xE3o da sua arma atual"
+  nameSpanish: Ammo
+  weaponDescriptionSpanish: "Recarga la munici\xF3n de tu arma actual"
+  statsChanges: []
+  activeEffects:
+  - {fileID: 11400000, guid: 8c5088ab0063c994881b1e1b4b11bba3, type: 2}
+  requirements: []
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  price: 150
+  maxPrice: 3000
+  priceMultiplier: 1.8
+  smallerIcon: {fileID: -2048310163, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 1219910843, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 4
+  numberOfTimesCanBeBought: 10

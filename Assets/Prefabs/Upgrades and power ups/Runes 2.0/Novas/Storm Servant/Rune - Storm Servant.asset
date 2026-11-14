@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Storm Servant
+  m_EditorClassIdentifier: 
+  nameEnglish: Storm Servant
+  descriptionEnglish: (+30%) Electric Damage; (+20%) Chance to Inflict Status; {-25%}
+    Chance to Ignore Damage
+  nameChinese: Storm Servant
+  descriptionChinese: "(+30%) \u7535\u51FB\u4F24\u5BB3\uFF1B(+20%) \u65BD\u52A0\u5F02\u5E38\u72B6\u6001\u7684\u51E0\u7387\uFF1B{-25%}
+    \u5FFD\u7565\u4F24\u5BB3\u51E0\u7387"
+  namePortuguese: Storm Servant
+  descriptionPortuguese: "(+30%) Dano El\xE9trico; (+20%) Chance de Causar Efeito;
+    {-25%} Chance de Ignorar Dano"
+  nameSpanish: Storm Servant
+  weaponDescriptionSpanish: "(+30%) Da\xF1o El\xE9ctrico; (+20%) Prob. de Causar
+    Estado; {-25%} Prob. de Ignorar Da\xF1o"
+  statsChanges:
+  - {fileID: 11400000, guid: 4535538236d96b04b90e1a233ae6ab34, type: 2}
+  - {fileID: 11400000, guid: 4203196fd1c160a4ea6f3c4bbbdbf2c1, type: 2}
+  - {fileID: 11400000, guid: 6b36f0cb3f137e940973c745f0f5be22, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 3
+  price: 625
+  maxPrice: 10000
+  priceMultiplier: 2
+  smallerIcon: {fileID: 1438199563, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: -1783708234, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 2

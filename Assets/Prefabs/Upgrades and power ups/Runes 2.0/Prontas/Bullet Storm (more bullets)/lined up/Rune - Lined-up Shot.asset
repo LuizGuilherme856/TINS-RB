@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Lined-up Shot
+  m_EditorClassIdentifier: 
+  nameEnglish: Lined-up Shot
+  descriptionEnglish: Increases the number of bullets fired by 1. Bullets are fired
+    in a straight line.  {+15%} Reload time
+  nameChinese: "\u6392\u5C04"
+  descriptionChinese: "\u5B50\u5F39\u53D1\u5C04\u6570\u91CF\u589E\u52A01\u53D1\u3002\u5B50\u5F39\u4EE5\u76F4\u7EBF\u6392\u5217\u5C04\u51FA\u3002{+15%}
+    \u88C5\u5F39\u901F\u5EA6"
+  namePortuguese: Disparo Enfileirado
+  descriptionPortuguese: "Aumenta em 1 o n\xFAmero de balas disparadas. Balas saem
+    enfileiradas. {+15%} tempo de Recarga"
+  nameSpanish: Disparo Alineado
+  weaponDescriptionSpanish: "Aumenta en 1 el n\xFAmero de balas disparadas. Las balas
+    se disparan en l\xEDnea recta. {+15%} tiempo de Recarga"
+  statsChanges:
+  - {fileID: 11400000, guid: 386b7310bb0f4c04dba584a8b9671c5e, type: 2}
+  - {fileID: 11400000, guid: 386b7310bb0f4c04dba584a8b9671c5e, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 3
+  price: 1000
+  maxPrice: 10000
+  priceMultiplier: 2
+  smallerIcon: {fileID: -20888003, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: -1909118356, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 4
+  numberOfTimesCanBeBought: 1

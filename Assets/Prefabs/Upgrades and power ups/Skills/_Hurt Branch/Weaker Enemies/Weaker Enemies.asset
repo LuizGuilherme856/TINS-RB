@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Weaker Enemies
+  m_EditorClassIdentifier: 
+  nameEnglish: Crawling
+  descriptionEnglish: Enemy health is reduced by 10%
+  nameChinese: Crawling
+  descriptionChinese: "\u654C\u4EBA\u751F\u547D\u503C\u964D\u4F4E 10%"
+  namePortuguese: Crawling
+  descriptionPortuguese: "Vida dos inimigos \xE9 diminuida em 10%"
+  nameSpanish: Crawling
+  weaponDescriptionSpanish: La vida de los enemigos se reduce en un 10%
+  statsChanges:
+  - {fileID: 11400000, guid: a3477f5667b81b547904b6e538495804, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1353482684, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

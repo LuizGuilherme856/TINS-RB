@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: 15 - Rune - Lack Of Time
+  m_EditorClassIdentifier: 
+  nameEnglish: Lack Of Time
+  descriptionEnglish: ' (-5%) Reload time'
+  nameChinese: Lack Of Time
+  descriptionChinese: "(-5%) \u88C5\u586B\u65F6\u95F4"
+  namePortuguese: Lack Of Time
+  descriptionPortuguese: (-5%) Tempo de Recarga
+  nameSpanish: Lack Of Time
+  weaponDescriptionSpanish: ' (-5%) de tiempo de recarga'
+  statsChanges:
+  - {fileID: 11400000, guid: 4b921a9c825a81f41819449df2596610, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 500
+  maxPrice: 10000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 898836157, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 290899061, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 3
+  numberOfTimesCanBeBought: 3

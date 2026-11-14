@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Q arrow
+  m_EditorClassIdentifier: 
+  nameEnglish: Divine Bolt
+  descriptionEnglish: 
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: 
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  sprite: {fileID: -1566124691, guid: 6f4d673c5680ce44292665edbb15fa58, type: 3}
+  price: 300
+  ammoPrice: 50
+  criticalChance: 10
+  criticalMultiplier: 3
+  damage: 100
+  damageType: 1
+  knockBackForce: 50
+  statusChance: 1
+  statusDuration: 2
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -1566124691, guid: 6f4d673c5680ce44292665edbb15fa58, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: -0.24
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 0
+  camShakeMagnitude: -2
+  flySpeed: 80
+  attackRate: 12
+  invulnerableTimer: 0
+  playerImpulse: -3
+  meleeGameObject: {fileID: 3807465635252126773, guid: b5d83815779ba7b4db4ecfe0bdc66d3c, type: 3}
+  isPlayerChild: 0
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 1
+  attackSFX: {fileID: 8300000, guid: 37301001036f7e846afae63155ea94a1, type: 3}
+  volume: 1

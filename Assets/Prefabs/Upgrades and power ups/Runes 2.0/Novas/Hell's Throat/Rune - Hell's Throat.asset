@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Hell's Throat
+  m_EditorClassIdentifier: 
+  nameEnglish: Hell's Throat
+  descriptionEnglish: '{-40%} Fire Damage; (+1) Bullets per Shot; {-50%} Chance to
+    Not Consume Ammo'
+  nameChinese: Hell's Throat
+  descriptionChinese: "{-40%} \u706B\u7130\u4F24\u5BB3\uFF1B(+1) \u6BCF\u6B21\u5C04\u51FB\u5B50\u5F39\uFF1B{-50%}
+    \u4E0D\u6D88\u8017\u5B50\u5F39\u7684\u51E0\u7387"
+  namePortuguese: Hell's Throat
+  descriptionPortuguese: "{-40%} Dano de Fogo; (+1) Balas por Disparo; {-50%} Chance
+    de N\xE3o Consumir Muni\xE7\xE3o"
+  nameSpanish: Hell's Throat
+  weaponDescriptionSpanish: "{-40%} Da\xF1o de Fuego; (+1) Balas por Disparo; {-50%}
+    Prob. de No Consumir Munici\xF3n"
+  statsChanges:
+  - {fileID: 11400000, guid: e208f8ce243f8614ab0b53a6a05fc343, type: 2}
+  - {fileID: 11400000, guid: b3b6f410ee37a2a479c107b6f6649ec5, type: 2}
+  - {fileID: 11400000, guid: 14dfe64b7328c8b429c53ab37fc618de, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 3
+  price: 1500
+  maxPrice: 10000
+  priceMultiplier: 2
+  smallerIcon: {fileID: 1438199563, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: -1783708234, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 1

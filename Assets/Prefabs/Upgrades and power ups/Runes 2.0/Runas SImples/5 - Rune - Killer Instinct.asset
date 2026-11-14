@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: 5 - Rune - Killer Instinct
+  m_EditorClassIdentifier: 
+  nameEnglish: Killer Instinct
+  descriptionEnglish: Increases all damage you deal by (+2).
+  nameChinese: Killer Instinct
+  descriptionChinese: "\u4F60\u9020\u6210\u7684\u6240\u6709\u4F24\u5BB3\u589E\u52A0
+    (+2)\u3002"
+  namePortuguese: Killer Instinct
+  descriptionPortuguese: "Aumenta todo o dano que voc\xEA causa em (+2)."
+  nameSpanish: Killer Instinct
+  weaponDescriptionSpanish: "Aumenta todo el da\xF1o que infliges en (+2)."
+  statsChanges:
+  - {fileID: 11400000, guid: a45e3158be9d3e44d854d79cfbd50e5d, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 500
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 1438199563, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: -1783708234, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 3

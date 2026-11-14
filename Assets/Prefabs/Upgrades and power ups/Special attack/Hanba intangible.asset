@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Hanba intangible
+  m_EditorClassIdentifier: 
+  nameEnglish: Intangible
+  descriptionEnglish: 
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: 
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  sprite: {fileID: -1999823799, guid: e43684add9c8b0c45b7c34d9f1b1f69b, type: 3}
+  price: 300
+  ammoPrice: 50
+  criticalChance: 0
+  criticalMultiplier: 0
+  damage: 1
+  damageType: 0
+  knockBackForce: 0
+  statusChance: 1
+  statusDuration: 5
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -1999823799, guid: e43684add9c8b0c45b7c34d9f1b1f69b, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  freezeFrameTime: 0
+  lensDistortion: 0.41
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 0
+  camShakeMagnitude: 0
+  flySpeed: 0
+  attackRate: 40
+  invulnerableTimer: 0
+  playerImpulse: 0
+  meleeGameObject: {fileID: 3807465635252126773, guid: 97dc926fdbf3e8445a4eabc1b87fbe8b, type: 3}
+  isPlayerChild: 0
+  specialFxDuration: 8
+  instantiateGameObjectOnAttack: 0
+  playerAction: 1
+  attackSFX: {fileID: 8300000, guid: 142400ae25f5cc84fb9073918f447859, type: 3}
+  randomAttackSFXs: []
+  volume: 1

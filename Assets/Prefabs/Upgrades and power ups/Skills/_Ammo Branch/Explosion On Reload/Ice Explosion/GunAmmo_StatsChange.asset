@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f7d933c2466004c80c328812cd0e45, type: 3}
+  m_Name: GunAmmo_StatsChange
+  m_EditorClassIdentifier: 
+  increaseMaxSpareAmmoBy: 0
+  increaseMaxAmmoOnClipBy: 0
+  increaseAmmoConsumedPerShot: 0
+  GunSpareAmmoMultiplier:
+    operationType: 0
+    variable: 0
+  GunMaxAmmoOnClipMultiplier:
+    operationType: 0
+    variable: 0
+  GunAmmoConsumedPerShotMultiplier:
+    operationType: 0
+    variable: 0
+  ChanceOfNotConsumingAmmoMultiplier:
+    operationType: 0
+    variable: 0
+  IncreaseChanceOfNotConsumingAmmoBy:
+    operationType: 0
+    variable: 0
+  IncreaseReloadTimeBy:
+    operationType: 0
+    variable: 0
+  ReloadTime_Multiplier:
+    operationType: 0
+    variable: 0
+  chanceOfFillingAmmoOnKill:
+    operationType: 0
+    variable: 0
+  explosionOnReload:
+    operationType: 3
+    variable: 1
+  explosionOnReloadDamageType:
+    operationType: 3
+    variable: 5

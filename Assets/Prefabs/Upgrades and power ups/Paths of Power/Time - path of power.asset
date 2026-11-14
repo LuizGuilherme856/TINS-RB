@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2c5e5a88ff7cc41ba5994a8d9d86a6, type: 3}
+  m_Name: Time - path of power
+  m_EditorClassIdentifier: 
+  nameEnglish: 'Time '
+  descriptionEnglish: Each step on the path of Time reduces the cooldown of the special
+    ability by 3%.
+  nameChinese: "\u65F6\u95F4 "
+  descriptionChinese: "\"\u6BCF\u4E00\u6B65\u8D70\u5728\u65F6\u95F4\u4E4B\u8DEF\u4E0A\uFF0C\u90FD\u4F1A\u4F7F\u7279\u6B8A\u6280\u80FD\u7684\u51B7\u5374\u65F6\u95F4\u51CF\u5C113%\u3002\n\n\""
+  namePortuguese: Tempo
+  descriptionPortuguese: Cada passo no caminho do tempo diminui o tempo de recarga
+    da habilidade especial em 3%
+  nameSpanish: 'Tiempo '
+  weaponDescriptionSpanish: Cada paso en el camino del Tiempo reduce el tiempo de
+    recarga de la habilidad especial en un 3%.
+  path: 3
+  leftBrother: 2
+  rightBrother: 4
+  upgrade: {fileID: 11400000, guid: 3b32456703e5ce84888d1c7683d879b4, type: 2}
+  upgrade5th: {fileID: 11400000, guid: da3d82eec8438db4d956e658a02287e6, type: 2}

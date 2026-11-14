@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: RingAttack Data
+  m_EditorClassIdentifier: 
+  nameEnglish: BellSpear
+  descriptionEnglish: 
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: 
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  sprite: {fileID: 21300000, guid: d7899ef7a5b86c14c84621eac4619e21, type: 3}
+  price: 100
+  ammoPrice: 50
+  criticalChance: 0
+  criticalMultiplier: 1
+  damage: 1
+  damageType: 0
+  knockBackForce: 1
+  statusChance: 1
+  statusDuration: 2
+  statusDamagePerSec: 0
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: 0}
+  statsCalculator: {fileID: 0}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 4
+  maxSpareAmmo: 60
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: d67083b36aafc1e40854b279048e65c9, type: 3}
+  bulletSpeed: 15
+  bulletLifeTime: 15
+  bulletDeathFX: {fileID: 6729718223946545714, guid: b25c8813fe356194aad18236efbd2a66, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 2.6
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 2
+  recoilAngle: 25
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 1.6
+  camShakeDuration: 0.2
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 0
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 86b126ff0d021244196efe591c8c2fec, type: 3}
+  shootingVolume: 1
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 1
+  startReloadingSFX: {fileID: 0}
+  stopReloadingSFX: {fileID: 0}
+  fireRate: 0.4
+  burstSize: 1
+  burstRate: 0.1
+  reloadTime: 0.6
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1, y: 0, z: 0}
+  posOffset: {x: 0, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 0}
+  DPS: -1
+  PricePerDPS: -1
+  rarity: 
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

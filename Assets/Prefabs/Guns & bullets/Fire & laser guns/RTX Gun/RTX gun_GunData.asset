@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: RTX gun_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: RTX GUN
+  descriptionEnglish: I've asked for a ray gun! Not a RAY TRACING GUN!!!
+  nameChinese: RTX GUN
+  descriptionChinese: "\u8D77\u6E90\u672A\u77E5"
+  namePortuguese: RTX GUN
+  descriptionPortuguese: "Eu pedi uma Ray Gun e n\xE3o uma Ray tracing Gun"
+  nameSpanish: RTX GUN
+  weaponDescriptionSpanish: Origen desconocido.
+  sprite: {fileID: 826240134, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 5000
+  ammoPrice: 3500
+  criticalChance: 20
+  criticalMultiplier: 3
+  damage: 16
+  damageType: 4
+  knockBackForce: 0
+  statusChance: 0.01
+  statusDuration: 10
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -844427914, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 9
+  maxSpareAmmo: 99
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: c4625683b58f0ff4fbfa0a3232ac5de9, type: 3}
+  bulletSpeed: 65
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 2.1
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 0
+  recoilAngle: 5
+  recoilDuration: 0.2
+  imprecision: 2
+  camShakeMag: 0.2
+  camShakeDuration: 0.1
+  bulletCapsule: {fileID: 0}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 0
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: f236bc2f0cabea54599a88a1138adf31, type: 3}
+  shootingVolume: 0.8
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.543
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 85778f36ac0bf774a95ef8c85b01a210, type: 3}
+  fireRate: 0.2
+  burstSize: 3
+  burstRate: 0.1
+  reloadTime: 1.5
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.7, y: 0, z: 0}
+  posOffset: {x: 1, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 2cbfa8abd94654c4ba2ef60a74d06cfb, type: 2}
+  DPS: 165.2
+  PricePerDPS: 12.1
+  rarity: 3
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Elemental Rift
+  m_EditorClassIdentifier: 
+  nameEnglish: Elemental Rift
+  descriptionEnglish: (+20%) Fire Damage; (+20%) Ice Damage; (+20%) Poison Damage;
+    {-20%} Impact Damage; {-20%} Slash Damage
+  nameChinese: Elemental Rift
+  descriptionChinese: "(+20%) \u706B\u7130\u4F24\u5BB3\uFF1B(+20%) \u51B0\u971C\u4F24\u5BB3\uFF1B(+20%)
+    \u6BD2\u7D20\u4F24\u5BB3\uFF1B{-20%} \u51B2\u51FB\u4F24\u5BB3;{-20%} \u65A9\u51FB\u4F24\u5BB3"
+  namePortuguese: Elemental Rift
+  descriptionPortuguese: (+20%) Dano de Fogo; (+20%) Dano de Gelo; (+20%) Dano de
+    Veneno; {-20%} Dano de Impacto; {-20%} Dano de Corte
+  nameSpanish: Elemental Rift
+  weaponDescriptionSpanish: "(+20%) Da\xF1o de Fuego; (+20%) Da\xF1o de Hielo; (+20%)
+    Da\xF1o de Veneno;  {-20%} Da\xF1o de Impacto; {-20%} Da\xF1o de Corte"
+  statsChanges:
+  - {fileID: 11400000, guid: bc099b9ad1bc8c748af7255ce575ed47, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 3
+  price: 1500
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: -2092700608, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 1378162213, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 0
+  numberOfTimesCanBeBought: 3

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Cheaoer Everything
+  m_EditorClassIdentifier: 
+  nameEnglish: Money for Nothing
+  descriptionEnglish: 10% discount on everything
+  nameChinese: Money for Nothing
+  descriptionChinese: "\u6240\u6709\u7269\u54C1\u4EF7\u683C\u964D\u4F4E 10%"
+  namePortuguese: Money for Nothing
+  descriptionPortuguese: Desconto de 10% em tudo
+  nameSpanish: Money for Nothing
+  weaponDescriptionSpanish: 10% de descuento en todo
+  statsChanges:
+  - {fileID: 11400000, guid: b03177ba47ef1eb41bd0639f1aeae65f, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1114595969, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

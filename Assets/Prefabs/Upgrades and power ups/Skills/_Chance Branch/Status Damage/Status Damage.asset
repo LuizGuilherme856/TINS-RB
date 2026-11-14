@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Status Damage
+  m_EditorClassIdentifier: 
+  nameEnglish: Killer Queen
+  descriptionEnglish: Increases status effect damage by 50%
+  nameChinese: Killer Queen
+  descriptionChinese: "\u72B6\u6001\u6548\u679C\u4F24\u5BB3\u63D0\u9AD8 50%"
+  namePortuguese: Killer Queen
+  descriptionPortuguese: Aumenta em 50% o dano de efeitos de status
+  nameSpanish: Killer Queen
+  weaponDescriptionSpanish: "Aumenta en 50% el da\xF1o de los efectos de estado"
+  statsChanges:
+  - {fileID: 11400000, guid: 064fbe329d6e6d9418f5c7967c19af11, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: -1531205667, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

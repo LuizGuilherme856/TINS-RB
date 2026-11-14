@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Cheaper Doors
+  m_EditorClassIdentifier: 
+  nameEnglish: The Doors
+  descriptionEnglish: 25% discount on door prices
+  nameChinese: The Doors
+  descriptionChinese: "\u95E8\u7684\u4EF7\u683C\u964D\u4F4E 25%"
+  namePortuguese: The Doors
+  descriptionPortuguese: "Desconto de 25% no pre\xE7o das portas"
+  nameSpanish: The Doors
+  weaponDescriptionSpanish: 25% de descuento en el precio de las puertas
+  statsChanges:
+  - {fileID: 11400000, guid: d54dd25f0ac22864dbdea7f9c369dd5e, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1288101868, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

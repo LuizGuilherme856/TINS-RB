@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Grenade launcher_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: GL-7A
+  descriptionEnglish: The GL-7A is a devastating weapon capable of obliterating entire
+    hordes of demons with a single shot.  One must be cautious when handling this
+    grenade launcher, as the explosive force it generates is known to cause collateral
+    damage and potentially kill the wielder.
+  nameChinese: "\u69B4\u5F39\u53D1\u5C04\u5668"
+  descriptionChinese: "\u69B4\u5F39\u53D1\u5C04\u5668\u662F\u4E00\u79CD\u6BC1\u706D\u6027\u6B66\u5668\uFF0C\u80FD\u591F\u7528\u5355\u53D1\u5C04\u51FB\u6467\u6BC1\u6574\u4E2A\u6076\u9B54\u7684\u5927\u7FA4\u3002\u4F7F\u7528\u8FD9\u79CD\u69B4\u5F39\u53D1\u5C04\u5668\u65F6\u5FC5\u987B\u5C0F\u5FC3\u8C28\u614E\uFF0C\u56E0\u4E3A\u5B83\u4EA7\u751F\u7684\u7206\u70B8\u529B\u4F1A\u9020\u6210\u9644\u5E26\u635F\u5BB3\u5E76\u6709\u53EF\u80FD\u81F4\u4F7F\u6301\u6709\u8005\u4E27\u751F\u3002"
+  namePortuguese: GL-7A
+  descriptionPortuguese: "O GL-7A \xE9 uma arma devastadora capaz de obliterar hordas
+    inteiras de dem\xF4nios com um \xFAnico tiro. Deve-se ter cautela ao manusear
+    este lan\xE7ador de granadas, pois a for\xE7a explosiva que ele gera \xE9 conhecida
+    por causar danos colaterais e potencialmente matar o usu\xE1rio."
+  nameSpanish: GL-7A
+  weaponDescriptionSpanish: "La GL-7A es una arma devastadora capaz de aniquilar
+    hordas enteras de demonios con un solo disparo. Se debe tener cuidado al manejar
+    este lanzagranadas, ya que la fuerza explosiva que genera es conocida por causar
+    da\xF1os colaterales y potencialmente matar al portador."
+  sprite: {fileID: -948899334, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 840
+  ammoPrice: 280
+  criticalChance: 0
+  criticalMultiplier: 1
+  damage: 60
+  damageType: 3
+  knockBackForce: 7
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: 335285694, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 1
+  maxSpareAmmo: 39
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 4b8271e9731576b499005ad6054e539f, type: 3}
+  bulletSpeed: 20
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 4684909949455085315, guid: 0f2cfb96b07b48442bb6d1ace964cb5f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 0f2cfb96b07b48442bb6d1ace964cb5f, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 0f2cfb96b07b48442bb6d1ace964cb5f, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 3.6
+  linedUpBulletsPerShot: 0
+  speedRandomness: 10
+  recoilForceOnPlayer: 7
+  recoilAngle: 25
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 1.6
+  camShakeDuration: 0.2
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: abe55c59372c6d646a509cb298cfeffb, type: 3}
+  shootingVolume: 1
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.508
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: bc84e79aeb308894388051623ccce737, type: 3}
+  fireRate: 0.5
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.71
+  gunType: 0
+  hoveringShotName: 
+  firePointOffset: {x: 1, y: 0, z: 0}
+  posOffset: {x: 0.5, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: fd2544bb9a5f2304591115165788f131, type: 2}
+  DPS: 17.1
+  PricePerDPS: 40.8
+  rarity: 1
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

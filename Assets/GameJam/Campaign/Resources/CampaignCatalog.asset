@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42c3b969dc480142bc12bfebc444ea2, type: 3}
+  m_Name: CampaignCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignCatalog
+  planets:
+  - id: velaria
+    displayName: "Vel\xE1ria"
+    missionsToPurify: 3
+    missionTargetRadius: 11
+    enemySpeedMultiplier: 0.7
+    rewardResourceId: ether
+    rewardResourceName: "\xC9ter"
+    rewardPerMission: 1
+    mapX: 0.26
+    mapY: 0.65
+  - id: nivora
+    displayName: Nivora
+    missionsToPurify: 4
+    missionTargetRadius: 13
+    enemySpeedMultiplier: 0.72
+    rewardResourceId: cristal-frio
+    rewardResourceName: Cristal Frio
+    rewardPerMission: 2
+    mapX: 0.42
+    mapY: 0.3
+  - id: asterim
+    displayName: Asterim
+    missionsToPurify: 4
+    missionTargetRadius: 15
+    enemySpeedMultiplier: 0.74
+    rewardResourceId: poeira-solar
+    rewardResourceName: Poeira Solar
+    rewardPerMission: 2
+    mapX: 0.61
+    mapY: 0.68
+  - id: dorsalia
+    displayName: "Dors\xE1lia"
+    missionsToPurify: 5
+    missionTargetRadius: 17
+    enemySpeedMultiplier: 0.76
+    rewardResourceId: fragmento-umbral
+    rewardResourceName: Fragmento Umbral
+    rewardPerMission: 3
+    mapX: 0.72
+    mapY: 0.43
+  - id: varkora
+    displayName: Varkora
+    missionsToPurify: 5
+    missionTargetRadius: 19
+    enemySpeedMultiplier: 0.78
+    rewardResourceId: nucleo-rubro
+    rewardResourceName: "N\xFAcleo Rubro"
+    rewardPerMission: 3
+    mapX: 0.83
+    mapY: 0.69
+  - id: marevia
+    displayName: "Mar\xE9via"
+    missionsToPurify: 6
+    missionTargetRadius: 21
+    enemySpeedMultiplier: 0.8
+    rewardResourceId: sal-estelar
+    rewardResourceName: Sal Estelar
+    rewardPerMission: 4
+    mapX: 0.18
+    mapY: 0.38
+  skills:
+  - id: flash-duration
+    displayName: Flash Prolongado
+    description: "Aumenta a dura\xE7\xE3o e o atordoamento do Flash."
+    soulCost: 10
+    requiredResourceId: 
+    requiredResourceAmount: 0
+    maximumRank: 5
+    unlockedWeaponResourcePath: 
+  - id: speed
+    displayName: Passos Livres
+    description: Aumenta a velocidade de movimento.
+    soulCost: 15
+    requiredResourceId: 
+    requiredResourceAmount: 0
+    maximumRank: 3
+    unlockedWeaponResourcePath: 
+  - id: flash-capacity
+    displayName: "C\xE9lula de Luz"
+    description: "Aumenta em uma a capacidade m\xE1xima do Flash."
+    soulCost: 20
+    requiredResourceId: 
+    requiredResourceAmount: 0
+    maximumRank: 4
+    unlockedWeaponResourcePath: 
+  - id: flash-recharge
+    displayName: Foco Restaurado
+    description: "Acelera a recarga autom\xE1tica do Flash."
+    soulCost: 25
+    requiredResourceId: ether
+    requiredResourceAmount: 1
+    maximumRank: 3
+    unlockedWeaponResourcePath: 
+  - id: solar-vigor
+    displayName: Vigor Solar
+    description: "Aumenta a vida m\xE1xima do jogador."
+    soulCost: 30
+    requiredResourceId: poeira-solar
+    requiredResourceAmount: 2
+    maximumRank: 3
+    unlockedWeaponResourcePath: 
+  - id: weapon-laser-pistol
+    displayName: Pistola Astral
+    description: "Desbloqueia uma nova arma para futuras miss\xF5es."
+    soulCost: 180
+    requiredResourceId: ether
+    requiredResourceAmount: 4
+    maximumRank: 1
+    unlockedWeaponResourcePath: CampaignGuns/laser pistol_GunData
+  - id: weapon-auto-pistol
+    displayName: Pistola de Rajada
+    description: "Desbloqueia uma arma autom\xE1tica para futuras miss\xF5es."
+    soulCost: 450
+    requiredResourceId: cristal-frio
+    requiredResourceAmount: 3
+    maximumRank: 1
+    unlockedWeaponResourcePath: CampaignGuns/automatic pistol_GunData

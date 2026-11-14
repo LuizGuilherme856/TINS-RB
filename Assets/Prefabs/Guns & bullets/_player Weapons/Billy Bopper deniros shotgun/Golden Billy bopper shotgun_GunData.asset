@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Golden Billy bopper shotgun_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Billy Bopper
+  descriptionEnglish: 'Origin unknown '
+  nameChinese: Billy Bopper
+  descriptionChinese: "\u8D77\u6E90\u672A\u77E5"
+  namePortuguese: Billy Bopper
+  descriptionPortuguese: Origem desconhecida
+  nameSpanish: Billy Bopper
+  weaponDescriptionSpanish: Origen desconocido.
+  sprite: {fileID: 1483247037, guid: cc130bff537fd8740b6241e50e93585c, type: 3}
+  price: 1600
+  ammoPrice: 533
+  criticalChance: 30
+  criticalMultiplier: 3
+  damage: 6
+  damageType: 2
+  knockBackForce: 2
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 3
+  projectileSize: 1
+  buyIcon: {fileID: 739195459, guid: 92489b975d8f83d4db29f326dca525f4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 16
+  maxSpareAmmo: 156
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 8b0c66dbc6eb38c4eab65a1f4ba78cb6, type: 3}
+  bulletSpeed: 16
+  bulletLifeTime: 1.27
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 9
+  multipleBulletAngleOffset: 5.9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 5
+  recoilForceOnPlayer: 3
+  recoilAngle: 25
+  recoilDuration: 0.2
+  imprecision: 2
+  camShakeMag: 1.5
+  camShakeDuration: 0.13
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1.18
+  shootingSFX: {fileID: 8300000, guid: e075dc643c03a514eb408353d1847526, type: 3}
+  shootingVolume: 0.595
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.532
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 49c129997eb55194a8002466c7b34977, type: 3}
+  fireRate: 0.6
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.6
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.58, y: 0, z: 0}
+  posOffset: {x: 0.94, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 105.4
+  PricePerDPS: 19
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

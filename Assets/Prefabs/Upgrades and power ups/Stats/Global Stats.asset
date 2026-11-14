@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca24563dbdb824dbc3847a2374385b, type: 3}
+  m_Name: Global Stats
+  m_EditorClassIdentifier: 
+  runeDatas:
+  - {fileID: 11400000, guid: 605fb6031c4c5594eae4760222268a3c, type: 2}
+  - {fileID: 11400000, guid: 8ae03e84e85f45243a452f4aa2b1010b, type: 2}
+  - {fileID: 11400000, guid: 9b98a25b945fc8f4f889ec2a0f0c1816, type: 2}
+  - {fileID: 11400000, guid: 4dbb65a631ec9364c8c80987e0753a10, type: 2}
+  - {fileID: 11400000, guid: 9b98a25b945fc8f4f889ec2a0f0c1816, type: 2}
+  - {fileID: 11400000, guid: 643bcd98a60ff4c4ab908fbaf4ca9cab, type: 2}
+  - {fileID: 11400000, guid: a677aeed81cdbe24b9709e512fadc0aa, type: 2}
+  - {fileID: 11400000, guid: 4bd8001d4ee20304e92e53d987619281, type: 2}
+  - {fileID: 11400000, guid: 293ddb290ba6ae2478a80089b953c512, type: 2}
+  - {fileID: 11400000, guid: ef4fe45e8812fc6479e2ff83637c5037, type: 2}
+  - {fileID: 11400000, guid: 6235635615e735943b13ae613c97e917, type: 2}
+  - {fileID: 11400000, guid: 12618e2eae4bc9540822024f1eb32e04, type: 2}
+  - {fileID: 11400000, guid: 2b6ff16fffd74264088c7dfe67969116, type: 2}
+  gunDatas:
+  - {fileID: 11400000, guid: 3dc518de471e9584297d773b9a54c32a, type: 2}
+  - {fileID: 11400000, guid: 8662e128d09095341aa1c4775eb3bb14, type: 2}
+  - {fileID: 11400000, guid: 90f233d033957474cb79108cea124f4a, type: 2}
+  - {fileID: 11400000, guid: 4faa74b7540a65c41a9bef54599d4de6, type: 2}
+  - {fileID: 11400000, guid: 80dcdf14afdf2eb4bb9b30f16cc1d0bd, type: 2}
+  - {fileID: 11400000, guid: 2195f3915a66c24458b81b05681c551c, type: 2}
+  - {fileID: 11400000, guid: b5c5406ddd24c2f4bbb2a29309d839c4, type: 2}
+  - {fileID: 11400000, guid: cf661d5e22776934b8636afb5b949af2, type: 2}
+  - {fileID: 11400000, guid: 5e2f1873dd222044cae1d78057101a60, type: 2}
+  - {fileID: 11400000, guid: fcb5bcab4fc72a7448f90704b7e59d6c, type: 2}
+  - {fileID: 11400000, guid: bbb0a8b5c5d37144dafa11190eb9319c, type: 2}
+  - {fileID: 11400000, guid: 6fc459239f9363541b63c67e91e82d98, type: 2}
+  - {fileID: 11400000, guid: abe1c3518c20e244183d5b01e96f06f9, type: 2}
+  - {fileID: 11400000, guid: e5fc7c5547556174aa216e0b77ae7366, type: 2}
+  - {fileID: 11400000, guid: 6e2f3976faaf30745ba4924761da6215, type: 2}
+  <doorPriceMultiplier>k__BackingField: 1
+  <meleeWeaponPriceMultiplier>k__BackingField: 1
+  <gunUpgradePriceMultiplier>k__BackingField: 1
+  <runePriceMultiplier>k__BackingField: 1
+  <gunPriceMultiplier>k__BackingField: 1
+  <globalPriceMultiplier>k__BackingField: 1
+  <RefilAmmoOnOpenDoor>k__BackingField: 0
+  <FreeRevives>k__BackingField: 0
+  <walkTrailDamageType>k__BackingField: 10
+  <extraPointsPerKill>k__BackingField: 0
+  <extraInitialPoints>k__BackingField: 0
+  maxChainReactions: 5
+  <statusChanceMultiplier>k__BackingField: 1
+  <statusDamageMultiplier>k__BackingField: 1
+  <statusDurationMultiplier>k__BackingField: 1
+  <AddTodropChance>k__BackingField: 0
+  <AddToHpHealedByHearts>k__BackingField: 1
+  <powerUpGoTowardsPlayerMaxDistanceMultiplier>k__BackingField: 1
+  <increaseWeaponCapacityBy>k__BackingField: 0
+  <playerWalkSpeedMultiplier>k__BackingField: 1
+  <maxIgnoreDamageChance>k__BackingField: 0.5
+  AddToPlayerInitialHealth: 0
+  <IncreasePlayerMaxHealthBy>k__BackingField: 0
+  <IncreaseChanceOfIgnoreDamageBy>k__BackingField: 0
+  <ChanceOfIgnoreDamage_Multiplier>k__BackingField: 1
+  <ShieldDurationOnTakingDamage>k__BackingField: 0
+  healthPointsToHealOnBuyWeapon: 0
+  <enemyHealthMultiplier>k__BackingField: 1
+  orbitalUpgrades: []
+  <IncreaseOrbitalCorrectionSpeedBy>k__BackingField: 0
+  <OrbitalCorrectionSpeed_Multiplier>k__BackingField: 1
+  <OrbitalBladeInstaKillChance>k__BackingField: 0
+  <OrbitalBladeInstaKillChance_Multiplier>k__BackingField: 1
+  orbitalBladeMinRadius: 1
+  <OrbitalRadius_Multiplier>k__BackingField: 1
+  <OrbitalBladeDamage_Multiplier>k__BackingField: 1
+  <IncreaseOrbitalBladeDamageBy>k__BackingField: 0
+  maxMeleeActionQuantity: 1
+  MeleeAttackRateMultiplier: 1
+  SpecialAbilityCooldownMultiplier: 1
+  maxSpecialActionQuantity: 1
+  <maxDashActionQuantity>k__BackingField: 1
+  DashAbilityCooldownMultiplier: 1
+  <dashDamageMultiplier>k__BackingField: 1
+  <dashDamageType>k__BackingField: 2
+  <fireDamageMultiplier>k__BackingField: 1
+  <iceDamageMultiplier>k__BackingField: 1
+  <poisonDamageMultiplier>k__BackingField: 1
+  <waterDamageMultiplier>k__BackingField: 1
+  <electricityDamageMultiplier>k__BackingField: 1
+  <etherDamageMultiplier>k__BackingField: 1
+  <impactDamageMultiplier>k__BackingField: 1
+  <punctureDamageMultiplier>k__BackingField: 1
+  <slashDamageMultiplier>k__BackingField: 1
+  <GlobalDamage_Multiplier>k__BackingField: 1
+  <IncreaseGlobalDamageBy>k__BackingField: 0
+  <IncreaseGunDamageBy>k__BackingField: 0
+  <GunDamage_Multiplier>k__BackingField: 1
+  <GunCriticalDamage_Multiplier>k__BackingField: 1
+  <GunCriticalChance_Multiplier>k__BackingField: 1
+  <FireRate_Multiplier>k__BackingField: 1
+  <doubleDamageOnLastBullet>k__BackingField: 0
+  <increaseMaxSpareAmmoBy>k__BackingField: 0
+  <increaseMaxAmmoOnClipBy>k__BackingField: 0
+  <increaseAmmoConsumedPerShot>k__BackingField: 0
+  <explosionOnReload>k__BackingField: 0
+  <explosionOnReloadDamageType>k__BackingField: 3
+  <IncreaseReloadTimeBy>k__BackingField: 0
+  <ReloadTime_Multiplier>k__BackingField: 1
+  <GunSpareAmmo_Multiplier>k__BackingField: 1
+  <GunMaxAmmoOnClip_Multiplier>k__BackingField: 1
+  <GunAmmoConsumedPerShot_Multiplier>k__BackingField: 1
+  <ChanceOfNotConsumingAmmo_Multiplier>k__BackingField: 1
+  <IncreaseChanceOfNotConsumingAmmoBy>k__BackingField: 0
+  <chanceOfFillingAmmoOnKill>k__BackingField: 0
+  <IncreaseMeleeDamageBy>k__BackingField: 0
+  <MeleeDamage_Multiplier>k__BackingField: 1
+  <MeleeCriticalDamage_Multiplier>k__BackingField: 1
+  <MeleeCriticalChance_Multiplier>k__BackingField: 1
+  <ThornDamage>k__BackingField: 0
+  <ThornDamageType>k__BackingField: 2
+  <ThornInstaKillChance>k__BackingField: 0
+  <chanceOfShootingExtraBullet>k__BackingField: 0
+  <IncreaseScatteredBulletsBy>k__BackingField: 0
+  <IncreaseLinedUpBulletsBy>k__BackingField: 0

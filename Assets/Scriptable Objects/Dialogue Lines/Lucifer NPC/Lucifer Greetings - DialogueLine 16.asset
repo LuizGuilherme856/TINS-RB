@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9876f83510731f4d97169c0d46b0606, type: 3}
+  m_Name: Lucifer Greetings - DialogueLine 16
+  m_EditorClassIdentifier: 
+  lines:
+  - participant: 0
+    englishLine: " Man, don\u2019t get me wrong but can I ask you a question?"
+    portugueseLine: "Cara, n\xE3o me leve a mal mas posso te fazer uma pergunta?"
+    chineseLine: "\u54E5\u4EEC\uFF0C\u4E0D\u4ECB\u610F\u6211\u95EE\u4F60\u4E2A\u4E8B\u5417?  "
+    spanishLine: " Oye, no me malinterpretes pero \xBFpuedo hacerte una pregunta?"
+  - participant: 1
+    englishLine: ' Yes'
+    portugueseLine: Sim
+    chineseLine: "\u964C\u95EE\u3002"
+    spanishLine: " S\xED"
+  - participant: 0
+    englishLine: ' Are you Lucifer?'
+    portugueseLine: "Voc\xEA \xE9 L\xFAcifer?"
+    chineseLine: "\u4F60\u662F\u8DEF\u897F\u6CD5\u5417?  "
+    spanishLine: " \xBFEres Lucifer?"
+  - participant: 1
+    englishLine: ' My name is Mr. Crowley.'
+    portugueseLine: "Meu nome \xE9 Mr Crowley"
+    chineseLine: "\u6211\u53EB\u514B\u52B3\u5229\u5148\u751F\u3002"
+    spanishLine: ' Mi nombre es Mr. Crowley.'

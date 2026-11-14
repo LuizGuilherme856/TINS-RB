@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189d3e3b081dcc84aa2f60926508fda9, type: 3}
+  m_Name: dog miki
+  m_EditorClassIdentifier: 
+  nameEnglish: Miki
+  descriptionEnglish: "Miki is one of the bravest and most beloved warriors the world
+    has ever seen!\nDon\u2019t be fooled by this dog\u2019s angelic face \u2014 he\u2019s
+    built to overcome any challenge!\nA tribute to a true warrior, a loyal companion
+    and friend of K1."
+  nameChinese: Miki
+  descriptionChinese: "\u7C73\u5947\u662F\u4E16\u754C\u4E0A\u6700\u52C7\u6562\u3001\u6700\u53D7\u559C\u7231\u7684\u6218\u58EB\u4E4B\u4E00!\n\u522B\u88AB\u8FD9\u53EA\u72D7\u5929\u4F7F\u822C\u7684\u8138\u5E9E\u9A97\u4E86\uFF0C\u4ED6\u53EF\u662F\u80FD\u514B\u670D\u4E00\u5207\u6311\u6218\u7684\u52C7\u58EB!\n\u8FD9\u662F\u5411\u4E00\u4F4D\u771F\u6B63\u7684\u6218\u58EB\u3001K1\u7684\u5FE0\u5B9E\u4F19\u4F34\u548C\u670B\u53CB\u81F4\u656C\u3002"
+  namePortuguese: Miki
+  descriptionPortuguese: "Miki \xE9 um dos guerreiros mais corajosos e queridos que
+    o mundo j\xE1 viu! N\xE3o se engane com a carinha de anjo deste cachorro, pois
+    ele \xE9 bom para passar por todos os desafios! Uma homenagem feita a um guerreiro
+    de verdade, um companheiro\_e\_amigo\_do\_K1."
+  nameSpanish: Miki
+  weaponDescriptionSpanish: "\xA1Miki es uno de los guerreros m\xE1s valientes y
+    queridos que el mundo ha visto!\nNo te dejes enga\xF1ar por la carita de \xE1ngel
+    de este perro, \xA1porque est\xE1 listo para superar cualquier desaf\xEDo!\nUn
+    homenaje a un verdadero guerrero, un compa\xF1ero fiel y amigo de K1."
+  shortName: Miki
+  smallIcon: {fileID: 669662352, guid: e7fa5cf9e0be1974c8848b24576c3f0c, type: 3}
+  bigPortrait: {fileID: 21300000, guid: 150bf59cb12502b448833d8f52630350, type: 3}
+  dialoguePortrait: {fileID: 508489293, guid: 1223324bb37e6c04885a5870123297ea, type: 3}
+  character: 5
+  <defaultGun>k__BackingField: {fileID: 11400000, guid: 949aeb189e284c541b81c7184c0cf897, type: 2}
+  <defaultMelee>k__BackingField: {fileID: 11400000, guid: 838cd1f920cc4d6429546bd9c8e2897e, type: 2}
+  <defaultSpecialAbility>k__BackingField: {fileID: 11400000, guid: 31dea92824dfbf54180e155aa9a69c7b, type: 2}
+  <defaultDash>k__BackingField: {fileID: 11400000, guid: a19d62725d896af49aceeef8348e0e52, type: 2}
+  <defaultHp>k__BackingField: 7
+  <initialPoints>k__BackingField: 600
+  <chanceToIgnoreDamage>k__BackingField: 0
+  <numberOfGunsItCanCarry>k__BackingField: 2
+  <animatorController>k__BackingField: {fileID: 9100000, guid: 1a2348bc699c92344911f54c27a16387, type: 2}
+  corpse: {fileID: 5347488892711525149, guid: 911c946f7df3ab2439450a054873c75c, type: 3}
+  hitSfx: {fileID: 8300000, guid: 7aa78c3af05f6ad48b9b80d7950e1cf9, type: 3}

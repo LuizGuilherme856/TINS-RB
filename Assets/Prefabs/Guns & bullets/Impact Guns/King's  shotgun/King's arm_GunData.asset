@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: King's arm_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: King's Arm
+  descriptionEnglish: Never strike a king unless you are sure you shall kill him,
+    and this gun more than ensures that.
+  nameChinese: "\u56FD\u738B\u7684\u6B66\u5668"
+  descriptionChinese: "\u9664\u975E\u4F60\u786E\u5B9A\u80FD\u6740\u6B7B\u56FD\u738B\uFF0C\u5426\u5219\u6C38\u8FDC\u4E0D\u8981\u51FA\u624B\u2014\u2014\u800C\u8FD9\u628A\u67AA\uFF0C\u8DB3\u4EE5\u786E\u4FDD\u505A\u5230\u8FD9\u4E00\u70B9\u3002"
+  namePortuguese: "Bra\xE7o do Rei"
+  descriptionPortuguese: "Nunca ataque um rei a menos que tenha certeza de que ir\xE1
+    mat\xE1-lo \u2014 e esta arma mais do que garante isso."
+  nameSpanish: King's Arm
+  weaponDescriptionSpanish: "Nunca ataques a un rey a menos que est\xE9s seguro de
+    que lo matar\xE1s, y esta arma m\xE1s que lo garantiza."
+  sprite: {fileID: 195198338, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 2100
+  ammoPrice: 700
+  criticalChance: 10
+  criticalMultiplier: 2
+  damage: 10
+  damageType: 2
+  knockBackForce: 3
+  statusChance: 0.35
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 3
+  projectileSize: 1
+  buyIcon: {fileID: 1631358836, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.5
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 12
+  maxSpareAmmo: 468
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 8b0c66dbc6eb38c4eab65a1f4ba78cb6, type: 3}
+  bulletSpeed: 50
+  bulletLifeTime: 0.2
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 10
+  multipleBulletAngleOffset: 5.9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 3
+  recoilAngle: 15
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 2
+  camShakeDuration: 0.13
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1.17
+  shootingSFX: {fileID: 8300000, guid: cdd35193433000e428da45ddffbf5317, type: 3}
+  shootingVolume: 0.595
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.532
+  startReloadingSFX: {fileID: 8300000, guid: 8d9c6a888fbee4ec6aaf88f6ae247e31, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 49c129997eb55194a8002466c7b34977, type: 3}
+  fireRate: 1
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1.4
+  gunType: 0
+  hoveringShotName: 
+  firePointOffset: {x: 1.12, y: 0, z: 0}
+  posOffset: {x: 0.87, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: c448161e5e95e984fa08b0b5cb750ebe, type: 2}
+  DPS: 98.5
+  PricePerDPS: 14.2
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

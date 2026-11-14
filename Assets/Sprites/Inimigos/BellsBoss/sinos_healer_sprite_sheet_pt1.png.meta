@@ -1,0 +1,6461 @@
+fileFormatVersion: 2
+guid: 5d24342404fe703499a88ba622a42fb6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f7b504beb05b9940a3e029821058cbc
+      internalID: -803404660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc7973daec606840bf44ab02a2e3d56
+      internalID: -788844608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_2
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877b004d366cdc84da5569d29f41e923
+      internalID: -327852269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b3f61880232344995aedd329b74e07
+      internalID: 1698426794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6bd8db20058114ab0b4d192bac8a9e
+      internalID: -227919643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_5
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d0a6436150edb348bd323ea9f3efce7
+      internalID: 1900852204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_6
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5e496037066577409e7657a6305eb6c
+      internalID: 1972425871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_7
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6120147b9066d42aa3e5daa023304a
+      internalID: -569393024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_8
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f577442fcff638479e06b8f657e10a5
+      internalID: 1776288465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_9
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e711d85b008ef43b8743f3b611d5c6
+      internalID: -369674795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_10
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4311e7666d922654f845546d70d0ab6b
+      internalID: 1658770950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_11
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71f62fff0cbbc7c4dbb4d7b39c1962eb
+      internalID: 1476567523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_12
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f97b47efc0ac7e43b6bc358bcc20445
+      internalID: -1724968082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_13
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 3400
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860f81974430bc643ba79797c38b8e56
+      internalID: -1238307105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01c4125120dd65f448f4f878d9ad8828
+      internalID: -81886517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_15
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b244c1f60b2d549801d20699de65bb
+      internalID: 938811701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_16
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eeaa9c728795864bb2db94e538df703
+      internalID: -879093639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_17
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c750adfccc975c47801b708adb7a1b9
+      internalID: -1798925352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_18
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f27d4ad44975c46b5c9c127abdf872
+      internalID: 956918647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a69a45d05e5ce4a90359584c40b2b2
+      internalID: -1739447359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_20
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73c96d1f0afee74e83d9170565085a3
+      internalID: 1066144575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_21
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94db0eb6c16f5e44682aeb6ef1d89ab7
+      internalID: 795623272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_22
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77569b949b578d4c82a5caa6f88f7dd
+      internalID: -1077733236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_23
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daf7566b235057646ab9a4ee7dd56751
+      internalID: -1382037486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_24
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d35a582282e8842a89fe25cc244753
+      internalID: -284383918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_25
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6927d365ef91ced40a1ee46c9818401a
+      internalID: 496934089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_26
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f581f5ef93d1b428cf117307808979
+      internalID: 1567972445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_27
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 3230
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d54cafddd9cec204494880662660c747
+      internalID: 2021787042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a820d9455ce10242a0415df9f0449eb
+      internalID: -1884709577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_29
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed92a977791b5204a8677d51c9fe25e5
+      internalID: 1621841847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_30
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e0fa952fac1ae4bbb4b25b769d9453
+      internalID: 421385466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_31
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db27eedba352f7f45a66c6d44ef5399c
+      internalID: -82068578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_32
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a394e088a0025647be946f2fefac41e
+      internalID: -296234769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_33
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b1d5b37b84e45b4c804ec3ba599c7c4
+      internalID: 152078864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_34
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef4174b5e50186c4abc02fbd9ece1891
+      internalID: 41213075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_35
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e96ca3075f85c1f43a29dbe383898609
+      internalID: 516549852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_36
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc931733d51583409040d8405022cce
+      internalID: 476826813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_37
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d3938ddb1f5cc4fbe1ffc1996860aa
+      internalID: 1077045212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_38
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d3599685b416a429609a6d10322ad1
+      internalID: -1156072061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_39
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc66534bb77ffd4b905bc82efdee56b
+      internalID: 1462142193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_40
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c4c0596854b5b469806425307f3c8b
+      internalID: -1237030711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_41
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 3060
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b0dd4a816b85d469356f73f534ad16
+      internalID: -555885124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41568d33d95d4ec458f1c37c3185f5c6
+      internalID: -1266692397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_43
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6bac042171222945bf011a9ed004621
+      internalID: -609018803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_44
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c6395ae398f7a41bcaa32dd4a0a6c0
+      internalID: 588413777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_45
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d765a94d46d2548bf46bf2f8fea8fd
+      internalID: -564779917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_46
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202a8adc03a7d854b8ffe3b6afe0aed5
+      internalID: 581288943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_47
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d85d4f111dfdd14cb2ff38e52a43bb0
+      internalID: 869457171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_48
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dededfb419486d468b6f0f7257d7ca8
+      internalID: 993259872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_49
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d3bfcadc47c554ab15c4655b855710
+      internalID: -932500666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_50
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7342e8ba2c86be042bacfff0ec2a466d
+      internalID: -1563917995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_51
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81fe933477c7a54c8bed87a3be671dc
+      internalID: -457153671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_52
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4530a77e06bf849bb307ec43fd76cc
+      internalID: -228354708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_53
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c102a7973e00c55428eb6b8f18823df7
+      internalID: -1773705652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_54
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ceda1fc77410846801ad2ceddd1d54
+      internalID: 183531742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_55
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2890
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8c4731ef8787f4cb07440b63dd0b64
+      internalID: -1986025480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5f4a4910e24f5499cc484e9f78d567
+      internalID: -1947284312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_57
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6f54cdb2201874aaac1f4e045e45fe
+      internalID: 1548070667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_58
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0999b5e490508f246bea87344e826ae6
+      internalID: 762704499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_59
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8965f24739b644da834ecf1f6883ed
+      internalID: 888365617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_60
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d0e687019d8a344bbfba1f450abdf3
+      internalID: 1998231134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_61
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc32492b9122b8748913485df2c0fbc6
+      internalID: -1528662931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_62
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b66af6c660b78409d6ea2d2d89571c
+      internalID: -1927070376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_63
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 690e4fc03764869459925b00418a71b4
+      internalID: -937201800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_64
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f423a87f9f25f5448a1e91f1723819f
+      internalID: -463037071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_65
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572addd2c75f41c4d99def13a0acef39
+      internalID: -1885765586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_66
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4e74998c808aa4cb4e8ea303b542ae
+      internalID: 2096246369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_67
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfebc75bc3c25354688d3d613dc82423
+      internalID: -646085890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_68
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2720
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5192bfd42ade2345b45be7ff9355176
+      internalID: -1851953341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_69
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d133e1b0d1c5e4e8202d661607901b
+      internalID: 1402187370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_70
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40837b9f5ef4504ba304bd807044386
+      internalID: -846061094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_71
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3db14e0ec09707341be3acc955fa3f4d
+      internalID: 2122260515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_72
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee51b7dae96af248a938b7cd64642c6
+      internalID: 197807681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_73
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82cd3c1eaffa0a4a973e23182508ca5
+      internalID: 1302766819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_74
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e9b5c4e548d9e4cb90526a0220d29a
+      internalID: 1615116007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_75
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73754c6c7308c6a418ea48dbcdc010fa
+      internalID: -2115723467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_76
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f7f86ea73f7414c9f9a6e3069ddd86
+      internalID: 2121468378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_77
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f808480f6618d2447932fe51c2d83e2d
+      internalID: 567251922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_78
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89838612e8f6ae468402a0936faa012
+      internalID: -1660269107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_79
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c36e24edf29a77438339f124f97727e
+      internalID: -1529975956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_80
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e549c3c1ba4e50459e33d797334244c
+      internalID: 1711418963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_81
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14203fa09a839ee449ad005b9f91d819
+      internalID: 1302365305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_82
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2550
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4afd88f85acdf49a6927005ac57262
+      internalID: -1077178855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_83
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f46b1610c52234fa20c42e2583db86
+      internalID: 338701830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_84
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd699b08f954fe459760652adb7f16e
+      internalID: -421698079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_85
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38db8ad7e96f64f49a32c973f4f20fdd
+      internalID: -1562178669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_86
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819f424a528f117469a88ae48a60a9bd
+      internalID: -1629143413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_87
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa9645a1b3dde44ca347b577376f2a3
+      internalID: 1291890306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_88
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a6524d2f67c9a4ca1acb60d9431bfb
+      internalID: -650434638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_89
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b6498b02bc577e469427a71e11bddc3
+      internalID: 19137763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_90
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ed5f2b0f6fbda409fc21e69867f8a3
+      internalID: 2121495286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_91
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e751c0eaafba524b849201c8a508b59
+      internalID: -1374258147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_92
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f97ac92b884f2446a9bc86d22204085
+      internalID: 1381376146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_93
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af00786acdc9f544dad3e25ea0a76fb1
+      internalID: 1797103989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_94
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5561fe198f0005498fec42a2331348a
+      internalID: -538440852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_95
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dec53f7c3820504d9bae00656e3be2e
+      internalID: -1187024003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_96
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2380
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae1c29d508674ba499130fb58bb890a0
+      internalID: 1137860927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_97
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127a44ba03fda304a96a719513939cea
+      internalID: 586753462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_98
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce97dc429b85fe147a6436ce12d674e2
+      internalID: 20094287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_99
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a176c4b62c2cdb47a72e3e8f0b36ebd
+      internalID: -411267123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_100
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639c043e03dee654b9461ae547c4dae1
+      internalID: -1289544387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_101
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d890364eff4507b4fa64724230ffaf9f
+      internalID: 1799377086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_102
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7935bfa6066c6d4ab83dfd623ae1b97
+      internalID: 1387046375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_103
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584cb7920a787c942897c5e0016ca083
+      internalID: -1689631181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_104
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0459916d6f20345b8a80be81bf364d
+      internalID: 755477549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_105
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0f8ada1a0c7974eb282a7f09a766e9
+      internalID: -590654917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_106
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bd3cea6703c74459fa2e26f2027710
+      internalID: 681694681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_107
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10ab477ea8b2934e8273c87ca967c46
+      internalID: -1398476229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_108
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1398939e6bca074380f261d8f32bc48
+      internalID: -892938390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_109
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ecf4687168d96d4b938b6e1e10a51bd
+      internalID: 2078962501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_110
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2210
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 130d2738364a14048ab96f4da85b8481
+      internalID: 1021563228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_111
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69201c8b39491748a01a277680baba4
+      internalID: -333846314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_112
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77190c23dd0abc84b8c2c3b1ad501d5a
+      internalID: 1728649611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_113
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f371b4bbd0b2c04499a85dcfb73a7a7
+      internalID: 1580184449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_114
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec9108ae7769ce41bc2f9c5d53268d8
+      internalID: 422922596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_115
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c13f9f999c64c6e4bbc8acbb174839c1
+      internalID: -1235059997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_116
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa24027e6d542941b9ac7038b6498fe
+      internalID: -754745846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_117
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d366441f2e1ca042a30bbd584a0f360
+      internalID: -1811008095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_118
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec02da3ba9ace07458a0b9c0e5f5934e
+      internalID: -196525829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_119
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9acbad66f1c95f4286d12a17fcfb87c
+      internalID: 2024932828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_120
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70a3023377ae294295875d12f012b4d
+      internalID: 2133160277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_121
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 520218e223404b94385352da4cf0c981
+      internalID: -71113888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_122
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b7e5739c4d81d4c8891ddeda53edc6
+      internalID: -632208331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_123
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8864ad7697517468b9ef5de1f5fd41
+      internalID: 1865281056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_124
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 2040
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631ce1b3dff6eaf4585cbd2f572c225c
+      internalID: 535836815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_125
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e594ecbc221fe6f4b85de34a678f0385
+      internalID: 1704734053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_126
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 523deadd24dd6be4bb3c9f7b754c8496
+      internalID: 968349339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_127
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2932269af099a4082e3cd7e28a6a65
+      internalID: -481165516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_128
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61f6fbecb4651cb459cbc6340b552198
+      internalID: -998399292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_129
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9afc53ce3857ca4f89dcc03f923ca0f
+      internalID: 2095867537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_130
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674c9114680c8df4f84d176af8804330
+      internalID: 998120100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_131
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ff2e0c5feccf64ea4a573df76e7d2b
+      internalID: -200817174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_132
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55179186f272b7043861771a7dfc85c5
+      internalID: -1247311498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_133
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d046189a94164264fb35aae67a0d786d
+      internalID: 1307424244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_134
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb83fb0d3598b44f81b2ee69a65cd76
+      internalID: 411949082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_135
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe137200c488aad42b48d4c316ce40fa
+      internalID: -1988148420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_136
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4dd012aa6bfa242a4ef40f4388eff2
+      internalID: 322991179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_137
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333862f04420b0c46b28e96d088ee1b2
+      internalID: -266713331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_138
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1870
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4bb41e35308c94ebcdff63fc8eee1b
+      internalID: -430390455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_139
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a11615b72295447ae9fcb51c3268ce
+      internalID: -508316773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_140
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8680f3bf28661624090e9ea24f1b46d8
+      internalID: 1373593694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_141
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853e7a642ae7dde4286c008ecde40e02
+      internalID: -572925300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_142
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba388bcbce7323b489dbf5fa028d8bec
+      internalID: 405894995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_143
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15cae4208be310f4d934771e75ace463
+      internalID: 278576027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_144
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45b37100b5c5d404099663f838c5d7f7
+      internalID: 2087294884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_145
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be6751f33246dd4d9561db14cd51065
+      internalID: 1100285227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_146
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4300a27d1ba3c19489783ec7cbfe764a
+      internalID: 1023091017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_147
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864e663a37bce50408efbf014524a356
+      internalID: 1548942375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_148
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a672cfe3cc6b3449dadf440a11aa8e
+      internalID: -1718093638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_149
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3428c1e8677904e8bf1b96716515b3
+      internalID: -1202580927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_150
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b149aac04cdd1ad438de9c4bfa2e63f3
+      internalID: 1817038851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_151
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3468a3aa7e8089649a9c98997d110e9e
+      internalID: 969017282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_152
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1700
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e9dd48d9c863e647808d58506bd3457
+      internalID: -2034602042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_153
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fffeb7cfaea32de4f9df72d7f426a236
+      internalID: 1743293533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_154
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47a3abcc1a1c9045a2d1e2338ca617e
+      internalID: 1209142562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_155
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7642c65ffbbf0a469e6222a184e7490
+      internalID: -989884558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_156
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae578b8fe7f18548904e6ecbebc284f
+      internalID: -42566576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_157
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f56bf9edb90d442800df5b925d0521
+      internalID: 1718425080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_158
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a63658587910d42b3587bbebdf92ad
+      internalID: -1417682247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_159
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9675a889767d7d94886108762cca1816
+      internalID: 1765414232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_160
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa613b59fa2455b48aca03a142f1e69b
+      internalID: 2100579904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_161
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d99c02a5d53d546459830c8e4075b74b
+      internalID: 439455177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_162
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 595573c4ff820be489d56b952512fd54
+      internalID: -817043100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_163
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a67d52cdcc912343a73f20863329081
+      internalID: -503892584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_164
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d010597c463e74cb4ace2f5cebb1ef
+      internalID: 1847594855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_165
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59afbd9adc7ff6b4b9b79d49c4e7082e
+      internalID: 1059460487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_166
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1530
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1220ae7d6be2a834ba5a5aa0d0aeab33
+      internalID: 1439026793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_167
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fa6103a3899ee43a2f465a568ae999
+      internalID: -1510305951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_168
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dbbdfac691e1db4fb15f3a118225b25
+      internalID: -1671146839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_169
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49bfe44399d9a1346849641c244e8a0c
+      internalID: 376889777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_170
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e79bcae5e9f3e44bd0053b6e591461
+      internalID: -524060839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_171
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 287ae4a4594c2c848993be179560c5b3
+      internalID: 2005970886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_172
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f29c6045a31d64db438dbf3cde22ff
+      internalID: 289479807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_173
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a32e66752a8db6f48a7dff9853c95b88
+      internalID: 613635437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_174
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302c4e122683e444282062eda51a5288
+      internalID: 2018123005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_175
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1cab28226acc6041ae7c232d82eda9b
+      internalID: -2092847253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_176
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58409ca1911ad08419d4d794f900403d
+      internalID: 1289454538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_177
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bafeb909440b85447bb6cf4a96a66f96
+      internalID: 881971217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_178
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dcbe0c595c3c5e4180ac4963a31f2fd
+      internalID: 479882759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_179
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17de9087e50e6634bb150a9b86b918c0
+      internalID: -1442216348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_180
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1360
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b4b9ea0fbc201f45917250b0f9c295a
+      internalID: 2042141512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_181
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46807749ccf933c44ad9b59f678ae3bf
+      internalID: 1486234074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_182
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878f1aaab8a1ef04f97ababd074f4727
+      internalID: -167302856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_183
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d7ac5cfefc6b64bb3017ff7247d559
+      internalID: 341389943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_184
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50a226aaedb038448abba10de27a705a
+      internalID: 85662161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_185
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca6a673f8c8ad541a5814c97214253e
+      internalID: -841906787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_186
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680c1640658d3454c84eee9656584b4d
+      internalID: -895852607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_187
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642b42f3b82d2d946884c2e73624200c
+      internalID: -146036872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_188
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58353ec024d592b49a3626b39c66bbc5
+      internalID: -2004824449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_189
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475834912744d6c459638d83341a33e3
+      internalID: -1195538868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_190
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0a2948decebd441bec285d5c423f92
+      internalID: -897284887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_191
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cf6a02db4f9754daedd5026bbffb63
+      internalID: -357210489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_192
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d94b9fa566ca54f9cb53a5862fd916
+      internalID: -1771807424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_193
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b297e895de3dda4e81fafab6048f9ef
+      internalID: -578044949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_194
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1190
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b355795088b3c446983d44662088a3b
+      internalID: 2126964387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_195
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d81b2c2d395cc054ebda7615375f5aad
+      internalID: 2039938735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_196
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bba33eaa3b4c4469bef095aa9978e2
+      internalID: 1530517792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_197
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2166c2460ab4a45b513a1c4b33aa22
+      internalID: 90322106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_198
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517b9b61cb9c6ed4d96d29ebbe5b1162
+      internalID: 1222746799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_199
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bfcf6214a9921848be449325c80c5d5
+      internalID: -846523107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_200
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b61f4db86720afc4b8826e29ac14df3e
+      internalID: -939122244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_201
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02cc43f6e9d07414b84ab93d3271a503
+      internalID: -156854422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_202
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be9704441c1f99647981e5115a7e0970
+      internalID: -1751436696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_203
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e48e74db5cce341bdbe9d016090124
+      internalID: 968680110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_204
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aea5cd907547994a9feafe656397e59
+      internalID: 1510900250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_205
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098eef84414225b47815647e849a4aa5
+      internalID: 768437407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_206
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bc7c57d7d58a347847c904d8beeff5
+      internalID: -780797508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_207
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7aa4eb8826fee7469b749d7d44e1c99
+      internalID: 1243634105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_208
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1020
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ca437a59ac0584a9df4d5809dc3572
+      internalID: -580673974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_209
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f33a2904a69504b851a19a284b69dd
+      internalID: -508927548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_210
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65135474ecc28840aa67f148776e303
+      internalID: 1147002119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_211
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b8c7fba03439f4b9d77fa6572a130a
+      internalID: 431294444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_212
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d440f7b653ccc1845a298fccb602199c
+      internalID: 640257182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_213
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c72ea8cd3a9d0564597027bb224bde73
+      internalID: 34737564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_214
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f46ed446051a7f46a50098f9de64e26
+      internalID: -151620070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_215
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ef839d098f52f41b44ed5a39590428
+      internalID: 649554696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_216
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6728d989d205d445ac9baa3318c52cf
+      internalID: -619409023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_217
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18be007b654121146a2edb3f31e27b4e
+      internalID: -1167068426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_218
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4c459394f758a47bd2821b64945d48
+      internalID: 1147589783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_219
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37bc1ec2d716b654a852478c36cf34fa
+      internalID: 399000811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_220
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8313e92fad01e964998c49eec6b4b81b
+      internalID: 2074857035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_221
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a672208a1fa94e48afad8a29552e023
+      internalID: -1304617384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_222
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 850
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd75ffee4071ffa4cbe616a38bc75747
+      internalID: -796150849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_223
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0491bcbec5437c47a681d558a71e638
+      internalID: -160227429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_224
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f644320e1da52d54f968951ba630a350
+      internalID: 244067899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_225
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c626349a0bae9184a993a0ade0ee2698
+      internalID: 289985280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_226
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b337fadfd30abbb4885fe5fee13f1281
+      internalID: 194827700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_227
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de06d11f3ed284439e28316e2a51e9e
+      internalID: 1443919803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_228
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed66aee5afffc647a225a8aef49ae05
+      internalID: -1568031521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_229
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d233bccdb0a32494fa566b60f5e8e497
+      internalID: -151656914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_230
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b216ba981cdb7b47a4b986aa2c417e3
+      internalID: 343436748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_231
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6e077c20b507e4eb4eb04cfa50d9a9
+      internalID: -1860807465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_232
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ee4bb0632ce75418fc1b6b6b2cfa81
+      internalID: -1925026865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_233
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2889814198c5640881961aa2d9ac17
+      internalID: -768003846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_234
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889da87eeb3974348b8441700853d1a8
+      internalID: 703616046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_235
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd89660c832f92549a7e16ca931c3e18
+      internalID: 1451267181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_236
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 680
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e283865e2ec334783fbf0900986979
+      internalID: -377579228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_237
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a58140aa9c9c14eab58a1ab2bdcc40
+      internalID: 1738171827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_238
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e70a729ce8af34c82a25b226fa2f88
+      internalID: -1265634647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_239
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae73506cef853e45b4f1ae5bda559d4
+      internalID: 1758847627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_240
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a67c4f38c283a41a4e783ccd03d0df
+      internalID: -2045116696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_241
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a297cb5f9b271a645ac5de84f724c5e0
+      internalID: -239547955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_242
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84b99d4176bd034ab3d91aa1fbf1988
+      internalID: -1347666773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_243
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 605eca2721516604fb0ba31a8c2f3e87
+      internalID: -403887937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_244
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9722abce8b3b489469f7a04325196cde
+      internalID: 1474116721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_245
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aadff19c42e16b44ba5f72fd2b459f94
+      internalID: -913438701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_246
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b7b9e0a4eb298488ce2e81dc479826
+      internalID: 978732140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_247
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19319eb8761a11c49ac5e163292eb053
+      internalID: 458739469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_248
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c69c536e92d4f744928b51196b6a61f
+      internalID: 403454894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_249
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444fddfc81be8d541b1f5c65427d040a
+      internalID: -1593866547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_250
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 510
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1755a9e31e0f947969acf0f235c794
+      internalID: 1863264989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_251
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecaa961cfd784b14184ad48b13e579b5
+      internalID: 1255304117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_252
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c87f00e5cc13ba4f8cbbf188cd33ead
+      internalID: -783263747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_253
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0bc1c95df4794e4bb2bafd519522561
+      internalID: -2119004372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_254
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f83b5045f16de409eb4fc7c0f45661
+      internalID: 1108142888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_255
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa1fe30a758c2a49b4028b9d7bc069a
+      internalID: -1265685545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_256
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4db3538b07c0940b70589eea12e741
+      internalID: 1415045076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_257
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60f083192371d84e8d699ad7d22a94e
+      internalID: 343527297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_258
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fecd25d38194034429114c6d60c6e1e8
+      internalID: 1941458447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_259
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebfb3816d28d23942b06071312369d37
+      internalID: -905023048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_260
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aff338a4d187454691b5aa723db163a
+      internalID: -980726817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_261
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c234112359de5384fa647b50a5966f08
+      internalID: -1421794520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_262
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15382d320b61c8459880ae9ff00a440
+      internalID: 494261853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_263
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f48e36323a0a7ca4fb8685be1678fd9f
+      internalID: 1535840370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_264
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 340
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc174f8cc8ef7e488b92f64f4e2efc5
+      internalID: -180109316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_265
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b272653cadc96544da00b97a13e45bb5
+      internalID: -53051107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_266
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2811d4d8b0bd2014fb744d0243041fc2
+      internalID: 2098970062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_267
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1ec7247bf4a724e98e0db7b99759c5
+      internalID: -1593109662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_268
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3605939cb5b5ed44a6bc470154f4be8
+      internalID: -33245317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_269
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742e088fbbfd46341bb1b6ed0c2f87e5
+      internalID: 2032708125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_270
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a62de52d49be2d4ab5a7fa2e3298146
+      internalID: 172043841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_271
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126e865a57a58a1408171780aa0f0884
+      internalID: -629600718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_272
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d39bf8b80fd10fd4ab1ec2979f5a9c5c
+      internalID: 942441690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_273
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86e32bfc0151c4a41b434a0f15a61b9c
+      internalID: -370413596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_274
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b89aba9047281a4992d96045f5d62bf
+      internalID: -470164960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_275
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 575f3aa82f271e1458654cab4e8bf395
+      internalID: -1621935906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_276
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6b177179b9d864db35c5e37f197a13
+      internalID: -820935767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_277
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1546bf1b0d4f3234e84ec969a10755db
+      internalID: -1524940255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_278
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 170
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2cee10907afead439b721b5add1c9ca
+      internalID: 527734335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_279
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f73a2651b776e04684437e2c0fb30f0
+      internalID: -748576153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_280
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 605f0ea472b891a43936a4178d8bd31f
+      internalID: -558415786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_281
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f4f54b5b2073044cad5acee54e19d19
+      internalID: -747373304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_282
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b99a841537055e4ebe48639fac9c803
+      internalID: 629053143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_283
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec084914e1626df4a8277b78dd9b580f
+      internalID: -1870264057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_284
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b50baaedb7c1b42a60774fe2905e9f
+      internalID: -1755965951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_285
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e229c0b84d18446a27c0c147e43d5a
+      internalID: 488111742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinos_healer_sprite_sheet_pt1_286
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 0
+        width: 152
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee1f969009eba994eab3cc68ba144495
+      internalID: 440805707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sinos_healer_sprite_sheet_pt1_0: -803404660
+      sinos_healer_sprite_sheet_pt1_1: -788844608
+      sinos_healer_sprite_sheet_pt1_10: 1658770950
+      sinos_healer_sprite_sheet_pt1_100: -1289544387
+      sinos_healer_sprite_sheet_pt1_101: 1799377086
+      sinos_healer_sprite_sheet_pt1_102: 1387046375
+      sinos_healer_sprite_sheet_pt1_103: -1689631181
+      sinos_healer_sprite_sheet_pt1_104: 755477549
+      sinos_healer_sprite_sheet_pt1_105: -590654917
+      sinos_healer_sprite_sheet_pt1_106: 681694681
+      sinos_healer_sprite_sheet_pt1_107: -1398476229
+      sinos_healer_sprite_sheet_pt1_108: -892938390
+      sinos_healer_sprite_sheet_pt1_109: 2078962501
+      sinos_healer_sprite_sheet_pt1_11: 1476567523
+      sinos_healer_sprite_sheet_pt1_110: 1021563228
+      sinos_healer_sprite_sheet_pt1_111: -333846314
+      sinos_healer_sprite_sheet_pt1_112: 1728649611
+      sinos_healer_sprite_sheet_pt1_113: 1580184449
+      sinos_healer_sprite_sheet_pt1_114: 422922596
+      sinos_healer_sprite_sheet_pt1_115: -1235059997
+      sinos_healer_sprite_sheet_pt1_116: -754745846
+      sinos_healer_sprite_sheet_pt1_117: -1811008095
+      sinos_healer_sprite_sheet_pt1_118: -196525829
+      sinos_healer_sprite_sheet_pt1_119: 2024932828
+      sinos_healer_sprite_sheet_pt1_12: -1724968082
+      sinos_healer_sprite_sheet_pt1_120: 2133160277
+      sinos_healer_sprite_sheet_pt1_121: -71113888
+      sinos_healer_sprite_sheet_pt1_122: -632208331
+      sinos_healer_sprite_sheet_pt1_123: 1865281056
+      sinos_healer_sprite_sheet_pt1_124: 535836815
+      sinos_healer_sprite_sheet_pt1_125: 1704734053
+      sinos_healer_sprite_sheet_pt1_126: 968349339
+      sinos_healer_sprite_sheet_pt1_127: -481165516
+      sinos_healer_sprite_sheet_pt1_128: -998399292
+      sinos_healer_sprite_sheet_pt1_129: 2095867537
+      sinos_healer_sprite_sheet_pt1_13: -1238307105
+      sinos_healer_sprite_sheet_pt1_130: 998120100
+      sinos_healer_sprite_sheet_pt1_131: -200817174
+      sinos_healer_sprite_sheet_pt1_132: -1247311498
+      sinos_healer_sprite_sheet_pt1_133: 1307424244
+      sinos_healer_sprite_sheet_pt1_134: 411949082
+      sinos_healer_sprite_sheet_pt1_135: -1988148420
+      sinos_healer_sprite_sheet_pt1_136: 322991179
+      sinos_healer_sprite_sheet_pt1_137: -266713331
+      sinos_healer_sprite_sheet_pt1_138: -430390455
+      sinos_healer_sprite_sheet_pt1_139: -508316773
+      sinos_healer_sprite_sheet_pt1_14: -81886517
+      sinos_healer_sprite_sheet_pt1_140: 1373593694
+      sinos_healer_sprite_sheet_pt1_141: -572925300
+      sinos_healer_sprite_sheet_pt1_142: 405894995
+      sinos_healer_sprite_sheet_pt1_143: 278576027
+      sinos_healer_sprite_sheet_pt1_144: 2087294884
+      sinos_healer_sprite_sheet_pt1_145: 1100285227
+      sinos_healer_sprite_sheet_pt1_146: 1023091017
+      sinos_healer_sprite_sheet_pt1_147: 1548942375
+      sinos_healer_sprite_sheet_pt1_148: -1718093638
+      sinos_healer_sprite_sheet_pt1_149: -1202580927
+      sinos_healer_sprite_sheet_pt1_15: 938811701
+      sinos_healer_sprite_sheet_pt1_150: 1817038851
+      sinos_healer_sprite_sheet_pt1_151: 969017282
+      sinos_healer_sprite_sheet_pt1_152: -2034602042
+      sinos_healer_sprite_sheet_pt1_153: 1743293533
+      sinos_healer_sprite_sheet_pt1_154: 1209142562
+      sinos_healer_sprite_sheet_pt1_155: -989884558
+      sinos_healer_sprite_sheet_pt1_156: -42566576
+      sinos_healer_sprite_sheet_pt1_157: 1718425080
+      sinos_healer_sprite_sheet_pt1_158: -1417682247
+      sinos_healer_sprite_sheet_pt1_159: 1765414232
+      sinos_healer_sprite_sheet_pt1_16: -879093639
+      sinos_healer_sprite_sheet_pt1_160: 2100579904
+      sinos_healer_sprite_sheet_pt1_161: 439455177
+      sinos_healer_sprite_sheet_pt1_162: -817043100
+      sinos_healer_sprite_sheet_pt1_163: -503892584
+      sinos_healer_sprite_sheet_pt1_164: 1847594855
+      sinos_healer_sprite_sheet_pt1_165: 1059460487
+      sinos_healer_sprite_sheet_pt1_166: 1439026793
+      sinos_healer_sprite_sheet_pt1_167: -1510305951
+      sinos_healer_sprite_sheet_pt1_168: -1671146839
+      sinos_healer_sprite_sheet_pt1_169: 376889777
+      sinos_healer_sprite_sheet_pt1_17: -1798925352
+      sinos_healer_sprite_sheet_pt1_170: -524060839
+      sinos_healer_sprite_sheet_pt1_171: 2005970886
+      sinos_healer_sprite_sheet_pt1_172: 289479807
+      sinos_healer_sprite_sheet_pt1_173: 613635437
+      sinos_healer_sprite_sheet_pt1_174: 2018123005
+      sinos_healer_sprite_sheet_pt1_175: -2092847253
+      sinos_healer_sprite_sheet_pt1_176: 1289454538
+      sinos_healer_sprite_sheet_pt1_177: 881971217
+      sinos_healer_sprite_sheet_pt1_178: 479882759
+      sinos_healer_sprite_sheet_pt1_179: -1442216348
+      sinos_healer_sprite_sheet_pt1_18: 956918647
+      sinos_healer_sprite_sheet_pt1_180: 2042141512
+      sinos_healer_sprite_sheet_pt1_181: 1486234074
+      sinos_healer_sprite_sheet_pt1_182: -167302856
+      sinos_healer_sprite_sheet_pt1_183: 341389943
+      sinos_healer_sprite_sheet_pt1_184: 85662161
+      sinos_healer_sprite_sheet_pt1_185: -841906787
+      sinos_healer_sprite_sheet_pt1_186: -895852607
+      sinos_healer_sprite_sheet_pt1_187: -146036872
+      sinos_healer_sprite_sheet_pt1_188: -2004824449
+      sinos_healer_sprite_sheet_pt1_189: -1195538868
+      sinos_healer_sprite_sheet_pt1_19: -1739447359
+      sinos_healer_sprite_sheet_pt1_190: -897284887
+      sinos_healer_sprite_sheet_pt1_191: -357210489
+      sinos_healer_sprite_sheet_pt1_192: -1771807424
+      sinos_healer_sprite_sheet_pt1_193: -578044949
+      sinos_healer_sprite_sheet_pt1_194: 2126964387
+      sinos_healer_sprite_sheet_pt1_195: 2039938735
+      sinos_healer_sprite_sheet_pt1_196: 1530517792
+      sinos_healer_sprite_sheet_pt1_197: 90322106
+      sinos_healer_sprite_sheet_pt1_198: 1222746799
+      sinos_healer_sprite_sheet_pt1_199: -846523107
+      sinos_healer_sprite_sheet_pt1_2: -327852269
+      sinos_healer_sprite_sheet_pt1_20: 1066144575
+      sinos_healer_sprite_sheet_pt1_200: -939122244
+      sinos_healer_sprite_sheet_pt1_201: -156854422
+      sinos_healer_sprite_sheet_pt1_202: -1751436696
+      sinos_healer_sprite_sheet_pt1_203: 968680110
+      sinos_healer_sprite_sheet_pt1_204: 1510900250
+      sinos_healer_sprite_sheet_pt1_205: 768437407
+      sinos_healer_sprite_sheet_pt1_206: -780797508
+      sinos_healer_sprite_sheet_pt1_207: 1243634105
+      sinos_healer_sprite_sheet_pt1_208: -580673974
+      sinos_healer_sprite_sheet_pt1_209: -508927548
+      sinos_healer_sprite_sheet_pt1_21: 795623272
+      sinos_healer_sprite_sheet_pt1_210: 1147002119
+      sinos_healer_sprite_sheet_pt1_211: 431294444
+      sinos_healer_sprite_sheet_pt1_212: 640257182
+      sinos_healer_sprite_sheet_pt1_213: 34737564
+      sinos_healer_sprite_sheet_pt1_214: -151620070
+      sinos_healer_sprite_sheet_pt1_215: 649554696
+      sinos_healer_sprite_sheet_pt1_216: -619409023
+      sinos_healer_sprite_sheet_pt1_217: -1167068426
+      sinos_healer_sprite_sheet_pt1_218: 1147589783
+      sinos_healer_sprite_sheet_pt1_219: 399000811
+      sinos_healer_sprite_sheet_pt1_22: -1077733236
+      sinos_healer_sprite_sheet_pt1_220: 2074857035
+      sinos_healer_sprite_sheet_pt1_221: -1304617384
+      sinos_healer_sprite_sheet_pt1_222: -796150849
+      sinos_healer_sprite_sheet_pt1_223: -160227429
+      sinos_healer_sprite_sheet_pt1_224: 244067899
+      sinos_healer_sprite_sheet_pt1_225: 289985280
+      sinos_healer_sprite_sheet_pt1_226: 194827700
+      sinos_healer_sprite_sheet_pt1_227: 1443919803
+      sinos_healer_sprite_sheet_pt1_228: -1568031521
+      sinos_healer_sprite_sheet_pt1_229: -151656914
+      sinos_healer_sprite_sheet_pt1_23: -1382037486
+      sinos_healer_sprite_sheet_pt1_230: 343436748
+      sinos_healer_sprite_sheet_pt1_231: -1860807465
+      sinos_healer_sprite_sheet_pt1_232: -1925026865
+      sinos_healer_sprite_sheet_pt1_233: -768003846
+      sinos_healer_sprite_sheet_pt1_234: 703616046
+      sinos_healer_sprite_sheet_pt1_235: 1451267181
+      sinos_healer_sprite_sheet_pt1_236: -377579228
+      sinos_healer_sprite_sheet_pt1_237: 1738171827
+      sinos_healer_sprite_sheet_pt1_238: -1265634647
+      sinos_healer_sprite_sheet_pt1_239: 1758847627
+      sinos_healer_sprite_sheet_pt1_24: -284383918
+      sinos_healer_sprite_sheet_pt1_240: -2045116696
+      sinos_healer_sprite_sheet_pt1_241: -239547955
+      sinos_healer_sprite_sheet_pt1_242: -1347666773
+      sinos_healer_sprite_sheet_pt1_243: -403887937
+      sinos_healer_sprite_sheet_pt1_244: 1474116721
+      sinos_healer_sprite_sheet_pt1_245: -913438701
+      sinos_healer_sprite_sheet_pt1_246: 978732140
+      sinos_healer_sprite_sheet_pt1_247: 458739469
+      sinos_healer_sprite_sheet_pt1_248: 403454894
+      sinos_healer_sprite_sheet_pt1_249: -1593866547
+      sinos_healer_sprite_sheet_pt1_25: 496934089
+      sinos_healer_sprite_sheet_pt1_250: 1863264989
+      sinos_healer_sprite_sheet_pt1_251: 1255304117
+      sinos_healer_sprite_sheet_pt1_252: -783263747
+      sinos_healer_sprite_sheet_pt1_253: -2119004372
+      sinos_healer_sprite_sheet_pt1_254: 1108142888
+      sinos_healer_sprite_sheet_pt1_255: -1265685545
+      sinos_healer_sprite_sheet_pt1_256: 1415045076
+      sinos_healer_sprite_sheet_pt1_257: 343527297
+      sinos_healer_sprite_sheet_pt1_258: 1941458447
+      sinos_healer_sprite_sheet_pt1_259: -905023048
+      sinos_healer_sprite_sheet_pt1_26: 1567972445
+      sinos_healer_sprite_sheet_pt1_260: -980726817
+      sinos_healer_sprite_sheet_pt1_261: -1421794520
+      sinos_healer_sprite_sheet_pt1_262: 494261853
+      sinos_healer_sprite_sheet_pt1_263: 1535840370
+      sinos_healer_sprite_sheet_pt1_264: -180109316
+      sinos_healer_sprite_sheet_pt1_265: -53051107
+      sinos_healer_sprite_sheet_pt1_266: 2098970062
+      sinos_healer_sprite_sheet_pt1_267: -1593109662
+      sinos_healer_sprite_sheet_pt1_268: -33245317
+      sinos_healer_sprite_sheet_pt1_269: 2032708125
+      sinos_healer_sprite_sheet_pt1_27: 2021787042
+      sinos_healer_sprite_sheet_pt1_270: 172043841
+      sinos_healer_sprite_sheet_pt1_271: -629600718
+      sinos_healer_sprite_sheet_pt1_272: 942441690
+      sinos_healer_sprite_sheet_pt1_273: -370413596
+      sinos_healer_sprite_sheet_pt1_274: -470164960
+      sinos_healer_sprite_sheet_pt1_275: -1621935906
+      sinos_healer_sprite_sheet_pt1_276: -820935767
+      sinos_healer_sprite_sheet_pt1_277: -1524940255
+      sinos_healer_sprite_sheet_pt1_278: 527734335
+      sinos_healer_sprite_sheet_pt1_279: -748576153
+      sinos_healer_sprite_sheet_pt1_28: -1884709577
+      sinos_healer_sprite_sheet_pt1_280: -558415786
+      sinos_healer_sprite_sheet_pt1_281: -747373304
+      sinos_healer_sprite_sheet_pt1_282: 629053143
+      sinos_healer_sprite_sheet_pt1_283: -1870264057
+      sinos_healer_sprite_sheet_pt1_284: -1755965951
+      sinos_healer_sprite_sheet_pt1_285: 488111742
+      sinos_healer_sprite_sheet_pt1_286: 440805707
+      sinos_healer_sprite_sheet_pt1_29: 1621841847
+      sinos_healer_sprite_sheet_pt1_3: 1698426794
+      sinos_healer_sprite_sheet_pt1_30: 421385466
+      sinos_healer_sprite_sheet_pt1_31: -82068578
+      sinos_healer_sprite_sheet_pt1_32: -296234769
+      sinos_healer_sprite_sheet_pt1_33: 152078864
+      sinos_healer_sprite_sheet_pt1_34: 41213075
+      sinos_healer_sprite_sheet_pt1_35: 516549852
+      sinos_healer_sprite_sheet_pt1_36: 476826813
+      sinos_healer_sprite_sheet_pt1_37: 1077045212
+      sinos_healer_sprite_sheet_pt1_38: -1156072061
+      sinos_healer_sprite_sheet_pt1_39: 1462142193
+      sinos_healer_sprite_sheet_pt1_4: -227919643
+      sinos_healer_sprite_sheet_pt1_40: -1237030711
+      sinos_healer_sprite_sheet_pt1_41: -555885124
+      sinos_healer_sprite_sheet_pt1_42: -1266692397
+      sinos_healer_sprite_sheet_pt1_43: -609018803
+      sinos_healer_sprite_sheet_pt1_44: 588413777
+      sinos_healer_sprite_sheet_pt1_45: -564779917
+      sinos_healer_sprite_sheet_pt1_46: 581288943
+      sinos_healer_sprite_sheet_pt1_47: 869457171
+      sinos_healer_sprite_sheet_pt1_48: 993259872
+      sinos_healer_sprite_sheet_pt1_49: -932500666
+      sinos_healer_sprite_sheet_pt1_5: 1900852204
+      sinos_healer_sprite_sheet_pt1_50: -1563917995
+      sinos_healer_sprite_sheet_pt1_51: -457153671
+      sinos_healer_sprite_sheet_pt1_52: -228354708
+      sinos_healer_sprite_sheet_pt1_53: -1773705652
+      sinos_healer_sprite_sheet_pt1_54: 183531742
+      sinos_healer_sprite_sheet_pt1_55: -1986025480
+      sinos_healer_sprite_sheet_pt1_56: -1947284312
+      sinos_healer_sprite_sheet_pt1_57: 1548070667
+      sinos_healer_sprite_sheet_pt1_58: 762704499
+      sinos_healer_sprite_sheet_pt1_59: 888365617
+      sinos_healer_sprite_sheet_pt1_6: 1972425871
+      sinos_healer_sprite_sheet_pt1_60: 1998231134
+      sinos_healer_sprite_sheet_pt1_61: -1528662931
+      sinos_healer_sprite_sheet_pt1_62: -1927070376
+      sinos_healer_sprite_sheet_pt1_63: -937201800
+      sinos_healer_sprite_sheet_pt1_64: -463037071
+      sinos_healer_sprite_sheet_pt1_65: -1885765586
+      sinos_healer_sprite_sheet_pt1_66: 2096246369
+      sinos_healer_sprite_sheet_pt1_67: -646085890
+      sinos_healer_sprite_sheet_pt1_68: -1851953341
+      sinos_healer_sprite_sheet_pt1_69: 1402187370
+      sinos_healer_sprite_sheet_pt1_7: -569393024
+      sinos_healer_sprite_sheet_pt1_70: -846061094
+      sinos_healer_sprite_sheet_pt1_71: 2122260515
+      sinos_healer_sprite_sheet_pt1_72: 197807681
+      sinos_healer_sprite_sheet_pt1_73: 1302766819
+      sinos_healer_sprite_sheet_pt1_74: 1615116007
+      sinos_healer_sprite_sheet_pt1_75: -2115723467
+      sinos_healer_sprite_sheet_pt1_76: 2121468378
+      sinos_healer_sprite_sheet_pt1_77: 567251922
+      sinos_healer_sprite_sheet_pt1_78: -1660269107
+      sinos_healer_sprite_sheet_pt1_79: -1529975956
+      sinos_healer_sprite_sheet_pt1_8: 1776288465
+      sinos_healer_sprite_sheet_pt1_80: 1711418963
+      sinos_healer_sprite_sheet_pt1_81: 1302365305
+      sinos_healer_sprite_sheet_pt1_82: -1077178855
+      sinos_healer_sprite_sheet_pt1_83: 338701830
+      sinos_healer_sprite_sheet_pt1_84: -421698079
+      sinos_healer_sprite_sheet_pt1_85: -1562178669
+      sinos_healer_sprite_sheet_pt1_86: -1629143413
+      sinos_healer_sprite_sheet_pt1_87: 1291890306
+      sinos_healer_sprite_sheet_pt1_88: -650434638
+      sinos_healer_sprite_sheet_pt1_89: 19137763
+      sinos_healer_sprite_sheet_pt1_9: -369674795
+      sinos_healer_sprite_sheet_pt1_90: 2121495286
+      sinos_healer_sprite_sheet_pt1_91: -1374258147
+      sinos_healer_sprite_sheet_pt1_92: 1381376146
+      sinos_healer_sprite_sheet_pt1_93: 1797103989
+      sinos_healer_sprite_sheet_pt1_94: -538440852
+      sinos_healer_sprite_sheet_pt1_95: -1187024003
+      sinos_healer_sprite_sheet_pt1_96: 1137860927
+      sinos_healer_sprite_sheet_pt1_97: 586753462
+      sinos_healer_sprite_sheet_pt1_98: 20094287
+      sinos_healer_sprite_sheet_pt1_99: -411267123
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

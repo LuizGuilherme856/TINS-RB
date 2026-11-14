@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Explosion On reload - Fire - upgrade data
+  m_EditorClassIdentifier: 
+  nameEnglish: World On Fire
+  descriptionEnglish: Explosion damage becomes fire damage
+  nameChinese: World On Fire
+  descriptionChinese: "\u7206\u70B8\u4F24\u5BB3\u53D8\u4E3A\u706B\u7130\u4F24\u5BB3"
+  namePortuguese: World On Fire
+  descriptionPortuguese: "Dano da explos\xE3o se torna de fogo"
+  nameSpanish: World On Fire
+  weaponDescriptionSpanish: "El da\xF1o de la explosi\xF3n se convierte en da\xF1o
+    de fuego"
+  statsChanges:
+  - {fileID: 11400000, guid: 632ea41efac3d0a44a6c67a6d0f0c69e, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1420237846, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

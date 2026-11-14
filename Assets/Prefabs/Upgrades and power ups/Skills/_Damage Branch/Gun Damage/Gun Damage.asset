@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Gun Damage
+  m_EditorClassIdentifier: 
+  nameEnglish: Shot in The Dark
+  descriptionEnglish: 'Gun damage is increased by 10% '
+  nameChinese: Shot in The Dark
+  descriptionChinese: "\u706B\u5668\u4F24\u5BB3\u63D0\u9AD8 10%"
+  namePortuguese: Shot in The Dark
+  descriptionPortuguese: "Dano de armas a dist\xE2ncia \xE9 aumentado em 10%"
+  nameSpanish: Shot in The Dark
+  weaponDescriptionSpanish: "El da\xF1o de las armas de fuego aumenta en un 10% (no
+    confundir con armas de da\xF1o de fuego)"
+  statsChanges:
+  - {fileID: 11400000, guid: 61cf0ac6cce471c4cb03c078fed20745, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1898173726, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

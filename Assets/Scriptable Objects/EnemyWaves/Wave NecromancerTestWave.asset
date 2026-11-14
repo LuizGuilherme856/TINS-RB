@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f590750d975a7344680a0b291073d8a0, type: 3}
+  m_Name: Wave NecromancerTestWave
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyData: {fileID: 11400000, guid: 2d900e6e56992fa43bed955ab7d3baa0, type: 2}
+    probability: 1
+    elementalProbability: 0
+  minEnemies: 10
+  maxEnemies: 15
+  spawnPoints: 100
+  elitesToSpawn: []

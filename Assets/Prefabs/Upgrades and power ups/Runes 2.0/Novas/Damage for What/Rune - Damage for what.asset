@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Damage for what
+  m_EditorClassIdentifier: 
+  nameEnglish: Damage for What?
+  descriptionEnglish: Magazine Size increases by (+50%);  (-10%) Reload Speed; {-20%}
+    Gun Damage
+  nameChinese: Damage for What?
+  descriptionChinese: "\u5F39\u5939\u5BB9\u91CF\u589E\u52A0(+50%)\uFF1B(-10%) \u88C5\u5F39\u901F\u5EA6;
+    {-20%} \u67AA\u68B0\u4F24\u5BB3"
+  namePortuguese: Damage for What?
+  descriptionPortuguese: "Tamanho do Pente aumenta em (+50%); (-10%) Velocidade de
+    Recarga; {-20%} Dano de Arma \xE0 dist\xE2ncia"
+  nameSpanish: Damage for What?
+  weaponDescriptionSpanish: "Tama\xF1o del Cargador aumenta (+50%);  (-10%) Velocidad
+    de Recarga; {-20%} Da\xF1o de Arma de Fuego"
+  statsChanges:
+  - {fileID: 11400000, guid: 149d10bd674151941bbccfaad73a9285, type: 2}
+  - {fileID: 11400000, guid: 17a25d14109870545abb46ae226fbf87, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 366
+  maxPrice: 4000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: -2048310163, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 1219910843, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 4
+  numberOfTimesCanBeBought: 4

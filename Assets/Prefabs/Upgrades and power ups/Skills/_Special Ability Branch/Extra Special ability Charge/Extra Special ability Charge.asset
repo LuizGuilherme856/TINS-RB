@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Extra Special ability Charge
+  m_EditorClassIdentifier: 
+  nameEnglish: This Means War
+  descriptionEnglish: "Grants 1 additional charge for the character\u2019s special
+    ability"
+  nameChinese: This Means War
+  descriptionChinese: "\u89D2\u8272\u7684\u7279\u6B8A\u6280\u80FD\u989D\u5916\u83B7\u5F97
+    1 \u6B21\u5145\u80FD"
+  namePortuguese: This Means War
+  descriptionPortuguese: Concede uma carga a mais para a habilidade especial do personagem
+  nameSpanish: This Means War
+  weaponDescriptionSpanish: Otorga una carga adicional para la habilidad especial
+    del personaje
+  statsChanges:
+  - {fileID: 11400000, guid: 5312f279b8b36c9459a6f7622e651e0f, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1991551643, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

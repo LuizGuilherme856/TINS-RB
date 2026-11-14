@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Automatic pistol_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Mini SMG
+  descriptionEnglish: 'a small but deadly submachine gun. Despite its low cost ,
+    the Mini SMG was a favorite among demon hunters like Azaus, who appreciated its
+    reliability and versatility in combat. '
+  nameChinese: "\u8FF7\u4F60\u51B2\u950B\u67AA"
+  descriptionChinese: "\u4E00\u6B3E\u5C0F\u5DE7\u5374\u81F4\u547D\u7684\u51B2\u950B\u67AA\u3002\u5C3D\u7BA1\u4FBF\u5B9C\uFF0C\u8FF7\u4F60\u51B2\u950B\u67AA
+    \u5374\u88AB \u963F\u624E\u65AF \u8FD9\u6837\u7684\u6076\u9B54\u730E\u4EBA\u6240\u949F\u7231\uFF0C\u4ED6\u4EEC\u6B23\u8D4F\u5B83\u5728\u6218\u6597\u4E2D\u7684\u53EF\u9760\u6027\u548C\u591A\u529F\u80FD\u6027\u3002"
+  namePortuguese: Mini SMG
+  descriptionPortuguese: "Uma submetralhadora pequena, por\xE9m mortal. Apesar de
+    seu baixo custo, a Mini SMG era um favorito entre ca\xE7adores de dem\xF4nios
+    como Azaus, que apreciavam sua confiabilidade e versatilidade em combate."
+  nameSpanish: Mini SMG
+  weaponDescriptionSpanish: "Una ametralladora subcompacta peque\xF1a pero mortal.
+    A pesar de su bajo costo, la Mini SMG era una de las favoritas entre los cazadores
+    de demonios como Azaus, que apreciaban su confiabilidad y versatilidad en combate."
+  sprite: {fileID: 1525873391, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 440
+  ammoPrice: 147
+  criticalChance: 10
+  criticalMultiplier: 2.5
+  damage: 7
+  damageType: 2
+  knockBackForce: 0
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 3
+  projectileSize: 1
+  buyIcon: {fileID: -878650329, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.33
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 20
+  maxSpareAmmo: 500
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: cc3afe835a1cdcf44b2617e426a4e1fe, type: 3}
+  bulletSpeed: 26
+  bulletLifeTime: 4
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 4.9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 0
+  recoilAngle: 8
+  recoilDuration: 0.1
+  imprecision: 6.35
+  camShakeMag: 0.24
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 4407ccbc941ea9446804146d1555e215, type: 3}
+  shootingVolume: 0.657
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.514
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 85778f36ac0bf774a95ef8c85b01a210, type: 3}
+  fireRate: 0.14
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.7, y: 0, z: 0}
+  posOffset: {x: 1.14, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 784c4cea69c931841b714cc4f3a57bb2, type: 2}
+  DPS: 42.4
+  PricePerDPS: 13
+  rarity: 0
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

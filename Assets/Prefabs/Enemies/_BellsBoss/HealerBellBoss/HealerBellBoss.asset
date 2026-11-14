@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946f17eb9b0b9654ea92636e8930506a, type: 3}
+  m_Name: HealerBellBoss
+  m_EditorClassIdentifier: 
+  nameEnglish: 'Joybell '
+  descriptionEnglish: 
+  nameChinese: "\u559C\u949F"
+  descriptionChinese: 
+  namePortuguese: O Feliz
+  descriptionPortuguese: 
+  nameSpanish: El Feliz
+  weaponDescriptionSpanish: 
+  EnemyName: Bellow
+  enemyType: 22
+  isFlier: 0
+  bossOrElite: 0
+  spawnPoints: 10
+  giveXp: 1
+  xp: 1000
+  giveBloodPoints: 1
+  health: 3000
+  enemyElement: 2
+  ignoreMassWhenMoving: 1
+  updateHpOnlyAfterWave: 0
+  healthUpdateMode: 2
+  healthIncreaseCustomCoefficient: 0.2
+  healthIncreaseCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speed: 2800
+  increaseSpeedEveryWave: 0
+  maxSpeed: 4000
+  pushDamping: 1
+  healthIncreasesEveryWave: 1
+  minDistanceToIncreaseSpeed: 15
+  speedMultiplierWhenNotVisible: 2
+  updatePathInterval: 0.5
+  increaseHealthOnRainWaves: 1
+  addWaveNumberToHealth: 0
+  speed_easyMode: 0
+  health_easyMode: 0
+  secondFormSpeedMultiplier: 1.5
+  immuneToStatus: 1
+  immuneToFire: 0
+  immuneToIce: 0
+  immuneToSlash: 0
+  immuneToImpact: 0
+  immuneToPoison: 0
+  immuneToExplosion: 0
+  immuneToInstaKill: 1
+  weakenessToIce: 0
+  attackDamage: 1
+  attackRate: 1
+  minDistanceToAttack: 0
+  attackForce: 10
+  timeAfterRespawnToAttack: 2
+  projectile: {fileID: 0}
+  maxDistanceToShoot: 30
+  ProjectileSpeed: 20
+  fireRate: 4
+  increaseFireRateEveryWave: 1
+  minFireRate: 0.5
+  bulletsPerShot: 1
+  increaseBulletsPerShotEveryXWaves: 15
+  multipleBulletAngleOffset: 5
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}
+  minimumTimeOnState: 0
+  ringSpeedMultiplier: 1.3
+  maxAttackWithoutIdle: 02000000030000000400000004000000
+  stunCoolDown:
+  - 3
+  - 3
+  - 5
+  - 5
+  healIntensityPerForm: 1e000000320000003200000046000000
+  idle:
+    state: 0
+    WeightsPerForm: 00000000000000000000000000000000
+    AntecipationTimePerForm:
+    - 0
+    - 0
+    - 0
+    - 0
+    RangesPerForm:
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    DistancePerForm: 32000000320000003200000032000000
+    canBeStunned: 0
+    usesIterationCount: 0
+  heal:
+    state: 4
+    WeightsPerForm: 
+    AntecipationTimePerForm:
+    - 1
+    - 0.7
+    - 0.5
+    - 0.5
+    RangesPerForm:
+    - Ranges:
+      - 0.46
+      - 0.46
+    - Ranges:
+      - 0.46
+      - 0.46
+    - Ranges:
+      - 0.46
+      - 0.46
+    - Ranges:
+      - 0.46
+      - 0.46
+    DistancePerForm: 080000000a0000000c0000000c000000
+    canBeStunned: 0
+    usesIterationCount: 0
+  tp:
+    state: 5
+    WeightsPerForm: 
+    AntecipationTimePerForm:
+    - 1
+    - 0.7
+    - 0.5
+    - 0.5
+    RangesPerForm:
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    - Ranges:
+      - 2
+      - 2
+    DistancePerForm: 070000000a0000000c0000000c000000
+    canBeStunned: 1
+    usesIterationCount: 0
+  ring:
+    state: 6
+    WeightsPerForm: 00000000000000000000000000000000
+    AntecipationTimePerForm:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    RangesPerForm:
+    - Ranges:
+      - 3
+      - 3
+    - Ranges:
+      - 4
+      - 4
+    - Ranges:
+      - 5
+      - 5
+    - Ranges:
+      - 6
+      - 6
+    DistancePerForm: 02000000020000000200000002000000
+    canBeStunned: 0
+    usesIterationCount: 0
+  stun:
+    state: 3
+    WeightsPerForm: 
+    AntecipationTimePerForm: []
+    RangesPerForm:
+    - Ranges:
+      - 1.5
+      - 1.5
+    - Ranges:
+      - 1
+      - 1
+    - Ranges:
+      - 1
+      - 1
+    - Ranges:
+      - 0.5
+      - 0.5
+    DistancePerForm: 
+    canBeStunned: 0
+    usesIterationCount: 0

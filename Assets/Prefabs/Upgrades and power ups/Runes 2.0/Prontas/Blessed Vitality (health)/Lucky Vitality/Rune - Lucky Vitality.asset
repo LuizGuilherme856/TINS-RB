@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Lucky Vitality
+  m_EditorClassIdentifier: 
+  nameEnglish: Lucky Vitality
+  descriptionEnglish: (10%) chance to gain one health point every 30 seconds. Each
+    rune increases the probability by (+5%).
+  nameChinese: Lucky Vitality
+  descriptionChinese: "\u6BCF30\u79D2\u6709(10%)\u7684\u51E0\u7387\u83B7\u5F971\u70B9\u751F\u547D\u503C\u3002\u6BCF\u4E2A\u7B26\u6587\u5C06\u51E0\u7387\u63D0\u9AD8(+5%)"
+  namePortuguese: Lucky Vitality
+  descriptionPortuguese: (10%) de chance de ganhar um ponto de vida a cada 30 segundos.
+    Cada runa aumenta a probabilidade em (+5%)
+  nameSpanish: Lucky Vitality
+  weaponDescriptionSpanish: (10%) de probabilidad de ganar un punto de vida cada
+    30 segundos. Cada runa aumenta la probabilidad en un (+5%)
+  statsChanges:
+  - {fileID: 11400000, guid: 4c9808dbf5a783e409f4815e5243738b, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 1
+  statsChangesOn2ndTime:
+  - {fileID: 11400000, guid: 87f060e5658fff64589d0dc2fc06d334, type: 2}
+  rarity: 1
+  price: 500
+  maxPrice: 4500
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: -1060717194, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 1915991221, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 2
+  numberOfTimesCanBeBought: 3

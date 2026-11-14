@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c057dbbf07014aba1a8cd3bb7eca6, type: 3}
+  m_Name: Alkarion Data
+  m_EditorClassIdentifier: 
+  nameEnglish: Alkarion
+  descriptionEnglish: zzzzzzzzzzzz...
+  nameChinese: Alkarion
+  descriptionChinese: zzzzzzzzzzzz...
+  namePortuguese: Alkarion
+  descriptionPortuguese: zzzzzzzzzzzz...
+  nameSpanish: Alkarion
+  weaponDescriptionSpanish: zzzzzzzzzzzz...
+  EnemyName: Alkarion
+  enemyType: 14
+  isFlier: 0
+  bossOrElite: 1
+  spawnPoints: 1
+  giveXp: 1
+  xp: 5000
+  giveBloodPoints: 1
+  health: 4500
+  enemyElement: 0
+  ignoreMassWhenMoving: 0
+  updateHpOnlyAfterWave: 0
+  healthUpdateMode: 4
+  healthIncreaseCustomCoefficient: 0.2
+  healthIncreaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 20000
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 20000
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 50
+      value: 45000
+      inSlope: 574.9671
+      outSlope: 574.9671
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26753607
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 183.91388
+      value: 136171.73
+      inSlope: 680.8236
+      outSlope: 680.8236
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speed: 0
+  increaseSpeedEveryWave: 0
+  maxSpeed: 1000
+  pushDamping: 1
+  healthIncreasesEveryWave: 1
+  minDistanceToIncreaseSpeed: 15
+  speedMultiplierWhenNotVisible: 2
+  updatePathInterval: 10000
+  increaseHealthOnRainWaves: 0
+  addWaveNumberToHealth: 0
+  speed_easyMode: 0
+  health_easyMode: 7500
+  secondFormSpeedMultiplier: 1
+  immuneToStatus: 1
+  immuneToFire: 0
+  immuneToIce: 0
+  immuneToSlash: 0
+  immuneToImpact: 0
+  immuneToPoison: 0
+  immuneToExplosion: 0
+  immuneToInstaKill: 1
+  weakenessToIce: 0
+  attackDamage: 1
+  attackRate: 0.1
+  minDistanceToAttack: 0
+  attackForce: 10
+  timeAfterRespawnToAttack: 2
+  projectile: {fileID: 4463452998574863450, guid: c7751f70923166f499b43b0b7bd7db7d, type: 3}
+  maxDistanceToShoot: 20
+  ProjectileSpeed: 12
+  fireRate: 10
+  increaseFireRateEveryWave: 1
+  minFireRate: 0.5
+  bulletsPerShot: 3
+  increaseBulletsPerShotEveryXWaves: 15
+  multipleBulletAngleOffset: 26
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f590750d975a7344680a0b291073d8a0, type: 3}
+  m_Name: Wave_ 40
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyData: {fileID: 11400000, guid: 18f74e086c5232241a88a77562bc3e70, type: 2}
+    probability: 0.5
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: b1a23f80cfc65804c94274313fa065fb, type: 2}
+    probability: 0
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: 2d900e6e56992fa43bed955ab7d3baa0, type: 2}
+    probability: 0.5
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: a60a1f4a71ee15a4caad37612f3e66a0, type: 2}
+    probability: 0
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: f85d389696ef54f4791820cc4be1bc26, type: 2}
+    probability: 0
+    elementalProbability: 0
+  minEnemies: 230
+  maxEnemies: 268
+  spawnPoints: 500
+  elitesToSpawn:
+  - {fileID: 11400000, guid: 5ac0273426418b749b246ef0c290a528, type: 2}
+  - {fileID: 11400000, guid: 243055478ffa91c46897d6a9cb14daa8, type: 2}
+  - {fileID: 11400000, guid: 5ac0273426418b749b246ef0c290a528, type: 2}
+  - {fileID: 11400000, guid: 243055478ffa91c46897d6a9cb14daa8, type: 2}
+  - {fileID: 11400000, guid: 5ac0273426418b749b246ef0c290a528, type: 2}

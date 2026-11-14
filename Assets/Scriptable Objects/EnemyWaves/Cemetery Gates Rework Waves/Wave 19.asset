@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f590750d975a7344680a0b291073d8a0, type: 3}
+  m_Name: Wave 19
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyData: {fileID: 11400000, guid: 1d7667027678e8c4aa2ce595e37058f6, type: 2}
+    probability: 0.297
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: 98852c560693a2b41a1a45d0d00c2b75, type: 2}
+    probability: 0.3
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: 6f9bdb609ca64234182a23cbe0ecfa9a, type: 2}
+    probability: 0.3
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: b1a23f80cfc65804c94274313fa065fb, type: 2}
+    probability: 0.15
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: d86c535c7865cae49aea60da5981574f, type: 2}
+    probability: 0.3
+    elementalProbability: 0
+  - enemyData: {fileID: 11400000, guid: a60a1f4a71ee15a4caad37612f3e66a0, type: 2}
+    probability: 0.1
+    elementalProbability: 0
+  minEnemies: 85
+  maxEnemies: 97
+  spawnPoints: 158
+  elitesToSpawn: []

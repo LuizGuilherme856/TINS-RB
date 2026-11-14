@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5424889324973569492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4767844220173892408}
+  - component: {fileID: 2623431454317892660}
+  - component: {fileID: 7680268923874949692}
+  - component: {fileID: 7705915384135922920}
+  m_Layer: 0
+  m_Name: Object Holder
+  m_TagString: ObjectHolder
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4767844220173892408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424889324973569492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2623431454317892660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424889324973569492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fb0116a7532734a9eccf68642f2e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: "Isso basicamente segura uma referencias pras coisas do player. O \npq disso
+    \xE9 pq teve um bug desgra\xE7ado que sempre dava erro ai sempre \nquando quero
+    algo do player ja ta nesse prefab aqui. Mas em cada cena tem \npopular esses
+    scripts manualmente"
+--- !u!114 &7680268923874949692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424889324973569492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf34bc0317428844b7d4b2fd4765028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGameObject: {fileID: 0}
+  playerTransform: {fileID: 0}
+  playerHealth: {fileID: 0}
+  runDataManager: {fileID: 0}
+  playerInputHandler: {fileID: 0}
+  gunInventory: {fileID: 0}
+  meleeManager: {fileID: 0}
+  specialMeleeManager: {fileID: 0}
+  revivePlayer: {fileID: 0}
+  playerDeath: {fileID: 0}
+  dashManager: {fileID: 0}
+  <meleeWeaponInventory>k__BackingField: {fileID: 0}
+  playerData: {fileID: 0}
+--- !u!114 &7705915384135922920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424889324973569492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94174b0c96570c4e8d71a9a5bfb8146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}
+  runeInventory: {fileID: 11400000, guid: 13e4275437844f34a9dcb1435ac894c1, type: 2}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  buttonsData: {fileID: 11400000, guid: c35e10c9ffca0b84db75e47fb4e3277f, type: 2}
+  languageData: {fileID: 11400000, guid: eb0c907e1bf9b3e4b9c51bdece2e7eb6, type: 2}
+  enemyWaveManager: {fileID: 0}

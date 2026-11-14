@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Expanded Supply
+  m_EditorClassIdentifier: 
+  nameEnglish: Expanded Supply
+  descriptionEnglish: Reloads the equipped weapon's ammo and increases the maximum
+    ammo of all weapons by 10%.
+  nameChinese: Expanded Supply
+  descriptionChinese: "\u91CD\u65B0\u88C5\u586B\u5F53\u524D\u6B66\u5668\u7684\u5F39\u836F\uFF0C\u5E76\u4F7F\u6240\u6709\u6B66\u5668\u7684\u6700\u5927\u5F39\u836F\u5BB9\u91CF\u589E\u52A010%\u3002"
+  namePortuguese: Expanded Supply
+  descriptionPortuguese: "Recarrega a muni\xE7\xE3o da arma equipada e aumenta a
+    muni\xE7\xE3o m\xE1xima de todas as armas em 10%"
+  nameSpanish: Expanded Supply
+  weaponDescriptionSpanish: "Recarga la munici\xF3n del arma equipada y aumenta la
+    munici\xF3n m\xE1xima de todas las armas en un 10%."
+  statsChanges:
+  - {fileID: 11400000, guid: ce402aa86dc45ec4092edcffd94ab122, type: 2}
+  activeEffects:
+  - {fileID: 11400000, guid: fd55d4133314466419d40a9ce9652305, type: 2}
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 350
+  maxPrice: 2000
+  priceMultiplier: 2
+  smallerIcon: {fileID: -69540488, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: -2025142667, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 4
+  numberOfTimesCanBeBought: 3

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189d3e3b081dcc84aa2f60926508fda9, type: 3}
+  m_Name: Death player character
+  m_EditorClassIdentifier: 
+  nameEnglish: Death
+  descriptionEnglish: 
+  nameChinese: Death
+  descriptionChinese: 
+  namePortuguese: Death
+  descriptionPortuguese: 
+  nameSpanish: Death
+  weaponDescriptionSpanish: 
+  shortName: Death
+  smallIcon: {fileID: -1541114282, guid: fcce21fa75e48104685fd258b09a97d0, type: 3}
+  bigPortrait: {fileID: 0}
+  dialoguePortrait: {fileID: -875813158, guid: 1223324bb37e6c04885a5870123297ea, type: 3}
+  character: 4
+  <defaultGun>k__BackingField: {fileID: 0}
+  <defaultMelee>k__BackingField: {fileID: 11400000, guid: 838cd1f920cc4d6429546bd9c8e2897e, type: 2}
+  <defaultSpecialAbility>k__BackingField: {fileID: 11400000, guid: b81520004e14c9e4d96abd78d19c91f0, type: 2}
+  <defaultDash>k__BackingField: {fileID: 11400000, guid: a19d62725d896af49aceeef8348e0e52, type: 2}
+  <defaultHp>k__BackingField: 6
+  <initialPoints>k__BackingField: 2000
+  <chanceToIgnoreDamage>k__BackingField: 0
+  <numberOfGunsItCanCarry>k__BackingField: 2
+  <animatorController>k__BackingField: {fileID: 9100000, guid: 02ed73c088bd03b4f9e8acdcf686c86e, type: 2}
+  corpse: {fileID: 5347488892711525149, guid: b6f4769686700ab43a5d8bfb326702ba, type: 3}
+  hitSfx: {fileID: 8300000, guid: 26a4f2b54cabe6a4e8fb41d7545e817e, type: 3}

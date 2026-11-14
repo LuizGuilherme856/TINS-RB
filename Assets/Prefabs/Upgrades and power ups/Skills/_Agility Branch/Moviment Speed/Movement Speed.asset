@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Movement Speed
+  m_EditorClassIdentifier: 
+  nameEnglish: Run to the Hills
+  descriptionEnglish: Increases player movement speed
+  nameChinese: Run to the Hills
+  descriptionChinese: "\u63D0\u9AD8\u73A9\u5BB6\u79FB\u52A8\u901F\u5EA6"
+  namePortuguese: Run to the Hills
+  descriptionPortuguese: Aumenta a velocidade de movimento do jogador
+  nameSpanish: Run to the Hills
+  weaponDescriptionSpanish: Aumenta la velocidad de movimiento del jugador
+  statsChanges:
+  - {fileID: 11400000, guid: 5a2dc1fd4338f9a4da8ee5da5b08af79, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: -2102757358, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

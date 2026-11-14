@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Extra Bullet - Clip
+  m_EditorClassIdentifier: 
+  nameEnglish: One for the road
+  descriptionEnglish: Adds one bullet to all magazines
+  nameChinese: One for the road
+  descriptionChinese: "\u6240\u6709\u6B66\u5668\u5F39\u5323\u589E\u52A0\u4E00\u53D1\u5B50\u5F39"
+  namePortuguese: One for the road
+  descriptionPortuguese: Adiciona uma bala ao carregador de todas as armas
+  nameSpanish: One for the road
+  weaponDescriptionSpanish: Agrega una bala al cargador de todas las armas
+  statsChanges:
+  - {fileID: 11400000, guid: 65ef183e9fc0cb044bcf6ba7513589a8, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: -208203403, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

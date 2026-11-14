@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Blurred Soul
+  m_EditorClassIdentifier: 
+  nameEnglish: Blurred Soul
+  descriptionEnglish: (+20%) Status Chance; (+25%) Spare Ammo; {-25%} Status Duration
+  nameChinese: Blurred Soul
+  descriptionChinese: "(+20%) \u72B6\u6001\u51E0\u7387\uFF1B(+25%) \u5907\u7528\u5F39\u836F\uFF1B{-25%}
+    \u72B6\u6001\u6301\u7EED\u65F6\u95F4"
+  namePortuguese: Blurred Soul
+  descriptionPortuguese: "(+20%) Chance de Status; (+25%) Muni\xE7\xE3o Extra; {-25%}
+    Dura\xE7\xE3o do Efeito"
+  nameSpanish: Blurred Soul
+  weaponDescriptionSpanish: "(+20%) Prob. de Status; (+25%) Munici\xF3n Extra; {-25%}
+    Duraci\xF3n del Estado"
+  statsChanges:
+  - {fileID: 11400000, guid: e36c2aab8e6bb044883a5bf9168fed62, type: 2}
+  - {fileID: 11400000, guid: f2fb40045c47806409d5d28dc5843f07, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 500
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: -2048310163, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 1219910843, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 4
+  numberOfTimesCanBeBought: 4

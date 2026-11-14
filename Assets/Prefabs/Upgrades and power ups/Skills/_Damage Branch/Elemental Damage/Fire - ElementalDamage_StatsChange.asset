@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281627144934d614083c3f0bdb88b2eb, type: 3}
+  m_Name: Fire - ElementalDamage_StatsChange
+  m_EditorClassIdentifier: 
+  fireDamageMultiplier:
+    operationType: 2
+    variable: 0.25
+  iceDamageMultiplier:
+    operationType: 0
+    variable: 0
+  poisonDamageMultiplier:
+    operationType: 0
+    variable: 0
+  waterDamageMultiplier:
+    operationType: 0
+    variable: 0
+  electricityDamageMultiplier:
+    operationType: 0
+    variable: 0
+  etherDamageMultiplier:
+    operationType: 0
+    variable: 0
+  impactDamageMultiplier:
+    operationType: 0
+    variable: 0
+  punctureDamageMultiplier:
+    operationType: 0
+    variable: 0
+  slashDamageMultiplier:
+    operationType: 0
+    variable: 0

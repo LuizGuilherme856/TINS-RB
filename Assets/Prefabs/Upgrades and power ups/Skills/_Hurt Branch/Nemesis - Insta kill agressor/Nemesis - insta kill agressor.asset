@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Nemesis - insta kill agressor
+  m_EditorClassIdentifier: 
+  nameEnglish: Nemesis
+  descriptionEnglish: Adds a small chance to instantly kill enemies that dealt damage
+    to you
+  nameChinese: Nemesis
+  descriptionChinese: "\u53D7\u5230\u4F24\u5BB3\u65F6\uFF0C\u6709\u5C0F\u6982\u7387\u7ACB\u5373\u51FB\u6740\u654C\u4EBA"
+  namePortuguese: Nemesis
+  descriptionPortuguese: Adiciona uma pequena chance de matar instantaneamente inimigos
+    que te causaram dano
+  nameSpanish: Nemesis
+  weaponDescriptionSpanish: "A\xF1ade una peque\xF1a probabilidad de matar instant\xE1neamente
+    a los enemigos que te hayan causado da\xF1o"
+  statsChanges:
+  - {fileID: 11400000, guid: 5687932666914a945ab77a6436104aa9, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 257239974, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

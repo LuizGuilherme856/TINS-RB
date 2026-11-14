@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: -Ice DNA_GunData Golden
+  m_EditorClassIdentifier: 
+  nameEnglish: Arctic Code
+  descriptionEnglish: Designed to freeze the genetic code of enemies, but it hasn't
+    proven very efficient at that. Because, well, frozen DNA doesn't really serve
+    any purpose.
+  nameChinese: "\u6781\u5BD2\u5BC6\u7801"
+  descriptionChinese: "\u4E3A\u51BB\u4F4F\u654C\u4EBA\u7684\u57FA\u56E0\u7F16\u7801\u800C\u8BBE\u8BA1\uFF0C\u4F46\u4ECE\u672A\u88AB\u8BC1\u660E\u6709\u6548\u679C\u3002\u56E0\u4E3A\u561B\uFF0C\u51BB\u4F4FDNA\u5B9E\u5728\u662F\u6CA1\u4EC0\u4E48\u7528\u3002"
+  namePortuguese: "C\xF3digo \xC1rtico"
+  descriptionPortuguese: "Projetado para congelar o c\xF3digo gen\xE9tico dos inimigos,
+    mas n\xE3o tem se mostrado muito eficiente nisso. Afinal, o DNA congelado n\xE3o
+    serve realmente para nenhum prop\xF3sito."
+  nameSpanish: "C\xF3digo \xC1rtico"
+  weaponDescriptionSpanish: "Dise\xF1ado para congelar el c\xF3digo gen\xE9tico de
+    los enemigos, pero no ha demostrado ser muy eficiente en eso. Porque, bueno,
+    el ADN congelado no sirve para nada."
+  sprite: {fileID: -22858738, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 9000
+  ammoPrice: 3000
+  criticalChance: 12
+  criticalMultiplier: 4
+  damage: 10
+  damageType: 5
+  knockBackForce: 0.62
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: -1636634078, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 84
+  maxSpareAmmo: 455
+  ammoConsumedPerShot: 2
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 544b64a976c20dd48be87516c44652a7, type: 3}
+  bulletSpeed: 26
+  bulletLifeTime: 15
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 5
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 0.62
+  recoilAngle: 6
+  recoilDuration: 0.2
+  imprecision: 7
+  camShakeMag: 0.3
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1.57
+  shootingSFX: {fileID: 8300000, guid: 53cde05734382c54590a3348ad3f1589, type: 3}
+  shootingVolume: 0.532
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.491
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: bc84e79aeb308894388051623ccce737, type: 3}
+  fireRate: 0.11
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 2.1
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1.32, y: 0, z: 0}
+  posOffset: {x: 1.14, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 170
+  PricePerDPS: 35.3
+  rarity: 3
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

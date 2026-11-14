@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35eefa776b4cc88448303bebc33a144b, type: 3}
+  m_Name: extra points
+  m_EditorClassIdentifier: 
+  nameEnglish: Bloodlust
+  descriptionEnglish: You start the game with an additional +100 Blood Points
+  nameChinese: "\u55DC\u8840\u4E4B\u6E34"
+  descriptionChinese: "\u5F00\u59CB\u6E38\u620F\u65F6\uFF0C\u4F60\u62E5\u6709\u989D\u5916100\u70B9
+    \u8840\u6DB2\u503C"
+  namePortuguese: Sede de Sangue
+  descriptionPortuguese: "Voc\xEA come\xE7a o jogo com +100 pontos de sangue adicionais."
+  nameSpanish: Sed de Sangre
+  weaponDescriptionSpanish: Comienzas el juego con +100 puntos de sangre adicionales.
+  maxPrice: 15
+  initialPrice: 1
+  priceIncrease: 1
+  playerData: {fileID: 11400000, guid: 6f344bc362034604bb986f95c6bbdeb6, type: 2}
+  blessingType: 4
+  maxQuantity: 9

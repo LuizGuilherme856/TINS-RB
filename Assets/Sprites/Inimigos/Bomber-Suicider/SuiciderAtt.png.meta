@@ -1,0 +1,2215 @@
+fileFormatVersion: 2
+guid: 11907888f6f41c747b44f991a7672bea
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SuiciderAtt_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3bf55283a3af454d96cea881f5e1c64
+      internalID: -1749198825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45964567751e9c43ab6e7e6777b7fa2
+      internalID: 1801396758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cfcbc78a4894ef458ccf34e42249099
+      internalID: -1216870430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: affe88ce92f738a40a3c79513ae5af9f
+      internalID: 1735202768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_4
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009746a6ac5a94f4c9ed1695d05385a6
+      internalID: -446323125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_5
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eea55e2d82c78643908e17861855d80
+      internalID: 85620985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_6
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa15941420d9bdc45bb5bd9f42c5f40f
+      internalID: 368388828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_7
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9fdfa8702d2bbc4aa44b7f400a784b1
+      internalID: -694031867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_8
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7a804c0c2bce440b57cf4923cbc0bf
+      internalID: 1901675836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_9
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c69464a21f9694184ba07c88375ff9
+      internalID: 1236639499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_10
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31fd7e04189110b42b26acd384225a7e
+      internalID: 2133462548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_11
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 637
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9783e9ce134eaf746a9189834f108104
+      internalID: -1446574002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a2fb6bc23a007438fd33c1ba975c4b
+      internalID: -1838570994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_13
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86376cca9f9723043abc44bd2cd17534
+      internalID: -882769532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_14
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e01b4128ddc07f48a9025c3ea42f68a
+      internalID: 1617661931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_15
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090ed5141ba788b49ba869a53b0a6e11
+      internalID: 532827639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_16
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3985429004601314db437392510817a9
+      internalID: 435558123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_17
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce50d07545942e847b527f102b1e87af
+      internalID: -2098015743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_18
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63de4986a26352d4dba6ce8ffd301ebf
+      internalID: -955473222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_19
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b18605416236dc41a6d3a849a0951e9
+      internalID: -1675139264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_20
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514f5a9090d243b4e8612e156e595e46
+      internalID: 95413336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_21
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6f25a7755d04442a4a7da97f38de2a
+      internalID: 649405868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_22
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf1f695f37edccb469bb9f85b69505e2
+      internalID: -973535094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_23
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 546
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ef553775395414c9e288d9ad5b986e
+      internalID: -151899600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71383a349ca7ee40a58943c8fff6424
+      internalID: 860790971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_25
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076b016e269c9104bb3dbb404836ec07
+      internalID: -591317543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_26
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd7b575ad2486f4cbb8341da3977264
+      internalID: 1232611749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_27
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103408b92af1a234e8842faf0785048e
+      internalID: -239284103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_28
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a263c1694b85604da90ab88f76a2180
+      internalID: -1494343109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_29
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfeb651b045c0784e894c9e063b4128b
+      internalID: -1549412772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_30
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45911c48fc924ec49885eabb77fa2c9c
+      internalID: 1155634489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_31
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4aa32cfb9a3f0c4f80f79ca71eaa949
+      internalID: -1294329127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_32
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbc7b2b79cb4ff459456882dd5ee001
+      internalID: -509430229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_33
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e53b56a1c039d91468cfaecd3a874442
+      internalID: 550525783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_34
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0ce03ff0805c149943c327d9731f74
+      internalID: -1031817437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_35
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 455
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe6b24661fedbd048bd1d9850b7a0413
+      internalID: 926543322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0715bcec8a161c40baa911502043104
+      internalID: 451890359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_37
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b649020ce52a25d43a99b3bc7f48635c
+      internalID: 191214769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_38
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab618f2a3c351f4d9c19534237c4283
+      internalID: -2031716547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_39
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8e5eb12a235e24db9ac1a1041fd09c
+      internalID: -1564411987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_40
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1f74d3f19f2b543a579469a64975f4
+      internalID: 1770607899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_41
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c62afbc91aabf954391b486c1d33142f
+      internalID: 229770995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_42
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fea8ac7d69afce4a984343329e6a354
+      internalID: 719195928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_43
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83bc0937a1ca4d849b3eae703909fbfa
+      internalID: 50291476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_44
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abdacc32c6b9c0a4facb4bbfa210fd7d
+      internalID: 2033398463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_45
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2106f696a47cfef40a4ef592ebab47bf
+      internalID: -1146774466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_46
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0360fbca82c1e224f8d495f563823cc8
+      internalID: 1308988477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_47
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 364
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3947dc04198b6eb4b8eea7ecb22e6ec3
+      internalID: -1941106486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e495e1f150c4c43869e696a2ded04d
+      internalID: -2142645002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_49
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea1ee519fe3f6fd4291d907d92fc9a67
+      internalID: 1559798818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_50
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0875356ed0e764e850b043ec4f91f9
+      internalID: -1708832180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_51
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aea91d56ec18ba4c88cca998910da30
+      internalID: -644061387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_52
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b295abe9e251e943bf0d00ab4441ee0
+      internalID: -522673788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_53
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe3c4b809d6cd84bb48dee3f1872b19
+      internalID: 1466488231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_54
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd00535bdbdd9c545bae7aee70937a78
+      internalID: 1375055428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_55
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d31ba47475da8d4cad66e978d4a453e
+      internalID: -1149376207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_56
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb55ec5794ff26246b85021770dfd1d9
+      internalID: 1109028940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_57
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ad40bdf6e3b454ba8fdc5bcd384e4c
+      internalID: -681105958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_58
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9207c855ac7dc51438f8edaa73c389a4
+      internalID: -1388778841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_59
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 273
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b1b82f1f66e9b44b63e59c12a84dda
+      internalID: -1726410824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e4d30fd9e8737341baae02a73ff2791
+      internalID: -961777725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_61
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55d1b278858a4840b4e591c65562477
+      internalID: -1246691006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_62
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca9a4833901b774ab4d317326afa926
+      internalID: -2001165276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_63
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a38ae2bc309ba4d9dc6a9f2f25c846
+      internalID: 2095718452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_64
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4ac16bd81e90042aa2824dc1e9c2bb
+      internalID: -662893979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_65
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cb5131b11c65854b9ce4bfe7064780b
+      internalID: 98304751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_66
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7713328208ccef345b8c804fe8fe6c7b
+      internalID: -1931056644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_67
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742540dc68bcfba4dba561bd150a9cac
+      internalID: 1062076325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_68
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4aaa69ac7c679a4e827d3d96c605f5a
+      internalID: -2122173995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_69
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9d385e8543d7b84b870719aa12e4764
+      internalID: 1811435979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_70
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18616f111eb6274e8523c704e946b62
+      internalID: -23039364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_71
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 182
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d93062f9326e344a9c1b9c2aca84cc3
+      internalID: -748822845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44db7d5044397d42a2d76ed493e332b
+      internalID: -895449377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_73
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69166d1f066413a418ea52b552017e98
+      internalID: -1549048418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_74
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210c32a2eea63294c8e17c4784101277
+      internalID: 9148176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_75
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57669970abbf81748865ec2e3373b6ce
+      internalID: 1191998760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_76
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab29e90d1b48254c9a81996ee6f016a
+      internalID: 1549099311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_77
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6058d393b598dbb46992e2dd6b595975
+      internalID: 758543725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_78
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cef0f0b0989cc3a4480d042a63911720
+      internalID: -28089145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_79
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8e7f37a9a831041a2bb935c73786e9
+      internalID: -895111556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_80
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58701490de9070f42bc13920ba278c8c
+      internalID: 225354013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_81
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d99763299d19548a6107e43481a321
+      internalID: 962985032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_82
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9ae439c0c367f43a99a78683ed6768
+      internalID: -1028605047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_83
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 91
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e3805388d3b2c4999e6c54dd29afe9
+      internalID: -1690069142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339937c6c7d367d4d87145e3df9d5734
+      internalID: 1819621639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_85
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b988ac31d17261344a6660eff7123217
+      internalID: 1458478489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_86
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 106aad8ed3c5e224c9c2316b7b56b69a
+      internalID: 2108216267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_87
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe2fa43b66bc7742a748a5abd60f308
+      internalID: 977951689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_88
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6329eb961e3657b4cb00435717d81de4
+      internalID: -1304200494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_89
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8b015f49414c94281dcb190ba750a0
+      internalID: 1619778223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_90
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e114684c37d84419a3a6ed8d1d4f07
+      internalID: -1451192434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_91
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebd505985f09b54d9ed78f2edd2492f
+      internalID: 671750912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_92
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1fa43a20eb4094382af14841cafcf3
+      internalID: -311287536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuiciderAtt_93
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 0
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54dab7c1fe796e64a853e21fc0db3bf3
+      internalID: -779999264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SuiciderAtt_0: -1749198825
+      SuiciderAtt_1: 1801396758
+      SuiciderAtt_10: 2133462548
+      SuiciderAtt_11: -1446574002
+      SuiciderAtt_12: -1838570994
+      SuiciderAtt_13: -882769532
+      SuiciderAtt_14: 1617661931
+      SuiciderAtt_15: 532827639
+      SuiciderAtt_16: 435558123
+      SuiciderAtt_17: -2098015743
+      SuiciderAtt_18: -955473222
+      SuiciderAtt_19: -1675139264
+      SuiciderAtt_2: -1216870430
+      SuiciderAtt_20: 95413336
+      SuiciderAtt_21: 649405868
+      SuiciderAtt_22: -973535094
+      SuiciderAtt_23: -151899600
+      SuiciderAtt_24: 860790971
+      SuiciderAtt_25: -591317543
+      SuiciderAtt_26: 1232611749
+      SuiciderAtt_27: -239284103
+      SuiciderAtt_28: -1494343109
+      SuiciderAtt_29: -1549412772
+      SuiciderAtt_3: 1735202768
+      SuiciderAtt_30: 1155634489
+      SuiciderAtt_31: -1294329127
+      SuiciderAtt_32: -509430229
+      SuiciderAtt_33: 550525783
+      SuiciderAtt_34: -1031817437
+      SuiciderAtt_35: 926543322
+      SuiciderAtt_36: 451890359
+      SuiciderAtt_37: 191214769
+      SuiciderAtt_38: -2031716547
+      SuiciderAtt_39: -1564411987
+      SuiciderAtt_4: -446323125
+      SuiciderAtt_40: 1770607899
+      SuiciderAtt_41: 229770995
+      SuiciderAtt_42: 719195928
+      SuiciderAtt_43: 50291476
+      SuiciderAtt_44: 2033398463
+      SuiciderAtt_45: -1146774466
+      SuiciderAtt_46: 1308988477
+      SuiciderAtt_47: -1941106486
+      SuiciderAtt_48: -2142645002
+      SuiciderAtt_49: 1559798818
+      SuiciderAtt_5: 85620985
+      SuiciderAtt_50: -1708832180
+      SuiciderAtt_51: -644061387
+      SuiciderAtt_52: -522673788
+      SuiciderAtt_53: 1466488231
+      SuiciderAtt_54: 1375055428
+      SuiciderAtt_55: -1149376207
+      SuiciderAtt_56: 1109028940
+      SuiciderAtt_57: -681105958
+      SuiciderAtt_58: -1388778841
+      SuiciderAtt_59: -1726410824
+      SuiciderAtt_6: 368388828
+      SuiciderAtt_60: -961777725
+      SuiciderAtt_61: -1246691006
+      SuiciderAtt_62: -2001165276
+      SuiciderAtt_63: 2095718452
+      SuiciderAtt_64: -662893979
+      SuiciderAtt_65: 98304751
+      SuiciderAtt_66: -1931056644
+      SuiciderAtt_67: 1062076325
+      SuiciderAtt_68: -2122173995
+      SuiciderAtt_69: 1811435979
+      SuiciderAtt_7: -694031867
+      SuiciderAtt_70: -23039364
+      SuiciderAtt_71: -748822845
+      SuiciderAtt_72: -895449377
+      SuiciderAtt_73: -1549048418
+      SuiciderAtt_74: 9148176
+      SuiciderAtt_75: 1191998760
+      SuiciderAtt_76: 1549099311
+      SuiciderAtt_77: 758543725
+      SuiciderAtt_78: -28089145
+      SuiciderAtt_79: -895111556
+      SuiciderAtt_8: 1901675836
+      SuiciderAtt_80: 225354013
+      SuiciderAtt_81: 962985032
+      SuiciderAtt_82: -1028605047
+      SuiciderAtt_83: -1690069142
+      SuiciderAtt_84: 1819621639
+      SuiciderAtt_85: 1458478489
+      SuiciderAtt_86: 2108216267
+      SuiciderAtt_87: 977951689
+      SuiciderAtt_88: -1304200494
+      SuiciderAtt_89: 1619778223
+      SuiciderAtt_9: 1236639499
+      SuiciderAtt_90: -1451192434
+      SuiciderAtt_91: 671750912
+      SuiciderAtt_92: -311287536
+      SuiciderAtt_93: -779999264
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

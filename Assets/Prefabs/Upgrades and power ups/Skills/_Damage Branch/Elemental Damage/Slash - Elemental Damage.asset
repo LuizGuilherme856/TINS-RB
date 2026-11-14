@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Slash - Elemental Damage
+  m_EditorClassIdentifier: 
+  nameEnglish: Razor's Edge
+  descriptionEnglish: Slash damage is increased by 25%
+  nameChinese: Razor's Edge
+  descriptionChinese: "\u5207\u5272\u4F24\u5BB3\u63D0\u9AD8 25%"
+  namePortuguese: Razor's Edge
+  descriptionPortuguese: "Dano de corte \xE9 aumentado em 25%"
+  nameSpanish: Razor's Edge
+  weaponDescriptionSpanish: "El da\xF1o de corte aumenta en un 25%"
+  statsChanges:
+  - {fileID: 11400000, guid: 553bd4f5c67658e4b9cb10fc16aa6618, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1740247696, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

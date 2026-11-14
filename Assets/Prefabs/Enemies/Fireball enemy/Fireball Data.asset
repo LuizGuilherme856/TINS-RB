@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c057dbbf07014aba1a8cd3bb7eca6, type: 3}
+  m_Name: Fireball Data
+  m_EditorClassIdentifier: 
+  nameEnglish: 
+  descriptionEnglish: 
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: 
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  EnemyName: Soul eater
+  enemyType: 10
+  isFlier: 1
+  bossOrElite: 0
+  spawnPoints: 1
+  giveXp: 1
+  xp: 15
+  giveBloodPoints: 1
+  health: 2
+  enemyElement: 0
+  ignoreMassWhenMoving: 0
+  updateHpOnlyAfterWave: 0
+  healthUpdateMode: 4
+  healthIncreaseCustomCoefficient: 0.2
+  healthIncreaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 10
+      value: 16
+      inSlope: 3.618439
+      outSlope: 3.618439
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10851872
+    - serializedVersion: 3
+      time: 26
+      value: 100
+      inSlope: 14.3212385
+      outSlope: 14.3212385
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.07746921
+    - serializedVersion: 3
+      time: 100
+      value: 1000
+      inSlope: 39.487404
+      outSlope: 39.487404
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08020999
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speed: 8
+  increaseSpeedEveryWave: 1
+  maxSpeed: 1000
+  pushDamping: 1
+  healthIncreasesEveryWave: 1
+  minDistanceToIncreaseSpeed: 30
+  speedMultiplierWhenNotVisible: 2
+  updatePathInterval: 2
+  increaseHealthOnRainWaves: 1
+  addWaveNumberToHealth: 0
+  speed_easyMode: 6
+  health_easyMode: 1
+  secondFormSpeedMultiplier: 1
+  immuneToStatus: 0
+  immuneToFire: 1
+  immuneToIce: 0
+  immuneToSlash: 0
+  immuneToImpact: 0
+  immuneToPoison: 0
+  immuneToExplosion: 0
+  immuneToInstaKill: 0
+  weakenessToIce: 1
+  attackDamage: 1
+  attackRate: 5
+  minDistanceToAttack: 0
+  attackForce: 2
+  timeAfterRespawnToAttack: 2
+  projectile: {fileID: 0}
+  maxDistanceToShoot: 0
+  ProjectileSpeed: 0
+  fireRate: 4
+  increaseFireRateEveryWave: 1
+  minFireRate: 0.5
+  bulletsPerShot: 0
+  increaseBulletsPerShotEveryXWaves: 15
+  multipleBulletAngleOffset: 0
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}

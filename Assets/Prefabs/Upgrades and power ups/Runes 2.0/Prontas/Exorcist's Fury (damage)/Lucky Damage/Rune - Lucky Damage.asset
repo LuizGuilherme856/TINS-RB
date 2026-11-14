@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Lucky Damage
+  m_EditorClassIdentifier: 
+  nameEnglish: Lucky Damage
+  descriptionEnglish: Increases critical chance by 10%.
+  nameChinese: Lucky Damage
+  descriptionChinese: "\u589E\u52A010%\u66B4\u51FB\u51E0\u7387\u3002"
+  namePortuguese: Lucky Damage
+  descriptionPortuguese: "Aumenta a chance cr\xEDtica em 10%"
+  nameSpanish: Lucky Damage
+  weaponDescriptionSpanish: "Aumenta la probabilidad de cr\xEDtico en un 10%."
+  statsChanges:
+  - {fileID: 11400000, guid: 02e8ae5fcdf66b74a8738b1d879074bb, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 500
+  maxPrice: 10000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 1675163009, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 125008451, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 2
+  numberOfTimesCanBeBought: 4

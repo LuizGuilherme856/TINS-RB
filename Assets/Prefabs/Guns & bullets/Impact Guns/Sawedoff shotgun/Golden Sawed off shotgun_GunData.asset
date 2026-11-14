@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Golden Sawed off shotgun_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Sawed-off Shotgun
+  descriptionEnglish: 'Origin unknown '
+  nameChinese: "\u77ED\u7BA1\u9730\u5F39\u67AA"
+  descriptionChinese: "\u8D77\u6E90\u672A\u77E5"
+  namePortuguese: Escopeta cano-serrado
+  descriptionPortuguese: Origem desconhecida
+  nameSpanish: ' Escopeta Recortada'
+  weaponDescriptionSpanish: Origen desconocido.
+  sprite: {fileID: 1482602973, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 5760
+  ammoPrice: 1920
+  criticalChance: 7
+  criticalMultiplier: 2
+  damage: 6
+  damageType: 2
+  knockBackForce: 1.3
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 3
+  projectileSize: 1
+  buyIcon: {fileID: 585182806, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 4
+  minDamageFalloff: 3
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 6
+  maxSpareAmmo: 250
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 8b0c66dbc6eb38c4eab65a1f4ba78cb6, type: 3}
+  bulletSpeed: 31
+  bulletLifeTime: 0.6
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 9
+  multipleBulletAngleOffset: 5.9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 5
+  recoilForceOnPlayer: 4.5
+  recoilAngle: 45
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 2
+  camShakeDuration: 0.13
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 0.5
+  shootingSFX: {fileID: 8300000, guid: aad8c83a03ee5844e840d38965ece7e6, type: 3}
+  shootingVolume: 0.595
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.532
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 49c129997eb55194a8002466c7b34977, type: 3}
+  fireRate: 0.1
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.6
+  gunType: 0
+  hoveringShotName: 
+  firePointOffset: {x: 0.5, y: 0, z: 0}
+  posOffset: {x: 1.14, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 220.5
+  PricePerDPS: 21.8
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

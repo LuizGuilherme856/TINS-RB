@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: 10 - Rune - Magnetic Attraction
+  m_EditorClassIdentifier: 
+  nameEnglish: Magnetic Attraction
+  descriptionEnglish: Increases the distance from which items are drawn to you by
+    (+100%)
+  nameChinese: Magnetic Attraction
+  descriptionChinese: "\u589E\u52A0\u7269\u54C1\u88AB\u5438\u5F15\u5230\u4F60\u8EAB\u8FB9\u7684\u8DDD\u79BB
+    (+100%)\u3002"
+  namePortuguese: Magnetic Attraction
+  descriptionPortuguese: "Aumenta a dist\xE2ncia a partir da qual os itens s\xE3o
+    atra\xEDdos para voc\xEA em (+100%)"
+  nameSpanish: Magnetic Attraction
+  weaponDescriptionSpanish: "Aumenta la distancia desde la que los objetos son atra\xEDdos
+    hacia ti en (+100%)."
+  statsChanges:
+  - {fileID: 11400000, guid: c94fced25b82c074daba1c0d47b22d4c, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 0}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 500
+  maxPrice: 10000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 898836157, guid: d01e6e8a598d11f4dabc4c93ed811edd, type: 3}
+  inventoryIcon: {fileID: 290899061, guid: a41c6985b261a3945a14b1671876a4b2, type: 3}
+  path: 3
+  numberOfTimesCanBeBought: 3

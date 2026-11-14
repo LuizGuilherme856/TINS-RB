@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3101931463171163304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624322781265583147}
+  m_Layer: 0
+  m_Name: Morcego corpse Slash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1624322781265583147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101931463171163304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3284888, y: 21.41964, z: 115.78522}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1630796992141605227}
+  - {fileID: 996743655927780777}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7546967939762657037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1624322781265583147}
+    m_Modifications:
+    - target: {fileID: 8626266216610133598, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: isCorpse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525108402845, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1184039582, guid: c67e0e9c0eedb0e4486dddff7371150f, type: 3}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.914
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399209, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_Name
+      value: Morcegao corpse part
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9087690525108402844, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+--- !u!4 &1630796992141605227 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+  m_PrefabInstance: {fileID: 7546967939762657037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8343150790411795407
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1624322781265583147}
+    m_Modifications:
+    - target: {fileID: 1230646461297574983, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: managedReferences[5570990295029121025].Active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626266216610133598, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: isCorpse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525108402845, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1697681620, guid: c67e0e9c0eedb0e4486dddff7371150f, type: 3}
+    - target: {fileID: 9087690525108402846, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.096
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525108402846, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.505
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087690525308399209, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+      propertyPath: m_Name
+      value: Morcegao corpse part_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9087690525108402844, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+--- !u!4 &996743655927780777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9087690525308399206, guid: 34f5f82b10a8952409beaccec9b5af5a, type: 3}
+  m_PrefabInstance: {fileID: 8343150790411795407}
+  m_PrefabAsset: {fileID: 0}

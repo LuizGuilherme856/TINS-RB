@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Critical Swap
+  m_EditorClassIdentifier: 
+  nameEnglish: Critical Swap
+  descriptionEnglish: Increases critical chance by 20%, but reduces critical damage
+    by 8%.
+  nameChinese: Critical Swap
+  descriptionChinese: "\u589E\u52A020%\u66B4\u51FB\u51E0\u7387\uFF0C\u4F46\u51CF\u5C1110%\u7684\u66B4\u51FB\u4F24\u5BB3\u3002"
+  namePortuguese: Critical Swap
+  descriptionPortuguese: "Aumenta a chance cr\xEDtica em 20%, mas diminui o dano
+    cr\xEDtico em 8%"
+  nameSpanish: Critical Swap
+  weaponDescriptionSpanish: "Aumenta la probabilidad de cr\xEDtico en un 20%, pero
+    reduce el da\xF1o cr\xEDtico en un 8%."
+  statsChanges:
+  - {fileID: 11400000, guid: de456fa7f0f7dd34ea97482636e1bbb4, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 1
+  price: 1000
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 902202883, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 1184122974, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 0
+  numberOfTimesCanBeBought: 2

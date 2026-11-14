@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Scattered Shot
+  m_EditorClassIdentifier: 
+  nameEnglish: Scattered Shot
+  descriptionEnglish: Increases the number of bullets fired by (+2). Bullets spread
+    upon leaving the barrel. Increases ammo consumption by {1} and reduces damage
+    by {10%}.
+  nameChinese: "\u6563\u5C04\u5C04\u51FB"
+  descriptionChinese: "\u5B50\u5F39\u53D1\u5C04\u6570\u91CF\u589E\u52A0(+2)\u53D1\u3002\u5B50\u5F39\u51FA\u819B\u65F6\u4F1A\u6563\u5C04\u3002\u5F39\u836F\u6D88\u8017\u589E\u52A0{1}\u53D1\uFF0C\u4F24\u5BB3\u964D\u4F4E{10%}\u3002"
+  namePortuguese: Disparo Disperso
+  descriptionPortuguese: "Aumenta em (+2) o n\xFAmero de balas disparadas. Balas
+    se dispersam ao sair do cano. Aumenta em {1} o consumo de muni\xE7\xE3o e diminui
+    o dano em {10%}"
+  nameSpanish: Disparo Disperso
+  weaponDescriptionSpanish: "Aumenta en (+2) el n\xFAmero de balas disparadas. Las
+    balas se dispersan al salir del ca\xF1\xF3n. Aumenta en {1} el consumo de munici\xF3n
+    y reduce el da\xF1o en un {10%}."
+  statsChanges:
+  - {fileID: 11400000, guid: a9ca4b34afef78549a57e7f1ba8144a1, type: 2}
+  - {fileID: 11400000, guid: a0d3b3a9be46ac24f9f45af2848c922d, type: 2}
+  - {fileID: 11400000, guid: 83ead57ed0a59ec47866197671ea4cf8, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 4
+  price: 2000
+  maxPrice: 10000
+  priceMultiplier: 2
+  smallerIcon: {fileID: -1806535928, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: -1941907510, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 0
+  numberOfTimesCanBeBought: 1

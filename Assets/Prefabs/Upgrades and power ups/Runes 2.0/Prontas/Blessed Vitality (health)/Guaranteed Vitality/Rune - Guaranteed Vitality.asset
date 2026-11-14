@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Guaranteed Vitality
+  m_EditorClassIdentifier: 
+  nameEnglish: Guaranteed Vitality
+  descriptionEnglish: Gain 3 health points
+  nameChinese: Guaranteed Vitality
+  descriptionChinese: "\u83B7\u5F973\u70B9\u751F\u547D\u503C"
+  namePortuguese: Guaranteed Vitality
+  descriptionPortuguese: Ganha 3 pontos de vida
+  nameSpanish: Guaranteed Vitality
+  weaponDescriptionSpanish: Ganas 3 puntos de vida
+  statsChanges: []
+  activeEffects:
+  - {fileID: 11400000, guid: 45d88911f42b9ce48bb5c8231560ceed, type: 2}
+  requirements: []
+  icon: {fileID: 0}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
+  rarity: 0
+  price: 350
+  maxPrice: 2000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: 1554231978, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 1821615148, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 0
+  numberOfTimesCanBeBought: 3

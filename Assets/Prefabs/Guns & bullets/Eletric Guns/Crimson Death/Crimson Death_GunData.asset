@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Crimson Death_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Crimson Death
+  descriptionEnglish: The Crimson Death is a weapon of immense power, crafted by
+    the legendary demon hunter Dageron the Powerful. The gun is named for its deep
+    red color, which matches the hue of Dageron's iconic outfit.
+  nameChinese: "\u6B7B\u4EA1\u706B\u67AA"
+  descriptionChinese: "\u6B7B\u4EA1\u706B\u67AA\u662F\u7531\u4F20\u5947\u6076\u9B54\u730E\u4EBA\u8FBE\u683C\u9F99\u7CBE\u5FC3\u6253\u9020\u7684\u8D85\u5F3A\u6B66\u5668\u3002\u8FD9\u628A\u67AA\u4EE5\u8FBE\u683C\u9F99\u6807\u5FD7\u6027\u7684\u6DF1\u7EA2\u8863\u7740\u547D\u540D\u3002"
+  namePortuguese: Morte Carmesim
+  descriptionPortuguese: "A Morte Carmesim \xE9 uma arma de imenso poder, criada
+    pelo lend\xE1rio ca\xE7ador de dem\xF4nios Dageron, o Poderoso. A arma \xE9 nomeada
+    por sua cor vermelho intenso, que combina com o tom do ic\xF4nico traje de Dageron."
+  nameSpanish: "Muerte Carmes\xED"
+  weaponDescriptionSpanish: "La Muerte Carmes\xED es un arma de inmenso poder, creada
+    por el legendario cazador de demonios Dageron el Poderoso. La pistola recibe
+    su nombre por su color rojo intenso, que coincide con el tono del ic\xF3nico
+    atuendo de Dageron."
+  sprite: {fileID: -1826529156, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 3400
+  ammoPrice: 1133
+  criticalChance: 5
+  criticalMultiplier: 2
+  damage: 35
+  damageType: 8
+  knockBackForce: 2
+  statusChance: 0.15
+  statusDuration: 10
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: 12996691, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.2
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 3
+  maxSpareAmmo: 57
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 349903ff9086bb24d8ce66044e5a1776, type: 3}
+  bulletSpeed: 25
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 4684909949455085315, guid: da510b8130d051146baccc204ec94d57, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: da510b8130d051146baccc204ec94d57, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: da510b8130d051146baccc204ec94d57, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 3.6
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 2
+  recoilAngle: 25
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 1.2
+  camShakeDuration: 0.2
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 0
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 86b126ff0d021244196efe591c8c2fec, type: 3}
+  shootingVolume: 1
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.584
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: bc84e79aeb308894388051623ccce737, type: 3}
+  fireRate: 0.2
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.5
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1, y: 0, z: 0}
+  posOffset: {x: 1.14, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 5731a49bb64b95f4d9a7f037a7c6a57a, type: 2}
+  DPS: 53.9
+  PricePerDPS: 37.1
+  rarity: 4
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

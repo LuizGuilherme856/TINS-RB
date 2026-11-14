@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Faster Special Ability Cooldown
+  m_EditorClassIdentifier: 
+  nameEnglish: Speed of Light
+  descriptionEnglish: Special ability cooldowns are reduced
+  nameChinese: Speed of Light
+  descriptionChinese: "\u7279\u6B8A\u6280\u80FD\u51B7\u5374\u65F6\u95F4\u7F29\u77ED"
+  namePortuguese: Speed of Light
+  descriptionPortuguese: "Recargas das habilidades especiais \xE9 reduzida"
+  nameSpanish: Speed of Light
+  weaponDescriptionSpanish: El tiempo de recarga de habilidades especiales se reduce
+  statsChanges:
+  - {fileID: 11400000, guid: 1c0526c00ce3ad84e995990c02a754fd, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1909986554, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

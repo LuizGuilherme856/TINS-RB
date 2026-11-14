@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35eefa776b4cc88448303bebc33a144b, type: 3}
+  m_Name: +1 point per kill
+  m_EditorClassIdentifier: 
+  nameEnglish: Bloodbath
+  descriptionEnglish: Gain an extra blood point per slain enemy, up to a maximum
+    of 9. Doubled in case of melee kill
+  nameChinese: Bloodbath
+  descriptionChinese: "\u6BCF\u51FB\u8D25\u4E00\u4E2A\u654C\u4EBA\u83B7\u5F97\u4E00\u70B9\u989D\u5916\u7684\u8840\uFF0C\u6700\u591A9\u70B9\u3002\u8FD1\u6218\u51FB\u6740\u83B7\u5F97\u7FFB\u500D"
+  namePortuguese: Banho de Sangue
+  descriptionPortuguese: "Ganha um Ponto de Sangue extra por inimigo abatido. At\xE9
+    um m\xE1ximo de 9."
+  nameSpanish: "Ba\xF1o de Sangre"
+  weaponDescriptionSpanish: "Gana un punto de sangre extra por cada enemigo abatido,
+    hasta un m\xE1ximo de 9. Duplicado en caso de muerte cuerpo a cuerpo"
+  maxPrice: 40
+  initialPrice: 5
+  priceIncrease: 5
+  playerData: {fileID: 11400000, guid: 6f344bc362034604bb986f95c6bbdeb6, type: 2}
+  blessingType: 6
+  maxQuantity: 9

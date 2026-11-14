@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Extra Kill point
+  m_EditorClassIdentifier: 
+  nameEnglish: Blood and Thunder
+  descriptionEnglish: Killing enemies grants 1 extra blood point
+  nameChinese: Blood and Thunder
+  descriptionChinese: "\u51FB\u6740\u654C\u4EBA\u989D\u5916\u83B7\u5F97 1 \u70B9\u8840\u91CF"
+  namePortuguese: Blood and Thunder
+  descriptionPortuguese: Matar inimigos concede um ponto de sangue extra
+  nameSpanish: Blood and Thunder
+  weaponDescriptionSpanish: Matar enemigos otorga 1 punto de sangre extra
+  statsChanges:
+  - {fileID: 11400000, guid: cd27f797ef0506d438c58ed968bcf43b, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 516165166, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

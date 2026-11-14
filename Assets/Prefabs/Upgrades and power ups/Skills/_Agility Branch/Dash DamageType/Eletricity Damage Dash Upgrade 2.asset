@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Eletricity Damage Dash Upgrade 2
+  m_EditorClassIdentifier: 
+  nameEnglish: AC/DC
+  descriptionEnglish: Dash damage becomes electricity damage
+  nameChinese: AC/DC
+  descriptionChinese: "\u51B2\u523A\u4F24\u5BB3\u53D8\u4E3A\u7535\u51FB\u4F24\u5BB3"
+  namePortuguese: AC/DC
+  descriptionPortuguese: Dano do Dash se torna dano eletricidade
+  nameSpanish: AC/DC
+  weaponDescriptionSpanish: "El da\xF1o del dash se convierte en da\xF1o el\xE9ctrico"
+  statsChanges:
+  - {fileID: 11400000, guid: 8c0ac3378fe7ef643b0f5dd3fa3d78ba, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: 1255012030, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

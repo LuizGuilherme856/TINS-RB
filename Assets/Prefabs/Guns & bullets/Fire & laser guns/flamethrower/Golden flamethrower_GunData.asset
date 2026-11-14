@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Golden flamethrower_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Liquid  Fire
+  descriptionEnglish: '"Liquid Fire" is a powerful flamethrower that unleashes streams
+    of blazing inferno, reducing demons to ash in seconds. Surprisingly, demons,
+    despite being from hell and surrounded by fire, take significant damage from
+    fire-based weapons. This makes the "Liquid Fire" an ideal weapon for demon hunters.'
+  nameChinese: "\u706B\u7130\u55B7\u5C04\u5668"
+  descriptionChinese: "\u706B\u7130\u55B7\u5C04\u5668\u662F\u4E00\u79CD\u5F3A\u5927\u7684\u706B\u7130\u55B7\u5C04\u5668\uFF0C\u55B7\u5C04\u51FA\u70BD\u70ED\u7684\u706B\u7130\uFF0C\u4EC5\u51E0\u79D2\u949F\u5C31\u80FD\u5C06\u6076\u9B54\u5316\u4E3A\u7070\u70EC\u3002\u4EE4\u4EBA\u60CA\u8BB6\u7684\u662F\uFF0C\u5C3D\u7BA1\u6076\u9B54\u6765\u81EA\u5730\u72F1\u5E76\u88AB\u706B\u6240\u5305\u56F4\uFF0C\u4F46\u5B83\u4EEC\u5BF9\u57FA\u4E8E\u706B\u7130\u7684\u6B66\u5668\u4F1A\u53D7\u5230\u663E\u8457\u4F24\u5BB3\u3002\u8FD9\u4F7F\u5F97\u706B\u7130\u55B7\u5C04\u5668\u6210\u4E3A\u730E\u6740\u6076\u9B54\u8005\u7684\u7406\u60F3\u6B66\u5668\u3002"
+  namePortuguese: "Fogo l\xEDquido"
+  descriptionPortuguese: "um lan\xE7a-chamas poderoso que libera correntes de inferno
+    ardente, reduzindo dem\xF4nios a cinzas em segundos. Surpreendentemente, os dem\xF4nios,
+    apesar de serem do inferno e cercados por fogo, sofrem danos significativos de
+    armas baseadas em fogo. Isso torna o \"Fogo L\xEDquido\" uma arma ideal para
+    ca\xE7adores de dem\xF4nios."
+  nameSpanish: "Fuego l\xEDquido"
+  weaponDescriptionSpanish: "\u201CFuego l\xEDquido\u201D es un lanzallamas poderoso
+    que libera corrientes de fuego infernal, reduciendo a los demonios a cenizas
+    en cuesti\xF3n de segundos. Sorprendentemente, los demonios, a pesar de ser del
+    infierno y estar rodeados de fuego, sufren da\xF1o significativo de las armas
+    basadas en fuego. Esto hace que el \u201CFuego l\xEDquido\u201D sea un arma ideal
+    para los cazadores de demonios."
+  sprite: {fileID: -246685926, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 25000
+  ammoPrice: 8333
+  criticalChance: 0
+  criticalMultiplier: 1
+  damage: 5
+  damageType: 4
+  knockBackForce: 0
+  statusChance: 0.4
+  statusDuration: 25
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -1115997441, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 200
+  maxSpareAmmo: 845
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: efc063f4965172d4bbb65563e9da755c, type: 3}
+  bulletSpeed: 15
+  bulletLifeTime: 0.3
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 3
+  multipleBulletAngleOffset: 1.7
+  linedUpBulletsPerShot: 0
+  speedRandomness: 1.51
+  recoilForceOnPlayer: 0
+  recoilAngle: 0
+  recoilDuration: 0.2
+  imprecision: 7
+  camShakeMag: 0.2
+  camShakeDuration: 0.01
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 4463452998574863450, guid: efc063f4965172d4bbb65563e9da755c, type: 3}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.3, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 0
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 93578e4383956e64ca744a8c5f40175f, type: 3}
+  shootingVolume: 0.793
+  soundType: 1
+  startShootingSFX: {fileID: 8300000, guid: 76318722d63c5024cadfe5ef46bca36c, type: 3}
+  stopShootingSFX: {fileID: 8300000, guid: 6d27b743c118ad743bce9980c9da81d0, type: 3}
+  reloadVolume: 0.572
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: bc84e79aeb308894388051623ccce737, type: 3}
+  fireRate: 0.2
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1
+  gunType: 4
+  hoveringShotName: Flamethrower_small
+  firePointOffset: {x: 1.5, y: 0, z: 0}
+  posOffset: {x: 0.8, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 219.5
+  PricePerDPS: 45.6
+  rarity: 4
+  impactFxSpawnProbability: 0.155
+  deathFxSpawnProbability: 0.351

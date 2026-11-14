@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fb9d5923430e84db228a1c8943bfb7, type: 3}
+  m_Name: Player data
+  m_EditorClassIdentifier: 
+  runeUpgradeManager: {fileID: 11400000, guid: 13e4275437844f34a9dcb1435ac894c1, type: 2}
+  skillUpgrades: []
+  <isTutorialFinished>k__BackingField: 0
+  <isBeta>k__BackingField: 0
+  walkSpeed: 18
+  minVelocity: 5
+  skillPoints: 0
+  level: 0
+  xp: 0
+  horns: 0
+  xpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 250
+      inSlope: 535.8391
+      outSlope: 535.8391
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.7422057
+    - serializedVersion: 3
+      time: 5.605969
+      value: 782.66656
+      inSlope: 482.53284
+      outSlope: 482.53284
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5186686
+    - serializedVersion: 3
+      time: 13.586666
+      value: 6342.9453
+      inSlope: 1260.4095
+      outSlope: 1260.4095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21831797
+      outWeight: 0.33630097
+    - serializedVersion: 3
+      time: 20.463121
+      value: 14406.019
+      inSlope: 882.4186
+      outSlope: 882.4186
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24143684
+      outWeight: 0.26298255
+    - serializedVersion: 3
+      time: 27.665333
+      value: 21938.688
+      inSlope: 535.84155
+      outSlope: 535.84155
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28747395
+    - serializedVersion: 3
+      time: 34.351337
+      value: 29703.062
+      inSlope: 1504.2468
+      outSlope: 1504.2468
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 41.06836
+      value: 44873.81
+      inSlope: 3999.5845
+      outSlope: 3999.5845
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 55
+      value: 90713.93
+      inSlope: 3304.8438
+      outSlope: 3304.8438
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13462569
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scores: []
+  deaths: 0
+  totalKillsSoFar: 0
+  runsStarted: 0
+  isSkillTreeUnlocked: 0
+  isSkillTreeNpcSafe: 0
+  isHealerNpcUnlocked: 0
+  isShopNpcUnlocked: 0
+  isTigerNpcUnlocked: 0
+  <isNinaUnlocked>k__BackingField: 0
+  <isHanbaUnlocked>k__BackingField: 0
+  <isDeNiroUnlocked>k__BackingField: 0
+  <isMikiUnlocked>k__BackingField: 0
+  luciferLinesSpoken: 0
+  showCheats: 1
+  version: Version 1.1.9 - console - no cheats
+  numberOfTimesKilledLucifer: 0
+  isEndlessModeOn: 0
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  showedEndlessModeStation: 0
+  playerFacedGael: 0
+  playerReachedHeaven: 0
+  genericBool_2: 0
+  genericBool_3: 0
+  genericBool_4: 0
+  genericBool_5: 0
+  genericInt_3: 0
+  genericInt_4: 0
+  genericInt_5: 0
+  genericString_1: 
+  genericString_2: 
+  genericString_3: 
+  genericString_4: 
+  genericString_5: 

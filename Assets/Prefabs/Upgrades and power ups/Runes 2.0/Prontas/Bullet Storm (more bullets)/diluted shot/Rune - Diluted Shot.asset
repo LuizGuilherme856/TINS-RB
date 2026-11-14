@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9469320d86c46449f52e8ef0578c24, type: 3}
+  m_Name: Rune - Diluted Shot
+  m_EditorClassIdentifier: 
+  nameEnglish: Diluted Shot
+  descriptionEnglish: Increases the number of bullets fired by 1, but reduces the
+    weapon's base damage by 25%. Additional runes reduce damage by 10%. Bullets spread
+    upon leaving the barrel. Does not affect ammo consumption.
+  nameChinese: Diluted Shot
+  descriptionChinese: "\u5B50\u5F39\u53D1\u5C04\u6570\u91CF\u589E\u52A01\u53D1\uFF0C\u4F46\u6B66\u5668\u57FA\u7840\u4F24\u5BB3\u964D\u4F4E25%\u3002\u989D\u5916\u7684\u7B26\u6587\u4F1A\u4F7F\u4F24\u5BB3\u518D\u964D\u4F4E10%\u3002\u5B50\u5F39\u51FA\u819B\u65F6\u4F1A\u6563\u5C04\u3002\u4E0D\u5F71\u54CD\u5F39\u836F\u6D88\u8017\u3002"
+  namePortuguese: Diluted Shot
+  descriptionPortuguese: "Aumenta em 1 o n\xFAmero de balas disparadas, mas diminui
+    o dano base da arma em 25%. Runas adicionais diminuem o dano em 10%. Balas se
+    dispersam ao sair do cano. N\xE3o altera o consumo de muni\xE7\xE3o."
+  nameSpanish: Diluted Shot
+  weaponDescriptionSpanish: "Aumenta en 1 el n\xFAmero de balas disparadas, pero
+    reduce el da\xF1o base del arma en un 25%. Las runas adicionales reducen el da\xF1o
+    en un 10%. Las balas se dispersan al salir del ca\xF1\xF3n. No altera el consumo
+    de munici\xF3n."
+  statsChanges:
+  - {fileID: 11400000, guid: 07ef46109943f1245ae5e16ed6134f3c, type: 2}
+  - {fileID: 11400000, guid: a2c7ef1f1fc83a045b5d97eb7e13e26e, type: 2}
+  activeEffects: []
+  requirements: []
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 1
+  statsChangesOn2ndTime:
+  - {fileID: 11400000, guid: 781f618dd54bb304384e1a832a994bd0, type: 2}
+  - {fileID: 11400000, guid: 07ef46109943f1245ae5e16ed6134f3c, type: 2}
+  rarity: 3
+  price: 450
+  maxPrice: 5000
+  priceMultiplier: 1.5
+  smallerIcon: {fileID: -75684614, guid: 55672bfa52a2ce941b75741c9bcea9a1, type: 3}
+  inventoryIcon: {fileID: 799227046, guid: c3ba9e9b2349dd747a55eed9a78a1c0c, type: 3}
+  path: 1
+  numberOfTimesCanBeBought: 1

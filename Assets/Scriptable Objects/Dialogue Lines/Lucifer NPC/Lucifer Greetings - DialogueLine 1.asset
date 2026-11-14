@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9876f83510731f4d97169c0d46b0606, type: 3}
+  m_Name: Lucifer Greetings - DialogueLine 1
+  m_EditorClassIdentifier: 
+  lines:
+  - participant: 0
+    englishLine: ' Wait... what?'
+    portugueseLine: Mas.. O que?
+    chineseLine: "\u4F46... \u4EC0\u4E48?  "
+    spanishLine: " \xBFPer\xF3...  qu\xE9?"
+  - participant: 1
+    englishLine: " Welcome back. And no, you don\u2019t need to thank me."
+    portugueseLine: "Bem-vindo de volta. E n\xE3o, n\xE3o precisa agradecer. "
+    chineseLine: "\u6B22\u8FCE\u56DE\u6765\u3002\u4E0D\uFF0C\u6CA1\u5FC5\u8981\u8C22\u6211\u3002"
+    spanishLine: ' Bienvenido de nuevo. Y no, no hace falta que me agradezcas.'
+  - participant: 0
+    englishLine: ' You resurrected me? Why?'
+    portugueseLine: "Voc\xEA me ressuscitou? Por qu\xEA?"
+    chineseLine: "\u4F60\u628A\u6211\u590D\u6D3B\u4E86?  \u4E3A\u4EC0\u4E48?  "
+    spanishLine: " \xBFMe resucitaste? \xBFPor qu\xE9?"
+  - participant: 1
+    englishLine: " We don\u2019t have time. The demons are coming. Go back and finish
+      them. "
+    portugueseLine: "N\xE3o temos tempo. Os dem\xF4nios est\xE3o vindo. Volte l\xE1
+      e acabe com eles. "
+    chineseLine: "\u6211\u4EEC\u6CA1\u65F6\u95F4\u4E86\u3002\u6076\u9B54\u8981\u6765\u4E86\u3002\u56DE\u53BB\u5E72\u6389\u4ED6\u4EEC\u3002"
+    spanishLine: ' No tenemos tiempo. Los demonios vienen. Vuelve y acaba con ellos. '
+  - participant: 1
+    englishLine: But first, take this with you
+    portugueseLine: "Mas antes, leve isto com voc\xEA"
+    chineseLine: "\u4F46\u5728\u6B64\u4E4B\u524D\uFF0C\u628A\u8FD9\u4E2A\u5E26\u4E0A"
+    spanishLine: Pero antes, lleva esto contigo
+  - participant: 0
+    englishLine: A Chalice?
+    portugueseLine: "Um C\xE1lice? "
+    chineseLine: "\u5723\u676F\uFF1F"
+    spanishLine: "\xBFUn C\xE1liz?"
+  - participant: 1
+    englishLine: Yes, cross the cemetery and enter the damned Church
+    portugueseLine: "Sim, atravesse o cemit\xE9rio e entre na maldita Igreja"
+    chineseLine: "\u662F\u7684\uFF0C\u7A7F\u8FC7\u5893\u5730\uFF0C\u8FDB\u5165\u90A3\u5EA7\u8BE5\u6B7B\u7684\u6559\u5802"
+    spanishLine: "S\xED, cruza el cementerio y entra en la maldita Iglesia"

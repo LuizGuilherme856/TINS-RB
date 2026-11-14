@@ -1,0 +1,1259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lucifer DevTest PlayerData
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 80fb9d5923430e84db228a1c8943bfb7, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: runeUpgradeManager
+    value: 
+    objectReference: {fileID: 11400000, guid: 13e4275437844f34a9dcb1435ac894c1, type: 2}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.size
+    value: 38
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[0].upgradeDataName
+    value: 1% Melee Critical Chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[0].ID
+    value: _Hurt Branchsub nodesSkill_subnode_Critical chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[1].upgradeDataName
+    value: Weaker Enemies
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[1].ID
+    value: _Hurt BranchNodesSkill__ weaker enemies
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[2].upgradeDataName
+    value: 1% chance of firing an extra bullet
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[2].ID
+    value: _Hurt Branchsub nodesSkill_subnode_ChanceExtraBullet_1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[3].upgradeDataName
+    value: 1% Melee Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[3].ID
+    value: _Hurt Branchsub nodesSkill_subnode_MeleeDamage_1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[4].upgradeDataName
+    value: Nemesis - insta kill agressor
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[4].ID
+    value: _Hurt BranchNodesSkill__ insta kill agressor
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[5].upgradeDataName
+    value: 1% gun Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[5].ID
+    value: _Hurt Branchsub nodesSkill_subnode_GunDamage_2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[6].upgradeDataName
+    value: Thorn Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[6].ID
+    value: _Hurt BranchNodesSkill_ spike damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[7].upgradeDataName
+    value: 1% Melee Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[7].ID
+    value: _Hurt BranchSpike - Elemental Node packSkill_AGI - Melee damage_2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[8].upgradeDataName
+    value: Electricity - Thorn Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[8].ID
+    value: _Hurt BranchSpike - Elemental Node packSkill_ spike electricity
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[9].upgradeDataName
+    value: 1% Melee Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[9].ID
+    value: _Hurt BranchSpike - Elemental Node packSkill_AGI - Melee damage_1 -
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[10].upgradeDataName
+    value: 1 extra thorn damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[10].ID
+    value: _Hurt Branchsub nodesSkill_subnode_ + 1 spike damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[11].upgradeDataName
+    value: 1 extra thorn damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[11].ID
+    value: _Hurt Branchsub nodesSkill_subnode_ + 1 spike damage_2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[12].upgradeDataName
+    value: 1 extra thorn damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[12].ID
+    value: _Hurt Branchsub nodesSkill_subnode_ + 1 spike damage_3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[13].upgradeDataName
+    value: Free revive
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[13].ID
+    value: _Hurt BranchNodesSkill_ free revive
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[14].upgradeDataName
+    value: Extra Points on Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[14].ID
+    value: _Start BranchNodesSkill_STA - 100+ points
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[15].upgradeDataName
+    value: 1% faster reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[15].ID
+    value: _Start Branchsub nodesSkill_AGI - Faster Reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[16].upgradeDataName
+    value: 1% faster reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[16].ID
+    value: _Start Branchsub nodesSkill_AGI - 10 points _
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[17].upgradeDataName
+    value: Extra HP on Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[17].ID
+    value: _Start BranchNodesSkill_STA + 1 HP
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[18].upgradeDataName
+    value: Random rune on Run Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[18].ID
+    value: _Start BranchNodesSkill_STA Random RUne
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[19].upgradeDataName
+    value: 1% gun critical chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[19].ID
+    value: _Start Branchsub nodesSkill_STA gun crit chance 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[20].upgradeDataName
+    value: 10 Extra points on run start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[20].ID
+    value: _Start Branchsub nodesSkill_subnode AGI - 10 points_
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[21].upgradeDataName
+    value: 10 Extra points on run start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[21].ID
+    value: _Start Branchsub nodesSkill_AGI - 10 extra points
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[22].upgradeDataName
+    value: Extra HP on Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[22].ID
+    value: _Start BranchNodesSkill_STA + 1 HP 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[23].upgradeDataName
+    value: 10 Extra points on run start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[23].ID
+    value: _Start Branchsub nodesSkill_STA extra points on run start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[24].upgradeDataName
+    value: 10 Extra points on run start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[24].ID
+    value: _Start Branchsub nodesSkill_AGI - 10 extra points_1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[25].upgradeDataName
+    value: Random Gun on Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[25].ID
+    value: _Start BranchNodesSkill_STA random gun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[26].upgradeDataName
+    value: 1% faster reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[26].ID
+    value: _Start Branchsub nodesSkill_subnode_ AGI - faster reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[27].upgradeDataName
+    value: Extra Points on Start
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[27].ID
+    value: _Start BranchNodesSkill_ STA 100 + points 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[28].upgradeDataName
+    value: 1% gun Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[28].ID
+    value: _Special ability BranchSub NodeSkill_SPE subnode gun damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[29].upgradeDataName
+    value: Reset Special Ability Cooldown on Kill
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[29].ID
+    value: _Special ability BranchNodeSkill_SPE special refil on enemy kill
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[30].upgradeDataName
+    value: 1% gun Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[30].ID
+    value: _Special ability BranchSub NodeSkill_SPE subnode_ gun damage_1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[31].upgradeDataName
+    value: Faster Special Ability Cooldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[31].ID
+    value: _Special ability BranchNodeSkill_SPE special ability faster cooldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[32].upgradeDataName
+    value: 1% Melee Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[32].ID
+    value: _Special ability BranchSub NodeSkill_SPE melee damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[33].upgradeDataName
+    value: Faster Special Ability Cooldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[33].ID
+    value: _Special ability BranchNodeSkill_SPE special ability faster cooldown 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[34].upgradeDataName
+    value: 1% gun critical chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[34].ID
+    value: _Special ability BranchSub NodeSkill_SPE gun critical chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[35].upgradeDataName
+    value: 1% Melee Critical Chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[35].ID
+    value: _Special ability BranchSub NodeSkill_SPE melee critical chance
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[36].upgradeDataName
+    value: 1% gun critical Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[36].ID
+    value: _Special ability BranchSub NodeSkill_SPE gun critical damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[37].upgradeDataName
+    value: Extra Special ability Charge
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillUpgrades.Array.data[37].ID
+    value: _Special ability BranchNodeSkill_SPE + carga habilidade especial
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: walkSpeed
+    value: 18
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: minVelocity
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: skillPoints
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: level
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: xp
+    value: 1323
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: horns
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: <isNinaUnlocked>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: <isHanbaUnlocked>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: <isDeNiroUnlocked>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: <isTutorialFinished>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.size
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[2]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[3]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[4]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[5]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[6]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[7]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[8]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isLevelUnlocked.Array.data[9]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.size
+    value: 29
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].score
+    value: 7038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].playerName
+    value: DESKTOP-MB1J0SL
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].wave
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].kills
+    value: 224
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].time
+    value: 340
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[0].attempt
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].score
+    value: 2231
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].playerName
+    value: DESKTOP-MB1J0SL
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].character
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].wave
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].kills
+    value: 67
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].time
+    value: 127
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[1].attempt
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].score
+    value: 1113
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].playerName
+    value: DESKTOP-MB1J0SL
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].character
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].wave
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].kills
+    value: 23
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].time
+    value: 54
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[2].attempt
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].score
+    value: 174
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].playerName
+    value: DESKTOP-MB1J0SL
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].character
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].kills
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].time
+    value: 51
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[3].attempt
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].score
+    value: 848
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].wave
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].kills
+    value: 61
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].time
+    value: 538
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[4].attempt
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].score
+    value: 17378
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].wave
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].kills
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].time
+    value: 72
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[5].attempt
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].score
+    value: 477
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].wave
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].kills
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].time
+    value: 41
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[6].attempt
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].score
+    value: 143
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].kills
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].time
+    value: 54
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[7].attempt
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].score
+    value: 52
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].kills
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].time
+    value: 159
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[8].attempt
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].score
+    value: 230
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].kills
+    value: 16
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].time
+    value: 98
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[9].attempt
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].score
+    value: 47
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].kills
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].time
+    value: 175
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[10].attempt
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].score
+    value: 1018
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].kills
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].time
+    value: 272
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[11].attempt
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].score
+    value: 244
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].kills
+    value: 21
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].time
+    value: 219
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[12].attempt
+    value: 13
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].score
+    value: 93
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].kills
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].time
+    value: 21
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[13].attempt
+    value: 14
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].score
+    value: 301
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].kills
+    value: 22
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].time
+    value: 62
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[14].attempt
+    value: 15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].score
+    value: 7253
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].wave
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].kills
+    value: 89
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].time
+    value: 121
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[15].attempt
+    value: 16
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].score
+    value: 32425
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].wave
+    value: 15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].kills
+    value: 512
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].time
+    value: 650
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[16].attempt
+    value: 17
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].score
+    value: 4406
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].wave
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].kills
+    value: 84
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].time
+    value: 111
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[17].attempt
+    value: 18
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].score
+    value: 1193
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].wave
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].kills
+    value: 32
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].time
+    value: 89
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[18].attempt
+    value: 19
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].score
+    value: 1322
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].wave
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].kills
+    value: 45
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].time
+    value: 93
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[19].attempt
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].score
+    value: 101
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].kills
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].time
+    value: 29
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[20].attempt
+    value: 21
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].score
+    value: 3188
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].wave
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].kills
+    value: 72
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].time
+    value: 106
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[21].attempt
+    value: 22
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].score
+    value: 96
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].wave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].kills
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].time
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[22].attempt
+    value: 23
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].score
+    value: 12212
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].wave
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].kills
+    value: 231
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].time
+    value: 326
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[23].attempt
+    value: 24
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].score
+    value: 23219
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].wave
+    value: 13
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].kills
+    value: 137
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].time
+    value: 168
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[24].attempt
+    value: 25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].score
+    value: 2265
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].wave
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].kills
+    value: 71
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].time
+    value: 149
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[25].attempt
+    value: 26
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].score
+    value: 2124
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].wave
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].kills
+    value: 58
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].time
+    value: 185
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[26].attempt
+    value: 27
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].score
+    value: 57886
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].wave
+    value: 21
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].kills
+    value: 927
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].time
+    value: 1613
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[27].attempt
+    value: 28
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].score
+    value: 138261
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].playerName
+    value: ANTENABOY2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].character
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].wave
+    value: 35
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].kills
+    value: 85
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].time
+    value: 295
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: scores.Array.data[28].attempt
+    value: 29
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: deaths
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: totalKillsSoFar
+    value: 2932
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: showCheats
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: version
+    value: Play test - 02/05/25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: statsCalculator
+    value: 
+    objectReference: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  m_ExcludedProperties: []

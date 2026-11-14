@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d39b3cd03ecd248bb3dddfff3426fb, type: 3}
+  m_Name: ButtonsData
+  m_EditorClassIdentifier: 
+  promptProfiles:
+  - deviceType: 0
+    useTmpSprites: 1
+    interactionButton: E_KB
+    dashButton: SHIFT_KB
+    fireButton: LMB_KB
+    specialButton: SPACE_KB
+    meleeButton: RMB_KB
+  - deviceType: 1
+    useTmpSprites: 1
+    interactionButton: A_XBOX
+    dashButton: B_XBOX
+    fireButton: RT_XBOX
+    specialButton: L3_PS
+    meleeButton: LT_XBOX
+  - deviceType: 2
+    useTmpSprites: 1
+    interactionButton: CROSS_PS
+    dashButton: CIRCLE_PS
+    fireButton: R2_PS
+    specialButton: L3_PS
+    meleeButton: L2_PS
+  - deviceType: 3
+    useTmpSprites: 0
+    interactionButton: B
+    dashButton: A
+    fireButton: ZR
+    specialButton: LS
+    meleeButton: ZL
+  - deviceType: 4
+    useTmpSprites: 1
+    interactionButton: A_XBOX
+    dashButton: B_XBOX
+    fireButton: RT_XBOX
+    specialButton: L3_PS
+    meleeButton: LT_XBOX

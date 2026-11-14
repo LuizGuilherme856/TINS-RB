@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: Golden Ice Grenade launcher_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Winter's Kiss
+  descriptionEnglish: Winter's Kiss is a highly effective ice grenade launcher, favored
+    by demon hunters for generations. Upon impact, it unleashes a frigid blast that
+    freezes demons solid, leaving them vulnerable. Azaus counts it among his favorite
+    weapons, and has used it to devastating effect against hordes of demons.
+  nameChinese: "\u5BD2\u51B0\u4E4B\u543B"
+  descriptionChinese: "\u5BD2\u51B0\u4E4B\u543B\u662F\u4E00\u6B3E\u5907\u53D7\u4EE3\u4EE3\u6076\u9B54\u730E\u4EBA\u9752\u7750\u7684\u9AD8\u6548\u51B0\u9730\u5F39\u53D1\u5C04\u5668\u3002\u5B83\u649E\u51FB\u76EE\u6807\u540E\u91CA\u653E\u51FA\u5BD2\u51B7\u7684\u51B0\u51BB\u80FD\u91CF\uFF0C\u5C06\u6076\u9B54\u51BB\u7ED3\u6210\u575A\u51B0\uFF0C\u4F7F\u5176\u9677\u5165\u8106\u5F31\u7684\u72B6\u6001\u3002Azaus
+    \u5C06\u5176\u5217\u4E3A\u6700\u559C\u6B22\u7684\u6B66\u5668\u4E4B\u4E00\uFF0C\u5E76\u7528\u5B83\u5BF9\u6297\u5927\u6279\u7684\u6076\u9B54\uFF0C\u8FBE\u5230\u4E86\u60CA\u4EBA\u7684\u6548\u679C\u3002"
+  namePortuguese: Beijo do Inverno
+  descriptionPortuguese: "um lan\xE7ador de granadas de gelo altamente eficaz, favorecido
+    pelos ca\xE7adores de dem\xF4nios h\xE1 gera\xE7\xF5es. Ao impacto, ele libera
+    uma explos\xE3o fria que congela os dem\xF4nios, deixando-os vulner\xE1veis.
+    Azaus o considera uma de suas armas favoritas e j\xE1 o utilizou com efeito devastador
+    contra hordas de dem\xF4nios."
+  nameSpanish: El Beso del Invierno
+  weaponDescriptionSpanish: "El Beso del Invierno es un lanzagranadas de hielo altamente
+    efectivo, favorecido por cazadores de demonios durante generaciones. Al impactar,
+    libera una explosi\xF3n fr\xEDgida que congela a los demonios s\xF3lidos, dej\xE1ndolos
+    vulnerables. Azaus lo cuenta entre sus armas favoritas y lo ha usado con efecto
+    devastador contra hordas de demonios."
+  sprite: {fileID: 383538895, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 16000
+  ammoPrice: 5333
+  criticalChance: 30
+  criticalMultiplier: 3
+  damage: 80
+  damageType: 5
+  knockBackForce: 3
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -1866989061, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 12
+  maxSpareAmmo: 46
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: f91201620abaa1c4ead2f40edf19ec40, type: 3}
+  bulletSpeed: 20
+  bulletLifeTime: 2
+  bulletDeathFX: {fileID: 4684909949455085315, guid: 07478fbd0df49d2458060c5c8d2f6c80, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 07478fbd0df49d2458060c5c8d2f6c80, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 07478fbd0df49d2458060c5c8d2f6c80, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 3.6
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 2
+  recoilAngle: 20
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 1.1
+  camShakeDuration: 0.2
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 0
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 637711f92a4093149b399108aac0c704, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 1
+  shootingSFX: {fileID: 8300000, guid: 4d2d763d3d810fb4dab08cf93d279a48, type: 3}
+  shootingVolume: 0.911
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 1
+  startReloadingSFX: {fileID: 8300000, guid: 124ae8c4786d6794f8378864e81405eb, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: bc84e79aeb308894388051623ccce737, type: 3}
+  fireRate: 0.5
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.6
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1, y: 0, z: 0}
+  posOffset: {x: 0.5, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 232.7
+  PricePerDPS: 27.5
+  rarity: 4
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

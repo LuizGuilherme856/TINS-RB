@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: -Acid Snezzer_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: The Snezzer
+  descriptionEnglish: Made by a crazy inventor who hunted platypuses in 1768. This
+    crazy weapon connects directly to the user's nostrils to fire its shots. Not 
+    OSHA  aproved
+  nameChinese: "\u6253\u55B7\u568F\u7684\u4EBA"
+  descriptionChinese: "\u7531\u4E00\u4F4D\u5728 1768 \u5E74\u730E\u6740\u9E2D\u5634\u517D\u7684\u75AF\u72C2\u53D1\u660E\u5BB6\u5236\u4F5C\u3002\u8FD9\u79CD\u75AF\u72C2\u7684\u6B66\u5668\u76F4\u63A5\u8FDE\u63A5\u5230\u7528\u6237\u7684\u9F3B\u5B54\u6765\u53D1\u5C04\u5B50\u5F39\u3002"
+  namePortuguese: O EspirradorInator
+  descriptionPortuguese: "Feito por um inventor maluco que ca\xE7ava ornitorrincos
+    em 1768. Essa arma maluca se conecta diretamente com com as narinas do usuario
+    para conseguir seus tiros. No minimo nojento e no maximo tamb\xEAm."
+  nameSpanish: El Estornudo
+  weaponDescriptionSpanish: Fabricada por un inventor loco que cazaba ornitorrincos
+    en 1768. Esta loca arma se conecta directamente a las fosas nasales del usuario
+    para disparar sus tiros.
+  sprite: {fileID: 535208912, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 1800
+  ammoPrice: 600
+  criticalChance: 10
+  criticalMultiplier: 2
+  damage: 5
+  damageType: 6
+  knockBackForce: 1
+  statusChance: 0.25
+  statusDuration: 10
+  statusDamagePerSec: 2
+  maxCollisions: 1
+  projectileSize: 0.5
+  buyIcon: {fileID: -1446576723, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.33
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  maxAmmoOnClip: 8
+  maxSpareAmmo: 260
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 983645a35a32d7c47a9945897fb896d4, type: 3}
+  bulletSpeed: 30
+  bulletLifeTime: 10
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 12
+  multipleBulletAngleOffset: 9
+  linedUpBulletsPerShot: 0
+  speedRandomness: 4.81
+  recoilForceOnPlayer: 1
+  recoilAngle: 18
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 0.2
+  camShakeDuration: 0.17
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 1
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 0.87
+  shootingSFX: {fileID: 8300000, guid: 99eabbb207738ad4eb143bc655d8f437, type: 3}
+  shootingVolume: 0.645
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.509
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 558d0126b3ca98048a84e75abb355c1c, type: 3}
+  fireRate: 0.3
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1.18, y: 0, z: 0}
+  posOffset: {x: 1, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 3b571b2c6a9f02049b83242ed03fa1b8, type: 2}
+  DPS: 50.79
+  PricePerDPS: 13.3
+  rarity: 2
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

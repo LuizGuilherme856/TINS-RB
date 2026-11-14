@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: -Golden Acid shotgun_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: Toxic Scattergun
+  descriptionEnglish: 'A small message can be read on the side of the weapon: ''Green
+    Slime Industries - spreading toxins since 1863.'''
+  nameChinese: "\u5267\u6BD2\u6563\u5F39\u67AA"
+  descriptionChinese: "\u67AA\u4E0A\u523B\u7740\u5C0F\u5B57:    \u56DB\u5904\u4E0B\u6BD2\uFF0C\u6E90\u81EA1863
+    \u2014 \u7EFF\u8272\u53F2\u83B1\u59C6\u5DE5\u4E1A"
+  namePortuguese: "Espingarda T\xF3xica"
+  descriptionPortuguese: 'Uma pequena mensagem pode ser lida no lado da arma: ''Industrias
+    Slime Verde - espalhando toxinas desde 1863'''
+  nameSpanish: "Escopeta T\xF3xica"
+  weaponDescriptionSpanish: "Se puede leer un peque\xF1o mensaje en el costado del
+    arma: \u2018Green Slime Industries - propagando toxinas desde 1863\u2019."
+  sprite: {fileID: -1691775363, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 7200
+  ammoPrice: 2400
+  criticalChance: 10
+  criticalMultiplier: 2
+  damage: 10
+  damageType: 6
+  knockBackForce: 1
+  statusChance: 0.4
+  statusDuration: 10
+  statusDamagePerSec: 1
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -1856077247, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 2
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 16
+  maxSpareAmmo: 171
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 983645a35a32d7c47a9945897fb896d4, type: 3}
+  bulletSpeed: 16
+  bulletLifeTime: 1
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 7
+  multipleBulletAngleOffset: 5.7
+  linedUpBulletsPerShot: 0
+  speedRandomness: 4.81
+  recoilForceOnPlayer: 1
+  recoilAngle: 18
+  recoilDuration: 0.2
+  imprecision: 1
+  camShakeMag: 0.2
+  camShakeDuration: 0.17
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 1
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 0.87
+  shootingSFX: {fileID: 8300000, guid: c45ef40b5b3790440919a5f117804e2b, type: 3}
+  shootingVolume: 0.574
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.509
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 558d0126b3ca98048a84e75abb355c1c, type: 3}
+  fireRate: 0.4
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 0.6
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 1.18, y: 0, z: 0}
+  posOffset: {x: 1, y: 0, z: 0}
+  isGoldenWeapon: 1
+  goldenVersion: {fileID: 0}
+  DPS: 137.1
+  PricePerDPS: 35
+  rarity: 3
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

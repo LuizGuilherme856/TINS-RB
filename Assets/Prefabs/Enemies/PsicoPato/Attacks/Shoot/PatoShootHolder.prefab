@@ -1,0 +1,194 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8866971685533409416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8866971685533409418}
+  - component: {fileID: 8866971685533409419}
+  m_Layer: 0
+  m_Name: PatoShootHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8866971685533409418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866971685533409416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -38.743443, y: -61.004, z: -0.19186799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1216213411144501952}
+  - {fileID: 1216213410243230931}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8866971685533409419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866971685533409416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d31c139519c5f4d86848d2174b3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variaSpawners:
+  - {fileID: 1216213411144501967}
+  - {fileID: 1216213410243230940}
+  timeToSwich: 2
+--- !u!1001 &8652315041483595782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8866971685533409418}
+    m_Modifications:
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715610, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_Name
+      value: PsicoPatoShootFase1P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562644484630715610, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+--- !u!4 &1216213410243230931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7562644484630715605, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+  m_PrefabInstance: {fileID: 8652315041483595782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1216213410243230940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562644484630715610, guid: f01dde44379a11241b8e6cf888991a13, type: 3}
+  m_PrefabInstance: {fileID: 8652315041483595782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8866971685138849801
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8866971685533409418}
+    m_Modifications:
+    - target: {fileID: 7776894550738496198, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_Name
+      value: PsicoPatoShootFase1P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496198, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+--- !u!4 &1216213411144501952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7776894550738496201, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+  m_PrefabInstance: {fileID: 8866971685138849801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1216213411144501967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7776894550738496198, guid: 80ec5ab5fb32e0a4ebbc467afe3d27ab, type: 3}
+  m_PrefabInstance: {fileID: 8866971685138849801}
+  m_PrefabAsset: {fileID: 0}

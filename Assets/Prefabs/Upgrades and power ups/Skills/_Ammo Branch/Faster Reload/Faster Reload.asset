@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Faster Reload
+  m_EditorClassIdentifier: 
+  nameEnglish: Be Quick or Be Dead
+  descriptionEnglish: Weapon reload time reduced by 25%
+  nameChinese: Be Quick or Be Dead
+  descriptionChinese: "\u6B66\u5668\u88C5\u586B\u65F6\u95F4\u51CF\u5C1125%"
+  namePortuguese: Be Quick or Be Dead
+  descriptionPortuguese: "Tempo de recarregamento das armas \xE9 diminuido em 25%"
+  nameSpanish: Be Quick or Be Dead
+  weaponDescriptionSpanish: Tiempo de recarga de armas reducido en 25%
+  statsChanges:
+  - {fileID: 11400000, guid: 98bd020c41d8f314da407bf3606fc98d, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: -1714464069, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []

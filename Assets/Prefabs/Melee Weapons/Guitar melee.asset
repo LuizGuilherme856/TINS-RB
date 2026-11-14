@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0d44a7c2b41dd47891f68d9b61474a, type: 3}
+  m_Name: Guitar melee
+  m_EditorClassIdentifier: 
+  nameEnglish: Heavy.Future
+  descriptionEnglish: The Power of Metal
+  nameChinese: Heavy.Future
+  descriptionChinese: The Power of Metal
+  namePortuguese: Heavy.Future
+  descriptionPortuguese: "Quem \xE9 ocaradometal? "
+  nameSpanish: Heavy.Future
+  weaponDescriptionSpanish: The Power of Metal
+  sprite: {fileID: 21300000, guid: 009f96b0f89acc84690d95fde7058d75, type: 3}
+  price: 2500
+  ammoPrice: 50
+  criticalChance: 15
+  criticalMultiplier: 2
+  damage: 10
+  damageType: 3
+  knockBackForce: 15
+  statusChance: 0.4
+  statusDuration: 5
+  statusDamagePerSec: 0
+  maxCollisions: 0
+  projectileSize: 1
+  buyIcon: {fileID: 21300000, guid: 009f96b0f89acc84690d95fde7058d75, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0.01
+  minDamageFalloff: 1
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  freezeFrameTime: 0.1
+  lensDistortion: -0.04
+  hasTrail: 0
+  trailTime: 0
+  distOffset: 3
+  camShakeMagnitude: -0.6
+  flySpeed: 1
+  attackRate: 2
+  invulnerableTimer: 0
+  playerImpulse: 1
+  meleeGameObject: {fileID: 8184369042086861504, guid: 3ea4f7794bbde0346bd53a68215a4681, type: 3}
+  isPlayerChild: 1
+  specialFxDuration: 2
+  instantiateGameObjectOnAttack: 1
+  playerAction: 0
+  attackSFX: {fileID: 8300000, guid: 5fca4683d531f784d8e53a2fac8e72ff, type: 3}
+  randomAttackSFXs:
+  - {fileID: 8300000, guid: e8c5680732bb2b946b866ed8479c2086, type: 3}
+  - {fileID: 8300000, guid: 57d148db9d1c1bb4ba2b0204a8c970bb, type: 3}
+  - {fileID: 8300000, guid: 5daf8002bb0012540b9af385b7f31499, type: 3}
+  - {fileID: 8300000, guid: 7b64e057724d9d341a64b49c65b8d1db, type: 3}
+  - {fileID: 8300000, guid: c567db6afb0eac643984ce58a12e8cfd, type: 3}
+  - {fileID: 8300000, guid: 42559661442c5ae42853ece6ed9cac79, type: 3}
+  volume: 0.3

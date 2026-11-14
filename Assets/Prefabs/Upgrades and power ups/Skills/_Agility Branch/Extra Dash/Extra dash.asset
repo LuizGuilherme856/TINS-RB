@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327bcad53855da1428cf6e0c10a1324d, type: 3}
+  m_Name: Extra dash
+  m_EditorClassIdentifier: 
+  nameEnglish: Fuel
+  descriptionEnglish: Adds an extra dash charge
+  nameChinese: Fuel
+  descriptionChinese: "\u589E\u52A0\u4E00\u6B21\u51B2\u523A\u6B21\u6570"
+  namePortuguese: Fuel
+  descriptionPortuguese: Adiciona uma carga de dash
+  nameSpanish: Fuel
+  weaponDescriptionSpanish: Agrega una carga de dash
+  statsChanges:
+  - {fileID: 11400000, guid: 31fc3a61f5f6b7f45a86b0f76fdf286a, type: 2}
+  activeEffects: []
+  requirements: []
+  icon: {fileID: -285729489, guid: 9ed87a1e0ff8e8b49a52692b3fc16558, type: 3}
+  globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  statsChangeOn2ndTime: 0
+  statsChangesOn2ndTime: []
