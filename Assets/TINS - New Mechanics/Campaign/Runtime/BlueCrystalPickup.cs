@@ -70,7 +70,7 @@ public sealed class BlueCrystalPickup : MonoBehaviour
         BlueCrystalPickup prefab = Resources.Load<BlueCrystalPickup>("BlueCrystal");
         if (prefab == null)
         {
-            Debug.LogError("Blue crystal prefab is missing. Expected Assets/GameJam/Resources/BlueCrystal.prefab.");
+            Debug.LogError("Blue crystal prefab is missing. Expected Assets/TINS - New Mechanics/Resources/BlueCrystal.prefab.");
             return;
         }
 

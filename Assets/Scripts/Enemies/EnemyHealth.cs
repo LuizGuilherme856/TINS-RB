@@ -499,12 +499,17 @@ public class EnemyHealth : MonoBehaviour
     public void ApplyCampaignFlashStun(float duration)
     {
         if (!CampaignCombatRules.IsCampaignMission || currentHealth <= 0f) return;
+        StatusEffectOnEnemy status = GetComponent<StatusEffectOnEnemy>();
+        if (status == null) status = GetComponentInChildren<StatusEffectOnEnemy>();
+        status?.ApplyFlashConcussion(duration);
         if (!campaignFlashStunned)
         {
             campaignFlashStunned = true;
-            StatusEffectOnEnemy status = GetComponent<StatusEffectOnEnemy>();
-            if (status == null) status = GetComponentInChildren<StatusEffectOnEnemy>();
-            status?.SetStatus(StatusEffect.Concussion, Mathf.Max(0.05f, duration), 0f);
+            if (TryGetComponent(out Rigidbody2D body))
+            {
+                body.linearVelocity = Vector2.zero;
+                body.angularVelocity = 0f;
+            }
         }
         campaignFlashStunTimer = Mathf.Max(campaignFlashStunTimer, duration);
     }

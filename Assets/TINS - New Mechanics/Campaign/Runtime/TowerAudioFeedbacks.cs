@@ -109,7 +109,7 @@ public sealed class TowerAudioFeedbacks : MonoBehaviour
         AudioClip clip = Resources.Load<AudioClip>("Audio/" + resourceName);
         if (clip == null)
         {
-            Debug.LogError($"Audio clip not found at Assets/GameJam/Resources/Audio/{resourceName}.mp3", this);
+            Debug.LogError($"Audio clip not found at Assets/TINS - New Mechanics/Resources/Audio/{resourceName}.mp3", this);
             return null;
         }
 

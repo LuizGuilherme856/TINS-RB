@@ -32,6 +32,8 @@ public class FSGameManager : MonoBehaviour
 
     public void SetisDoingMinigameWithDelay(bool targetBool)
     {
+        if (!isActiveAndEnabled) return;
+
         StartCoroutine(ChangeBoolWithDelay(0.2f, targetBool));
     }
 

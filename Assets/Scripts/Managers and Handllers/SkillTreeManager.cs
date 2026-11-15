@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TINS.Campaign;
 
 public class SkillTreeManager : MonoBehaviour
 {
@@ -82,7 +83,7 @@ public class SkillTreeManager : MonoBehaviour
             }
         }
 
-        if (playerData.GetSkillPoints() < playerData.level)
+        if ((CampaignBaseController.Active == null || !CampaignBaseController.Active.IsReady) && playerData.GetSkillPoints() < playerData.level)
         {
             Debug.LogError("O numero de skill points é inferior ao nivel do jogador. Forçando a ser = ao nivel");
             playerData.SetSkillPoints(playerData.level);

@@ -112,6 +112,22 @@ namespace TINS.Campaign
             return true;
         }
 
+        public bool HasPaidTreeSkill(string nodeId) => Rank("raining-blood-tree:" + nodeId) > 0;
+
+        public void RecordTreeSkillPurchase(string nodeId)
+        {
+            if (string.IsNullOrWhiteSpace(nodeId)) return;
+            FindSkill("raining-blood-tree:" + nodeId, true).rank++;
+        }
+
+        public bool RecordTreeSkillRefund(string nodeId)
+        {
+            if (string.IsNullOrWhiteSpace(nodeId)) return false;
+            CampaignSkillRank item = FindSkill("raining-blood-tree:" + nodeId, false);
+            if (item == null || item.rank <= 0) return false;
+            item.rank--;
+            return true;
+        }
         public int Rank(string id)
         {
             CampaignSkillRank item = FindSkill(id, false);

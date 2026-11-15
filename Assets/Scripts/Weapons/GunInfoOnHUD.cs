@@ -47,6 +47,17 @@ public class GunInfoOnHUD : MonoBehaviour
         gunInventory.OnWeaponChange += RefreshCurrentAmmo;
         gunInventory.OnWeaponChange += RefreshGunIconAndName;
     }
+    private void OnDisable()
+    {
+        if (gunInventory != null)
+        {
+            gunInventory.OnWeaponChange -= RefreshCurrentGun;
+            gunInventory.OnWeaponChange -= RefreshCurrentAmmo;
+            gunInventory.OnWeaponChange -= RefreshGunIconAndName;
+        }
+        if (currentGun != null) currentGun.OnAmmoChange -= RefreshCurrentAmmo;
+    }
+
     private void RefreshGunIconAndName()
     {
         if (currentGun == null)
@@ -73,13 +84,16 @@ public class GunInfoOnHUD : MonoBehaviour
         else
         {
             ammoOnclipText.text = currentGun.currentAmmoOnClip.ToString();
-            spareAmmoText.text = currentGun.currentSpareAmmo.ToString();
+            spareAmmoText.text = TINS.Campaign.CampaignCombatRules.IsCampaignMission
+                ? "∞"
+                : currentGun.currentSpareAmmo.ToString();
         }
 
     }
 
     private void RefreshCurrentGun()
     {
+        if (currentGun != null) currentGun.OnAmmoChange -= RefreshCurrentAmmo;
         currentGun = gunInventory.GetCurrentEquipedGun();
         if (currentGun == null) return;
         currentGun.OnAmmoChange += RefreshCurrentAmmo;

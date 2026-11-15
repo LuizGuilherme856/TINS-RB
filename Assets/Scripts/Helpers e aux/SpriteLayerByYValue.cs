@@ -1,56 +1,50 @@
 using UnityEngine;
 
-/// <summary>
-/// Update sprite sorting based on minPosition's Y coordinate.
-/// </summary>
+/// <summary>Updates sprite sorting based on minPosition's Y coordinate.</summary>
 public class SpriteLayerByYValue : MonoBehaviour
 {
     [SerializeField] private Transform minPosition;
     [SerializeField] private bool isStatic = true;
-    [SerializeField] private float addToLayer = 0; //Add a sorting offset to render above objects at the same position.
-
+    [SerializeField] private float addToLayer = 0f;
     [SerializeField] private float updateRate = 0.2f;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private bool isVisible = true; //just for optimization
+    private bool isVisible = true;
 
     private void Awake()
     {
-        if(spriteRenderer == null)
-        {
-            //spriteRenderer = GetComponentInParent<SpriteRenderer>();
-        }
+        ResolveReferences();
+    }
+
+    private bool ResolveReferences()
+    {
+        if (minPosition == null) minPosition = transform;
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>() ?? GetComponentInChildren<SpriteRenderer>(true);
+        return spriteRenderer != null;
     }
 
     private void OnEnable()
     {
-        if (!isStatic)
-        {
-            InvokeRepeating(nameof(UpdateSortingLayer), 0, updateRate);
-        }
-        else
-        {
+        if (!ResolveReferences()) return;
+
+        if (isStatic)
             UpdateSortingLayer();
-        }
+        else
+            InvokeRepeating(nameof(UpdateSortingLayer), 0f, Mathf.Max(0.02f, updateRate));
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(UpdateSortingLayer));
     }
 
     private void UpdateSortingLayer()
     {
-        if (isVisible) //Update only while visible to the camera.
-        {
-            spriteRenderer.sortingOrder = Mathf.RoundToInt(minPosition.position.y * 35f  +addToLayer) * -1;
-
-        }
+        if (!isVisible || !ResolveReferences()) return;
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(minPosition.position.y * 35f + addToLayer) * -1;
     }
 
-    private void OnBecameInvisible()
-    {
-        isVisible = false;
-    }
-
-    private void OnBecameVisible()
-    {
-        isVisible = true;
-    }
-
+    private void OnBecameInvisible() => isVisible = false;
+    private void OnBecameVisible() => isVisible = true;
 }

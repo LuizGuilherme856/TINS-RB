@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using MoreMountains.Feedbacks;
+using TINS.Campaign;
 
 public class SkillTreeNode : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SkillTreeNode : MonoBehaviour
 
     [Space(25)]
     [SerializeField] private int skillPointCost = 1;
+    [SerializeField, Min(0)] private int campaignSoulCostOverride = 0;
     [SerializeField] private PlayerData playerData;
     [SerializeField] private SkillTreeManager skillTreeManager;
     [SerializeField] private GameObject buyButton;
@@ -144,8 +146,6 @@ public class SkillTreeNode : MonoBehaviour
 
     private bool CanBuyNode()
     {
-        if (isFirstNode && playerData.GetSkillPoints() >= skillPointCost) return true;
-
         if (groupNodes.Count > 0)
         {
             foreach (var node in groupNodes)
@@ -158,16 +158,21 @@ public class SkillTreeNode : MonoBehaviour
             }
         }
 
-        if (isActivated)
+        if (isActivated || !IsAnyPreviousNodeActivated())
         {
             cantBuyFeedback.PlayFeedbacks();
             return false;
         }
 
-        if (!IsAnyPreviousNodeActivated())
+        if (IsCampaignSoulsMode())
         {
-            cantBuyFeedback.PlayFeedbacks();
-            return false;
+            CampaignBaseController campaign = CampaignBaseController.Active;
+            if (campaign == null || campaign.Profile == null || campaign.Profile.souls < GetCampaignSoulCost())
+            {
+                cantBuyFeedback.PlayFeedbacks();
+                return false;
+            }
+            return true;
         }
 
         if (playerData.GetSkillPoints() < skillPointCost)
@@ -177,6 +182,38 @@ public class SkillTreeNode : MonoBehaviour
         }
 
         return true;
+    }
+
+    private static bool IsCampaignSoulsMode()
+    {
+        return CampaignBaseController.Active != null && CampaignBaseController.Active.IsReady;
+    }
+
+    public int GetCampaignSoulCost()
+    {
+        if (campaignSoulCostOverride > 0) return campaignSoulCostOverride;
+        int tier = GetCampaignTier(new HashSet<SkillTreeNode>());
+        int[] costsByTier = { 5, 10, 20, 50, 100, 200, 400, 800 };
+        return costsByTier[Mathf.Min(tier, costsByTier.Length - 1)];
+    }
+
+    private int GetCampaignTier(HashSet<SkillTreeNode> visiting)
+    {
+        if (!visiting.Add(this)) return 0;
+        if (previousNodes == null || previousNodes.Count == 0)
+        {
+            visiting.Remove(this);
+            return 0;
+        }
+
+        int tier = int.MaxValue;
+        foreach (SkillTreeNode previous in previousNodes)
+        {
+            if (previous == null) continue;
+            tier = Mathf.Min(tier, previous.GetCampaignTier(visiting) + 1);
+        }
+        visiting.Remove(this);
+        return tier == int.MaxValue ? 0 : tier;
     }
 
     private bool CanRemoveNode()
@@ -206,10 +243,16 @@ public class SkillTreeNode : MonoBehaviour
     {
         if (CanRemoveNode() || force)
         {
+            if (IsCampaignSoulsMode())
+                CampaignBaseController.Active.RefundSoulsForTree(GetCampaignSoulCost(), skillUpgradeData.ID);
+            else
+                playerData.AddSkillPoints(skillPointCost);
+
             DeactivateNode();
             removeFeedback.PlayFeedbacks();
-            playerData.AddSkillPoints(skillPointCost);
             skillTreeManager.RemoveSkill(skillUpgradeData);
+            SaveGame saveGame = FindFirstObjectByType<SaveGame>();
+            if (saveGame != null) saveGame.SaveGameToDisk();
         }
         else
         {
@@ -288,10 +331,24 @@ public class SkillTreeNode : MonoBehaviour
 
     private void BuyNode()
     {
+        if (IsCampaignSoulsMode())
+        {
+            if (!CampaignBaseController.Active.TrySpendSoulsForTree(GetCampaignSoulCost(), skillUpgradeData.ID))
+            {
+                cantBuyFeedback.PlayFeedbacks();
+                return;
+            }
+        }
+        else
+        {
+            playerData.RemoveSkillPoints(skillPointCost);
+        }
+
         ActivateNode();
         buyFeedback.PlayFeedbacks();
-        playerData.RemoveSkillPoints(skillPointCost);
         skillTreeManager.AddSkill(skillUpgradeData);
+        SaveGame saveGame = FindFirstObjectByType<SaveGame>();
+        if (saveGame != null) saveGame.SaveGameToDisk();
     }
 
     private void ActivateNode()

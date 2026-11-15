@@ -54,6 +54,18 @@ public class StatusEffectOnEnemy : MonoBehaviour
         }
     }
 
+    public void ApplyFlashConcussion(float duration)
+    {
+        if (currentStatus != StatusEffect.Concussion)
+        {
+            ClearStatusEffect();
+            currentStatus = StatusEffect.Concussion;
+            statusSpecialEffect?.ApplyEffect(StatusEffect.Concussion);
+            OnStatusChange?.Invoke();
+        }
+        effectTimer = Mathf.Max(effectTimer, duration);
+    }
+
     public void SetStatus(StatusEffect status, float effectDuration, float statusDamage)
     {
         if(enemyData == null)
@@ -63,6 +75,7 @@ public class StatusEffectOnEnemy : MonoBehaviour
             shaderReplacer = GetComponent<ShaderReplacer>();
 
         }
+        if (enemyHealth != null && enemyHealth.IsCampaignFlashStunned) return;
         if (status == StatusEffect.None)
         {
             return;
@@ -164,12 +177,17 @@ public class StatusEffectOnEnemy : MonoBehaviour
 
     public void ResetStatusEffect()
     {
-        if(enemyData != null && enemyData.immuneToStatus) return;
+        if (enemyData != null && enemyData.immuneToStatus && currentStatus != StatusEffect.Concussion) return;
+        ClearStatusEffect();
+    }
+
+    private void ClearStatusEffect()
+    {
         currentStatus = StatusEffect.None;
-        statusSpecialEffect.RemoveAllEffects();
+        statusSpecialEffect?.RemoveAllEffects();
         OnStatusChange?.Invoke();
-        shaderReplacer.SetDefaultShaderValue();
-        hitFeedback.SetActive(true);
+        shaderReplacer?.SetDefaultShaderValue();
+        hitFeedback?.SetActive(true);
         enemyHealth.SetContinuousDamage(0 , DamageType.None);
     }
 

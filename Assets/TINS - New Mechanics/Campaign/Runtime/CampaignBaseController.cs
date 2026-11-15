@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace TINS.Campaign
 {
     public sealed class CampaignBaseController : MonoBehaviour
     {
+        public static CampaignBaseController Active { get; private set; }
+        public event Action<int> SoulsChanged;
         private enum Panel { None, Missions, Skills }
 
         [SerializeField] private CampaignCatalog catalog;
@@ -39,6 +42,32 @@ namespace TINS.Campaign
 
         public CampaignProfile Profile => profile;
         public CampaignCatalog Catalog => catalog;
+        public bool IsReady => profile != null;
+
+        public bool TrySpendSoulsForTree(int amount, string nodeId)
+        {
+            if (profile == null || amount < 0 || profile.souls < amount) return false;
+            profile.souls -= amount;
+            profile.soulsInvested += amount;
+            profile.RecordTreeSkillPurchase(nodeId);
+            profile.Save();
+            Refresh();
+            return true;
+        }
+
+        public void RefundSoulsForTree(int amount, string nodeId)
+        {
+            if (profile == null || amount <= 0 || !profile.RecordTreeSkillRefund(nodeId)) return;
+            profile.souls += amount;
+            profile.soulsInvested = Mathf.Max(0, profile.soulsInvested - amount);
+            profile.Save();
+            Refresh();
+        }
+        private void Awake()
+        {
+            Active = this;
+            profile = CampaignProfile.Load();
+        }
 
         private void Start()
         {
@@ -49,10 +78,7 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
-            profile = CampaignProfile.Load();
             EnsureMapLayers();
-            if (originalSkillTreeButton != null && originalSkillTree != null)
-                originalSkillTreeButton.onClick.AddListener(() => { ClosePanels(); originalSkillTree.ShowSkillTree(); });
             if (playerInput == null) playerInput = FindFirstObjectByType<PlayerInputHandler>();
             if (playerMovement == null && playerInput != null) playerMovement = playerInput.GetComponent<PlayerMovement>();
             stations = FindObjectsByType<BaseStationInteractable>(FindObjectsSortMode.None);
@@ -174,6 +200,7 @@ namespace TINS.Campaign
 
         private void OnDestroy()
         {
+            if (Active == this) Active = null;
             if (playerInput != null) playerInput.OnInteract -= InteractWithNearestStation;
         }
 
@@ -190,15 +217,9 @@ namespace TINS.Campaign
 
         public void ShowSkillTree()
         {
-            if (catalog == null || currentPanel != Panel.None) return;
-            currentPanel = Panel.Skills;
-            if (missionPanel != null) missionPanel.SetActive(false);
-            if (skillPanel != null) skillPanel.SetActive(true);
-            SetPlayerPaused(true);
-            Refresh();
-            SelectFirst(skillButtons);
-            if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null)
-                SelectFirst(new[] { originalSkillTreeButton, closeButtonsSkill });
+            if (currentPanel != Panel.None || originalSkillTree == null || originalSkillTree.IsSkillTreeOpen()) return;
+            playerMovement?.StopImmediately();
+            originalSkillTree.ShowSkillTree();
         }
 
         public void ClosePanels()
@@ -254,6 +275,7 @@ namespace TINS.Campaign
         {
             if (profile == null || catalog == null) return;
             if (soulsLabel != null) soulsLabel.text = $"ALMAS  {profile.souls:N0}";
+            SoulsChanged?.Invoke(profile.souls);
             if (resourceLabel != null) resourceLabel.text = FormatResources();
             if (statusLabel != null) statusLabel.text = statusMessage;
 

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using GraveyardShift.Gameplay;
 
-/// <summary>Transfers carried ether to the defense core while the player holds Interact nearby.</summary>
+/// <summary>Automatically transfers carried ether to the defense core when the player approaches.</summary>
 [RequireComponent(typeof(TowerController))]
 public sealed class TowerCrystalDeposit : MonoBehaviour
 {
     [SerializeField, Min(0f)] private float radiusPerCrystal = 0.75f;
-    [SerializeField, Min(0.01f)] private float crystalTravelDuration = 0.34f;
-    [SerializeField, Min(0f)] private float accelerationPerDeliveredCrystal = 0.08f;
+    [SerializeField, Min(0.01f)] private float crystalTravelDuration = 0.22f;
+    [SerializeField, Min(0f)] private float accelerationPerDeliveredCrystal = 0.16f;
     [SerializeField, Min(0f)] private float interactionRadius = 2.2f;
-    [SerializeField, Min(0f)] private float pulseDuration = 0.25f;
+    [SerializeField, Min(0f)] private float pulseDuration = 0.08f;
     [SerializeField, Min(0f)] private float pulseAmplitude = 0.06f;
     [SerializeField] private PurificationReveal purificationReveal;
     [SerializeField, Min(0f)] private float knockbackImpulsePerCrystal = 2f;
@@ -41,8 +41,8 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
             FindNearbyPlayer();
 
         if (!depositSequenceRunning && nearbyPlayer != null && nearbyInventory != null &&
-            nearbyInventory.Count > 0 && nearbyPlayer.IsInteractHeld && IsPlayerCloseEnough())
-            StartCoroutine(DepositWhileHeld());
+            nearbyInventory.Count > 0 && IsPlayerCloseEnough())
+            StartCoroutine(DepositAutomatically());
     }
 
     private void FindNearbyPlayer()
@@ -68,18 +68,21 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
     private bool IsPlayerCloseEnough() => nearbyPlayer != null &&
         Vector2.Distance(nearbyPlayer.transform.position, transform.position) <= interactionRadius;
 
-    private IEnumerator DepositWhileHeld()
+    private IEnumerator DepositAutomatically()
     {
         depositSequenceRunning = true;
+        BlueCrystalInventory inventory = nearbyInventory;
+        Vector3 targetPosition = purificationReveal != null ? purificationReveal.transform.position : transform.position;
         int delivered = 0;
-        while (nearbyPlayer != null && nearbyPlayer.IsInteractHeld && IsPlayerCloseEnough() && nearbyInventory != null && nearbyInventory.Count > 0)
+        // Entering the tower's radius commits carried crystals to the full
+        // sequence, so walking through the area is enough to deliver them all.
+        while (inventory != null && inventory.Count > 0)
         {
-            int carriedBefore = nearbyInventory.Count;
+            int carriedBefore = inventory.Count;
             float duration = crystalTravelDuration / (1f + delivered * accelerationPerDeliveredCrystal);
-            duration = Mathf.Max(0.055f, duration);
-            Vector3 targetPosition = purificationReveal != null ? purificationReveal.transform.position : transform.position;
-            yield return nearbyInventory.AbsorbOneAt(targetPosition, duration);
-            if (nearbyInventory.Count >= carriedBefore) break;
+            duration = Mathf.Max(0.04f, duration);
+            yield return inventory.AbsorbOneAt(targetPosition, duration);
+            if (inventory.Count >= carriedBefore) break;
 
             delivered++;
             TowerAudioFeedbacks.Instance?.PlayCrystalDepositPitch(Mathf.Min(1.8f, 0.86f + delivered * 0.06f));

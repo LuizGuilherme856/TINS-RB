@@ -82,7 +82,11 @@ namespace TINS.Campaign
                 lastInventoryCount = soulInventory.Count;
                 soulInventory.OnCountChanged += TrackCollectedSouls;
             }
-            ApplyCampaignUpgrades();
+            AssetFinder.GetGlobalStats()?.ResetValues();
+            AssetFinder.GetRuneInventory()?.ResetUpgrades();
+            FindFirstObjectByType<SkillManager>(FindObjectsInactive.Include)?.ExecuteSkillUpgrades();
+            playerCharges = playerHealth.GetComponent<BeamMeleeUsesManager>();
+            playerHealth.GetComponent<EnsureStartingPistol>()?.Equip();
             playerHealth.ResetHealth();
             lightReveal.WinRadius = planet.missionTargetRadius;
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
@@ -101,41 +105,6 @@ namespace TINS.Campaign
             foreach (MoveTowardsPlayer enemy in simpleChasers)
                 if (enemy != null) enemy.SetTarget(tower.transform);
             RefreshLabels();
-        }
-
-        private void ApplyCampaignUpgrades()
-        {
-            PlayerInputHandler input = playerHealth.GetComponent<PlayerInputHandler>();
-            if (input == null) return;
-            PlayerMovement movement = input.GetComponent<PlayerMovement>();
-            if (movement != null)
-                movement.SetCampaignSpeedMultiplier(1f + profile.Rank("speed") * 0.08f);
-
-            BeamMeleeUsesManager charges = input.GetComponentInChildren<BeamMeleeUsesManager>(true);
-            playerCharges = charges;
-            if (charges != null)
-            {
-                charges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
-                charges.ConfigureRechargeDuration(5f / Mathf.Pow(1.15f, profile.Rank("flash-recharge")));
-            }
-
-            BeamMeleeAttack flash = input.GetComponentInChildren<BeamMeleeAttack>(true);
-            if (flash != null)
-                flash.SetCampaignDurationMultiplier(1f + profile.Rank("flash-duration") * 0.05f);
-
-            if (playerHealth != null)
-                playerHealth.SetCampaignMaxHealthBonus(profile.Rank("solar-vigor") * 2f);
-
-            GunInventory inventory = input.GetComponent<GunInventory>();
-            if (inventory == null) inventory = input.GetComponentInChildren<GunInventory>(true);
-            if (inventory == null) inventory = FindFirstObjectByType<PlayerHolder>()?.GetGunInventory();
-            if (inventory == null || catalog == null || catalog.skills == null) return;
-            foreach (CampaignSkill skill in catalog.skills)
-            {
-                if (skill == null || string.IsNullOrWhiteSpace(skill.unlockedWeaponResourcePath) || profile.Rank(skill.id) <= 0) continue;
-                GunData gun = Resources.Load<GunData>(skill.unlockedWeaponResourcePath);
-                if (gun != null && !inventory.HasThisGun(gun)) inventory.AddGunToInventory(gun);
-            }
         }
 
         private void Update()

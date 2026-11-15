@@ -17,23 +17,23 @@ public static class CampaignProjectInstaller
 {
     private const string MissionPath = "Assets/Scenes/HR Floor one.unity";
     private const string BasePath = "Assets/Scenes/Campaign/CampaignBase.unity";
-    private const string CatalogPath = "Assets/GameJam/Campaign/Resources/CampaignCatalog.asset";
-    private const string DarknessMaterialPath = "Assets/GameJam/Campaign/Materials/Discrete Darkness Bands.mat";
-    private const string MapOceanPath = "Assets/GameJam/Campaign/Resources/PlanetMap/Planet map - ocean.png";
-    private const string MapCorruptedPath = "Assets/GameJam/Campaign/Resources/PlanetMap/Planet map - corrupted.png";
-    private const string MapPurifiedPath = "Assets/GameJam/Campaign/Resources/PlanetMap/Planet map - purified.png";
-    private const string MapCircleMaskPath = "Assets/GameJam/Campaign/Resources/PlanetMap/Planet purification circle.png";
+    private const string CatalogPath = "Assets/TINS - New Mechanics/Campaign/Resources/CampaignCatalog.asset";
+    private const string DarknessMaterialPath = "Assets/TINS - New Mechanics/Campaign/Materials/Discrete Darkness Bands.mat";
+    private const string MapOceanPath = "Assets/TINS - New Mechanics/Campaign/Resources/PlanetMap/Planet map - ocean.png";
+    private const string MapCorruptedPath = "Assets/TINS - New Mechanics/Campaign/Resources/PlanetMap/Planet map - corrupted.png";
+    private const string MapPurifiedPath = "Assets/TINS - New Mechanics/Campaign/Resources/PlanetMap/Planet map - purified.png";
+    private const string MapCircleMaskPath = "Assets/TINS - New Mechanics/Campaign/Resources/PlanetMap/Planet purification circle.png";
 
     [MenuItem("Tools/There Is No Sun/Configure Campaign Scenes")]
     public static void InstallFromMenu() => Debug.Log(Install());
 
     public static string Install()
     {
-        EnsureFolder("Assets/GameJam/Campaign");
-        EnsureFolder("Assets/GameJam/Campaign/Materials");
-        EnsureFolder("Assets/GameJam/Campaign/Resources");
-        EnsureFolder("Assets/GameJam/Campaign/Resources/CampaignGuns");
-        EnsureFolder("Assets/GameJam/Campaign/Textures");
+        EnsureFolder("Assets/TINS - New Mechanics/Campaign");
+        EnsureFolder("Assets/TINS - New Mechanics/Campaign/Materials");
+        EnsureFolder("Assets/TINS - New Mechanics/Campaign/Resources");
+        EnsureFolder("Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns");
+        EnsureFolder("Assets/TINS - New Mechanics/Campaign/Textures");
         EnsureFolder("Assets/Scenes/Campaign");
 
         AssetDatabase.Refresh();
@@ -45,9 +45,9 @@ public static class CampaignProjectInstaller
         CampaignCatalog catalog = EnsureCatalog();
         Material darknessMaterial = EnsureDarknessMaterial();
         CopyWeaponAsset("Assets/Prefabs/Guns & bullets/Fire & laser guns/Laser pistol/laser pistol_GunData.asset",
-            "Assets/GameJam/Campaign/Resources/CampaignGuns/laser pistol_GunData.asset");
+            "Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns/laser pistol_GunData.asset");
         CopyWeaponAsset("Assets/Prefabs/Guns & bullets/Impact Guns/automatic pistol/Automatic pistol_GunData.asset",
-            "Assets/GameJam/Campaign/Resources/CampaignGuns/automatic pistol_GunData.asset");
+            "Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns/automatic pistol_GunData.asset");
 
         Scene mission = EditorSceneManager.OpenScene(MissionPath, OpenSceneMode.Single);
         SetupMission(mission, catalog, darknessMaterial);
@@ -149,8 +149,8 @@ public static class CampaignProjectInstaller
         SetObject(flash, "playerInput", missionInput);
         SetObject(flash, "usesManager", charges);
         SetObject(flash, "beamOrigin", player.transform);
-        SetObject(flash, "beamPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/GameJam/Prefabs/PlayerMouseBeam.prefab"));
-        SetObject(flash, "coneLightPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/GameJam/Prefabs/Melee Cone Light.prefab"));
+        SetObject(flash, "beamPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/Prefabs/PlayerMouseBeam.prefab"));
+        SetObject(flash, "coneLightPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/Prefabs/Melee Cone Light.prefab"));
         EnemySpawnManager spawner = FindFirst<EnemySpawnManager>(scene);
         if (spawner == null) throw new System.InvalidOperationException("Mission spawner is missing.");
         SetObject(spawner, "enemyPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemies/Demoninho/Demoninho no path finding.prefab"));
@@ -717,15 +717,15 @@ public static class CampaignProjectInstaller
     {
         string[] scripts =
         {
-            "Assets/GameJam/TowerCrystalDeposit.cs", "Assets/GameJam/BlueCrystalInventory.cs", "Assets/GameJam/BlueCrystalPickup.cs",
-            "Assets/GameJam/BeamMeleeAttack.cs", "Assets/GameJam/BeamMeleeUsesManager.cs", "Assets/GameJam/BeamMeleeUsesHUD.cs",
-            "Assets/GameJam/PurificationReveal.cs", "Assets/GameJam/EnsureStartingPistol.cs", "Assets/GameJam/LightRadiusSkillCheckActivator.cs",
-            "Assets/GameJam/TowerAudioFeedbacks.cs"
+            "Assets/TINS - New Mechanics/TowerCrystalDeposit.cs", "Assets/TINS - New Mechanics/BlueCrystalInventory.cs", "Assets/TINS - New Mechanics/BlueCrystalPickup.cs",
+            "Assets/TINS - New Mechanics/BeamMeleeAttack.cs", "Assets/TINS - New Mechanics/BeamMeleeUsesManager.cs", "Assets/TINS - New Mechanics/BeamMeleeUsesHUD.cs",
+            "Assets/TINS - New Mechanics/PurificationReveal.cs", "Assets/TINS - New Mechanics/EnsureStartingPistol.cs", "Assets/TINS - New Mechanics/LightRadiusSkillCheckActivator.cs",
+            "Assets/TINS - New Mechanics/TowerAudioFeedbacks.cs"
         };
         foreach (string source in scripts)
         {
             if (!File.Exists(source)) continue;
-            string destination = "Assets/GameJam/Campaign/Runtime/" + Path.GetFileName(source);
+            string destination = "Assets/TINS - New Mechanics/Campaign/Runtime/" + Path.GetFileName(source);
             if (AssetDatabase.LoadAssetAtPath<Object>(destination) != null) continue;
             string error = AssetDatabase.MoveAsset(source, destination);
             if (!string.IsNullOrEmpty(error)) Debug.LogWarning("Could not organize " + source + ": " + error);

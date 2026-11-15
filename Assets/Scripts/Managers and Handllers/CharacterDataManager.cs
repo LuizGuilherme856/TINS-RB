@@ -75,7 +75,9 @@ public class CharacterDataManager : MonoBehaviour
     // TechBooh: a missing/unsupported character falls back to Azaus; never load Yodinha.
     private CharacterData ResolveConsoleCharacter_TechBooh(CharacterData data)
     {
-        if (data != null && data.character != Character.yodista) return data;
+        bool campaignScene = gameObject.scene.name == TINS.Campaign.CampaignTravel.BaseScene ||
+            gameObject.scene.name == TINS.Campaign.CampaignTravel.MissionScene;
+        if (!campaignScene && data != null && data.character != Character.yodista) return data;
         var fallback = charactersData.Find(item => item != null && item.character == Character.azaus);
         if (fallback == null) throw new System.InvalidOperationException("Console character fallback Azaus is missing.");
         return fallback;

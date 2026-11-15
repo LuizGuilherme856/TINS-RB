@@ -284,7 +284,7 @@ public class PlayerInputHandler : MonoBehaviour
         else //is using a mouse
         {
             Vector2 mouse = Input.mousePosition;
-            Vector3 screenPoint = mainCamera.WorldToScreenPoint(transform.localPosition);
+            Vector3 screenPoint = mainCamera.WorldToScreenPoint(transform.position);
 
             //Find the vector from screen center to the mouse and calculate its angle.
             return Mathf.Atan2(mouse.y - screenPoint.y, mouse.x - screenPoint.x) * Mathf.Rad2Deg;

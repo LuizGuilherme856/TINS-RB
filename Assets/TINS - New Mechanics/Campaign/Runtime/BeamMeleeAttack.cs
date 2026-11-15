@@ -4,8 +4,7 @@ using UnityEngine.Rendering.Universal;
 using TINS.Campaign;
 
 /// <summary>
-/// Short-lived cone-shaped light attack. The trigger removes enemy protection but
-/// never applies damage; the cone itself is also the attack's visible effect.
+/// Projects a cone of light that reveals the arena and stuns enemies in missions.
 /// </summary>
 public sealed class BeamMeleeAttack : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     [SerializeField] private Transform beamOrigin;
     [SerializeField] private GameObject beamPrefab;
     [SerializeField, Min(0.05f)] private float duration = 0.5f;
+    [SerializeField, Min(0.1f)] private float stunDuration = 1.5f;
     [SerializeField, Min(0.1f)] private float maximumLength = 30f;
     [SerializeField] private BeamMeleeUsesManager usesManager;
     [SerializeField] private GameObject coneLightPrefab;
@@ -159,8 +159,8 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             Vector3 mouseWorld = camera.ScreenToWorldPoint(
                 new Vector3(Input.mousePosition.x, Input.mousePosition.y, depth));
             Vector2 toMouse = (Vector2)(mouseWorld - origin);
-            length = toMouse.magnitude;
-            direction = length > 0.001f ? toMouse / length : Vector2.right;
+            length = maximumLength;
+            direction = toMouse.sqrMagnitude > 0.000001f ? toMouse.normalized : Vector2.right;
         }
         else
         {
@@ -221,8 +221,11 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();
             if (enemy == null || enemy.currentHealth <= 0f) continue;
             Vector2 offset = (Vector2)enemy.transform.position - (Vector2)origin;
-            if (offset.sqrMagnitude > range * range || Vector2.Angle(direction, offset) > halfAngle) continue;
-            enemy.ApplyCampaignFlashStun(duration * campaignDurationMultiplier);
+            Vector2 closestOffset = hit.ClosestPoint(origin) - (Vector2)origin;
+            bool centerInCone = offset.sqrMagnitude <= range * range && Vector2.Angle(direction, offset) <= halfAngle;
+            bool colliderInCone = closestOffset.sqrMagnitude <= range * range && Vector2.Angle(direction, closestOffset) <= halfAngle;
+            if (centerInCone || colliderInCone)
+                enemy.ApplyCampaignFlashStun(stunDuration);
         }
     }
 

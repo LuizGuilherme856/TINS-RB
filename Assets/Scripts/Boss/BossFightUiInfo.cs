@@ -49,7 +49,8 @@ public class BossFightUiInfo : MonoBehaviour
         switch (bossAmount)
         {
             case BossAmount.OneBoss:
-                uiEnemyData = bossHealth.enemyData;
+                if (bossHealth == null) bossHealth = FindFirstObjectByType<BossHealth>();
+                if (bossHealth != null) uiEnemyData = bossHealth.enemyData;
                 break;
             case BossAmount.None:
                 break;
@@ -132,6 +133,9 @@ public class BossFightUiInfo : MonoBehaviour
 
     public void UpdateUiValues()
     {
+        if (bossAmount == BossAmount.OneBoss && bossHealth == null) bossHealth = FindFirstObjectByType<BossHealth>();
+        if (bossAmount == BossAmount.OneBoss && bossHealth == null) return;
+
         switch (bossAmount)
         {
             case BossAmount.OneBoss:
@@ -167,6 +171,10 @@ public class BossFightUiInfo : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+
+        if (bossAmount == BossAmount.OneBoss && bossHealth == null) bossHealth = FindFirstObjectByType<BossHealth>();
+        if (bossAmount == BossAmount.OneBoss && bossHealth == null)
+            yield break;
 
         switch (bossAmount)
         {

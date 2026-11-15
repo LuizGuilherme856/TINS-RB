@@ -105,7 +105,9 @@ public class AchievementManager : MonoBehaviour
         if (lookForPackaPunch == true)
         {
             // Find the scene's Pack-a-Punch station and subscribe to it.
-            Try.FindObjectOfType<UpgradeWeapon>().OnUpgrade += UnlockWeaponUpgrade; // Check for possible duplicate handling here.
+            UpgradeWeapon packAPunch = Try.FindObjectOfType<UpgradeWeapon>();
+            if (packAPunch != null)
+                packAPunch.OnUpgrade += UnlockWeaponUpgrade; // Check for possible duplicate handling here.
         }
 
     }

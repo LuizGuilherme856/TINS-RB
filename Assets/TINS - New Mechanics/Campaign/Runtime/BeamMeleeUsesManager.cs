@@ -199,7 +199,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     private void UpdateHeadAnimation()
     {
-        if (headAnimator == null || headStateNames == null || headStateNames.Length < 4) return;
+        if (headAnimator == null || !headAnimator.isActiveAndEnabled || headStateNames == null || headStateNames.Length < 4) return;
         int stateIndex = UsesRemaining <= 2 ? 0 : (UsesRemaining - 1) / 2;
         stateIndex = Mathf.Clamp(stateIndex, 0, 3);
         string stateName = headStateNames[stateIndex];

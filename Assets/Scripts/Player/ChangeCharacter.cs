@@ -56,6 +56,7 @@ public class ChangeCharacter : InteractWithPlayer
 
     protected override void StartInteraction()
     {
+        if (gameObject.scene.name == TINS.Campaign.CampaignTravel.BaseScene) return;
         base.StartInteraction();
         generalTextBoxUI.SetText(interactionButton +
             " " + changeCharacterPhrase.GetTextByLanguage(languageData.currentLanguage)
@@ -64,6 +65,7 @@ public class ChangeCharacter : InteractWithPlayer
 
     protected override void InteractionAction()
     {
+        if (gameObject.scene.name == TINS.Campaign.CampaignTravel.BaseScene) return;
         base.InteractionAction();
         TriggerChangeCharacter();
     }

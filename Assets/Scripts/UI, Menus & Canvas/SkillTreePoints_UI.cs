@@ -1,9 +1,10 @@
-﻿using MoreMountains.Feedbacks;
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TINS.Campaign;
 
 public class SkillTreePoints_UI : MonoBehaviour
 {
@@ -17,14 +18,57 @@ public class SkillTreePoints_UI : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     [SerializeField] private LanguageData languageData;
 
+    private CampaignBaseController campaignController;
+    private bool campaignSoulsMode;
+
     private void OnEnable()
     {
+        campaignController = CampaignBaseController.Active;
+        campaignSoulsMode = campaignController != null && campaignController.IsReady;
+        SetCampaignHeaderVisible(!campaignSoulsMode);
+
+        if (campaignSoulsMode)
+        {
+            campaignController.SoulsChanged += UpdateCampaignSouls;
+            UpdateCampaignSouls(campaignController.Profile.souls);
+            return;
+        }
+
+        if (playerData != null)
+            playerData.OnSkillPointsChange += UpdateAvailableSkillPoints;
         UpdateText();
-        playerData.OnSkillPointsChange += UpdateAvailableSkillPoints;
+    }
+
+    private void OnDisable()
+    {
+        if (campaignController != null)
+            campaignController.SoulsChanged -= UpdateCampaignSouls;
+        if (playerData != null)
+            playerData.OnSkillPointsChange -= UpdateAvailableSkillPoints;
+    }
+
+    private void SetCampaignHeaderVisible(bool visible)
+    {
+        if (levelTxt != null) levelTxt.gameObject.SetActive(visible);
+        if (levelProgressionTxt != null) levelProgressionTxt.gameObject.SetActive(visible);
+        if (levelProgressionSlider != null) levelProgressionSlider.gameObject.SetActive(visible);
+    }
+
+    private void UpdateCampaignSouls(int souls)
+    {
+        if (pointsAvailableTxt != null)
+            pointsAvailableTxt.text = souls.ToString("N0");
     }
 
     private void UpdateText(bool checkLevelUp = true)
     {
+        if (campaignSoulsMode)
+        {
+            SetCampaignHeaderVisible(false);
+            if (campaignController != null && campaignController.Profile != null)
+                UpdateCampaignSouls(campaignController.Profile.souls);
+            return;
+        }
         string levelText = "";
         switch (languageData.currentLanguage)
         {
@@ -104,7 +148,10 @@ public class SkillTreePoints_UI : MonoBehaviour
 
     private void UpdateAvailableSkillPoints()
     {
-        pointsAvailableTxt.text = playerData.GetSkillPoints().ToString();
+        if (campaignSoulsMode && campaignController != null && campaignController.Profile != null)
+            UpdateCampaignSouls(campaignController.Profile.souls);
+        else if (playerData != null && pointsAvailableTxt != null)
+            pointsAvailableTxt.text = playerData.GetSkillPoints().ToString();
     }
 
     private float PercentageToNextLevel()

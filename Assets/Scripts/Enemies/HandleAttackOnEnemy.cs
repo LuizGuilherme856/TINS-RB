@@ -59,7 +59,7 @@ public class HandleAttackOnEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (enemyHealth.invulnerableTimer > 0) return;
+        if (enemyHealth.invulnerableTimer > 0 && !enemyHealth.IsCampaignFlashStunned) return;
 
         GameObject collisionGameObject = collision.gameObject;
         if (collisionGameObject.CompareTag("Bullet"))
@@ -80,7 +80,7 @@ public class HandleAttackOnEnemy : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (enemyHealth.invulnerableTimer > 0) return;
+        if (enemyHealth.invulnerableTimer > 0 && !enemyHealth.IsCampaignFlashStunned) return;
 
         if (collision.gameObject.CompareTag("Melee") || collision.gameObject.CompareTag("Bullet"))
         {
@@ -113,7 +113,7 @@ public class HandleAttackOnEnemy : MonoBehaviour
 
     public void AttackEnemy(GameObject collisionGameObject, Vector3 _momemtum, DamageObjectStats _bulletStats, DamageType _damageType, (float damage, CriticalDamage critical) _damage)
     {
-        if (IsImmuneToTheDamage(_damageType)) return;
+        if (!enemyHealth.IsCampaignFlashStunned && IsImmuneToTheDamage(_damageType)) return;
 
         ApplyDamage(_momemtum, _damageType, _damage);
         ApplyMomentum(collisionGameObject, _bulletStats);
@@ -390,9 +390,9 @@ public class HandleAttackOnEnemy : MonoBehaviour
 
         //TriggerAttackEnemyFeedback(_damage.damage, _damageType, _damage.critical, damageOnStatus);
 
-        floatinTextManager.TriggerHitFeedback(_damage.damage, transform.position, _damageType, _damage.critical, damageOnStatus);
+        floatinTextManager?.TriggerHitFeedback(_damage.damage, transform.position, _damageType, _damage.critical, damageOnStatus);
 
-        if (triggerHitFeedback) hitFeedback.PlayFeedbacks();
+        if (triggerHitFeedback) hitFeedback?.PlayFeedbacks();
     }
 
     /// <summary>
@@ -443,7 +443,7 @@ public class HandleAttackOnEnemy : MonoBehaviour
     public void TriggerAttackEnemyFeedback(float damage, DamageType damageType, CriticalDamage critical, DamageOnStatus damageOnStatus)
     {
 
-        floatinTextManager.TriggerHitFeedback(damage, transform.position, damageType, critical, damageOnStatus);
+        floatinTextManager?.TriggerHitFeedback(damage, transform.position, damageType, critical, damageOnStatus);
         hitFeedback.PlayFeedbacks();
     }
 

@@ -45,7 +45,7 @@ public class StatusSpecialEffect : MonoBehaviour
         explodedEffect?.SetActive(false);
         soakedEffect?.SetActive(false);
         electrocutedEffect?.SetActive(false);
-        poisonedEffect.SetActive(false);
+        poisonedEffect?.SetActive(false);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class StatusSpecialEffect : MonoBehaviour
             case StatusEffect.Punctured:
             case StatusEffect.Frozen:
             case StatusEffect.Poisoned:
-                poisonedEffect.SetActive(true);
+                poisonedEffect?.SetActive(true);
                 break;
             case StatusEffect.None:
             default:
