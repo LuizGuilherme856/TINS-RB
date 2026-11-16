@@ -10,6 +10,8 @@ public class ShowSkillTreeManager : MonoBehaviour
 
     private PlayerInputHandler playerInputHandler;
     private SaveGame saveGame;
+
+    public Transform SkillTreeRoot => skillTreeUI != null ? skillTreeUI.transform : null;
     
     private void Awake()
     {

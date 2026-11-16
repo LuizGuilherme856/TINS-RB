@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9072f0df0242c0b4b9e37d34d45a834c, type: 3}
+  m_Name: Nivora
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignMissionEnemies
+  initialEnemyCount: 1
+  initialActiveEnemyLimit: 6
+  initialSpawnInterval: 3.7
+  movementSpeedMultiplier: 0.72
+  healthMultiplier: 1.8
+  maximumActiveEnemies: 15
+  extraActiveEnemiesPerLightUnit: 1.3
+  secondsRemovedPerLightUnit: 0.2
+  minimumSpawnInterval: 0.75
+  extraHealthPerWave: 0.16666667
+  enemies:
+  - prefab: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+    weight: 90
+    minimumLightRadius: 0
+  - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
+    weight: 10
+    minimumLightRadius: 3.6001

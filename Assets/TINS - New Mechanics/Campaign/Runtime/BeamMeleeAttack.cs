@@ -225,7 +225,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             bool centerInCone = offset.sqrMagnitude <= range * range && Vector2.Angle(direction, offset) <= halfAngle;
             bool colliderInCone = closestOffset.sqrMagnitude <= range * range && Vector2.Angle(direction, closestOffset) <= halfAngle;
             if (centerInCone || colliderInCone)
-                enemy.ApplyCampaignFlashStun(stunDuration);
+                enemy.ApplyCampaignFlashStun(stunDuration * campaignDurationMultiplier);
         }
     }
 

@@ -76,6 +76,7 @@ public sealed class TowerAudioFeedbacks : MonoBehaviour
     public void PlayBeamRecharge() => Play(beamRechargePlayer);
     public void PlayBeamAttack() => Play(beamAttackPlayer);
     public void PlayNoCharges() => Play(noChargesPlayer);
+    public void PlaySkillCheckError() => Play(skillCheckErrorPlayer);
     public void PlayCrystalPickup() => Play(crystalPickupPlayer);
     public void PlayCrystalDepositPitch(float pitch)
     {
@@ -101,7 +102,7 @@ public sealed class TowerAudioFeedbacks : MonoBehaviour
     private void HandleSkillCheckResult(SkillCheckBar.SkillCheckResult result)
     {
         if (!result.hitTarget)
-            Play(skillCheckErrorPlayer);
+            PlaySkillCheckError();
     }
 
     private MMF_Player CreateAudioPlayer(string playerName, string resourceName)

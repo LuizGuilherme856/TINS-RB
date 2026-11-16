@@ -11,6 +11,7 @@ namespace TINS.Campaign
         [Min(1)] public int missionsToPurify = 3;
         [Min(1f)] public float missionTargetRadius = 12f;
         [Min(0f)] public float enemySpeedMultiplier = 1f;
+        public CampaignMissionEnemies enemySettings;
         public string rewardResourceId = "ether";
         public string rewardResourceName = "Éter";
         [Min(0)] public int rewardPerMission = 1;
@@ -49,11 +50,11 @@ namespace TINS.Campaign
 
         public CampaignSkill[] skills =
         {
-            new CampaignSkill { id="flash-duration", displayName="Flash Prolongado", description="Aumenta a duração e o atordoamento do Flash.", soulCost=10, maximumRank=5 },
-            new CampaignSkill { id="speed", displayName="Passos Livres", description="Aumenta a velocidade de movimento.", soulCost=15, maximumRank=3 },
-            new CampaignSkill { id="flash-capacity", displayName="Célula de Luz", description="Aumenta em uma a capacidade máxima do Flash.", soulCost=20, maximumRank=4 },
-            new CampaignSkill { id="flash-recharge", displayName="Foco Restaurado", description="Acelera a recarga automática do Flash.", soulCost=25, requiredResourceId="ether", requiredResourceAmount=1, maximumRank=3 },
-            new CampaignSkill { id="solar-vigor", displayName="Vigor Solar", description="Aumenta a vida máxima do jogador.", soulCost=30, requiredResourceId="poeira-solar", requiredResourceAmount=2, maximumRank=3 },
+            new CampaignSkill { id="flash-duration", displayName="Flash Prolongado", description="+5% de duração do Flash e do atordoamento por nível.", soulCost=10, maximumRank=5 },
+            new CampaignSkill { id="speed", displayName="Passos Livres", description="+5% de velocidade de movimento por nível.", soulCost=15, maximumRank=3 },
+            new CampaignSkill { id="flash-capacity", displayName="Célula de Luz", description="+1 carga máxima do Flash por nível.", soulCost=20, maximumRank=4 },
+            new CampaignSkill { id="flash-recharge", displayName="Foco Restaurado", description="−10% no tempo de recarga do Flash por nível.", soulCost=25, requiredResourceId="ether", requiredResourceAmount=1, maximumRank=3 },
+            new CampaignSkill { id="solar-vigor", displayName="Vigor Solar", description="+1 de vida inicial e máxima por nível.", soulCost=30, requiredResourceId="poeira-solar", requiredResourceAmount=2, maximumRank=3 },
             new CampaignSkill { id="weapon-laser-pistol", displayName="Pistola Astral", description="Desbloqueia uma nova arma para futuras missões.", soulCost=180, requiredResourceId="ether", requiredResourceAmount=4, maximumRank=1, unlockedWeaponResourcePath="CampaignGuns/laser pistol_GunData" },
             new CampaignSkill { id="weapon-auto-pistol", displayName="Pistola de Rajada", description="Desbloqueia uma arma automática para futuras missões.", soulCost=450, requiredResourceId="cristal-frio", requiredResourceAmount=3, maximumRank=1, unlockedWeaponResourcePath="CampaignGuns/automatic pistol_GunData" }
         };

@@ -43,7 +43,7 @@ public class HighScoreTabHandler : MonoBehaviour
     // Public wrappers for Button.onClick assignment.
     public void ShowGlobalTab()
     {
-        ShowTab(globalTab);
+        ShowLocalTab();
     }
 
     public void ShowLocalTab()
@@ -53,6 +53,6 @@ public class HighScoreTabHandler : MonoBehaviour
 
     public void ShowFriendsTab()
     {
-        ShowTab(friendsTab);
+        ShowLocalTab();
     }
 }

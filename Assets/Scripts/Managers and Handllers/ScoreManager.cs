@@ -45,24 +45,12 @@ public class ScoreManager : MonoBehaviour
 
         playerData.AddToTotalKills(runData.enemiesKilled);
 
-        string steamUser = "Nameless Hunter";
-
-        try
-        {
-            steamUser = Steamworks.SteamClient.Name;
-        }
-        catch (System.Exception)
-        {
-            Debug.LogError("Erro ao ler o nome do usario Steam");
-        }
-
         newScore = new Score(
-            statisticsManager.GetScore(), steamUser, runData.currentCharacter.character, runData.currentWaveNumber,
+            statisticsManager.GetScore(), "Nameless Hunter", runData.currentCharacter.character, runData.currentWaveNumber,
             runData.timeElapsed, playerData.GetAttemptNumber(), runData.enemiesKilled);
 
         SaveNewScore();
         SaveSystem.SaveData(playerData);
-        TryUploadFinalizedScoreToLeaderboard_TechBooh();
         runData.MarkCurrentRunScoreAsFinalized();
         playerData.ResetRunStartRegistration_TechBooh();
     }
@@ -107,18 +95,6 @@ public class ScoreManager : MonoBehaviour
             || runData.numberOfPowerUpsCollected > 0;
     }
 
-    private void TryUploadFinalizedScoreToLeaderboard_TechBooh()
-    {
-        if (newScore == null)
-        {
-            return;
-        }
-
-        // TechBooh:
-        // Update the leaderboard only when the run actually ends,
-        // not when opening a menu, to avoid partial scores.
-        SteamLeaderBoardSystem.UploadFinalizedRunScore_TechBooh(newScore);
-    }
 }
 
 [System.Serializable]

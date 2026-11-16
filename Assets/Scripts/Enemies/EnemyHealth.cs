@@ -117,9 +117,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (CampaignCombatRules.IsCampaignMission)
         {
-            currentHealth = maxHealth * (1f + 0.2f * (CampaignMissionRuntime.Active.Wave - 1));
-            maxHealth = currentHealth;
-            ApplyCampaignHealthScale();
+            InitializeCampaignHealth();
             return;
         }
 
@@ -486,10 +484,18 @@ public class EnemyHealth : MonoBehaviour
         campaignFlashStunTimer = 0f;
     }
 
+    public void InitializeCampaignHealth()
+    {
+        float waveMultiplier = CampaignMissionRuntime.Active?.GetEnemyHealthWaveMultiplier() ?? 1f;
+        currentHealth = maxHealth = enemyData.health * waveMultiplier;
+        campaignHealthScaleApplied = false;
+        ApplyCampaignHealthScale();
+    }
+
     public void ApplyCampaignHealthScale()
     {
         if (!CampaignCombatRules.IsCampaignMission || campaignHealthScaleApplied) return;
-        float multiplier = Mathf.Max(1f, CampaignCombatRules.EnemyHealthMultiplier);
+        float multiplier = CampaignCombatRules.EnemyHealthMultiplier;
         currentHealth = Mathf.Max(1f, currentHealth * multiplier);
         maxHealth = Mathf.Max(currentHealth, maxHealth * multiplier);
         campaignHealthScaleApplied = true;

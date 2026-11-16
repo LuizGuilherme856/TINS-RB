@@ -186,16 +186,32 @@ public static class CampaignProjectInstaller
         Canvas canvas = CreateCampaignCanvas(systems);
         if (canvas != null) canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         EnsureEventSystem(scene);
-        TMP_Text missionText = FindOrCreateText(canvas, "Campaign Mission Title", new Vector2(34f, -28f), new Vector2(660f, 38f), 25f, TextAlignmentOptions.TopLeft);
-        TMP_Text objectiveText = FindOrCreateText(canvas, "Campaign Mission Objective", new Vector2(34f, -70f), new Vector2(660f, 48f), 18f, TextAlignmentOptions.TopLeft);
+        TMP_Text missionText = FindOrCreateText(canvas, "Campaign Mission Title", new Vector2(34f, -90f), new Vector2(660f, 38f), 25f, TextAlignmentOptions.TopLeft);
+        TMP_Text objectiveText = FindOrCreateText(canvas, "Campaign Mission Objective", new Vector2(34f, -132f), new Vector2(660f, 48f), 18f, TextAlignmentOptions.TopLeft);
         SetObject(runtime, "catalog", catalog);
         SetObject(runtime, "tower", tower);
         SetObject(runtime, "deposit", deposit);
         SetObject(runtime, "lightReveal", reveal);
         SetObject(runtime, "playerHealth", playerHealth);
         SetObject(runtime, "soulInventory", inventory);
-        var chargeLabel = FindOrCreateText(canvas, "Flash Charges", new Vector2(34f, -126f), new Vector2(300f, 32f), 18f, TextAlignmentOptions.TopLeft);
-        SetObject(runtime, "flashChargesLabel", chargeLabel);
+        CampaignFlashHUD flashHud = FindFirst<CampaignFlashHUD>(scene);
+        if (flashHud == null)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/UI/Campaign Flash HUD.prefab");
+            if (prefab == null) throw new System.InvalidOperationException("Campaign Flash HUD prefab is missing.");
+            var flashObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab, canvas.transform);
+            flashHud = flashObject.GetComponent<CampaignFlashHUD>();
+        }
+        SetObject(runtime, "flashHud", flashHud);
+        CampaignTowerHealthHUD towerHealthHud = FindFirst<CampaignTowerHealthHUD>(scene);
+        if (towerHealthHud == null)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/UI/Campaign Tower Health HUD.prefab");
+            if (prefab == null) throw new System.InvalidOperationException("Campaign Tower Health HUD prefab is missing.");
+            var hudObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab, canvas.transform);
+            towerHealthHud = hudObject.GetComponent<CampaignTowerHealthHUD>();
+        }
+        SetObject(runtime, "towerHealthHud", towerHealthHud);
         SetObject(runtime, "missionLabel", missionText);
         SetObject(runtime, "objectiveLabel", objectiveText);
 

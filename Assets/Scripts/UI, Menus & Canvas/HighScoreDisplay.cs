@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HighScoreDisplay : MonoBehaviour
@@ -12,7 +10,6 @@ public class HighScoreDisplay : MonoBehaviour
     [SerializeField] private int maxRows = 50; //Limit instantiation to avoid frame-time spikes.
 
     [SerializeField] private ScoreType scoreType = ScoreType.local;
-    public SteamLeaderBoard leaderBoard;
 
 
     private List<Score> scores;
@@ -20,28 +17,8 @@ public class HighScoreDisplay : MonoBehaviour
     private void OnEnable()
     {
 
-        switch (scoreType)
-        {
-            case ScoreType.local:
-                scores = playerData.scores;
-                break;
-            case ScoreType.topGlobal:
-                scores = leaderBoard.GetTopGlobal();
-                break;
-            case ScoreType.friends:
-                scores = leaderBoard.GetFriendsScore();
-                break;
-            case ScoreType.aroundPlayer:
-                scores = leaderBoard.GetSurroundScores();
-                break;
-            default:
-                break;
-        }
-
-
-        if (scores == null) return;
-
-        scores = scores.OrderByDescending(x => x.score).ToList();
+        if (scoreType != ScoreType.local || playerData?.scores == null) return;
+        scores = playerData.scores.Where(score => score != null).OrderByDescending(score => score.score).ToList();
 
         SetRowsToTable();
     }
@@ -67,16 +44,9 @@ public class HighScoreDisplay : MonoBehaviour
         foreach (var score in scores)
         {
             var row = Instantiate(tableRow, rowParent);
-            if(scoreType == ScoreType.local)
-            {
-                row.GetComponent<HighScoreTableRow>().SetScoreInfoToRow(score, count+1);
-            }
-            else
-            {
-                row.GetComponent<HighScoreTableRow_Global>().SetScoreInfoToRow(score);
-            }
+            row.GetComponent<HighScoreTableRow>().SetScoreInfoToRow(score, count + 1);
 
-                count++; 
+            count++;
             if (count >= maxRows-1) return;
         }
     }

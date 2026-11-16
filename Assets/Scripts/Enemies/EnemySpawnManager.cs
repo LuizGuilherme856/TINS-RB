@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
+using TINS.Campaign;
 
 /// <summary>Adaptive enemy spawner with independent pools for regular and elite enemies.</summary>
 public sealed class EnemySpawnManager : MonoBehaviour
@@ -37,21 +38,12 @@ public sealed class EnemySpawnManager : MonoBehaviour
     private Transform inactivePoolRoot;
     private Coroutine spawnRoutine;
     private int activeEnemies;
+    private CampaignMissionEnemies campaignSettings;
+    private float initialLightRadius;
+    private readonly List<(CampaignEnemyEntry entry, IObjectPool<PoolCreator> pool)> campaignPools = new();
 
     private void Awake()
     {
-        if (!ValidatePrefab(enemyPrefab, "regular"))
-        {
-            enabled = false;
-            return;
-        }
-
-        if (elitePrefab != null && !ValidatePrefab(elitePrefab, "elite"))
-        {
-            Debug.LogWarning("Elite prefab is invalid; elite rolls will use the regular enemy instead.", this);
-            elitePrefab = null;
-        }
-
         if (spawnPoints == null || spawnPoints.Length == 0)
             spawnPoints = spawnPoint != null ? new[] { spawnPoint } : new Transform[0];
 
@@ -68,16 +60,29 @@ public sealed class EnemySpawnManager : MonoBehaviour
         poolContainer.SetActive(false);
         inactivePoolRoot = poolContainer.transform;
 
-        regularPool = CreatePool(enemyPrefab);
-        if (elitePrefab != null)
-            elitePool = CreatePool(elitePrefab);
-
         UpdateAdaptiveWaveSettings();
+    }
+
+    private bool EnsureLegacyPools()
+    {
+        if (regularPool != null) return true;
+        if (!ValidatePrefab(enemyPrefab, "regular"))
+            return false;
+
+        if (elitePrefab != null && !ValidatePrefab(elitePrefab, "elite"))
+        {
+            Debug.LogWarning("Elite prefab is invalid; elite rolls will use the regular enemy instead.", this);
+            elitePrefab = null;
+        }
+
+        regularPool = CreatePool(enemyPrefab);
+        if (elitePrefab != null) elitePool = CreatePool(elitePrefab);
+        return true;
     }
 
     private void Start()
     {
-        if (spawnOnStart)
+        if (spawnOnStart && !CampaignCombatRules.IsCampaignMission)
             StartAutomaticSpawning();
     }
 
@@ -85,15 +90,13 @@ public sealed class EnemySpawnManager : MonoBehaviour
     public GameObject SpawnEnemy()
     {
         UpdateAdaptiveWaveSettings();
-        if (activeEnemies >= maxEnemies || spawnPoint == null)
-            return null;
-
+        if (activeEnemies >= maxEnemies) return null;
         Transform chosenSpawn = GetRandomValidSpawnSpot();
-        if (chosenSpawn == null)
-            chosenSpawn = spawnPoint;
+        if (chosenSpawn == null) chosenSpawn = spawnPoint;
+        if (chosenSpawn == null) return null;
 
-        bool spawnElite = elitePool != null && Random.Range(0f, 100f) < elitePercentege;
-        IObjectPool<PoolCreator> selectedPool = spawnElite ? elitePool : regularPool;
+        IObjectPool<PoolCreator> selectedPool = SelectEnemyPool();
+        if (selectedPool == null) return null;
         PoolCreator enemy = selectedPool.Get();
         enemy.transform.SetParent(transform, true);
         enemy.transform.SetPositionAndRotation(chosenSpawn.position, chosenSpawn.rotation);
@@ -112,6 +115,57 @@ public sealed class EnemySpawnManager : MonoBehaviour
         return enemy.gameObject;
     }
 
+    public void StartCampaignSpawning(CampaignMissionEnemies settings)
+    {
+        StopAutomaticSpawning();
+        campaignSettings = settings;
+        initialLightRadius = CurrentLightRadius;
+
+        if (settings != null)
+        {
+            var poolsByPrefab = new Dictionary<GameObject, IObjectPool<PoolCreator>>();
+            campaignPools.Clear();
+            foreach (CampaignEnemyEntry entry in settings.enemies)
+            {
+                if (entry == null || entry.weight <= 0f || !ValidatePrefab(entry.prefab, "Campaign")) continue;
+                if (!poolsByPrefab.TryGetValue(entry.prefab, out IObjectPool<PoolCreator> pool))
+                {
+                    pool = CreatePool(entry.prefab);
+                    poolsByPrefab.Add(entry.prefab, pool);
+                }
+                campaignPools.Add((entry, pool));
+            }
+        }
+
+        if (spawnOnStart) StartAutomaticSpawning();
+    }
+
+    private IObjectPool<PoolCreator> SelectEnemyPool()
+    {
+        if (campaignSettings == null)
+        {
+            if (!EnsureLegacyPools()) return null;
+            return elitePool != null && Random.Range(0f, 100f) < elitePercentege ? elitePool : regularPool;
+        }
+
+        float radius = CurrentLightRadius;
+        float totalWeight = 0f;
+        foreach (var candidate in campaignPools)
+            if (candidate.entry.minimumLightRadius <= radius) totalWeight += Mathf.Max(0f, candidate.entry.weight);
+        if (totalWeight <= 0f) return null;
+
+        float roll = Random.Range(0f, totalWeight);
+        IObjectPool<PoolCreator> lastEligible = null;
+        foreach (var candidate in campaignPools)
+        {
+            if (candidate.entry.minimumLightRadius > radius || candidate.entry.weight <= 0f) continue;
+            lastEligible = candidate.pool;
+            roll -= candidate.entry.weight;
+            if (roll <= 0f) return candidate.pool;
+        }
+        return lastEligible;
+    }
+
     public void StopAutomaticSpawning()
     {
         if (spawnRoutine == null)
@@ -123,10 +177,13 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
     public void StartAutomaticSpawning()
     {
-        if (regularPool == null || spawnRoutine != null)
-            return;
+        if (spawnRoutine != null || (campaignSettings == null && !EnsureLegacyPools())) return;
+        if (campaignSettings != null && campaignPools.Count == 0) return;
 
-        SpawnEnemy();
+        int initialCount = campaignSettings == null ? 1 :
+            Mathf.Clamp(campaignSettings.initialEnemyCount, 0, campaignSettings.ActiveEnemyLimit(0f));
+        for (int i = 0; i < initialCount; i++)
+            if (SpawnEnemy() == null) break;
         spawnRoutine = StartCoroutine(AutomaticSpawnLoop());
     }
 
@@ -140,9 +197,19 @@ public sealed class EnemySpawnManager : MonoBehaviour
         }
     }
 
+    private float CurrentLightRadius => purificationManager != null ? Mathf.Max(0f, purificationManager.Radius) : 0f;
+
     private void UpdateAdaptiveWaveSettings()
     {
-        float radius = purificationManager != null ? Mathf.Max(0f, purificationManager.Radius) : 0f;
+        float radius = CurrentLightRadius;
+        if (campaignSettings != null)
+        {
+            float growth = radius - initialLightRadius;
+            spawnInterval = campaignSettings.SpawnInterval(growth);
+            maxEnemies = campaignSettings.ActiveEnemyLimit(growth);
+            return;
+        }
+
         float safeDivisor = Mathf.Max(0.01f, divSpawnInterval);
 
         // Requested formula: interval = 4.5 - ceil(radius) / divSpawnInterval.

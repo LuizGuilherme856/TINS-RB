@@ -5,10 +5,11 @@ using TechBooh;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Maps gameplay events to Steam achievement IDs. Preserve the unlock conditions while adapting
-// the platform service; development reset methods must remain inaccessible to release users.
+// Records gameplay achievements in local preferences.
 public class AchievementManager : MonoBehaviour
 {
+
+    private const string AchievementKeyPrefix = "TINS.Achievements.";
 
     #region ReadOnlyStrings
     //Achievement Strings
@@ -31,7 +32,7 @@ public class AchievementManager : MonoBehaviour
     private readonly string BOSS_GORFO = "BOSS_GORFO";
     private readonly string BOSS_BELLS = "BOSS_BELLS";
     private readonly string BOSS_ALKARION = "BOSS_ALKARION";
-    private readonly string BOSS_GAEL = "BOSS_GAEL"; /// TODO: Add this achievement on Steam.
+    private readonly string BOSS_GAEL = "BOSS_GAEL";
     private readonly string BOSS_PSYCHOPATH = "BOSS_PSYCHOPATH";
     private readonly string BOSS_LUCIFER = "BOSS_LUCIFER";
     private readonly string ENTER_CHURCH = "ENTER_CHURCH";
@@ -118,105 +119,31 @@ public class AchievementManager : MonoBehaviour
     }
     public void UnlockAchievement(string achievementID)
     {
-        try
-        {
-            var achiv = new Steamworks.Data.Achievement(achievementID);
-            if (!achiv.State)
-            {
-                achiv.Trigger();
-                Debug.Log($"Achievement {achievementID} unlocked!");
-            }
-            else
-            {
-                Debug.Log($"Achievement {achievementID} already unlocked.");
-            }
+        if (string.IsNullOrEmpty(achievementID) || IsUnlocked(achievementID)) return;
 
-            // Exclude the meta achievement from its own requirements.
-            // All other achievements use this centralized check.
-            if (achievementID != ALL_ACHIEVEMENTS)
-            {
-                TryUnlockAllAchievements_TechBooh(achievementID);
-            }
-
-        }
-        catch (Exception exception)
-        {
-            Debug.LogError($"Erro ao aplicar conquista {achievementID}: {exception.Message}");
-        }
-
+        PlayerPrefs.SetInt(AchievementKeyPrefix + achievementID, 1);
+        if (achievementID != ALL_ACHIEVEMENTS) TryUnlockAllAchievements_TechBooh();
+        PlayerPrefs.Save();
     }
-    [ContextMenu("Resetar Achivements")]
+
+    [ContextMenu("Reset local achievements")]
     public void ClearAllAchievmentStatus()
     {
-        ClearAchievementStatus(FIRST_DEATH);
-        ClearAchievementStatus(DEATH_100);
-        ClearAchievementStatus(DEATH_333);
-        ClearAchievementStatus(CHALICE);
-        ClearAchievementStatus(SHOOT_STRANGER);
-        ClearAchievementStatus(WAVE_5_DEATH);
-        ClearAchievementStatus(WAVE_10_REACHED);
-        ClearAchievementStatus(WAVE_15_REACHED);
-        ClearAchievementStatus(WAVE_20_REACHED);
-        ClearAchievementStatus(WAVE_30_REACHED);
-        ClearAchievementStatus(WAVE_40_REACHED);
-        ClearAchievementStatus(WAVE_50_REACHED);
-        ClearAchievementStatus(KILLS_100);
-        ClearAchievementStatus(KILLS_1000);
-        ClearAchievementStatus(KILLS_10000);
-        ClearAchievementStatus(KILLS_100000);
-        ClearAchievementStatus(BOSS_GORFO);
-        ClearAchievementStatus(BOSS_BELLS);
-        ClearAchievementStatus(BOSS_ALKARION);
-        ClearAchievementStatus(BOSS_PSYCHOPATH);
-        ClearAchievementStatus(BOSS_LUCIFER);
-        ClearAchievementStatus(ENTER_CHURCH);
-        ClearAchievementStatus(ENTER_CATACOMBS);
-        ClearAchievementStatus(ENTER_HELL);
-        ClearAchievementStatus(ENTER_STAIRWAY);
-        ClearAchievementStatus(ENTER_HEAVEN);
-        ClearAchievementStatus(UPGRADE_WEAPON);
-        ClearAchievementStatus(LIGHT_LANTERN);
-        ClearAchievementStatus(OPEN_ALL_MAIDENS);
-        ClearAchievementStatus(BREAK_20_LAMPS);
-        ClearAchievementStatus(BOSS_GAEL);
-        ClearAchievementStatus(ALL_ACHIEVEMENTS);
+        foreach (string id in GetAchievementsRequiredForCompletion_TechBooh())
+            PlayerPrefs.DeleteKey(AchievementKeyPrefix + id);
+        PlayerPrefs.DeleteKey(AchievementKeyPrefix + ALL_ACHIEVEMENTS);
+        PlayerPrefs.Save();
     }
 
-    /// <summary>
-    /// TechBooh: check all base Steam achievements and unlock the meta achievement
-    /// when none are missing. Treat the supplied ID as already unlocked
-    /// without waiting for the Steam cache to refresh.
-    /// </summary>
-    private void TryUnlockAllAchievements_TechBooh(string achievementUnlockedThisCall = null)
+    private static bool IsUnlocked(string id) => PlayerPrefs.GetInt(AchievementKeyPrefix + id) != 0;
+
+    private void TryUnlockAllAchievements_TechBooh()
     {
-        try
-        {
-            var allAchievements = GetAchievementsRequiredForCompletion_TechBooh();
-            foreach (string achievementID in allAchievements)
-            {
-                if (achievementID == achievementUnlockedThisCall)
-                {
-                    continue;
-                }
+        if (IsUnlocked(ALL_ACHIEVEMENTS)) return;
+        foreach (string id in GetAchievementsRequiredForCompletion_TechBooh())
+            if (!IsUnlocked(id)) return;
 
-                var achievement = new Steamworks.Data.Achievement(achievementID);
-                if (!achievement.State)
-                {
-                    return;
-                }
-            }
-
-            var allAchievementsAchievement = new Steamworks.Data.Achievement(ALL_ACHIEVEMENTS);
-            if (!allAchievementsAchievement.State)
-            {
-                allAchievementsAchievement.Trigger();
-                Debug.Log($"Achievement {ALL_ACHIEVEMENTS} unlocked!");
-            }
-        }
-        catch (Exception exception)
-        {
-            Debug.LogError($"Erro ao verificar a conquista {ALL_ACHIEVEMENTS}: {exception.Message}");
-        }
+        UnlockAchievement(ALL_ACHIEVEMENTS);
     }
 
     /// <summary>
@@ -263,9 +190,8 @@ public class AchievementManager : MonoBehaviour
 
     public void ClearAchievementStatus(string id)
     {
-        var ach = new Steamworks.Data.Achievement(id);
-        ach.Clear();
-        Debug.Log($"Achievement {id} cleared");
+        PlayerPrefs.DeleteKey(AchievementKeyPrefix + id);
+        PlayerPrefs.Save();
     }
     /// <summary>
     /// Check achievements associated with player death counts.

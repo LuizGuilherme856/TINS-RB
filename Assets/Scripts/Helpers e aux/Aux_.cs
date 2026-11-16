@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
@@ -15,8 +14,6 @@ using Random = UnityEngine.Random;
 /// </summary>
 public static class Aux
 {
-
-    public static uint RBH_STEAM_ID = 2147530;
 
     public static void Print(string msg, bool showDebug)
     {
@@ -322,63 +319,7 @@ public static class Aux
     }
 
 
-    #region steam helpers
-    public static void TryToConnectToSteam()
-    {
-        try
-        {
-            Steamworks.SteamClient.Init(Aux.RBH_STEAM_ID);
-            Debug.Log("Steam API Connected successfully. Welcome: " + Steamworks.SteamClient.Name);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError("Exception during Steam API initialization: " + e.Message);
-        }
-    }
 
-    // Convert string to int[]; the first integer stores the original byte length.
-    public static int[] StringToIntArray(string s)
-    {
-        if (string.IsNullOrEmpty(s)) return new int[] { 0 };
-
-        var bytes = Encoding.UTF8.GetBytes(s);
-        int length = bytes.Length;
-        int pad = (4 - (length % 4)) % 4;
-        var padded = new byte[length + pad];
-        Array.Copy(bytes, padded, length);
-
-        int chunkCount = padded.Length / 4;
-        var result = new int[1 + chunkCount];
-        result[0] = length; // Store the actual length.
-
-        for (int i = 0; i < chunkCount; i++)
-            result[1 + i] = BitConverter.ToInt32(padded, i * 4);
-
-        return result;
-    }
-
-    // Convert int[] to string; the first integer stores the original length.
-    public static string IntArrayToString(int[] arr)
-    {
-        if (arr == null || arr.Length == 0) return string.Empty;
-        int length = arr[0];
-        if (length == 0) return string.Empty;
-
-        var bytes = new byte[length];
-        int copied = 0;
-        for (int i = 1; i < arr.Length && copied < length; i++)
-        {
-            var chunk = BitConverter.GetBytes(arr[i]);
-            int toCopy = Math.Min(4, length - copied);
-            Array.Copy(chunk, 0, bytes, copied, toCopy);
-            copied += toCopy;
-        }
-
-        return Encoding.UTF8.GetString(bytes);
-    }
-
-
-    #endregion
 
 }
 

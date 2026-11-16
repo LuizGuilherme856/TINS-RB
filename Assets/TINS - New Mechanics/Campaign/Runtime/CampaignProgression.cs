@@ -158,14 +158,28 @@ namespace TINS.Campaign
             return true;
         }
 
-        public void ResetSkills()
+        public void ResetCampaignSkills(IEnumerable<CampaignSkill> skills)
         {
-            souls += soulsInvested;
-            soulsInvested = 0;
-            foreach (CampaignResourceAmount invested in investedResources)
-                if (invested != null) AddResource(invested.resourceId, invested.amount);
-            investedResources.Clear();
-            skillRanks.Clear();
+            foreach (CampaignSkill skill in skills)
+            {
+                CampaignSkillRank entry = FindSkill(skill.id, false);
+                if (entry == null || entry.rank <= 0) continue;
+
+                for (int rank = 0; rank < entry.rank; rank++)
+                {
+                    int refund = Mathf.Min(soulsInvested, skill.CostForRank(rank));
+                    souls += refund;
+                    soulsInvested -= refund;
+
+                    CampaignResourceAmount invested = FindInList(investedResources, skill.requiredResourceId);
+                    if (invested == null) continue;
+                    int materialRefund = Mathf.Min(invested.amount, skill.ResourceCostForRank(rank));
+                    AddResource(invested.resourceId, materialRefund);
+                    invested.amount -= materialRefund;
+                }
+
+                skillRanks.Remove(entry);
+            }
         }
 
         private CampaignPlanetProgress FindPlanet(string id, bool create)

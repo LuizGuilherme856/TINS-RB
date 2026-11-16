@@ -339,6 +339,8 @@ public class GunInventory : MonoBehaviour
     {
         
         var maxGuns = (int)(characterData.numberOfGunsItCanCarry + globalStats.increaseWeaponCapacityBy);// + runeUpgradeManager.GetNumberOfExtraGuns();
+        if (!playerClone && TINS.Campaign.CampaignCombatRules.IsCampaignMission)
+            maxGuns = Mathf.Max(maxGuns, guns.Count);
         return Mathf.FloorToInt(Aux.MinValueToReturn(maxGuns, 1));
     }
 

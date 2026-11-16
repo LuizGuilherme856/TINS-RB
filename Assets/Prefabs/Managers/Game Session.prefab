@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4111684069965622780}
   - component: {fileID: 4111684069965622782}
-  - component: {fileID: 1512752281748282723}
   m_Layer: 0
   m_Name: Game Session
   m_TagString: Untagged
@@ -61,15 +60,3 @@ MonoBehaviour:
   resheight: 0
   hasPlayedStoryIntro: 0
   playerHolder: {fileID: 0}
---- !u!114 &1512752281748282723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111684069965622783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86142f589c2cfd4aa7e3e752de8d8e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

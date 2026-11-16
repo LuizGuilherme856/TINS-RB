@@ -14,7 +14,7 @@ namespace TINS.Campaign
         {
             IsCampaignMission = active;
             EnemySpeedMultiplier = active ? Mathf.Max(0.1f, enemySpeedMultiplier) : 1f;
-            EnemyHealthMultiplier = active ? Mathf.Max(1f, enemyHealthMultiplier) : 1f;
+            EnemyHealthMultiplier = active ? Mathf.Max(0.01f, enemyHealthMultiplier) : 1f;
         }
     }
 
@@ -33,10 +33,12 @@ namespace TINS.Campaign
         [SerializeField, Range(0f, 1f)] private float soulsKeptOnFailure = .7f;
         [SerializeField, Range(0f, 1f)] private float soulDropChance = .65f;
         [SerializeField, Min(1)] private int soulsPerDrop = 1;
-        [SerializeField] private TMP_Text flashChargesLabel;
+        [SerializeField] private CampaignFlashHUD flashHud;
+        [SerializeField] private CampaignTowerHealthHUD towerHealthHud;
         private BeamMeleeUsesManager playerCharges;
         private CampaignProfile profile;
         private CampaignPlanet planet;
+        private int initialWave;
         private int soulsCollected;
         private int lastInventoryCount;
         private bool resolved;
@@ -75,7 +77,11 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
-            CampaignCombatRules.SetMissionActive(true, planet.enemySpeedMultiplier);
+            CampaignMissionEnemies settings = planet.enemySettings;
+            initialWave = Wave;
+            CampaignCombatRules.SetMissionActive(true,
+                settings != null ? settings.movementSpeedMultiplier : planet.enemySpeedMultiplier,
+                settings != null ? settings.healthMultiplier : 1.5f);
 
             if (soulInventory != null)
             {
@@ -86,7 +92,10 @@ namespace TINS.Campaign
             AssetFinder.GetRuneInventory()?.ResetUpgrades();
             FindFirstObjectByType<SkillManager>(FindObjectsInactive.Include)?.ExecuteSkillUpgrades();
             playerCharges = playerHealth.GetComponent<BeamMeleeUsesManager>();
-            playerHealth.GetComponent<EnsureStartingPistol>()?.Equip();
+            ApplyCampaignSkills();
+            flashHud?.Bind(playerCharges);
+            towerHealthHud?.Bind(tower);
+            playerHealth.GetComponent<EnsureStartingPistol>()?.Equip(catalog, profile);
             playerHealth.ResetHealth();
             lightReveal.WinRadius = planet.missionTargetRadius;
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
@@ -96,7 +105,7 @@ namespace TINS.Campaign
                 if (enemy != null)
                 {
                     enemy.BeginCampaignMissionState();
-                    enemy.ApplyCampaignHealthScale();
+                    enemy.InitializeCampaignHealth();
                 }
             EnemyAI[] enemyAgents = FindObjectsByType<EnemyAI>(FindObjectsSortMode.None);
             foreach (EnemyAI enemy in enemyAgents)
@@ -104,7 +113,16 @@ namespace TINS.Campaign
             MoveTowardsPlayer[] simpleChasers = FindObjectsByType<MoveTowardsPlayer>(FindObjectsSortMode.None);
             foreach (MoveTowardsPlayer enemy in simpleChasers)
                 if (enemy != null) enemy.SetTarget(tower.transform);
+
+            FindFirstObjectByType<EnemySpawnManager>()?.StartCampaignSpawning(settings);
             RefreshLabels();
+        }
+
+        public float GetEnemyHealthWaveMultiplier()
+        {
+            CampaignMissionEnemies settings = planet?.enemySettings;
+            if (settings == null) return 1f + 0.2f * (Wave - 1);
+            return 1f + Mathf.Max(0f, settings.extraHealthPerWave) * Mathf.Max(0, Wave - initialWave);
         }
 
         private void Update()
@@ -166,6 +184,25 @@ namespace TINS.Campaign
             SceneManager.LoadScene(CampaignTravel.BaseScene);
         }
 
+        private void ApplyCampaignSkills()
+        {
+            float flashDuration = 1f + 0.05f * profile.Rank("flash-duration");
+            playerHealth.GetComponent<BeamMeleeAttack>()?.SetCampaignDurationMultiplier(flashDuration);
+
+            if (playerCharges != null)
+            {
+                playerCharges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
+                float rechargeMultiplier = 1f - 0.1f * profile.Rank("flash-recharge");
+                playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDurationPerCharge * rechargeMultiplier);
+                playerCharges.RefillUses();
+            }
+
+            playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + 0.05f * profile.Rank("speed"));
+            int bonusHealth = profile.Rank("solar-vigor");
+            GlobalStats stats = AssetFinder.GetGlobalStats();
+            if (stats != null) stats.AddToPlayerInitialHealth += bonusHealth;
+        }
+
         private void FixedUpdate()
         {
             if (resolved || tower == null || tower.currentLife <= 0) return;
@@ -184,8 +221,6 @@ namespace TINS.Campaign
         private void RefreshLabels()
         {
             if (resolved || planet == null) return;
-            if (flashChargesLabel != null && playerCharges != null)
-                flashChargesLabel.text = $"FLASH  {playerCharges.UsesRemaining}/{playerCharges.MaxUses}";
             if (missionLabel != null) missionLabel.text = $"MISSÃO  ·  {planet.displayName}";
             if (objectiveLabel != null)
             {

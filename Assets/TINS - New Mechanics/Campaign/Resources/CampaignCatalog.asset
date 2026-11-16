@@ -18,6 +18,7 @@ MonoBehaviour:
     missionsToPurify: 3
     missionTargetRadius: 11
     enemySpeedMultiplier: 0.7
+    enemySettings: {fileID: 11400000, guid: 4050b052283d33847a531eb916c11bdf, type: 2}
     rewardResourceId: ether
     rewardResourceName: "\xC9ter"
     rewardPerMission: 1
@@ -28,6 +29,7 @@ MonoBehaviour:
     missionsToPurify: 4
     missionTargetRadius: 13
     enemySpeedMultiplier: 0.72
+    enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
     rewardResourceId: cristal-frio
     rewardResourceName: Cristal Frio
     rewardPerMission: 2
@@ -38,6 +40,7 @@ MonoBehaviour:
     missionsToPurify: 4
     missionTargetRadius: 15
     enemySpeedMultiplier: 0.74
+    enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
     rewardResourceId: poeira-solar
     rewardResourceName: Poeira Solar
     rewardPerMission: 2
@@ -48,6 +51,7 @@ MonoBehaviour:
     missionsToPurify: 5
     missionTargetRadius: 17
     enemySpeedMultiplier: 0.76
+    enemySettings: {fileID: 11400000, guid: 53aebfcc6da0a9545bc829f58fe7983d, type: 2}
     rewardResourceId: fragmento-umbral
     rewardResourceName: Fragmento Umbral
     rewardPerMission: 3
@@ -58,6 +62,7 @@ MonoBehaviour:
     missionsToPurify: 5
     missionTargetRadius: 19
     enemySpeedMultiplier: 0.78
+    enemySettings: {fileID: 11400000, guid: 09ec12876c955ba448077a70db91c6b0, type: 2}
     rewardResourceId: nucleo-rubro
     rewardResourceName: "N\xFAcleo Rubro"
     rewardPerMission: 3
@@ -68,6 +73,7 @@ MonoBehaviour:
     missionsToPurify: 6
     missionTargetRadius: 21
     enemySpeedMultiplier: 0.8
+    enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}
     rewardResourceId: sal-estelar
     rewardResourceName: Sal Estelar
     rewardPerMission: 4
@@ -76,7 +82,7 @@ MonoBehaviour:
   skills:
   - id: flash-duration
     displayName: Flash Prolongado
-    description: "Aumenta a dura\xE7\xE3o e o atordoamento do Flash."
+    description: "+5% de dura\xE7\xE3o do Flash e do atordoamento por n\xEDvel."
     soulCost: 10
     requiredResourceId: 
     requiredResourceAmount: 0
@@ -84,7 +90,7 @@ MonoBehaviour:
     unlockedWeaponResourcePath: 
   - id: speed
     displayName: Passos Livres
-    description: Aumenta a velocidade de movimento.
+    description: "+5% de velocidade de movimento por n\xEDvel."
     soulCost: 15
     requiredResourceId: 
     requiredResourceAmount: 0
@@ -92,7 +98,7 @@ MonoBehaviour:
     unlockedWeaponResourcePath: 
   - id: flash-capacity
     displayName: "C\xE9lula de Luz"
-    description: "Aumenta em uma a capacidade m\xE1xima do Flash."
+    description: "+1 carga m\xE1xima do Flash por n\xEDvel."
     soulCost: 20
     requiredResourceId: 
     requiredResourceAmount: 0
@@ -100,7 +106,7 @@ MonoBehaviour:
     unlockedWeaponResourcePath: 
   - id: flash-recharge
     displayName: Foco Restaurado
-    description: "Acelera a recarga autom\xE1tica do Flash."
+    description: "\u221210% no tempo de recarga do Flash por n\xEDvel."
     soulCost: 25
     requiredResourceId: ether
     requiredResourceAmount: 1
@@ -108,7 +114,7 @@ MonoBehaviour:
     unlockedWeaponResourcePath: 
   - id: solar-vigor
     displayName: Vigor Solar
-    description: "Aumenta a vida m\xE1xima do jogador."
+    description: "+1 de vida inicial e m\xE1xima por n\xEDvel."
     soulCost: 30
     requiredResourceId: poeira-solar
     requiredResourceAmount: 2
