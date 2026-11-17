@@ -76,10 +76,8 @@ public class StatusEffectOnEnemy : MonoBehaviour
 
         }
         if (enemyHealth != null && enemyHealth.IsCampaignFlashStunned) return;
-        if (status == StatusEffect.None)
-        {
-            return;
-        }
+        // Only the Flash applies concussion through ApplyFlashConcussion.
+        if (status == StatusEffect.None || status == StatusEffect.Concussion) return;
 
         if (enemyData.immuneToStatus) return;
         if (status == currentStatus) return;
@@ -93,9 +91,6 @@ public class StatusEffectOnEnemy : MonoBehaviour
             case StatusEffect.Bleeding:
                 statusSpecialEffect.ApplyEffect(StatusEffect.Bleeding);
                 enemyHealth.SetContinuousDamage(statusDamage, DamageType.Slash);
-                break;
-            case StatusEffect.Concussion:
-                statusSpecialEffect.ApplyEffect(StatusEffect.Concussion);
                 break;
             case StatusEffect.Exploded:
                 statusSpecialEffect.ApplyEffect(StatusEffect.Exploded);

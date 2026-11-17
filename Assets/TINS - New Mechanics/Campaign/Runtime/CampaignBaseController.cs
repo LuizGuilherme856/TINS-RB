@@ -19,6 +19,7 @@ namespace TINS.Campaign
         [SerializeField] private PlayerInputHandler playerInput;
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private GameObject missionPanel;
+        [SerializeField] private CampaignPlanetNavigation planetNavigation;
         [SerializeField] private GameObject skillPanel;
         [SerializeField] private TMP_Text soulsLabel;
         [SerializeField] private TMP_Text resourceLabel;
@@ -80,18 +81,23 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
-            EnsureMapLayers();
+            if (planetNavigation == null) EnsureMapLayers();
             if (playerInput == null) playerInput = FindFirstObjectByType<PlayerInputHandler>();
             if (playerMovement == null && playerInput != null) playerMovement = playerInput.GetComponent<PlayerMovement>();
             stations = FindObjectsByType<BaseStationInteractable>(FindObjectsSortMode.None);
             if (playerInput != null) playerInput.OnInteract += InteractWithNearestStation;
             if (missionPanel != null) missionPanel.SetActive(false);
+            if (planetNavigation != null)
+            {
+                planetNavigation.Configure(catalog, profile, LaunchMission, ClosePanels);
+                planetNavigation.gameObject.SetActive(false);
+            }
             if (skillPanel != null) skillPanel.SetActive(false);
             if (closeButtonsMission != null) closeButtonsMission.onClick.AddListener(ClosePanels);
             if (closeButtonsSkill != null) closeButtonsSkill.onClick.AddListener(ClosePanels);
             ConfigureSkillTreePages();
             if (resetSkillsButton != null) resetSkillsButton.onClick.AddListener(ResetSkills);
-            for (int i = 0; i < planetButtons.Length; i++)
+            for (int i = 0; planetNavigation == null && i < planetButtons.Length; i++)
             {
                 int index = i;
                 planetButtons[i].onClick.AddListener(() => LaunchMission(index));
@@ -243,7 +249,10 @@ namespace TINS.Campaign
             if (currentPanel == Panel.None) return;
             if (currentPanel == Panel.Skills) FitSkillPanelToCanvas();
             if (Keyboard.current?.escapeKey.wasPressedThisFrame == true || Gamepad.current?.buttonEast.wasPressedThisFrame == true)
+            {
+                if (currentPanel == Panel.Missions && planetNavigation != null && planetNavigation.TryGoBack()) return;
                 ClosePanels();
+            }
         }
 
         private void UpdateNearbyStation()
@@ -286,11 +295,12 @@ namespace TINS.Campaign
         {
             if (catalog == null || currentPanel != Panel.None) return;
             currentPanel = Panel.Missions;
-            if (missionPanel != null) missionPanel.SetActive(true);
+            if (planetNavigation != null) planetNavigation.Open();
+            else if (missionPanel != null) missionPanel.SetActive(true);
             if (skillPanel != null) skillPanel.SetActive(false);
             SetPlayerPaused(true);
             Refresh();
-            SelectFirst(planetButtons);
+            if (planetNavigation == null) SelectFirst(planetButtons);
         }
 
         public void ShowSkillTree()
@@ -305,6 +315,7 @@ namespace TINS.Campaign
         public void ClosePanels()
         {
             currentPanel = Panel.None;
+            if (planetNavigation != null) planetNavigation.gameObject.SetActive(false);
             if (missionPanel != null) missionPanel.SetActive(false);
             if (skillPanel != null) skillPanel.SetActive(false);
             statusMessage = string.Empty;
@@ -375,7 +386,7 @@ namespace TINS.Campaign
             }
             if (campaignSkillsWallet != null) campaignSkillsWallet.text = $"{souls}   ·   {resources}";
 
-            for (int i = 0; i < planetButtons.Length && i < catalog.planets.Length; i++)
+            for (int i = 0; planetNavigation == null && i < planetButtons.Length && i < catalog.planets.Length; i++)
             {
                 CampaignPlanet planet = catalog.planets[i];
                 bool unlocked = profile.IsUnlocked(catalog, i);

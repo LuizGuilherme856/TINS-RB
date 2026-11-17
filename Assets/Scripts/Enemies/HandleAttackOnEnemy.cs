@@ -151,7 +151,9 @@ public class HandleAttackOnEnemy : MonoBehaviour
 
     public void ApplyStatusEffect(float statusDuration, float statusDamage, float statusChance, DamageType _damageType)
     {
-        //Determine whether interacting damage types change the status effect.
+        if (statusEffectOnEnemy == null) return;
+
+        // Reactions can still apply independently of the weapon's base status chance.
         var newStatus = Damage2.StatusEffectInteraction(_damageType, statusEffectOnEnemy.GetCurrentStatus());
 
         if (newStatus != StatusEffect.None)
@@ -160,13 +162,12 @@ public class HandleAttackOnEnemy : MonoBehaviour
         }
         else
         {
-            //Apply status.
-            statusChance = statusChance + statusChance * Damage2.GetStatusChance(enemyData.enemyElement, _damageType);
+            StatusEffect status = Damage2.GetStatusEffect(_damageType);
+            if (status == StatusEffect.None || statusChance <= 0f) return;
 
-            if (Random.Range(0f, 1f) <= statusChance)
-            {//Apply the status only when its probability check succeeds.
-                statusEffectOnEnemy.SetStatus(Damage2.GetStatusEffect(_damageType), statusDuration, statusDamage);
-            }
+            statusChance += statusChance * Damage2.GetStatusChance(enemyData.enemyElement, _damageType);
+            if (statusChance > 0f && Random.Range(0f, 1f) <= statusChance)
+                statusEffectOnEnemy.SetStatus(status, statusDuration, statusDamage);
 
         }
     }

@@ -28,7 +28,7 @@ public class EnemyDeath : MonoBehaviour
         enemyMovement = GetComponent<EnemyMovementAnimation>();
         corpseLocalScale = enemyCorpseImpact != null ? enemyCorpseImpact.transform.localScale : Vector3.one;
 
-        if (useUnityPool) poolCreator = GetComponent<PoolCreator>();
+        poolCreator = GetComponent<PoolCreator>();
 
         corpsePoolManager = GameObject.FindGameObjectWithTag("CorpsePoolManager")?.GetComponent<CorpsePoolManager>();
 
@@ -48,7 +48,9 @@ public class EnemyDeath : MonoBehaviour
             hasSpawnedCorpse = true;
         }
 
-        if (useUnityPool) poolCreator.ReleaseToPool();
+        bool campaignPooled = TINS.Campaign.CampaignCombatRules.IsCampaignMission &&
+            poolCreator != null && poolCreator.HasPool;
+        if (useUnityPool || campaignPooled) poolCreator.ReleaseToPool();
         else gameObject.SetActive(false);
     }
 

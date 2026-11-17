@@ -192,7 +192,7 @@ public class InventoryMenuItemDetails : MonoBehaviour
                     break;
                 case WeaponStats.statusChance:
                     color = GetStatusEffectColor(gunData);
-                    infoText = color + Aux.FormatNumber(gunData.statusChance*100) + "%";
+                    infoText = color + Aux.FormatNumber(gunData.GetStatusChance(defaultValue: true) * 100f) + "%";
                     DisableIfNoStatusEffect(gunData, statsItem);
 
                     break;

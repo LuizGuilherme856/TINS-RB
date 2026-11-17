@@ -9,6 +9,7 @@ using UnityEngine.Pool;
 public class PoolCreator : MonoBehaviour
 {
     private IObjectPool<PoolCreator> objectPool;
+    public bool HasPool => objectPool != null;
 
     [SerializeField] private bool showDebug;
     

@@ -74,14 +74,25 @@ namespace TINS.Campaign
         public bool IsUnlocked(CampaignCatalog catalog, int index)
         {
             if (catalog == null || catalog.planets == null || index < 0 || index >= catalog.planets.Length) return false;
-            return index == 0 || IsPurified(catalog.planets[index - 1]);
+            return FirstUnpurifiedPrerequisite(catalog, index) == null;
+        }
+
+        public CampaignPlanet FirstUnpurifiedPrerequisite(CampaignCatalog catalog, int index)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                CampaignPlanet prerequisite = catalog.planets[i];
+                if (!IsPurified(prerequisite)) return prerequisite;
+            }
+            return null;
         }
 
         public void CompleteMission(CampaignPlanet planet)
         {
             if (planet == null) return;
             CampaignPlanetProgress progress = FindPlanet(planet.id, true);
-            progress.missionsCompleted = Mathf.Min(Mathf.Max(1, planet.missionsToPurify), progress.missionsCompleted + 1);
+            if (progress.missionsCompleted < Mathf.Max(1, planet.missionsToPurify))
+                progress.missionsCompleted++;
             AddResource(planet.rewardResourceId, planet.rewardPerMission);
         }
 

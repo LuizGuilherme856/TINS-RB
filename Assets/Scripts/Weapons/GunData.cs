@@ -224,6 +224,7 @@ public class GunData : WeaponData
 
     public float GetStatusChance(bool defaultValue = false)
     {
+        if (Damage2.GetStatusEffect(damageType) == StatusEffect.None) return 0f;
         if (defaultValue) return statusChance;
         return statsCalculator.CalculateNewStatusChance(statusChance);
     }

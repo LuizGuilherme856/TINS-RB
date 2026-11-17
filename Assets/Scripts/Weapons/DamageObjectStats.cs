@@ -36,7 +36,7 @@ public abstract class DamageObjectStats : MonoBehaviour
 
     public float GetStatusChance()
     {
-        return weaponData.statusChance;
+        return Damage2.GetStatusEffect(GetDamageType()) == StatusEffect.None ? 0f : weaponData.statusChance;
     }
 
     public float GetStatusDamage()

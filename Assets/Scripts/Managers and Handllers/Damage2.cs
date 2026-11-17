@@ -363,7 +363,6 @@ public class Damage2 : MonoBehaviour
     {
         { DamageType.Puncture, StatusEffect.Punctured },
         { DamageType.Slash, StatusEffect.Bleeding },
-        { DamageType.Impact, StatusEffect.Concussion },
         { DamageType.Explosive, StatusEffect.Exploded },
         { DamageType.Fire, StatusEffect.Burning },
         { DamageType.Ice, StatusEffect.Frozen },

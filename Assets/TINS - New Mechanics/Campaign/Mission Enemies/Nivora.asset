@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Nivora
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignMissionEnemies
   initialEnemyCount: 1
-  initialActiveEnemyLimit: 6
-  initialSpawnInterval: 3.7
+  initialActiveEnemyLimit: 7
+  initialSpawnInterval: 3.6
   movementSpeedMultiplier: 0.72
   healthMultiplier: 1.8
-  maximumActiveEnemies: 15
+  maximumActiveEnemies: 16
   extraActiveEnemiesPerLightUnit: 1.3
   secondsRemovedPerLightUnit: 0.2
-  minimumSpawnInterval: 0.75
+  minimumSpawnInterval: 0.73
   extraHealthPerWave: 0.16666667
   enemies:
   - prefab: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
-    weight: 90
+    weight: 65
     minimumLightRadius: 0
-  - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
-    weight: 10
-    minimumLightRadius: 3.6001
+  - prefab: {fileID: 4749819838516141246, guid: 8c98c094380923049a9c79ab7ca44f07, type: 3}
+    weight: 35
+    minimumLightRadius: 0

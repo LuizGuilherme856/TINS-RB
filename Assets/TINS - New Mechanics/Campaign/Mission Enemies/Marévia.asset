@@ -12,20 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9072f0df0242c0b4b9e37d34d45a834c, type: 3}
   m_Name: "Mar\xE9via"
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignMissionEnemies
-  initialEnemyCount: 1
-  initialActiveEnemyLimit: 6
-  initialSpawnInterval: 3.7
+  initialEnemyCount: 3
+  initialActiveEnemyLimit: 9
+  initialSpawnInterval: 3
   movementSpeedMultiplier: 0.8
-  healthMultiplier: 1.8
-  maximumActiveEnemies: 15
+  healthMultiplier: 2
+  maximumActiveEnemies: 20
   extraActiveEnemiesPerLightUnit: 1.3
   secondsRemovedPerLightUnit: 0.2
-  minimumSpawnInterval: 0.75
+  minimumSpawnInterval: 0.65
   extraHealthPerWave: 0.16666667
   enemies:
-  - prefab: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
-    weight: 90
+  - prefab: {fileID: 699325470938656562, guid: b47ccc6adc45ef942aa0a4678821912e, type: 3}
+    weight: 60
     minimumLightRadius: 0
+  - prefab: {fileID: 4749819838516141246, guid: ba95b3bd47a979f4a9a6b494ca75bc2b, type: 3}
+    weight: 40
+    minimumLightRadius: 0
+  - prefab: {fileID: 4749819838516141246, guid: 35131b9ad504fcf4e856b89f3e02c57d, type: 3}
+    weight: 25
+    minimumLightRadius: 7
   - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
-    weight: 10
-    minimumLightRadius: 3.6001
+    weight: 35
+    minimumLightRadius: 10

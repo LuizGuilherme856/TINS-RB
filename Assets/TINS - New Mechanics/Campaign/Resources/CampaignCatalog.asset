@@ -15,7 +15,8 @@ MonoBehaviour:
   planets:
   - id: velaria
     displayName: "Vel\xE1ria"
-    missionsToPurify: 3
+    description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras expedi\xE7\xF5es partiram daqui."
+    missionsToPurify: 5
     missionTargetRadius: 11
     enemySpeedMultiplier: 0.7
     enemySettings: {fileID: 11400000, guid: 4050b052283d33847a531eb916c11bdf, type: 2}
@@ -26,7 +27,8 @@ MonoBehaviour:
     mapY: 0.65
   - id: nivora
     displayName: Nivora
-    missionsToPurify: 4
+    description: "Sob as geleiras de Nivora crescem cristais que brilham mesmo longe da luz."
+    missionsToPurify: 5
     missionTargetRadius: 13
     enemySpeedMultiplier: 0.72
     enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
@@ -37,7 +39,8 @@ MonoBehaviour:
     mapY: 0.3
   - id: asterim
     displayName: Asterim
-    missionsToPurify: 4
+    description: "Antigos impactos espalharam Poeira Solar pelos c\xE2nions de Asterim."
+    missionsToPurify: 5
     missionTargetRadius: 15
     enemySpeedMultiplier: 0.74
     enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
@@ -48,6 +51,7 @@ MonoBehaviour:
     mapY: 0.68
   - id: dorsalia
     displayName: "Dors\xE1lia"
+    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos se acumulam nas fendas."
     missionsToPurify: 5
     missionTargetRadius: 17
     enemySpeedMultiplier: 0.76
@@ -59,6 +63,7 @@ MonoBehaviour:
     mapY: 0.43
   - id: varkora
     displayName: Varkora
+    description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de Varkora."
     missionsToPurify: 5
     missionTargetRadius: 19
     enemySpeedMultiplier: 0.78
@@ -70,7 +75,8 @@ MonoBehaviour:
     mapY: 0.69
   - id: marevia
     displayName: "Mar\xE9via"
-    missionsToPurify: 6
+    description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Sal Estelar nas ilhas quando recuam."
+    missionsToPurify: 5
     missionTargetRadius: 21
     enemySpeedMultiplier: 0.8
     enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}

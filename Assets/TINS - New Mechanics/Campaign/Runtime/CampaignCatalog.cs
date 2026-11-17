@@ -8,7 +8,8 @@ namespace TINS.Campaign
     {
         public string id;
         public string displayName;
-        [Min(1)] public int missionsToPurify = 3;
+        [TextArea] public string description;
+        [Min(1)] public int missionsToPurify = 5;
         [Min(1f)] public float missionTargetRadius = 12f;
         [Min(0f)] public float enemySpeedMultiplier = 1f;
         public CampaignMissionEnemies enemySettings;
@@ -40,12 +41,12 @@ namespace TINS.Campaign
     {
         public CampaignPlanet[] planets =
         {
-            new CampaignPlanet { id="velaria", displayName="Velária", missionsToPurify=3, missionTargetRadius=11f, enemySpeedMultiplier=.70f, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=1, mapX=.26f, mapY=.65f },
-            new CampaignPlanet { id="nivora", displayName="Nivora", missionsToPurify=4, missionTargetRadius=13f, enemySpeedMultiplier=.72f, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=2, mapX=.42f, mapY=.30f },
-            new CampaignPlanet { id="asterim", displayName="Asterim", missionsToPurify=4, missionTargetRadius=15f, enemySpeedMultiplier=.74f, rewardResourceId="poeira-solar", rewardResourceName="Poeira Solar", rewardPerMission=2, mapX=.61f, mapY=.68f },
+            new CampaignPlanet { id="velaria", displayName="Velária", missionsToPurify=5, missionTargetRadius=11f, enemySpeedMultiplier=.70f, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=1, mapX=.26f, mapY=.65f },
+            new CampaignPlanet { id="nivora", displayName="Nivora", missionsToPurify=5, missionTargetRadius=13f, enemySpeedMultiplier=.72f, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=2, mapX=.42f, mapY=.30f },
+            new CampaignPlanet { id="asterim", displayName="Asterim", missionsToPurify=5, missionTargetRadius=15f, enemySpeedMultiplier=.74f, rewardResourceId="poeira-solar", rewardResourceName="Poeira Solar", rewardPerMission=2, mapX=.61f, mapY=.68f },
             new CampaignPlanet { id="dorsalia", displayName="Dorsália", missionsToPurify=5, missionTargetRadius=17f, enemySpeedMultiplier=.76f, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=3, mapX=.72f, mapY=.43f },
             new CampaignPlanet { id="varkora", displayName="Varkora", missionsToPurify=5, missionTargetRadius=19f, enemySpeedMultiplier=.78f, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=3, mapX=.83f, mapY=.69f },
-            new CampaignPlanet { id="marevia", displayName="Marévia", missionsToPurify=6, missionTargetRadius=21f, enemySpeedMultiplier=.80f, rewardResourceId="sal-estelar", rewardResourceName="Sal Estelar", rewardPerMission=4, mapX=.18f, mapY=.38f }
+            new CampaignPlanet { id="marevia", displayName="Marévia", missionsToPurify=5, missionTargetRadius=21f, enemySpeedMultiplier=.80f, rewardResourceId="sal-estelar", rewardResourceName="Sal Estelar", rewardPerMission=4, mapX=.18f, mapY=.38f }
         };
 
         public CampaignSkill[] skills =
