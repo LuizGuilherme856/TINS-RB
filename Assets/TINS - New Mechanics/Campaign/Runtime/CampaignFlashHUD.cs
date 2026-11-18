@@ -133,18 +133,19 @@ namespace TINS.Campaign
             reloadingLabel.enabled = reloading;
             reloadBar.gameObject.SetActive(reloading);
             if (!reloading) return;
-            PlaceMarker(progressMarker, manager.RechargeProgress);
+            float cursorHalfHeight = progressMarker.rect.height * 0.5f;
+            float travel = Mathf.Max(0f, travelArea.rect.height - 2f * cursorHalfHeight);
+            PlaceMarker(progressMarker, cursorHalfHeight, travel, manager.RechargeProgress);
             skillCheckMarker.gameObject.SetActive(manager.IsSkillCheckAvailable);
-            if (manager.IsSkillCheckAvailable) PlaceMarker(skillCheckMarker, manager.SkillCheckTarget);
+            if (!manager.IsSkillCheckAvailable) return;
+            skillCheckMarker.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, travel * manager.SkillCheckWidth);
+            PlaceMarker(skillCheckMarker, cursorHalfHeight, travel, manager.SkillCheckTarget);
         }
 
-        private void PlaceMarker(RectTransform marker, float progress)
+        private static void PlaceMarker(RectTransform marker, float cursorHalfHeight, float travel, float progress)
         {
-            // The cursor travels downward. Keep it on the same four-unit pixel grid as the sprites.
-            float halfHeight = progressMarker.rect.height * 0.5f;
-            float travel = Mathf.Max(0f, travelArea.rect.height - 2f * halfHeight);
             Vector2 position = marker.anchoredPosition;
-            position.y = -halfHeight - Mathf.Clamp(4f * Mathf.Round(progress * travel / 4f), 0f, travel);
+            position.y = -cursorHalfHeight - (1f - progress) * travel;
             marker.anchoredPosition = position;
         }
 

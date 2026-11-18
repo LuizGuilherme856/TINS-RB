@@ -193,7 +193,7 @@ namespace TINS.Campaign
             {
                 playerCharges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
                 float rechargeMultiplier = 1f - 0.1f * profile.Rank("flash-recharge");
-                playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDurationPerCharge * rechargeMultiplier);
+                playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
                 playerCharges.RefillUses();
             }
 

@@ -26,6 +26,13 @@ public class ShowSkillTreeManager : MonoBehaviour
 
     public void ShowSkillTree()
     {
+        var campaign = TINS.Campaign.CampaignBaseController.Active;
+        if (campaign != null && campaign.IsReady)
+        {
+            campaign.ShowSkillTree();
+            return;
+        }
+
         playerInputHandler.SetCanMove(false);
         playerInputHandler.SetAllowPauseInputWhenCantMove(true);
         skillTreeUI.SetActive(true);

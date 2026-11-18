@@ -40,8 +40,8 @@ namespace TINS.Campaign
         private CampaignProfile profile;
         private Panel currentPanel;
         private string statusMessage;
-        private UnityEngine.UI.Button campaignSkillsTab;
         private TMP_Text campaignSkillsWallet;
+        private TMP_Text campaignSkillsFeedback;
 
         public CampaignProfile Profile => profile;
         public CampaignCatalog Catalog => catalog;
@@ -95,7 +95,7 @@ namespace TINS.Campaign
             if (skillPanel != null) skillPanel.SetActive(false);
             if (closeButtonsMission != null) closeButtonsMission.onClick.AddListener(ClosePanels);
             if (closeButtonsSkill != null) closeButtonsSkill.onClick.AddListener(ClosePanels);
-            ConfigureSkillTreePages();
+            ConfigureCampaignSkills();
             if (resetSkillsButton != null) resetSkillsButton.onClick.AddListener(ResetSkills);
             for (int i = 0; planetNavigation == null && i < planetButtons.Length; i++)
             {
@@ -110,29 +110,10 @@ namespace TINS.Campaign
             Refresh();
         }
 
-        private void ConfigureSkillTreePages()
+        private void ConfigureCampaignSkills()
         {
-            if (skillPanel == null || originalSkillTree == null || originalSkillTree.SkillTreeRoot == null ||
-                originalSkillTreeButton == null) return;
-
-            var treeRoot = (RectTransform)originalSkillTree.SkillTreeRoot;
-            var frame = treeRoot.Find("frame") as RectTransform ?? treeRoot;
-            campaignSkillsTab = Instantiate(originalSkillTreeButton, treeRoot, false);
-            foreach (Transform child in campaignSkillsTab.GetComponentsInChildren<Transform>(true))
-                child.gameObject.layer = treeRoot.gameObject.layer;
-            campaignSkillsTab.name = "Campaign Skills Tab";
-            var rect = (RectTransform)campaignSkillsTab.transform;
-            rect.anchorMin = rect.anchorMax = treeRoot.pivot;
-            rect.pivot = Vector2.zero;
-            Vector2 frameCorner = treeRoot.InverseTransformPoint(frame.TransformPoint(frame.rect.min));
-            rect.anchoredPosition = frameCorner + new Vector2(72f, 54f);
-            campaignSkillsTab.gameObject.SetActive(true);
-            campaignSkillsTab.onClick = new UnityEngine.UI.Button.ButtonClickedEvent();
-            campaignSkillsTab.onClick.AddListener(OpenCampaignSkills);
-            SetButtonLabel(campaignSkillsTab, "Melhorias do TINS");
-
-            originalSkillTreeButton.onClick.AddListener(ReturnToOriginalTree);
-            SetButtonLabel(originalSkillTreeButton, "Voltar à árvore");
+            if (skillPanel == null) return;
+            if (originalSkillTreeButton != null) originalSkillTreeButton.gameObject.SetActive(false);
             SetButtonLabel(resetSkillsButton, "Reiniciar melhorias do TINS");
 
             Transform title = skillPanel.transform.Find("Skill Panel Title");
@@ -145,6 +126,9 @@ namespace TINS.Campaign
                 campaignSkillsWallet.raycastTarget = false;
                 campaignSkillsWallet.rectTransform.anchoredPosition = new Vector2(0f, 275f);
                 campaignSkillsWallet.rectTransform.sizeDelta = new Vector2(720f, 42f);
+                campaignSkillsFeedback = Instantiate(campaignSkillsWallet, title.parent, false);
+                campaignSkillsFeedback.name = "Campaign Skills Feedback";
+                campaignSkillsFeedback.rectTransform.anchoredPosition = new Vector2(0f, -272f);
             }
         }
 
@@ -155,18 +139,6 @@ namespace TINS.Campaign
             if (text != null) text.text = label;
         }
 
-        private void OpenCampaignSkills()
-        {
-            if (currentPanel != Panel.None || skillPanel == null || !originalSkillTree.IsSkillTreeOpen()) return;
-            originalSkillTree.HideSkillTree();
-            currentPanel = Panel.Skills;
-            SetPlayerPaused(true);
-            skillPanel.SetActive(true);
-            FitSkillPanelToCanvas();
-            Refresh();
-            EventSystem.current?.SetSelectedGameObject(originalSkillTreeButton.gameObject);
-        }
-
         private void FitSkillPanelToCanvas()
         {
             var panel = (RectTransform)skillPanel.transform;
@@ -175,13 +147,6 @@ namespace TINS.Campaign
             float height = (parent.rect.height - 32f) / panel.rect.height;
             float scale = Mathf.Clamp(Mathf.Min(width, height), 0.1f, 1f);
             panel.localScale = new Vector3(scale, scale, 1f);
-        }
-
-        private void ReturnToOriginalTree()
-        {
-            if (currentPanel != Panel.Skills) return;
-            ClosePanels();
-            ShowSkillTree();
         }
 
         private void EnsureMapLayers()
@@ -305,11 +270,14 @@ namespace TINS.Campaign
 
         public void ShowSkillTree()
         {
-            if (currentPanel != Panel.None || originalSkillTree == null || originalSkillTree.IsSkillTreeOpen()) return;
-            playerMovement?.StopImmediately();
-            originalSkillTree.ShowSkillTree();
-            if (campaignSkillsTab != null)
-                EventSystem.current?.SetSelectedGameObject(campaignSkillsTab.gameObject);
+            if (catalog == null || skillPanel == null || currentPanel != Panel.None) return;
+            currentPanel = Panel.Skills;
+            statusMessage = string.Empty;
+            SetPlayerPaused(true);
+            skillPanel.SetActive(true);
+            FitSkillPanelToCanvas();
+            Refresh();
+            EventSystem.current?.SetSelectedGameObject(closeButtonsSkill != null ? closeButtonsSkill.gameObject : null);
         }
 
         public void ClosePanels()
@@ -344,7 +312,7 @@ namespace TINS.Campaign
             CampaignSkill skill = catalog.skills[index];
             if (!profile.TryBuy(skill))
             {
-                statusMessage = $"Recursos insuficientes para {skill.displayName}.";
+                statusMessage = $"Não foi possível comprar {skill.displayName}. Confira o custo exibido.";
                 Refresh();
                 return;
             }
@@ -385,6 +353,7 @@ namespace TINS.Campaign
                 statusLabel.text = statusMessage;
             }
             if (campaignSkillsWallet != null) campaignSkillsWallet.text = $"{souls}   ·   {resources}";
+            if (campaignSkillsFeedback != null) campaignSkillsFeedback.text = statusMessage;
 
             for (int i = 0; planetNavigation == null && i < planetButtons.Length && i < catalog.planets.Length; i++)
             {
@@ -421,11 +390,12 @@ namespace TINS.Campaign
                 hasCampaignSkill |= rank > 0;
                 bool maxed = rank >= skill.maximumRank;
                 int resourceCost = skill.ResourceCostForRank(rank);
-                int materialCount = string.IsNullOrWhiteSpace(skill.requiredResourceId) ? 0 : profile.Resource(skill.requiredResourceId);
                 string materialText = string.IsNullOrWhiteSpace(skill.requiredResourceId) ? string.Empty : $" + {resourceCost} {DisplayResource(skill.requiredResourceId)}";
+                bool canBuy = profile.CanBuy(skill);
+                string costText = maxed ? "MÁXIMO" : $"{(canBuy ? "Comprar" : "Custo")} · {skill.CostForRank(rank)} almas{materialText}";
                 if (skillLabels[i] != null)
-                    skillLabels[i].text = $"{skill.displayName}  {rank}/{skill.maximumRank}\n{skill.description}\n{(maxed ? "MÁXIMO" : $"{skill.CostForRank(rank)} almas{materialText}")}";
-                skillButtons[i].interactable = !maxed && profile.souls >= skill.CostForRank(rank) && materialCount >= resourceCost;
+                    skillLabels[i].text = $"{skill.displayName}  {rank}/{skill.maximumRank}\n{skill.description}\n{costText}";
+                skillButtons[i].interactable = canBuy;
             }
 
             if (resetSkillsButton != null) resetSkillsButton.interactable = hasCampaignSkill;

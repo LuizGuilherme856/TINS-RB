@@ -145,13 +145,20 @@ namespace TINS.Campaign
             return item != null ? item.rank : 0;
         }
 
+        public bool CanBuy(CampaignSkill skill)
+        {
+            if (skill == null || string.IsNullOrWhiteSpace(skill.id)) return false;
+            int rank = Rank(skill.id);
+            return rank < Mathf.Max(1, skill.maximumRank) && souls >= skill.CostForRank(rank) &&
+                (string.IsNullOrWhiteSpace(skill.requiredResourceId) || Resource(skill.requiredResourceId) >= skill.ResourceCostForRank(rank));
+        }
+
         public bool TryBuy(CampaignSkill skill)
         {
-            if (skill == null || string.IsNullOrWhiteSpace(skill.id) || Rank(skill.id) >= Mathf.Max(1, skill.maximumRank)) return false;
+            if (!CanBuy(skill)) return false;
             int currentRank = Rank(skill.id);
             int soulCost = skill.CostForRank(currentRank);
             int resourceCost = skill.ResourceCostForRank(currentRank);
-            if (souls < soulCost || (!string.IsNullOrWhiteSpace(skill.requiredResourceId) && Resource(skill.requiredResourceId) < resourceCost)) return false;
             souls -= soulCost;
             soulsInvested += soulCost;
             if (!string.IsNullOrWhiteSpace(skill.requiredResourceId))
