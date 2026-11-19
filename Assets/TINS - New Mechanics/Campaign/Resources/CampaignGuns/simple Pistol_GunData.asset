@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c65eb3f5e7f2314d95f4e20e38d7a0a, type: 3}
+  m_Name: simple Pistol_GunData
+  m_EditorClassIdentifier: 
+  nameEnglish: The Reluctant Savior
+  descriptionEnglish: Azaus' Pistol is a small and unassuming weapon that he reluctantly
+    carries with him as a last resort. Azaus had lost his trusty weapon, the "Annihilator,"
+    on his way to the Cathedral, leaving him with no choice but to resort to this
+    pitiful pistol until he could find a more suitable replacement.
+  nameChinese: "\u6700\u540E\u624B\u6BB5"
+  descriptionChinese: "\u963F\u624E\u65AF\u7684\u624B\u67AA\u662F\u4E00\u652F\u5C0F\u5DE7\u800C\u4E0D\u8D77\u773C\u7684\u6B66\u5668\uFF0C\u4ED6\u4E0D\u60C5\u613F\u5730\u5C06\u5176\u4F5C\u4E3A\u6700\u540E\u7684\u624B\u6BB5\u643A\u5E26\u5728\u8EAB\u8FB9\u3002\u963F\u624E\u65AF\u5728\u524D\u5F80\u5927\u6559\u5802\u7684\u8DEF\u4E0A\u5931\u53BB\u4E86\u4ED6\u53EF\u9760\u7684\u6B66\u5668\u201C\u6BC1\u706D\u8005\u201D\uFF0C\u53EA\u80FD\u5C06\u8FD9\u652F\u53EF\u601C\u7684\u624B\u67AA\u5F53\u505A\u4EE3\u66FF\uFF0C\u76F4\u5230\u4ED6\u627E\u5230\u66F4\u5408\u9002\u7684\u66FF\u4EE3\u54C1\u3002"
+  namePortuguese: Salvadora Relutante
+  descriptionPortuguese: "A pistola de Azaus \xE9 uma arma pequena e discreta que
+    ele carrega relutantemente consigo como \xFAltimo recurso. Azaus havia perdido
+    sua arma confi\xE1vel, a \"Aniquiladora\", a caminho da Catedral, deixando-o
+    sem escolha sen\xE3o recorrer a essa pistola pat\xE9tica at\xE9 que pudesse encontrar
+    uma substitui\xE7\xE3o mais adequada."
+  nameSpanish: El Salvador Renuente
+  weaponDescriptionSpanish: "La pistola de Azaus es un arma peque\xF1a y discreta
+    que lleva a rega\xF1adientes consigo como \xFAltimo recurso. Azaus hab\xEDa perdido
+    su confiable arma, el \u201CAniquilador\u201D, en su camino hacia la Catedral,
+    dej\xE1ndolo sin otra opci\xF3n que recurrir a esta pistola miserable hasta que
+    pudiera encontrar un reemplazo m\xE1s adecuado."
+  sprite: {fileID: 1593443287, guid: 3a570bec07cfbfe4885c09973f662bad, type: 3}
+  price: 400
+  ammoPrice: 133
+  criticalChance: 5
+  criticalMultiplier: 2
+  damage: 3
+  damageType: 2
+  knockBackForce: 1
+  statusChance: 0.05
+  statusDuration: 10
+  statusDamagePerSec: 0
+  maxCollisions: 1
+  projectileSize: 1
+  buyIcon: {fileID: -361712330, guid: d39e7a8dfdd900047818b39a594485c4, type: 3}
+  statsCalculator: {fileID: 11400000, guid: 5fb4bc527d3dba54696d2bd32d19166b, type: 2}
+  instaKillChance: 0
+  damageFalloffMultiplier: 0
+  minDamageFalloff: 1
+  globalStats: {fileID: 0}
+  maxAmmoOnClip: 8
+  maxSpareAmmo: 1040
+  ammoConsumedPerShot: 1
+  chanceOfNotConsumingAmmo: 0
+  bullet: {fileID: 4463452998574863450, guid: 3821c31c5a01ad14fbd86190acfa26e1, type: 3}
+  bulletSpeed: 20
+  bulletLifeTime: 20
+  bulletDeathFX: {fileID: 6729718223946545714, guid: 629849a533e798a46990c069a6fd358f, type: 3}
+  bulletRicochetFx: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  bulletCollisionDeathFX: {fileID: 4684909949455085315, guid: 9d9c5e3b24c54ce48acc13ec9cad3b24, type: 3}
+  scatteredBulletsPerShot: 1
+  multipleBulletAngleOffset: 10.8
+  linedUpBulletsPerShot: 0
+  speedRandomness: 0
+  recoilForceOnPlayer: 1
+  recoilAngle: 19
+  recoilDuration: 0.2
+  imprecision: 0
+  camShakeMag: 0.2
+  camShakeDuration: 0.17
+  bulletCapsule: {fileID: 2528431167326244762, guid: 53b810ad24eec734bafd4b5ed427143c, type: 3}
+  clip: {fileID: 0}
+  dropCapsuleOnshooting: 1
+  capsuleSpawnOffset: {x: 0.4, y: 0, z: 0}
+  muzzleFlash: {fileID: 683487663508060359, guid: 034d4784bf740704a8d2c31180b57f17, type: 3}
+  hasMuzzleFlash: 1
+  muzzleFlashSpawnOffset: 0.42
+  shootingSFX: {fileID: 8300000, guid: 4c59e9eb854507c42b405e22fd9b6fc2, type: 3}
+  shootingVolume: 0.469
+  soundType: 0
+  startShootingSFX: {fileID: 0}
+  stopShootingSFX: {fileID: 0}
+  reloadVolume: 0.509
+  startReloadingSFX: {fileID: 8300000, guid: c9cc70ffbef066f468a58907ff09a1bf, type: 3}
+  stopReloadingSFX: {fileID: 8300000, guid: 85778f36ac0bf774a95ef8c85b01a210, type: 3}
+  fireRate: 0.32
+  burstSize: 1
+  burstRate: 1
+  reloadTime: 1.2
+  gunType: 1
+  hoveringShotName: 
+  firePointOffset: {x: 0.65, y: 0, z: 0}
+  posOffset: {x: 1.3, y: 0, z: 0}
+  isGoldenWeapon: 0
+  goldenVersion: {fileID: 11400000, guid: 26804f14d069bdb44a402523c2970465, type: 2}
+  DPS: 6.7
+  PricePerDPS: 59.7
+  rarity: Common
+  impactFxSpawnProbability: 1
+  deathFxSpawnProbability: 1

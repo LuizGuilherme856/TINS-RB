@@ -25,6 +25,11 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
 
     public bool IsDepositing => depositSequenceRunning;
 
+    public void ConfigureGrowth(float radiusPerSoul)
+    {
+        radiusPerCrystal = Mathf.Max(0.01f, radiusPerSoul);
+    }
+
     private void Awake()
     {
         tower = GetComponent<TowerController>();
@@ -78,11 +83,10 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
         // sequence, so walking through the area is enough to deliver them all.
         while (inventory != null && inventory.Count > 0)
         {
-            int carriedBefore = inventory.Count;
             float duration = crystalTravelDuration / (1f + delivered * accelerationPerDeliveredCrystal);
             duration = Mathf.Max(0.04f, duration);
-            yield return inventory.AbsorbOneAt(targetPosition, duration);
-            if (inventory.Count >= carriedBefore) break;
+            if (!inventory.TryAbsorbOneAt(targetPosition, duration, out IEnumerator transfer)) break;
+            yield return transfer;
 
             delivered++;
             TowerAudioFeedbacks.Instance?.PlayCrystalDepositPitch(Mathf.Min(1.8f, 0.86f + delivered * 0.06f));

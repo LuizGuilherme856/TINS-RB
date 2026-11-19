@@ -5462,7 +5462,7 @@ PrefabInstance:
     - target: {fileID: 399699727539243543, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
       propertyPath: startingPistol
       value: 
-      objectReference: {fileID: 11400000, guid: 9ff25493bff39be408c39c7b6fb9c6d1, type: 2}
+      objectReference: {fileID: 11400000, guid: 13522032fe334e1f862a3ecc601881c9, type: 2}
     - target: {fileID: 2437364394660382725, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
       propertyPath: m_ShadowMesh.m_Mesh
       value: 
@@ -15772,7 +15772,7 @@ MonoBehaviour:
   objectiveLabel: {fileID: 72494677}
   resultReturnDelay: 3
   soulsKeptOnFailure: 0.7
-  soulDropChance: 0.65
+  soulDropChance: 1
   soulsPerDrop: 1
   flashHud: {fileID: 8942301541280510002}
   towerHealthHud: {fileID: 8942301541280520002}
@@ -16079,7 +16079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnsureStartingPistol
   gunInventory: {fileID: 445686411}
-  startingPistol: {fileID: 11400000, guid: 9ff25493bff39be408c39c7b6fb9c6d1, type: 2}
+  startingPistol: {fileID: 11400000, guid: 13522032fe334e1f862a3ecc601881c9, type: 2}
 --- !u!114 &1246629217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16114,7 +16114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1dd3ee69216cd54b99e1416ce54c06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeamMeleeUsesManager
-  maxUses: 8
+  maxUses: 3
   rechargeDurationPerCharge: 5
   skillCheckTarget: 0.8
   skillCheckWidth: 0.296

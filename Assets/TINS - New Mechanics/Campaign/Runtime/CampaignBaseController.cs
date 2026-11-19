@@ -390,9 +390,10 @@ namespace TINS.Campaign
                 hasCampaignSkill |= rank > 0;
                 bool maxed = rank >= skill.maximumRank;
                 int resourceCost = skill.ResourceCostForRank(rank);
-                string materialText = string.IsNullOrWhiteSpace(skill.requiredResourceId) ? string.Empty : $" + {resourceCost} {DisplayResource(skill.requiredResourceId)}";
+                string materialText = resourceCost == 0 || string.IsNullOrWhiteSpace(skill.requiredResourceId) ? string.Empty : $" + {resourceCost} {DisplayResource(skill.requiredResourceId)}";
                 bool canBuy = profile.CanBuy(skill);
                 string costText = maxed ? "MÁXIMO" : $"{(canBuy ? "Comprar" : "Custo")} · {skill.CostForRank(rank)} almas{materialText}";
+                if (skill.requiresFlash && !profile.HasFlash) costText = "Requer Flash de Luz";
                 if (skillLabels[i] != null)
                     skillLabels[i].text = $"{skill.displayName}  {rank}/{skill.maximumRank}\n{skill.description}\n{costText}";
                 skillButtons[i].interactable = canBuy;

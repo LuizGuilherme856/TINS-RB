@@ -189,11 +189,19 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
     private IEnumerator AutomaticSpawnLoop()
     {
+        int spawnsSinceGroup = 0;
         while (true)
         {
             UpdateAdaptiveWaveSettings();
             yield return new WaitForSeconds(Mathf.Max(0.1f, spawnInterval));
-            SpawnEnemy();
+            if (SpawnEnemy() == null || campaignSettings == null ||
+                campaignSettings.spawnsBetweenReinforcements <= 0 || CurrentLightRadius < campaignSettings.minimumReinforcementRadius)
+                continue;
+            if (++spawnsSinceGroup < campaignSettings.spawnsBetweenReinforcements) continue;
+
+            spawnsSinceGroup = 0;
+            for (int i = 0; i < campaignSettings.extraEnemiesInGroup; i++)
+                if (SpawnEnemy() == null) break;
         }
     }
 

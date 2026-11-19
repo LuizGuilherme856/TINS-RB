@@ -175,7 +175,7 @@ public static class CampaignProjectInstaller
         EnsureStartingPistol startingPistol = FindFirst<EnsureStartingPistol>(scene);
         if (startingPistol == null && gunInventory != null)
             startingPistol = gunInventory.gameObject.AddComponent<EnsureStartingPistol>();
-        GunData simplePistol = AssetDatabase.LoadAssetAtPath<GunData>("Assets/Prefabs/Guns & bullets/_player Weapons/simple pistol/simple Pistol_GunData.asset");
+        GunData simplePistol = AssetDatabase.LoadAssetAtPath<GunData>("Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns/simple Pistol_GunData.asset");
         if (startingPistol != null)
         {
             SetObject(startingPistol, "gunInventory", gunInventory);

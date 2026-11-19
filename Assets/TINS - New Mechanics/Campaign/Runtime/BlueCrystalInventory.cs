@@ -111,12 +111,17 @@ public sealed class BlueCrystalInventory : MonoBehaviour
         OnCountChanged?.Invoke(count);
     }
 
-    public IEnumerator AbsorbOneAt(Vector3 center, float duration)
+    public bool TryAbsorbOneAt(Vector3 center, float duration, out IEnumerator transfer)
     {
-        if (isDepositing || count <= 0)
-            yield break;
-
+        transfer = null;
+        if (isDepositing || count <= 0) return false;
         isDepositing = true;
+        transfer = AbsorbOneAt(center, duration);
+        return true;
+    }
+
+    private IEnumerator AbsorbOneAt(Vector3 center, float duration)
+    {
         float travelTime = Mathf.Max(0.01f, duration);
         BlueCrystalPickup crystal = carriedCrystals.Count > 0 ? carriedCrystals[0] : null;
         if (crystal != null)

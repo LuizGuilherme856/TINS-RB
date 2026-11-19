@@ -31,7 +31,7 @@ namespace TINS.Campaign
         [SerializeField] private TMP_Text objectiveLabel;
         [SerializeField, Min(0f)] private float resultReturnDelay = 3f;
         [SerializeField, Range(0f, 1f)] private float soulsKeptOnFailure = .7f;
-        [SerializeField, Range(0f, 1f)] private float soulDropChance = .65f;
+        [SerializeField, Range(0f, 1f)] private float soulDropChance = 1f;
         [SerializeField, Min(1)] private int soulsPerDrop = 1;
         [SerializeField] private CampaignFlashHUD flashHud;
         [SerializeField] private CampaignTowerHealthHUD towerHealthHud;
@@ -90,14 +90,14 @@ namespace TINS.Campaign
             }
             AssetFinder.GetGlobalStats()?.ResetValues();
             AssetFinder.GetRuneInventory()?.ResetUpgrades();
-            FindFirstObjectByType<SkillManager>(FindObjectsInactive.Include)?.ExecuteSkillUpgrades();
             playerCharges = playerHealth.GetComponent<BeamMeleeUsesManager>();
             ApplyCampaignSkills();
-            flashHud?.Bind(playerCharges);
+            flashHud?.Bind(profile.HasFlash ? playerCharges : null);
             towerHealthHud?.Bind(tower);
             playerHealth.GetComponent<EnsureStartingPistol>()?.Equip(catalog, profile);
             playerHealth.ResetHealth();
             lightReveal.WinRadius = planet.missionTargetRadius;
+            deposit?.ConfigureGrowth(planet.lightGrowthPerSoul);
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
             if (tower.OnTowerDeath != null) tower.OnTowerDeath.AddListener(OnDefenseCoreDestroyed);
             EnemyHealth[] existingEnemies = FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
@@ -158,7 +158,15 @@ namespace TINS.Campaign
             if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
             if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
 
-            int returnedSouls = success ? soulsCollected : Mathf.FloorToInt(soulsCollected * soulsKeptOnFailure);
+            int returnedSouls = success ? soulsCollected : Mathf.CeilToInt(soulsCollected * soulsKeptOnFailure);
+            if (success) returnedSouls += planet.victorySouls;
+            bool firstExpedition = !profile.firstExpeditionSettled;
+            if (firstExpedition)
+            {
+                int unlockCost = catalog.FlashSkill?.CostForRank(0) ?? 0;
+                returnedSouls = Mathf.Max(returnedSouls, unlockCost - profile.souls);
+                profile.firstExpeditionSettled = true;
+            }
             profile.souls = Mathf.Max(0, profile.souls + returnedSouls);
             if (success) profile.CompleteMission(planet);
             profile.Save();
@@ -174,7 +182,8 @@ namespace TINS.Campaign
             if (missionLabel != null) missionLabel.text = success ? "MISSÃO CONCLUÍDA" : "MISSÃO ENCERRADA";
             if (objectiveLabel != null)
                 objectiveLabel.text = $"{planet.displayName}\n{message}\n+{returnedSouls} almas" +
-                    (success ? $"\n+{planet.rewardPerMission} {planet.rewardResourceName}" : "");
+                    (success ? $"\n+{planet.rewardPerMission} {planet.rewardResourceName}" : "") +
+                    (firstExpedition && !profile.HasFlash ? "\nFlash de Luz disponível na Base." : "");
             StartCoroutine(ReturnToBase());
         }
 
@@ -186,15 +195,19 @@ namespace TINS.Campaign
 
         private void ApplyCampaignSkills()
         {
-            float flashDuration = 1f + 0.05f * profile.Rank("flash-duration");
+            float flashDuration = 1f + 0.05f * Mathf.Max(0, profile.Rank(CampaignProfile.FlashSkillId) - 1);
             playerHealth.GetComponent<BeamMeleeAttack>()?.SetCampaignDurationMultiplier(flashDuration);
 
             if (playerCharges != null)
             {
-                playerCharges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
-                float rechargeMultiplier = 1f - 0.1f * profile.Rank("flash-recharge");
-                playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
-                playerCharges.RefillUses();
+                playerCharges.enabled = profile.HasFlash;
+                if (profile.HasFlash)
+                {
+                    playerCharges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
+                    float rechargeMultiplier = 1f - 0.1f * profile.Rank("flash-recharge");
+                    playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
+                    playerCharges.RefillUses();
+                }
             }
 
             playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + 0.05f * profile.Rank("speed"));

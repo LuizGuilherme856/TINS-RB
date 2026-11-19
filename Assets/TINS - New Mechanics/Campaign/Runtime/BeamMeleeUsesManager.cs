@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 /// <summary>Reloads the full Flash supply when its last charge is spent.</summary>
 public sealed class BeamMeleeUsesManager : MonoBehaviour
 {
-    [SerializeField, Min(1)] private int maxUses = 8;
+    [SerializeField, Min(1)] private int maxUses = 3;
     [FormerlySerializedAs("rechargeDurationPerCharge")]
     [SerializeField, Min(0.1f)] private float rechargeDuration = 5f;
     [SerializeField, Range(0f, 1f)] private float skillCheckTarget = 0.8f;
@@ -20,12 +20,12 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
     public int MaxUses => Mathf.Max(1, maxUses);
     public bool LastNoChargeAttemptResolvedSkillCheck { get; private set; }
     public bool LastNoChargeAttemptSucceeded { get; private set; }
-    public bool IsRecharging => UsesRemaining == 0;
+    public bool IsRecharging => isActiveAndEnabled && UsesRemaining == 0;
     public float RechargeProgress => IsRecharging ? 1f - Mathf.Clamp01(rechargeTimer / rechargeDuration) : 1f;
 
     public float SkillCheckWidth => skillCheckWidth;
     public float SkillCheckTarget => Mathf.Clamp(skillCheckTarget, SkillCheckWidth * 0.5f, 1f - SkillCheckWidth * 0.5f);
-    public bool IsSkillCheckAvailable => UsesRemaining == 0 && rechargeTimer > 0f && !skillCheckFailedThisCharge;
+    public bool IsSkillCheckAvailable => IsRecharging && rechargeTimer > 0f && !skillCheckFailedThisCharge;
 
     private float rechargeTimer;
     private bool skillCheckFailedThisCharge;
@@ -46,6 +46,13 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
         OnUsesChanged?.Invoke(UsesRemaining, MaxUses);
     }
 
+    private void OnDisable()
+    {
+        UsesRemaining = 0;
+        rechargeTimer = 0f;
+        OnUsesChanged?.Invoke(0, MaxUses);
+    }
+
     private void Update()
     {
         if (!IsRecharging) return;
@@ -55,6 +62,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     public bool TryConsumeUse()
     {
+        if (!isActiveAndEnabled) return false;
         LastNoChargeAttemptResolvedSkillCheck = false;
         LastNoChargeAttemptSucceeded = false;
         if (UsesRemaining <= 0)
@@ -88,7 +96,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     public void RestoreUses(int amount)
     {
-        if (amount <= 0) return;
+        if (!isActiveAndEnabled || amount <= 0) return;
         int previous = UsesRemaining;
         UsesRemaining = Mathf.Clamp(UsesRemaining + amount, 0, MaxUses);
         if (UsesRemaining == previous) return;
@@ -101,6 +109,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     public void RefillUses()
     {
+        if (!isActiveAndEnabled) return;
         bool needed = UsesRemaining < MaxUses;
         UsesRemaining = MaxUses;
         rechargeTimer = 0f;

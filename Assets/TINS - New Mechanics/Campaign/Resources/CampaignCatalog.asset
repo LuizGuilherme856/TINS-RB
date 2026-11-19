@@ -18,7 +18,9 @@ MonoBehaviour:
     description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras expedi\xE7\xF5es partiram daqui."
     missionsToPurify: 5
     missionTargetRadius: 11
-    enemySpeedMultiplier: 0.7
+    lightGrowthPerSoul: 0.5
+    enemySpeedMultiplier: 1.65
+    victorySouls: 22
     enemySettings: {fileID: 11400000, guid: 4050b052283d33847a531eb916c11bdf, type: 2}
     rewardResourceId: ether
     rewardResourceName: "\xC9ter"
@@ -30,7 +32,9 @@ MonoBehaviour:
     description: "Sob as geleiras de Nivora crescem cristais que brilham mesmo longe da luz."
     missionsToPurify: 5
     missionTargetRadius: 13
-    enemySpeedMultiplier: 0.72
+    lightGrowthPerSoul: 0.45
+    enemySpeedMultiplier: 1.68
+    victorySouls: 46
     enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
     rewardResourceId: cristal-frio
     rewardResourceName: Cristal Frio
@@ -42,7 +46,9 @@ MonoBehaviour:
     description: "Antigos impactos espalharam Poeira Solar pelos c\xE2nions de Asterim."
     missionsToPurify: 5
     missionTargetRadius: 15
-    enemySpeedMultiplier: 0.74
+    lightGrowthPerSoul: 0.38
+    enemySpeedMultiplier: 1.7
+    victorySouls: 68
     enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
     rewardResourceId: poeira-solar
     rewardResourceName: Poeira Solar
@@ -54,7 +60,9 @@ MonoBehaviour:
     description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos se acumulam nas fendas."
     missionsToPurify: 5
     missionTargetRadius: 17
-    enemySpeedMultiplier: 0.76
+    lightGrowthPerSoul: 0.34
+    enemySpeedMultiplier: 1.72
+    victorySouls: 92
     enemySettings: {fileID: 11400000, guid: 53aebfcc6da0a9545bc829f58fe7983d, type: 2}
     rewardResourceId: fragmento-umbral
     rewardResourceName: Fragmento Umbral
@@ -66,7 +74,9 @@ MonoBehaviour:
     description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de Varkora."
     missionsToPurify: 5
     missionTargetRadius: 19
-    enemySpeedMultiplier: 0.78
+    lightGrowthPerSoul: 0.3
+    enemySpeedMultiplier: 1.74
+    victorySouls: 122
     enemySettings: {fileID: 11400000, guid: 09ec12876c955ba448077a70db91c6b0, type: 2}
     rewardResourceId: nucleo-rubro
     rewardResourceName: "N\xFAcleo Rubro"
@@ -78,7 +88,9 @@ MonoBehaviour:
     description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Sal Estelar nas ilhas quando recuam."
     missionsToPurify: 5
     missionTargetRadius: 21
-    enemySpeedMultiplier: 0.8
+    lightGrowthPerSoul: 0.27
+    enemySpeedMultiplier: 1.76
+    victorySouls: 156
     enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}
     rewardResourceId: sal-estelar
     rewardResourceName: Sal Estelar
@@ -87,30 +99,36 @@ MonoBehaviour:
     mapY: 0.38
   skills:
   - id: flash-duration
-    displayName: Flash Prolongado
-    description: "+5% de dura\xE7\xE3o do Flash e do atordoamento por n\xEDvel."
+    displayName: Flash de Luz
+    description: "Desbloqueia o Flash. Depois, +5% de duração e de atordoamento por nível."
+    unlockCost: 6
     soulCost: 10
-    requiredResourceId: 
-    requiredResourceAmount: 0
-    maximumRank: 5
+    requiredResourceId: sal-estelar
+    requiredResourceAmount: 4
+    resourceStartsAtRank: 7
+    maximumRank: 9
     unlockedWeaponResourcePath: 
   - id: speed
     displayName: Passos Livres
     description: "+5% de velocidade de movimento por n\xEDvel."
     soulCost: 15
-    requiredResourceId: 
-    requiredResourceAmount: 0
-    maximumRank: 3
+    requiredResourceId: fragmento-umbral
+    requiredResourceAmount: 3
+    resourceStartsAtRank: 4
+    maximumRank: 6
     unlockedWeaponResourcePath: 
   - id: flash-capacity
+    requiresFlash: 1
     displayName: "C\xE9lula de Luz"
     description: "+1 carga m\xE1xima do Flash por n\xEDvel."
     soulCost: 20
-    requiredResourceId: 
-    requiredResourceAmount: 0
-    maximumRank: 4
+    requiredResourceId: nucleo-rubro
+    requiredResourceAmount: 3
+    resourceStartsAtRank: 5
+    maximumRank: 6
     unlockedWeaponResourcePath: 
   - id: flash-recharge
+    requiresFlash: 1
     displayName: Foco Restaurado
     description: "\u221210% no tempo de recarga do Flash por n\xEDvel."
     soulCost: 25

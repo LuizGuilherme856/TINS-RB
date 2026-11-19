@@ -12,7 +12,11 @@ namespace TINS.Campaign
     [Serializable]
     public sealed class CampaignProfile
     {
-        public int version = 1;
+        public const string FlashSkillId = "flash-duration";
+        public int version = 2;
+        public bool firstExpeditionSettled;
+        public bool inheritedFlash;
+        public bool HasFlash => Rank(FlashSkillId) > 0;
         public int souls;
         public int soulsInvested;
         public List<CampaignPlanetProgress> planetProgress = new List<CampaignPlanetProgress>();
@@ -30,12 +34,23 @@ namespace TINS.Campaign
                 if (File.Exists(SavePath))
                 {
                     CampaignProfile loaded = JsonUtility.FromJson<CampaignProfile>(File.ReadAllText(SavePath));
-                    if (loaded != null && loaded.version == 1)
+                    if (loaded != null && (loaded.version == 1 || loaded.version == 2))
                     {
                         loaded.planetProgress ??= new List<CampaignPlanetProgress>();
                         loaded.resources ??= new List<CampaignResourceAmount>();
                         loaded.skillRanks ??= new List<CampaignSkillRank>();
                         loaded.investedResources ??= new List<CampaignResourceAmount>();
+                        if (loaded.version == 1)
+                        {
+                            // Existing Flash upgrades imply that this profile already owns the ability.
+                            if (loaded.HasFlash || loaded.Rank("flash-capacity") > 0 || loaded.Rank("flash-recharge") > 0)
+                            {
+                                loaded.FindSkill(FlashSkillId, true).rank++;
+                                loaded.inheritedFlash = true;
+                            }
+                            loaded.firstExpeditionSettled = loaded.HasFlash || loaded.planetProgress.Exists(p => p != null && p.missionsCompleted > 0);
+                            loaded.version = 2;
+                        }
                         return loaded;
                     }
                 }
@@ -149,7 +164,7 @@ namespace TINS.Campaign
         {
             if (skill == null || string.IsNullOrWhiteSpace(skill.id)) return false;
             int rank = Rank(skill.id);
-            return rank < Mathf.Max(1, skill.maximumRank) && souls >= skill.CostForRank(rank) &&
+            return (!skill.requiresFlash || HasFlash) && rank < Mathf.Max(1, skill.maximumRank) && souls >= skill.CostForRank(rank) &&
                 (string.IsNullOrWhiteSpace(skill.requiredResourceId) || Resource(skill.requiredResourceId) >= skill.ResourceCostForRank(rank));
         }
 
@@ -161,7 +176,7 @@ namespace TINS.Campaign
             int resourceCost = skill.ResourceCostForRank(currentRank);
             souls -= soulCost;
             soulsInvested += soulCost;
-            if (!string.IsNullOrWhiteSpace(skill.requiredResourceId))
+            if (resourceCost > 0 && !string.IsNullOrWhiteSpace(skill.requiredResourceId))
             {
                 TrySpend(skill.requiredResourceId, resourceCost);
                 CampaignResourceAmount spent = FindInList(investedResources, skill.requiredResourceId);
@@ -183,7 +198,8 @@ namespace TINS.Campaign
                 CampaignSkillRank entry = FindSkill(skill.id, false);
                 if (entry == null || entry.rank <= 0) continue;
 
-                for (int rank = 0; rank < entry.rank; rank++)
+                int firstPaidRank = skill.id == FlashSkillId && inheritedFlash ? 1 : 0;
+                for (int rank = firstPaidRank; rank < entry.rank; rank++)
                 {
                     int refund = Mathf.Min(soulsInvested, skill.CostForRank(rank));
                     souls += refund;
@@ -196,6 +212,7 @@ namespace TINS.Campaign
                     invested.amount -= materialRefund;
                 }
 
+                if (skill.id == FlashSkillId) inheritedFlash = false;
                 skillRanks.Remove(entry);
             }
         }

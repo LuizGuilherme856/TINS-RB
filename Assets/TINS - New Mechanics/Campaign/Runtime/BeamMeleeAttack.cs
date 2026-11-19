@@ -43,7 +43,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
 
     public bool FireBeam()
     {
-        if (usesManager == null || beamPrefab == null || beamOrigin == null) return false;
+        if (usesManager == null || !usesManager.isActiveAndEnabled || beamPrefab == null || beamOrigin == null) return false;
         if (enableConeLight && coneLightPrefab == null)
         {
             Debug.LogError("Beam melee has Cone Light enabled but no cone prefab assigned.", this);
