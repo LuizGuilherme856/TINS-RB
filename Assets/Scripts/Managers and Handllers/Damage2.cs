@@ -1,3 +1,4 @@
+using TINS.Campaign;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,9 @@ public class Damage2 : MonoBehaviour
         float criticalChance = statsCalculator.CalculateNewGunCriticalChance(GunData.criticalChance);
         float criticalMultiplier = statsCalculator.CalculateNewGunCriticalMultiplier(GunData.criticalMultiplier);
 
-        switch (GetCritical(criticalChance))
+        CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+        CriticalDamage critical = mission != null ? RollCampaignCritical(criticalChance, mission.SuperCriticalChance) : GetCritical(criticalChance);
+        switch (critical)
         {
             case CriticalDamage.no:
                 return (baseDamage, CriticalDamage.no);
@@ -52,6 +55,12 @@ public class Damage2 : MonoBehaviour
             default:
                 return (baseDamage, CriticalDamage.no);
         }
+    }
+
+    private static CriticalDamage RollCampaignCritical(float criticalChance, float superCriticalChance)
+    {
+        if (criticalChance <= 0f || Random.value * 100f >= criticalChance) return CriticalDamage.no;
+        return Random.value < superCriticalChance ? CriticalDamage.superCritical : CriticalDamage.critical;
     }
 
     public static (float, CriticalDamage) GetDamageAndCritical(float baseDamage, MeleeData meleeData, StatsCalculator statsCalculator)

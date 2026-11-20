@@ -24,6 +24,7 @@ public class TowerController : MonoBehaviour
 
 
     public UnityEvent OnTowerDeath, OnPlayerInteract;
+    public event System.Action Damaged;
     private readonly HashSet<Collider2D> playersInRange = new HashSet<Collider2D>();
     private MMF_Player purificationLightDamageFeedback;
     private Light2D purificationLight;
@@ -95,6 +96,7 @@ public class TowerController : MonoBehaviour
 
         timeSinceLastHit = 0f;
         currentLife = Mathf.Max(0, currentLife - 1);
+        Damaged?.Invoke();
         if (purificationLightDamageFeedback == null)
             CachePurificationLightFeedback();
         if (purificationLightDamageFeedback != null)

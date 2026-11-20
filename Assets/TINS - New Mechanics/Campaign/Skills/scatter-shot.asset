@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: scatter-shot
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: scatter-shot
+  displayName: "Disparo Espalhado"
+  description: "Adiciona dois projéteis ao disparo e consome um cartucho extra. Cada projétil causa 60% do dano normal."
+  icon: {fileID: -934509074, guid: 852e340944c9cd6468329e12ce36e914, type: 3}
+  maximumRank: 1
+  soulCost: 65
+  unlockCost: 0
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: ""
+  requiredResourceAmount: 0
+  resourceStartsAtRank: 1
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  effectType: 15
+  effectPerRank: 2
+  secondaryEffectPerRank: 1
+  effectPrefab: {fileID: 0}
+  orbitalEffect: {fileID: 0}
+  effectStartsAtRank: 1
+  visibleAtStart: 0
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites:
+  - skill: {fileID: 11400000, guid: e7456d8d37d4530da428c189f61dc3e6, type: 2}
+    minimumRank: 1
+  revealPrerequisites: []
+  exclusiveWith:
+  - {fileID: 11400000, guid: 00ff3d972b305bf78a50525f79f61f69, type: 2}
+  editorPosition: {x: 265, y: -440}

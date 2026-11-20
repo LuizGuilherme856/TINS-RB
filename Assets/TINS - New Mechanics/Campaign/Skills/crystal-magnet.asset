@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: crystal-magnet
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: crystal-magnet
+  displayName: "Ímã de Cristais"
+  description: "Atrai cristais soltos de mais longe. Aumenta o alcance de atração em 0,75 unidade por nível."
+  icon: {fileID: 1962357341, guid: 852e340944c9cd6468329e12ce36e914, type: 3}
+  maximumRank: 3
+  soulCost: 22
+  unlockCost: 0
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: ""
+  requiredResourceAmount: 0
+  resourceStartsAtRank: 1
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  effectType: 13
+  effectPerRank: 0.75
+  secondaryEffectPerRank: 0
+  effectPrefab: {fileID: 0}
+  orbitalEffect: {fileID: 0}
+  effectStartsAtRank: 1
+  visibleAtStart: 0
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites:
+  - skill: {fileID: 11400000, guid: 8c522b9b302a4328af8fc802bbac0da5, type: 2}
+    minimumRank: 1
+  revealPrerequisites: []
+  exclusiveWith: []
+  editorPosition: {x: -501, y: 95}

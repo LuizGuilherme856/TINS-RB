@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: monkey-decoy
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: monkey-decoy
+  displayName: "Mamaco Isca"
+  description: "Deixa uma isca no ponto de saída do dash. Atrai inimigos por 10 s. Intervalo de 18 s."
+  icon: {fileID: 1818746327, guid: 6f4d673c5680ce44292665edbb15fa58, type: 3}
+  maximumRank: 1
+  soulCost: 65
+  unlockCost: 0
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: ether
+  requiredResourceAmount: 2
+  resourceStartsAtRank: 1
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  effectType: 18
+  effectPerRank: 18
+  secondaryEffectPerRank: 0
+  effectPrefab: {fileID: 177165337631226547, guid: 818b54f256f01384fa90d42ea07cecae, type: 3}
+  orbitalEffect: {fileID: 0}
+  effectStartsAtRank: 1
+  visibleAtStart: 0
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites:
+  - skill: {fileID: 11400000, guid: 43ec0af3717e5bc69a66935c03af5bb3, type: 2}
+    minimumRank: 1
+  revealPrerequisites: []
+  exclusiveWith: []
+  editorPosition: {x: -677, y: 357}

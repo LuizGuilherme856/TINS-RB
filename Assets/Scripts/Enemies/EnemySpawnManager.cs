@@ -95,7 +95,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (chosenSpawn == null) chosenSpawn = spawnPoint;
         if (chosenSpawn == null) return null;
 
-        IObjectPool<PoolCreator> selectedPool = SelectEnemyPool();
+        IObjectPool<PoolCreator> selectedPool = SelectEnemyPool(out bool elite);
         if (selectedPool == null) return null;
         PoolCreator enemy = selectedPool.Get();
         enemy.transform.SetParent(transform, true);
@@ -110,7 +110,11 @@ public sealed class EnemySpawnManager : MonoBehaviour
             body.angularVelocity = 0f;
         }
 
+        enemy.GetComponent<EnemyHealth>()?.SetCampaignElite(elite);
         enemy.gameObject.SetActive(true);
+        Transform defenseCore = CampaignMissionRuntime.Active?.DefenseCore;
+        if (defenseCore != null && enemy.TryGetComponent(out ChangeTarget targeting))
+            targeting.SetNewTarget(defenseCore);
         activeEnemies++;
         return enemy.gameObject;
     }
@@ -140,12 +144,14 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (spawnOnStart) StartAutomaticSpawning();
     }
 
-    private IObjectPool<PoolCreator> SelectEnemyPool()
+    private IObjectPool<PoolCreator> SelectEnemyPool(out bool elite)
     {
+        elite = false;
         if (campaignSettings == null)
         {
             if (!EnsureLegacyPools()) return null;
-            return elitePool != null && Random.Range(0f, 100f) < elitePercentege ? elitePool : regularPool;
+            elite = elitePool != null && Random.Range(0f, 100f) < elitePercentege;
+            return elite ? elitePool : regularPool;
         }
 
         float radius = CurrentLightRadius;
@@ -160,6 +166,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
         {
             if (candidate.entry.minimumLightRadius > radius || candidate.entry.weight <= 0f) continue;
             lastEligible = candidate.pool;
+            elite = candidate.entry.isElite;
             roll -= candidate.entry.weight;
             if (roll <= 0f) return candidate.pool;
         }

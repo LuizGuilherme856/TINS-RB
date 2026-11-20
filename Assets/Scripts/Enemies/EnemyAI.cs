@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour
 
         if (CampaignCombatRules.IsCampaignMission && enemyHealth != null && enemyHealth.IsCampaignFlashStunned)
         {
-            if (myRigidbody != null) myRigidbody.linearVelocity = Vector2.zero;
+            if (myRigidbody != null && !enemyHealth.IsCampaignFlashRepelled) myRigidbody.linearVelocity = Vector2.zero;
             return;
         }
 

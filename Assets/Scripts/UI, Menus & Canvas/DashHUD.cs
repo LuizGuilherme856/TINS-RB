@@ -10,7 +10,6 @@ public class DashHUD : MonoBehaviour
     //Data Related
     [SerializeField]private PlayerHolder playerHolder;
     [SerializeField] private MeleeManager dashManager;
-    [SerializeField] private GlobalStats globalStats;
     private UpgradeManager upgradeManager;
 
     //UI Related
@@ -75,7 +74,7 @@ public class DashHUD : MonoBehaviour
     //TODO: Subscribe to a dash-count change event instead.
     public void UpdateDash()
     {
-        switch (globalStats.maxDashActionQuantity)
+        switch (dashManager.MaxDashActions)
         {
             case 0:
                 foreach (GameObject gb in cases)

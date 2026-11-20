@@ -8,6 +8,12 @@ namespace TINS.Campaign
 {
     public static class CampaignCombatRules
     {
+        public static int RoundsPerShot(GunData gun)
+        {
+            int extra = Mathf.RoundToInt(CampaignMissionRuntime.Active?.SkillEffect(CampaignSkillEffectType.ScatterShot).y ?? 0f);
+            return Mathf.Max(1, gun.GetAmmoConsumedPerShot() + extra);
+        }
+
         public static bool IsCampaignMission { get; private set; }
         public static float EnemySpeedMultiplier { get; private set; } = 1f;
         public static float EnemyHealthMultiplier { get; private set; } = 1.5f;
@@ -41,6 +47,26 @@ namespace TINS.Campaign
         [SerializeField, Min(0.1f)] private float purificationBurstDuration = 0.9f;
         [SerializeField, Min(0f)] private float corpseThrowDistance = 5f;
         private readonly List<GameObject> corpses = new();
+        private readonly Dictionary<CampaignSkillEffectType, Vector2> skillEffects = new();
+        private CampaignDefenseUpgrades defenses;
+        public float SuperCriticalChance { get; private set; }
+        public BlueCrystalInventory CrystalCollector => resolved ? null : soulInventory;
+        public Vector2 SkillEffect(CampaignSkillEffectType effect) =>
+            skillEffects.TryGetValue(effect, out Vector2 value) ? value : Vector2.zero;
+        public void DeployDashDecoy(Vector3 position)
+        {
+            if (!resolved) defenses?.DeployDecoy(position);
+        }
+        public void DeployFlashTurret(Vector3 position)
+        {
+            if (!resolved) defenses?.DeployTurret(position);
+        }
+
+        public void OnEliteDefeated()
+        {
+            if (!resolved)
+                playerCharges?.RestoreUses(Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.EliteFlashRecovery).x));
+        }
         private BeamMeleeUsesManager playerCharges;
         private CampaignProfile profile;
         private CampaignPlanet planet;
@@ -172,6 +198,7 @@ namespace TINS.Campaign
         {
             if (resolved) return;
             resolved = true;
+            defenses?.StopDefenses();
             if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
             if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
 
@@ -268,48 +295,30 @@ namespace TINS.Campaign
 
         private void ApplyCampaignSkills()
         {
-            Vector2 flashDurationEffect = Vector2.zero;
-            Vector2 flashAreaEffect = Vector2.zero;
-            float capacityEffect = 0f;
-            float rechargeEffect = 0f;
-            float speedEffect = 0f;
-            float healthEffect = 0f;
             if (catalog != null && catalog.skills != null)
             {
                 foreach (CampaignSkill skill in catalog.skills)
                 {
                     if (skill == null) continue;
-                    int appliedRanks = Mathf.Max(0, profile.Rank(skill.id) - Mathf.Max(1, skill.effectStartsAtRank) + 1);
-                    if (appliedRanks == 0) continue;
-                    float primary = skill.effectPerRank * appliedRanks;
-                    float secondary = skill.secondaryEffectPerRank * appliedRanks;
-                    switch (skill.effectType)
+                    int rank = profile.Rank(skill.id);
+                    Vector2 effect = skill.EffectAtRank(rank);
+                    if (rank <= 0 || effect == Vector2.zero) continue;
+                    skillEffects[skill.effectType] = SkillEffect(skill.effectType) + effect;
+                    if (skill.effectType == CampaignSkillEffectType.GunCritical && rank >= skill.maximumRank)
+                        SuperCriticalChance = Mathf.Max(SuperCriticalChance, Mathf.Clamp01(skill.secondaryEffectPerRank));
+                    if (skill.effectType == CampaignSkillEffectType.MonkeyDecoy ||
+                        skill.effectType == CampaignSkillEffectType.BladeTurret ||
+                        skill.effectType == CampaignSkillEffectType.GuardianBlades)
                     {
-                        case CampaignSkillEffectType.FlashDuration:
-                            flashDurationEffect.x += primary;
-                            break;
-                        case CampaignSkillEffectType.FlashArea:
-                            flashAreaEffect.x += primary;
-                            flashAreaEffect.y += secondary;
-                            break;
-                        case CampaignSkillEffectType.FlashCapacity:
-                            capacityEffect += primary;
-                            break;
-                        case CampaignSkillEffectType.FlashRecharge:
-                            rechargeEffect += primary;
-                            break;
-                        case CampaignSkillEffectType.MovementSpeed:
-                            speedEffect += primary;
-                            break;
-                        case CampaignSkillEffectType.PlayerHealth:
-                            healthEffect += primary;
-                            break;
+                        if (defenses == null) defenses = gameObject.AddComponent<CampaignDefenseUpgrades>();
+                        defenses.Configure(tower, skill, effect);
                     }
                 }
             }
 
+            Vector2 flashAreaEffect = SkillEffect(CampaignSkillEffectType.FlashArea);
             BeamMeleeAttack flash = playerHealth.GetComponent<BeamMeleeAttack>();
-            flash?.SetCampaignDurationMultiplier(1f + flashDurationEffect.x);
+            flash?.SetCampaignDurationMultiplier(1f + SkillEffect(CampaignSkillEffectType.FlashDuration).x);
             flash?.SetCampaignArea(flashAreaEffect.x, flashAreaEffect.y);
 
             if (playerCharges != null)
@@ -317,16 +326,20 @@ namespace TINS.Campaign
                 playerCharges.enabled = profile.HasFlash;
                 if (profile.HasFlash)
                 {
-                    playerCharges.ConfigureMaximumUses(Mathf.Max(0, Mathf.RoundToInt(capacityEffect)));
-                    float rechargeMultiplier = 1f - Mathf.Clamp(rechargeEffect, 0f, 0.9f);
+                    playerCharges.ConfigureMaximumUses(Mathf.Max(0, Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.FlashCapacity).x)));
+                    float rechargeMultiplier = 1f - Mathf.Clamp(SkillEffect(CampaignSkillEffectType.FlashRecharge).x, 0f, 0.9f);
                     playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
                     playerCharges.RefillUses();
                 }
             }
 
-            playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + speedEffect);
+            playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + SkillEffect(CampaignSkillEffectType.MovementSpeed).x);
+            if (SkillEffect(CampaignSkillEffectType.ExtraDash).x > 0f)
+                foreach (MeleeManager action in playerHealth.GetComponentsInChildren<MeleeManager>())
+                    action.RefillCampaignDash();
+
             GlobalStats stats = AssetFinder.GetGlobalStats();
-            if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(healthEffect);
+            if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.PlayerHealth).x);
         }
 
         private void FixedUpdate()

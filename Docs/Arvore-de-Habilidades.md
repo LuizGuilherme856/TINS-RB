@@ -28,3 +28,10 @@ Abra **Tools > There Is No Sun > Preview Skill Tree Progression**. A janela usa 
 Os efeitos existentes são aplicados a partir dos níveis comprados, sem acumular novamente ao reabrir menus ou trocar de cena: duração do Flash, ângulo e alcance do cone, cargas máximas, tempo de recarga, velocidade, vida e desbloqueio de arma. Para adicionar uma nova categoria de efeito, inclua um valor em `CampaignSkillEffectType` e conecte seu cálculo ao aplicador de efeitos da missão; compra, custos, revelação e interface permanecem genéricos.
 
 Cada compra registra o custo em almas e materiais. O botão de reinício devolve esses valores registrados, mesmo que os custos do asset sejam rebalanceados depois. Saves antigos recebem um ledger estimado uma vez usando os custos atuais, pois eles não armazenavam o custo histórico por compra.
+
+## Ramos de combate e defesa
+
+- **Mobilidade**. Passos Livres revela Dash Extra e Ímã de Cristais. Dash Extra libera Mamaco Isca, que atrai inimigos no ponto de saída do dash por 10 segundos. Ao expirar, cada inimigo volta ao alvo anterior. O intervalo entre iscas começa ao colocá-las e dura 18 segundos.
+- **Armas**. Último Tiro revela Recarga Explosiva, Mira Precisa e duas especializações incompatíveis, Disparo Duplo e Disparo Espalhado. Reiniciar a árvore permite trocar de especialização. Mira Precisa começa em 5% de crítico e chega a 20% no nível 4. Nesse nível, 15% dos críticos viram supercríticos.
+- **Flash**. Área do Flash revela Onda de Repulsão e depois Torreta de Lâminas. A torreta fica no ponto de uso do Flash e dura até 11 segundos, com intervalo de 22 segundos. Célula de Luz libera Recuperação por Abate. A opção **Is Elite** na lista de inimigos do planeta define quais variantes rendem uma carga, além dos chefes que já têm essa marca.
+- **Torre**. Vigor Solar revela Lâminas Guardiãs. Cada nível inicia a missão com uma lâmina em órbita da torre. Cada golpe recebido pela torre remove uma lâmina durante a missão.

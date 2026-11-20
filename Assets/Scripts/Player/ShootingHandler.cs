@@ -1,3 +1,4 @@
+using TINS.Campaign;
 using UnityEngine;
 using System;
 using MoreMountains.Feedbacks;
@@ -97,18 +98,25 @@ public class ShootingHandler : MonoBehaviour
         }
         else
         {
-            int extraShotBlessing = 0;
-            if (UnityEngine.Random.Range(0f, 1f) < globalStats.chanceOfShootingExtraBullet) extraShotBlessing = 1;
+            CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+            float extraShotChance = globalStats.chanceOfShootingExtraBullet +
+                (mission?.SkillEffect(CampaignSkillEffectType.DoubleTap).x ?? 0f);
+            int extraShot = UnityEngine.Random.value < extraShotChance ? 1 : 0;
+            int scattered = Mathf.RoundToInt(mission?.SkillEffect(CampaignSkillEffectType.ScatterShot).x ?? 0f);
 
             //Regular discrete projectiles.
-            int numberOfBulets =  gunData.GetScatteredBulletsPerShot() + extraShotBlessing;
+            int numberOfBulets = gunData.GetScatteredBulletsPerShot() + scattered + extraShot;
             Projectile[] projectiles = new Projectile[numberOfBulets]; //Return an array because some weapons fire multiple bullets per shot.
             Projectile[] linedUpProjectiles = new Projectile[numberOfBulets * gunData.GetLinedUpBulletsPerShot()];
 
             for (int i = 0; i < numberOfBulets; i++)
             {
                 UpdateProjectileProperties(projectiles, i);
-                SetBulletSpeed(projectiles[i], i, 1);
+                float? spread = null;
+                if (scattered > 0) spread = (i - (numberOfBulets - 1) * .5f) * Mathf.Max(9f, gunData.multipleBulletAngleOffset);
+                else if (mission != null && extraShot > 0 && i == numberOfBulets - 1 && numberOfBulets == 2)
+                    spread = 4f;
+                SetBulletSpeed(projectiles[i], i, 1, campaignSpreadAngle: spread);
 
                 if(i == 0) //Only the first bullet adds trailing aligned bullets.
                 {
@@ -147,10 +155,14 @@ public class ShootingHandler : MonoBehaviour
         projectiles[i].gameObject.GetComponent<UpdateBulletGunData>().SetGunData(gunData, bulletDeathFxPooler, ricochetEffectPooler); //Refresh the GunData that fired this bullet.
 
         var bulletStats = projectiles[i].gameObject.GetComponent<BulletStats>();
-        bulletStats.SetDamageMultiplier_PowerUp(damageMultiplier);
-        
-        //Double weapon damage for the last bullet.
-        if (gunData.currentAmmoOnClip <= gunData.GetAmmoConsumedPerShot() && globalStats.doubleDamageOnLastBullet)
+        CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+        bool hasScatter = (mission?.SkillEffect(CampaignSkillEffectType.ScatterShot).x ?? 0f) > 0f;
+        bulletStats.SetDamageMultiplier_PowerUp(damageMultiplier * (hasScatter ? .60f : 1f));
+
+        bool lastShotUpgrade = globalStats.doubleDamageOnLastBullet ||
+            (mission?.SkillEffect(CampaignSkillEffectType.LastShot).x ?? 0f) > 0f;
+        // Instantiation happens before ammo is deducted, so the next consumption identifies the final shot.
+        if (gunData.currentAmmoOnClip <= CampaignCombatRules.RoundsPerShot(gunData) && lastShotUpgrade)
         {
             bulletStats.SetDamageMultiplier_FirstBullet(2);
         }
@@ -198,7 +210,7 @@ public class ShootingHandler : MonoBehaviour
     }
 
     private void SetBulletSpeed(Projectile newProjectile, int currentIndex, float speedMultiplier, 
-        bool recalculateAngleOffset = true, bool recalculateRandomness = true) //Speed, inaccuracy, and angular spread for multiple bullets.
+        bool recalculateAngleOffset = true, bool recalculateRandomness = true, float? campaignSpreadAngle = null) //Speed, inaccuracy, and angular spread for multiple bullets.
     {
         var originalLocalScale = newProjectile.transform.localScale;
         Vector3 newRotation;
@@ -227,7 +239,12 @@ public class ShootingHandler : MonoBehaviour
         }
 
 
-        if(gunData.GetScatteredBulletsPerShot() > 1)
+        if (campaignSpreadAngle.HasValue)
+        {
+            multipleBulletsAngleOffset = campaignSpreadAngle.Value;
+            newRotation.z += multipleBulletsAngleOffset;
+        }
+        else if(gunData.GetScatteredBulletsPerShot() > 1)
         {
             //Preserve the original angle for aligned bullets so their formation remains intact.
             if(recalculateAngleOffset)

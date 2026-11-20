@@ -69,8 +69,8 @@ namespace TINS.Campaign
             BindButton(centerTreeButton, CenterTree);
             status = string.Empty;
             if (treeScrollRect == null) treeScrollRect = GetComponentInChildren<CampaignSkillTreeScroll>(true);
-            treeScrollRect?.CenterGraph();
             Refresh();
+            CenterTree();
         }
 
         private static void BindButton(Button button, UnityAction action)
@@ -139,7 +139,22 @@ namespace TINS.Campaign
 
         private void ZoomIn() => treeScrollRect?.Zoom(1.16f);
         private void ZoomOut() => treeScrollRect?.Zoom(1f / 1.16f);
-        private void CenterTree() => treeScrollRect?.CenterGraph();
+        private void CenterTree()
+        {
+            if (treeScrollRect == null) return;
+
+            Vector2 min = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+            Vector2 max = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+            foreach (CampaignSkillTreeNodeView node in nodes)
+            {
+                if (node == null || !node.gameObject.activeSelf) continue;
+                Vector2 center = ((RectTransform)node.transform).anchoredPosition;
+                min = Vector2.Min(min, center - new Vector2(95f, 103f));
+                max = Vector2.Max(max, center + new Vector2(95f, 75f));
+            }
+            if (float.IsPositiveInfinity(min.x)) treeScrollRect.CenterGraph();
+            else treeScrollRect.CenterGraph(Rect.MinMaxRect(min.x, min.y, max.x, max.y));
+        }
 
         private void PlayHover()
         {
@@ -213,6 +228,8 @@ namespace TINS.Campaign
 
         private string GetRequirementMessage(CampaignSkill skill)
         {
+            CampaignSkill conflictingSkill = profile.ConflictingSkill(skill);
+            if (conflictingSkill != null) return $"Incompatível com {conflictingSkill.displayName}.";
             if (skill.requiresFlash && !profile.HasFlash) return "Requer: Flash de Luz";
             if (profile.MeetsSkillRequirements(skill)) return string.Empty;
             List<string> missing = new List<string>();
@@ -230,9 +247,17 @@ namespace TINS.Campaign
 
             if (skill.id == CampaignProfile.FlashSkillId && rank == 0)
                 return "Próxima compra libera o Flash de Luz.";
-            float current = skill.effectPerRank * Mathf.Max(0, rank - Mathf.Max(1, skill.effectStartsAtRank) + 1);
+            if (skill.effectType == CampaignSkillEffectType.GunCritical)
+            {
+                string text = $"Chance atual: {skill.EffectAtRank(rank).x:0.#}%";
+                if (rank >= skill.maximumRank) return text + $"\n{skill.secondaryEffectPerRank * 100f:0.#}% dos críticos são supercríticos.";
+                return text + $"\nPróximo nível: {skill.EffectAtRank(rank + 1).x:0.#}% de crítico.";
+            }
+
+            Vector2 current = skill.EffectAtRank(rank);
             bool hasNextEffect = rank < skill.maximumRank && rank + 1 >= Mathf.Max(1, skill.effectStartsAtRank);
-            string currentText = FormatEffectValue(skill, current, skill.secondaryEffectPerRank * Mathf.Max(0, rank - Mathf.Max(1, skill.effectStartsAtRank) + 1));
+            string currentText = FormatEffectValue(skill, current.x, current.y);
+            if (string.IsNullOrEmpty(currentText)) return string.Empty;
             if (!hasNextEffect) return "Benefício atual: " + currentText;
             string nextText = FormatEffectValue(skill, skill.effectPerRank, skill.secondaryEffectPerRank);
             return "Benefício atual: " + currentText + "\nPróxima compra: " + nextText;
@@ -248,6 +273,10 @@ namespace TINS.Campaign
                 case CampaignSkillEffectType.FlashRecharge: return $"−{primary * 100f:0.#}% de recarga";
                 case CampaignSkillEffectType.MovementSpeed: return $"+{primary * 100f:0.#}% de velocidade";
                 case CampaignSkillEffectType.PlayerHealth: return $"+{primary:0.#} de vida";
+                case CampaignSkillEffectType.ExtraDash: return $"+{primary:0.#} carga de dash";
+                case CampaignSkillEffectType.CrystalMagnet: return $"+{primary:0.#} un. de alcance";
+                case CampaignSkillEffectType.GuardianBlades: return $"{primary:0.#} lâmina(s)";
+                case CampaignSkillEffectType.DoubleTap: return $"{primary * 100f:0.#}% de disparar outra bala";
                 default: return string.Empty;
             }
         }

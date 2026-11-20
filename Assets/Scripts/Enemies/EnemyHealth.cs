@@ -58,7 +58,11 @@ public class EnemyHealth : MonoBehaviour
     private bool hasGivenDeathPoints = false; 
     private bool campaignFlashStunned;
     private float campaignFlashStunTimer;
+    private float campaignRepulsionUntil;
+    public bool IsCampaignFlashRepelled => Time.time < campaignRepulsionUntil;
     private bool campaignHealthScaleApplied;
+    private bool campaignElite;
+    public void SetCampaignElite(bool value) => campaignElite = value;
     public bool IsCampaignFlashStunned => campaignFlashStunned && campaignFlashStunTimer > 0f;
 
     public virtual event Action OnHealthChange, OnZeroHealth, OnTakeDamage,OnInstaDieWithNoCorpse;
@@ -101,6 +105,7 @@ public class EnemyHealth : MonoBehaviour
     {
         campaignFlashStunned = false;
         campaignFlashStunTimer = 0f;
+        campaignRepulsionUntil = 0f;
         campaignHealthScaleApplied = false;
         IsProtectedUntilPlayerMelee = startsInvulnerableUntilPlayerMelee;
         IlluminationCount = 0;
@@ -493,6 +498,7 @@ public class EnemyHealth : MonoBehaviour
         invulnerableTimer = 0f;
         campaignFlashStunned = false;
         campaignFlashStunTimer = 0f;
+        campaignRepulsionUntil = 0f;
     }
 
     public void InitializeCampaignHealth()
@@ -531,6 +537,16 @@ public class EnemyHealth : MonoBehaviour
         campaignFlashStunTimer = Mathf.Max(campaignFlashStunTimer, duration);
     }
 
+    public void ApplyCampaignFlashRepulsion(Vector2 direction, float speed)
+    {
+        if (!CampaignCombatRules.IsCampaignMission || speed <= 0f || currentHealth <= 0f ||
+            !TryGetComponent(out Rigidbody2D body) || body.bodyType != RigidbodyType2D.Dynamic) return;
+        campaignRepulsionUntil = Time.time + .22f;
+        Vector2 impulse = direction.normalized * speed * body.mass;
+        if (TryGetComponent(out EnemyAI ai)) ai.ApplyExternalKnockback(impulse, .22f);
+        else body.AddForce(impulse, ForceMode2D.Impulse);
+    }
+
     public void SetContinuousDamage(float damagePerSecond, DamageType damageType)
     {
         if (IsProtectedUntilPlayerMelee) return;
@@ -545,7 +561,8 @@ public class EnemyHealth : MonoBehaviour
             if(enemyData.giveXp) pointManager?.AddXp(enemyData.xp);
             if(enemyData.giveBloodPoints) pointManager?.AddKillPoint(lastDamageType, lastDamageWasMelee);
             hasGivenDeathPoints = true;
-
+            if (campaignElite || enemyData.bossOrElite)
+                CampaignMissionRuntime.Active?.OnEliteDefeated();
         }
         // Create any world drop before EnemyDeath returns this object to its pool.
         if (CampaignCombatRules.IsCampaignMission)

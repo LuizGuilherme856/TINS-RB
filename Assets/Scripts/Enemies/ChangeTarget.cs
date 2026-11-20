@@ -15,13 +15,16 @@ public class ChangeTarget : MonoBehaviour
     private Transform playerTransform, currentTarget;
     
 
+    public Transform CurrentTarget => enemyAI != null ? enemyAI.GetCurrentTargetTransform() :
+        moveTowardsPlayer != null ? moveTowardsPlayer.CurrentTarget : currentTarget;
+
     private void Awake()
     {
         enemyAI = GetComponent<EnemyAI>();
         enemyMovementAnimation = GetComponent<EnemyMovementAnimation>();
         moveTowardsPlayer = GetComponent<MoveTowardsPlayer>();
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
 

@@ -2,6 +2,7 @@ using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TINS.Campaign;
 
 /// <summary>
 /// Trigger an explosion when the player owns the reload-explosion skill.
@@ -30,12 +31,16 @@ public class ExplosionOnReload : MonoBehaviour
 
     private void TriggerExplosion()
     {
-        if(globalStats.explosionOnReload)
-        {
-            ExplosiveData explosionData = GetExplosionData(globalStats.explosionOnReloadDamageType);
-            explosion.SetExplosiveData(explosionData);
-            explosion.TriggerExplosion();
-        }
+        CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+        if (mission != null && mission.IsResolved) return;
+
+        bool unlockedInCampaign = (mission?.SkillEffect(CampaignSkillEffectType.ExplosiveReload).x ?? 0f) > 0f;
+        if (!unlockedInCampaign && !globalStats.explosionOnReload) return;
+
+        ExplosiveData data = unlockedInCampaign ? defaultExplosion : GetExplosionData(globalStats.explosionOnReloadDamageType);
+        if (explosion == null || data == null) return;
+        explosion.SetExplosiveData(data);
+        explosion.TriggerExplosion();
     }
 
     private ExplosiveData GetExplosionData(DamageType damageType)

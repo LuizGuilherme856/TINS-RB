@@ -1,4 +1,5 @@
 using UnityEngine;
+using TINS.Campaign;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 
@@ -184,8 +185,12 @@ public sealed class BlueCrystalPickup : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!isCarried || carrier == null)
+        if (!isCarried)
+        {
+            AttractToCollector();
             return;
+        }
+        if (carrier == null) return;
 
         if (isAbsorbing)
         {
@@ -210,6 +215,22 @@ public sealed class BlueCrystalPickup : MonoBehaviour
         // motion. The fallback only covers an unexpected missing component.
         if (playerOrbit == null || !playerOrbit.Orbiting)
             ConfigurePlayerOrbit();
+    }
+
+    private void AttractToCollector()
+    {
+        CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+        BlueCrystalInventory target = mission?.CrystalCollector;
+        if (target == null || !target.isActiveAndEnabled) return;
+
+        float reachBonus = mission.SkillEffect(CampaignSkillEffectType.CrystalMagnet).x;
+        if (reachBonus <= 0f) return;
+        Vector2 offset = (Vector2)(target.transform.position - transform.position);
+        float attractionRadius = pickupRadius + reachBonus;
+        if (offset.sqrMagnitude > attractionRadius * attractionRadius) return;
+
+        if (offset.sqrMagnitude <= pickupRadius * pickupRadius) target.Collect(this, value);
+        else if (body != null) body.position = Vector2.MoveTowards(body.position, target.transform.position, 9f * Time.deltaTime);
     }
 
     private Vector3 InterpolateTowards(Vector3 current, Vector3 target, float deltaTime)

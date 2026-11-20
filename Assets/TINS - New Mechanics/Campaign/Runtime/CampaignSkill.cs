@@ -12,7 +12,19 @@ namespace TINS.Campaign
         FlashRecharge,
         MovementSpeed,
         PlayerHealth,
-        WeaponUnlock
+        WeaponUnlock,
+        LastShot,
+        ExplosiveReload,
+        FlashRepulsion,
+        BladeTurret,
+        GuardianBlades,
+        CrystalMagnet,
+        DoubleTap,
+        ScatterShot,
+        EliteFlashRecovery,
+        ExtraDash,
+        MonkeyDecoy,
+        GunCritical
     }
 
     [Serializable]
@@ -53,6 +65,10 @@ namespace TINS.Campaign
         public float effectPerRank;
         [Tooltip("Optional second value for effects with two parameters, such as cone degrees and range fraction.")]
         public float secondaryEffectPerRank;
+        [Tooltip("Optional prefab deployed by this upgrade during a campaign mission.")]
+        public GameObject effectPrefab;
+        [Tooltip("Orbital weapon configuration used by Guardian Blades.")]
+        public OrbitalUpgrade_ActiveEffect orbitalEffect;
         [Min(1)] public int effectStartsAtRank = 1;
 
         [Header("Progressive tree")]
@@ -63,7 +79,15 @@ namespace TINS.Campaign
         public CampaignSkillPrerequisite[] revealPrerequisites = Array.Empty<CampaignSkillPrerequisite>();
         [Tooltip("These skills must reach their minimum ranks before this node can be purchased.")]
         public CampaignSkillPrerequisite[] prerequisites = Array.Empty<CampaignSkillPrerequisite>();
+        [Tooltip("Buying any of these skills blocks this specialization until the tree is reset.")]
+        public CampaignSkill[] exclusiveWith = Array.Empty<CampaignSkill>();
         public Vector2 editorPosition;
+
+        public Vector2 EffectAtRank(int rank)
+        {
+            int activeRanks = Mathf.Max(0, Mathf.Min(rank, maximumRank) - Mathf.Max(1, effectStartsAtRank) + 1);
+            return new Vector2(effectPerRank * activeRanks, secondaryEffectPerRank * activeRanks);
+        }
 
         public int CostForRank(int currentRank)
         {

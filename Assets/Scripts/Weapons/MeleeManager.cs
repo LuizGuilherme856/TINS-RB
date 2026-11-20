@@ -1,4 +1,5 @@
 using UnityEngine;
+using TINS.Campaign;
 //using MoreMountains.Feedbacks;
 using System;
 using Random = UnityEngine.Random;
@@ -108,6 +109,14 @@ public class MeleeManager : MonoBehaviour
 
     }
 
+    public int MaxDashActions => statsCalculator.MaxDashActions;
+
+    public void RefillCampaignDash()
+    {
+        if (playerAction == PlayerAction.dash && meleeData != null)
+            UpdateTimerOnUpgrade();
+    }
+
     /// <summary>
     /// Recalculate timers when MaxAction or cooldown changes
     /// so stored charge time stays within the new limits. For example:
@@ -152,6 +161,7 @@ public class MeleeManager : MonoBehaviour
                 }
             }
 
+            Vector3 dashOrigin = playerInput.transform.position;
             if (meleeData.instantiateGameObjectOnAttack)
             {
                 if (playerAction == PlayerAction.dash) // For dashes, calculate direction from player input.
@@ -164,7 +174,9 @@ public class MeleeManager : MonoBehaviour
                 }
 
             }
-            currentAttackRateTimer -= (statsCalculator.CalculatePerActionCoolDown(meleeData.attackRate, playerAction));
+            currentAttackRateTimer -= statsCalculator.CalculatePerActionCoolDown(meleeData.attackRate, playerAction);
+            if (playerAction == PlayerAction.dash)
+                CampaignMissionRuntime.Active?.DeployDashDecoy(dashOrigin);
         }
         else
         {

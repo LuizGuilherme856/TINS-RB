@@ -52,7 +52,7 @@ public class MoveTowardsPlayer : MonoBehaviour
     {
         if (CampaignCombatRules.IsCampaignMission && enemyHealth != null && enemyHealth.IsCampaignFlashStunned)
         {
-            if (rb2d != null) rb2d.linearVelocity = Vector2.zero;
+            if (rb2d != null && !enemyHealth.IsCampaignFlashRepelled) rb2d.linearVelocity = Vector2.zero;
             return;
         }
         if (target == null || rb2d == null || enemyData == null) return;
@@ -103,6 +103,8 @@ public class MoveTowardsPlayer : MonoBehaviour
         }
 
     }
+
+    public Transform CurrentTarget => target;
 
     public void SetTarget(Transform target)
     {

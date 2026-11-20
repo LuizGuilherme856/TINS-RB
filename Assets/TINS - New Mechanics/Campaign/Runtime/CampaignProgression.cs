@@ -248,8 +248,16 @@ namespace TINS.Campaign
         }
 
         public bool MeetsSkillRequirements(CampaignSkill skill) => skill != null &&
-            (!skill.requiresFlash || HasFlash) &&
+            (!skill.requiresFlash || HasFlash) && ConflictingSkill(skill) == null &&
             MeetsSkillPrerequisites(skill.prerequisites, skill.requireAllPrerequisites);
+
+        public CampaignSkill ConflictingSkill(CampaignSkill skill)
+        {
+            if (skill == null || skill.exclusiveWith == null) return null;
+            foreach (CampaignSkill other in skill.exclusiveWith)
+                if (other != null && Rank(other.id) > 0) return other;
+            return null;
+        }
 
         private bool MeetsSkillPrerequisites(CampaignSkillPrerequisite[] requirements, bool requireAll)
         {

@@ -1,3 +1,4 @@
+using TINS.Campaign;
 using System;
 using UnityEngine;
 
@@ -133,6 +134,9 @@ public class StatsCalculator : ScriptableObject
     }
     #endregion
 
+    public int MaxDashActions => globalStats.maxDashActionQuantity + Mathf.RoundToInt(
+        CampaignMissionRuntime.Active?.SkillEffect(CampaignSkillEffectType.ExtraDash).x ?? 0f);
+
     #region ActionRelated
 
     public float CalculateMaxTimeCoolDown(float baseAttackRate, PlayerAction playerAction)
@@ -144,7 +148,7 @@ public class StatsCalculator : ScriptableObject
             case PlayerAction.special:
                 return Aux.MinValueToReturn(baseAttackRate * globalStats.maxSpecialActionQuantity * globalStats.SpecialAbilityCooldownMultiplier, minSpecialAbilityCooldown);
             case PlayerAction.dash:
-                return Aux.MinValueToReturn(baseAttackRate * globalStats.maxDashActionQuantity * globalStats.DashAbilityCooldownMultiplier, minDashCooldown);
+                return Aux.MinValueToReturn(baseAttackRate * MaxDashActions * globalStats.DashAbilityCooldownMultiplier, minDashCooldown);
 
             default:
                 Debug.LogError("No momento do calculo do Tempo Maximo De uma a��o,uma a��o n�o registrada foi pedida");
@@ -198,13 +202,13 @@ public class StatsCalculator : ScriptableObject
                 }
                 break;
             case PlayerAction.dash:
-                if (globalStats.maxDashActionQuantity > maxActionCap)
+                if (MaxDashActions > maxActionCap)
                 {
                     totalAttackRate = baseAttackRate * maxActionCap * globalStats.DashAbilityCooldownMultiplier;
                 }
                 else
                 {
-                    totalAttackRate = baseAttackRate * globalStats.maxDashActionQuantity * globalStats.DashAbilityCooldownMultiplier;
+                    totalAttackRate = baseAttackRate * MaxDashActions * globalStats.DashAbilityCooldownMultiplier;
                 }
                 break;
             default:
@@ -245,7 +249,9 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateNewGunCriticalChance(float chance)
     {
-        return chance * globalStats.GunCriticalChance_Multiplier;
+        CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
+        return mission != null ? Mathf.Clamp(mission.SkillEffect(CampaignSkillEffectType.GunCritical).x, 0f, 100f) :
+            chance * globalStats.GunCriticalChance_Multiplier;
     }
 
     public float CalculateNewGunCriticalMultiplier(float criticalMultiplier)

@@ -1,3 +1,4 @@
+using TINS.Campaign;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -177,7 +178,7 @@ public class GunManager : MonoBehaviour
                 else
                 {
                     if (infiniteReserveAmmo)
-                        gunData.SetAmmoOnClip(Mathf.Max(0, gunData.currentAmmoOnClip - Mathf.Max(1, gunData.GetAmmoConsumedPerShot())));
+                        gunData.SetAmmoOnClip(Mathf.Max(0, gunData.currentAmmoOnClip - CampaignCombatRules.RoundsPerShot(gunData)));
                     else
                         gunData.DecreaseAmmoOnClip();
                 }

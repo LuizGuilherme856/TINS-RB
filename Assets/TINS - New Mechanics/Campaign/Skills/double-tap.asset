@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: double-tap
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: double-tap
+  displayName: "Disparo Duplo"
+  description: "Cada disparo tem 18% de chance por nível de lançar uma bala extra sem gastar outro cartucho."
+  icon: {fileID: -1571886300, guid: 1d2158c54df9b8a4ca43bf0e49b48de3, type: 3}
+  maximumRank: 2
+  soulCost: 55
+  unlockCost: 0
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: ""
+  requiredResourceAmount: 0
+  resourceStartsAtRank: 1
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  effectType: 14
+  effectPerRank: 0.18
+  secondaryEffectPerRank: 0
+  effectPrefab: {fileID: 0}
+  orbitalEffect: {fileID: 0}
+  effectStartsAtRank: 1
+  visibleAtStart: 0
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites:
+  - skill: {fileID: 11400000, guid: e7456d8d37d4530da428c189f61dc3e6, type: 2}
+    minimumRank: 1
+  revealPrerequisites: []
+  exclusiveWith:
+  - {fileID: 11400000, guid: 27000d4baf97562c8d33809aeb1b3799, type: 2}
+  editorPosition: {x: 65, y: -478}

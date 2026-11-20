@@ -32,13 +32,15 @@ namespace TINS.Campaign
             UpdatePanSpace();
         }
 
-        public void CenterGraph()
+        public void CenterGraph() => CenterGraph(graphBounds);
+
+        public void CenterGraph(Rect visibleBounds)
         {
             Canvas.ForceUpdateCanvases();
-            float zoom = Mathf.Clamp(Mathf.Min(1f, viewport.rect.width / graphBounds.width,
-                viewport.rect.height / graphBounds.height), minimumZoom, maximumZoom);
+            float zoom = Mathf.Clamp(Mathf.Min(1f, viewport.rect.width / visibleBounds.width,
+                viewport.rect.height / visibleBounds.height), minimumZoom, maximumZoom);
             content.localScale = new Vector3(zoom, zoom, 1f);
-            content.anchoredPosition = -graphBounds.center * zoom;
+            content.anchoredPosition = -visibleBounds.center * zoom;
             StopMovement();
             UpdatePanSpace();
         }

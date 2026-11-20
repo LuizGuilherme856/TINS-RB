@@ -1,70 +1,62 @@
-using MoreMountains.Feedbacks;
-using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
+using TINS.Campaign;
 using UnityEngine;
 
 public class EnemyBait : MonoBehaviour
 {
-
     [SerializeField] private float duration = 10f;
     [SerializeField] private MMF_Player spawnFeedbacks, destroyFeedbacks;
-    private CircleCollider2D myCollider;
+    private CircleCollider2D attraction;
+    private readonly Dictionary<ChangeTarget, Transform> previousTargets = new();
 
-    private List<ChangeTarget> enemiesInRange = new List<ChangeTarget>();
+    private void Awake() => attraction = GetComponent<CircleCollider2D>();
 
-    private void Awake()
-    {
-        myCollider= GetComponent<CircleCollider2D>();
-    }
     private void OnEnable()
     {
-        spawnFeedbacks.PlayFeedbacks();
-        Invoke(nameof(DestroyBait), duration);
+        if (attraction != null) attraction.enabled = true;
+        spawnFeedbacks?.PlayFeedbacks();
+        Invoke(nameof(Expire), duration);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-        {
+        EnemyHealth health = collision.GetComponentInParent<EnemyHealth>();
+        if (health == null || health.currentHealth <= 0f) return;
+        ChangeTarget enemy = health.GetComponent<ChangeTarget>();
+        if (enemy == null) return;
 
-            try
-            {
-                var changeTarget = collision.gameObject.GetComponent<ChangeTarget>();
-               // if (changeTarget.IsTargetingPlayer()) 
-               // {
-                    changeTarget.SetNewTarget(transform);
-                    enemiesInRange.Add(collision.gameObject.GetComponent<ChangeTarget>());
-
-               // }
-            }
-            catch (System.Exception)
-            {
-                Debug.Log("Nao tem change target no inimigo");
-                //throw;
-            }
-
-        }
+        Transform previous = enemy.CurrentTarget;
+        if (previous != null && previous.TryGetComponent(out EnemyBait _)) return;
+        previousTargets[enemy] = previous;
+        enemy.SetNewTarget(transform);
     }
 
-    private void DestroyBait()
+    private void Expire()
     {
-        foreach (ChangeTarget enemy in enemiesInRange)
-        {
-            enemy.SetPlayerAsTarget();
-        }
-
-        destroyFeedbacks.PlayFeedbacks();
-        myCollider.enabled= false; //Deactivate this because the feedback only destroys the sprite.
-       
-        Invoke(nameof(DestroyNow), 6f);
-        
+        RestoreTargets();
+        if (attraction != null) attraction.enabled = false;
+        destroyFeedbacks?.PlayFeedbacks();
+        Destroy(gameObject, 6f);
     }
 
-    private void DestroyNow()
+    private void OnDisable()
     {
-        Destroy(gameObject);
+        CancelInvoke(nameof(Expire));
+        RestoreTargets();
     }
 
-
+    private void RestoreTargets()
+    {
+        foreach (var entry in previousTargets)
+        {
+            ChangeTarget enemy = entry.Key;
+            if (enemy == null || enemy.CurrentTarget != transform) continue;
+            Transform previous = entry.Value;
+            if (previous == null) previous = CampaignMissionRuntime.Active?.DefenseCore;
+            if (previous != null) enemy.SetNewTarget(previous);
+            else enemy.SetPlayerAsTarget();
+        }
+        previousTargets.Clear();
+    }
 }

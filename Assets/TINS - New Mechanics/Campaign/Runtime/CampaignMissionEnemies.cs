@@ -13,6 +13,8 @@ namespace TINS.Campaign
         public float weight = 1f;
         [Min(0f), Tooltip("Set to zero to make this enemy available from the start.")]
         public float minimumLightRadius;
+        [Tooltip("This enemy counts as an elite for campaign effects, even if its base enemy data is not marked as a boss.")]
+        public bool isElite;
     }
 
     [CreateAssetMenu(fileName = "Mission Enemies", menuName = "TINS/Campaign/Mission Enemies")]
