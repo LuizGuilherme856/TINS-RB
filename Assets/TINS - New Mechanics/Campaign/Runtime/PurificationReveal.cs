@@ -41,17 +41,21 @@ public sealed class PurificationReveal : MonoBehaviour
 
     public float EnemySpeedMultiplierInsideLight => 1f - Mathf.Clamp(enemySlowDownPercentage, 0f, 100f) / 100f;
 
-    private void OnEnable() => ApplyRadius();
+    private void OnEnable()
+    {
+        ApplyMaskToRoots();
+        ApplyRadius();
+    }
 
     private void OnValidate()
     {
         radius = Mathf.Max(0.01f, radius);
+        ApplyMaskToRoots();
         ApplyRadius();
     }
 
     private void ApplyRadius()
     {
-        ApplyMaskToRoots();
 
         if (corruptedFloor != null)
         {

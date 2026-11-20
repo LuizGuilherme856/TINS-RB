@@ -64,6 +64,7 @@ public static class CampaignProjectInstaller
         SetupBase(baseScene, catalog);
         if (!EditorSceneManager.SaveScene(baseScene))
             throw new System.InvalidOperationException("Unity could not save CampaignBase.");
+        if (catalog.skills.Any(skill => skill != null)) CampaignSkillTreeSceneSetup.Build();
         ConfigureBuildScenes();
 
         EditorSceneManager.OpenScene(BasePath, OpenSceneMode.Single);
@@ -343,8 +344,8 @@ public static class CampaignProjectInstaller
             skillLabels = new TMP_Text[catalog.skills.Length];
             for (int i = 0; i < skillButtons.Length; i++)
             {
-                Button button = CreateButton(skillPanel.transform, "Skill " + catalog.skills[i].id, new Vector2(720f, 64f));
-                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 220f - i * 68f);
+                Button button = CreateButton(skillPanel.transform, "Skill " + catalog.skills[i].id, new Vector2(720f, 58f));
+                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 220f - i * 62f);
                 skillButtons[i] = button;
                 skillLabels[i] = button.GetComponentInChildren<TMP_Text>();
                 skillLabels[i].alignment = TextAlignmentOptions.Left;
@@ -378,9 +379,6 @@ public static class CampaignProjectInstaller
         planetButtons = catalog.planets.Select(planet =>
             planetMap.Find("Planet " + planet.id).GetComponent<Button>()).ToArray();
         planetLabels = GetButtonLabels(planetButtons);
-        skillButtons = catalog.skills.Select(skill =>
-            skillPanel.transform.Find("Skill " + skill.id).GetComponent<Button>()).ToArray();
-        skillLabels = GetButtonLabels(skillButtons);
         planetPurificationMasks = EnsurePlanetMapLayers(planetMap, catalog);
 
         var originalTree = FindFirst<ShowSkillTreeManager>(scene);

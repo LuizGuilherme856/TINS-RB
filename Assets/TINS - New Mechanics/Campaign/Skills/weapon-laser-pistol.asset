@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: weapon-laser-pistol
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: weapon-laser-pistol
+  displayName: Pistola Astral
+  description: Desbloqueia uma nova arma para futuras missões.
+  icon: {fileID: 1393950330, guid: 9605c09272d0f6343b7f9cd60331c4c0, type: 3}
+  maximumRank: 1
+  soulCost: 180
+  unlockCost: 0
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: ether
+  requiredResourceAmount: 4
+  resourceStartsAtRank: 1
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  unlockedWeaponResourcePath: CampaignGuns/laser pistol_GunData
+  effectType: 7
+  effectPerRank: 0
+  secondaryEffectPerRank: 0
+  effectStartsAtRank: 1
+  visibleAtStart: 0
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites:
+  - skill: {fileID: 11400000, guid: 0cb72b933761460395d2a6b0071057ea, type: 2}
+    minimumRank: 1
+  revealPrerequisites:
+  - skill: {fileID: 11400000, guid: 0cb72b933761460395d2a6b0071057ea, type: 2}
+    minimumRank: 1
+  editorPosition: {x: 234, y: -93}

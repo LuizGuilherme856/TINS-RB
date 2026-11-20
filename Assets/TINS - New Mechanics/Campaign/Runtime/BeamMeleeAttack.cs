@@ -13,26 +13,32 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     [SerializeField] private GameObject beamPrefab;
     [SerializeField, Min(0.05f)] private float duration = 0.5f;
     [SerializeField, Min(0.1f)] private float stunDuration = 1.5f;
-    [SerializeField, Min(0.1f)] private float maximumLength = 30f;
     [SerializeField] private BeamMeleeUsesManager usesManager;
     [SerializeField] private GameObject coneLightPrefab;
 
     [Header("Cone Light")]
+    [SerializeField, Range(5f, 180f), Tooltip("Abertura total do cone, em graus, antes das melhorias.")]
+    private float baseConeAngle = 36f;
+    [SerializeField, Min(0.1f), Tooltip("Distância do flash, em unidades de mundo, antes das melhorias.")]
+    private float baseConeRange = 7f;
+    [SerializeField, Min(0f)] private float anglePerAreaRank = 8f;
+    [SerializeField, Min(0f)] private float rangeFractionPerAreaRank = 0.12f;
     [SerializeField] private bool enableConeLight = true;
     [SerializeField, Range(3, 64)] private int hitboxArcSegments = 24;
 
     private readonly List<ActiveBeam> activeBeams = new List<ActiveBeam>();
     private float campaignDurationMultiplier = 1f;
+    private int areaRank;
+    private float campaignAngleBonus;
+    private float campaignRangeFractionBonus;
 
     private sealed class ActiveBeam
     {
         public Transform transform;
-        public PolygonCollider2D hitbox;
         public Light2D coneLight;
         public float coneRange;
         public float coneAngle;
         public float startTime;
-        public float activeRange;
     }
 
     private void Awake()
@@ -86,8 +92,10 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         PolygonCollider2D hitbox = beam.AddComponent<PolygonCollider2D>();
         hitbox.isTrigger = true;
         Light2D coneLight = null;
-        float prefabConeRange = 0f;
-        float prefabConeAngle = 0f;
+        float rangeFraction = campaignRangeFractionBonus + rangeFractionPerAreaRank * areaRank;
+        float angleBonus = campaignAngleBonus + anglePerAreaRank * areaRank;
+        float range = Mathf.Max(0.1f, baseConeRange * (1f + rangeFraction));
+        float angle = Mathf.Clamp(baseConeAngle + angleBonus, 5f, 180f);
         if (enableConeLight)
         {
             GameObject coneObject = Instantiate(coneLightPrefab);
@@ -100,16 +108,20 @@ public sealed class BeamMeleeAttack : MonoBehaviour
                 return false;
             }
 
-            prefabConeRange = coneLight.pointLightOuterRadius;
-            prefabConeAngle = coneLight.pointLightOuterAngle;
+            float innerRadiusRatio = coneLight.pointLightInnerRadius / Mathf.Max(0.1f, coneLight.pointLightOuterRadius);
+            float innerAngleRatio = coneLight.pointLightInnerAngle / Mathf.Max(5f, coneLight.pointLightOuterAngle);
+            coneLight.pointLightOuterRadius = range;
+            coneLight.pointLightInnerRadius = range * Mathf.Clamp01(innerRadiusRatio);
+            coneLight.pointLightOuterAngle = angle;
+            coneLight.pointLightInnerAngle = angle * Mathf.Clamp01(innerAngleRatio);
         }
+        SetConeHitbox(hitbox, range, angle);
         activeBeams.Add(new ActiveBeam
         {
             transform = beam.transform,
-            hitbox = hitbox,
             coneLight = coneLight,
-            coneRange = prefabConeRange,
-            coneAngle = prefabConeAngle,
+            coneRange = range,
+            coneAngle = angle,
             startTime = Time.time
         });
 
@@ -120,6 +132,20 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     public void SetCampaignDurationMultiplier(float multiplier)
     {
         campaignDurationMultiplier = Mathf.Max(0.1f, multiplier);
+    }
+
+    public void SetCampaignArea(float angleBonus, float rangeFractionBonus)
+    {
+        areaRank = 0;
+        campaignAngleBonus = Mathf.Max(0f, angleBonus);
+        campaignRangeFractionBonus = Mathf.Max(0f, rangeFractionBonus);
+    }
+
+    public void SetCampaignAreaRank(int rank)
+    {
+        areaRank = Mathf.Max(0, rank);
+        campaignAngleBonus = 0f;
+        campaignRangeFractionBonus = 0f;
     }
 
     private void Update()
@@ -144,13 +170,11 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     {
         Vector3 origin = beamOrigin.position;
         Vector2 direction;
-        float length;
 
         if (playerInput != null && playerInput.isUsingController)
         {
             float angle = playerInput.GetAimAngle() * Mathf.Deg2Rad;
             direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            length = maximumLength;
         }
         else if (Camera.main != null)
         {
@@ -159,29 +183,22 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             Vector3 mouseWorld = camera.ScreenToWorldPoint(
                 new Vector3(Input.mousePosition.x, Input.mousePosition.y, depth));
             Vector2 toMouse = (Vector2)(mouseWorld - origin);
-            length = maximumLength;
             direction = toMouse.sqrMagnitude > 0.000001f ? toMouse.normalized : Vector2.right;
         }
         else
         {
             float angle = playerInput != null ? playerInput.GetAimAngle() * Mathf.Deg2Rad : 0f;
             direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            length = maximumLength;
         }
 
-        length = Mathf.Clamp(length, 0.05f, maximumLength);
         float angleDegrees = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         beam.transform.SetPositionAndRotation(
             origin,
             Quaternion.Euler(0f, 0f, angleDegrees));
         beam.transform.localScale = Vector3.one;
 
-        float hitRange = beam.coneLight != null ? Mathf.Min(beam.coneRange, length) : length;
-        float hitAngle = beam.coneLight != null ? beam.coneAngle : 50f;
-        beam.activeRange = hitRange;
-        SetConeHitbox(beam.hitbox, hitRange, hitAngle);
         if (CampaignCombatRules.IsCampaignMission)
-            StunEnemiesInCone(origin, direction, hitRange, hitAngle);
+            StunEnemiesInCone(origin, direction, beam.coneRange, beam.coneAngle);
 
         if (beam.coneLight != null)
         {
@@ -200,8 +217,8 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             if (beam.transform == null || Time.time - beam.startTime >= duration * campaignDurationMultiplier) continue;
             origin = beam.transform.position;
             direction = beam.transform.right;
-            range = beam.activeRange;
-            halfAngle = (beam.coneLight != null ? beam.coneAngle : 50f) * 0.5f;
+            range = beam.coneRange;
+            halfAngle = beam.coneAngle * 0.5f;
             return true;
         }
         origin = Vector3.zero;
@@ -246,6 +263,23 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         }
         hitbox.pathCount = 1;
         hitbox.SetPath(0, points);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Transform source = beamOrigin != null ? beamOrigin : transform;
+        Vector3 origin = source.position;
+        float halfAngle = baseConeAngle * 0.5f;
+        Vector3 previous = origin;
+        Gizmos.color = new Color(0.25f, 0.9f, 1f, 0.85f);
+        for (int i = 0; i <= 24; i++)
+        {
+            float angle = Mathf.Lerp(-halfAngle, halfAngle, i / 24f);
+            Vector3 point = origin + Quaternion.AngleAxis(angle, Vector3.forward) * source.right * baseConeRange;
+            Gizmos.DrawLine(previous, point);
+            previous = point;
+        }
+        Gizmos.DrawLine(previous, origin);
     }
 
     private void OnDisable()

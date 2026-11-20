@@ -58,7 +58,11 @@ public class EnemyDeath : MonoBehaviour
     {
         if (!corpseFromPool || corpsePoolManager == null || TINS.Campaign.CampaignCombatRules.IsCampaignMission)
         {
-            if (enemyCorpseImpact != null) Instantiate(enemyCorpseImpact, transform.position, transform.rotation);
+            if (enemyCorpseImpact != null)
+            {
+                GameObject corpse = Instantiate(enemyCorpseImpact, transform.position, transform.rotation);
+                TINS.Campaign.CampaignMissionRuntime.Active?.TrackCorpse(corpse);
+            }
             return;
         }
 

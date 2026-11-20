@@ -30,6 +30,7 @@ namespace TINS.Campaign
         [SerializeField] private RectTransform planetMap;
         [SerializeField] private Button[] skillButtons;
         [SerializeField] private TMP_Text[] skillLabels;
+        [SerializeField] private CampaignSkillTreeView campaignSkillTree;
         [SerializeField] private Button resetSkillsButton;
         [SerializeField] private Button closeButtonsMission;
         [SerializeField] private Button closeButtonsSkill;
@@ -81,9 +82,12 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
+            if (profile.EnsurePurchaseLedger(catalog.skills)) profile.Save();
             if (planetNavigation == null) EnsureMapLayers();
             if (playerInput == null) playerInput = FindFirstObjectByType<PlayerInputHandler>();
             if (playerMovement == null && playerInput != null) playerMovement = playerInput.GetComponent<PlayerMovement>();
+            if (campaignSkillTree == null && skillPanel != null)
+                campaignSkillTree = skillPanel.GetComponent<CampaignSkillTreeView>();
             stations = FindObjectsByType<BaseStationInteractable>(FindObjectsSortMode.None);
             if (playerInput != null) playerInput.OnInteract += InteractWithNearestStation;
             if (missionPanel != null) missionPanel.SetActive(false);
@@ -96,17 +100,18 @@ namespace TINS.Campaign
             if (closeButtonsMission != null) closeButtonsMission.onClick.AddListener(ClosePanels);
             if (closeButtonsSkill != null) closeButtonsSkill.onClick.AddListener(ClosePanels);
             ConfigureCampaignSkills();
-            if (resetSkillsButton != null) resetSkillsButton.onClick.AddListener(ResetSkills);
+            if (resetSkillsButton != null && campaignSkillTree == null) resetSkillsButton.onClick.AddListener(ResetSkills);
             for (int i = 0; planetNavigation == null && i < planetButtons.Length; i++)
             {
                 int index = i;
                 planetButtons[i].onClick.AddListener(() => LaunchMission(index));
             }
-            for (int i = 0; i < skillButtons.Length; i++)
-            {
-                int index = i;
-                skillButtons[i].onClick.AddListener(() => BuySkill(index));
-            }
+            if (campaignSkillTree == null)
+                for (int i = 0; i < skillButtons.Length; i++)
+                {
+                    int index = i;
+                    skillButtons[i].onClick.AddListener(() => BuySkill(index));
+                }
             Refresh();
         }
 
@@ -114,10 +119,10 @@ namespace TINS.Campaign
         {
             if (skillPanel == null) return;
             if (originalSkillTreeButton != null) originalSkillTreeButton.gameObject.SetActive(false);
-            SetButtonLabel(resetSkillsButton, "Reiniciar melhorias do TINS");
+            if (campaignSkillTree == null) SetButtonLabel(resetSkillsButton, "Reiniciar melhorias do TINS");
 
             Transform title = skillPanel.transform.Find("Skill Panel Title");
-            if (title != null && title.TryGetComponent(out TMP_Text titleText))
+            if (campaignSkillTree == null && title != null && title.TryGetComponent(out TMP_Text titleText))
             {
                 titleText.text = "MELHORIAS DO TINS";
                 campaignSkillsWallet = Instantiate(titleText, title.parent, false);
@@ -141,8 +146,8 @@ namespace TINS.Campaign
 
         private void FitSkillPanelToCanvas()
         {
-            var panel = (RectTransform)skillPanel.transform;
-            var parent = (RectTransform)panel.parent;
+            if (campaignSkillTree != null || skillPanel == null ||
+                !(skillPanel.transform is RectTransform panel) || !(panel.parent is RectTransform parent)) return;
             float width = (parent.rect.width - 32f) / panel.rect.width;
             float height = (parent.rect.height - 32f) / panel.rect.height;
             float scale = Mathf.Clamp(Mathf.Min(width, height), 0.1f, 1f);
@@ -276,8 +281,11 @@ namespace TINS.Campaign
             SetPlayerPaused(true);
             skillPanel.SetActive(true);
             FitSkillPanelToCanvas();
+            campaignSkillTree?.Bind(catalog, profile, TryBuyTreeSkill, ResetSkills);
             Refresh();
-            EventSystem.current?.SetSelectedGameObject(closeButtonsSkill != null ? closeButtonsSkill.gameObject : null);
+            EventSystem.current?.SetSelectedGameObject(campaignSkillTree != null
+                ? campaignSkillTree.InitialButton?.gameObject
+                : closeButtonsSkill != null ? closeButtonsSkill.gameObject : null);
         }
 
         public void ClosePanels()
@@ -308,8 +316,9 @@ namespace TINS.Campaign
 
         private void BuySkill(int index)
         {
-            if (catalog == null || profile == null || index < 0 || index >= catalog.skills.Length) return;
+            if (catalog == null || catalog.skills == null || profile == null || index < 0 || index >= catalog.skills.Length) return;
             CampaignSkill skill = catalog.skills[index];
+            if (skill == null) return;
             if (!profile.TryBuy(skill))
             {
                 statusMessage = $"Não foi possível comprar {skill.displayName}. Confira o custo exibido.";
@@ -321,10 +330,21 @@ namespace TINS.Campaign
             Refresh();
         }
 
+        private bool TryBuyTreeSkill(CampaignSkill skill)
+        {
+            if (catalog == null || catalog.skills == null || profile == null || skill == null || Array.IndexOf(catalog.skills, skill) < 0) return false;
+            if (campaignSkillTree == null || !campaignSkillTree.CanPurchase(skill)) return false;
+            if (!profile.TryBuy(skill)) return false;
+            profile.Save();
+            statusMessage = $"{skill.displayName} melhorado.";
+            Refresh();
+            return true;
+        }
+
         private void ResetSkills()
         {
             if (profile == null) return;
-            profile.ResetCampaignSkills(catalog.skills);
+            profile.ResetCampaignSkills(catalog != null ? catalog.skills : null);
             profile.Save();
             statusMessage = "Melhorias reiniciadas; recursos devolvidos.";
             Refresh();
@@ -355,7 +375,7 @@ namespace TINS.Campaign
             if (campaignSkillsWallet != null) campaignSkillsWallet.text = $"{souls}   ·   {resources}";
             if (campaignSkillsFeedback != null) campaignSkillsFeedback.text = statusMessage;
 
-            for (int i = 0; planetNavigation == null && i < planetButtons.Length && i < catalog.planets.Length; i++)
+            for (int i = 0; planetNavigation == null && i < planetButtons.Length && catalog.planets != null && i < catalog.planets.Length; i++)
             {
                 CampaignPlanet planet = catalog.planets[i];
                 bool unlocked = profile.IsUnlocked(catalog, i);
@@ -383,9 +403,11 @@ namespace TINS.Campaign
             }
 
             bool hasCampaignSkill = false;
-            for (int i = 0; i < skillButtons.Length && i < catalog.skills.Length; i++)
+            for (int i = 0; i < skillButtons.Length && catalog.skills != null && i < catalog.skills.Length; i++)
             {
+                if (campaignSkillTree != null) break;
                 CampaignSkill skill = catalog.skills[i];
+                if (skill == null) continue;
                 int rank = profile.Rank(skill.id);
                 hasCampaignSkill |= rank > 0;
                 bool maxed = rank >= skill.maximumRank;
@@ -399,7 +421,8 @@ namespace TINS.Campaign
                 skillButtons[i].interactable = canBuy;
             }
 
-            if (resetSkillsButton != null) resetSkillsButton.interactable = hasCampaignSkill;
+            if (resetSkillsButton != null && campaignSkillTree == null) resetSkillsButton.interactable = hasCampaignSkill;
+            campaignSkillTree?.Refresh();
         }
 
         private string FormatResources()

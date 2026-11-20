@@ -12,10 +12,11 @@ public sealed class EnsureStartingPistol : MonoBehaviour
         if (gunInventory == null) gunInventory = GetComponent<GunInventory>();
         if (gunInventory == null || startingPistol == null) return;
         gunInventory.ResetGuns(startingPistol);
-        if (catalog != null && profile != null)
+        if (catalog != null && catalog.skills != null && profile != null)
         {
             foreach (CampaignSkill skill in catalog.skills)
             {
+                if (skill == null) continue;
                 if (string.IsNullOrWhiteSpace(skill.unlockedWeaponResourcePath) || profile.Rank(skill.id) <= 0) continue;
                 GunData weapon = Resources.Load<GunData>(skill.unlockedWeaponResourcePath);
                 if (weapon == null)

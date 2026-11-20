@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65e19dff4b52b46a911c9102a7a5c1, type: 3}
+  m_Name: flash-duration
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
+  id: flash-duration
+  displayName: Flash de Luz
+  description: Desbloqueia o Flash. Depois, +5% de duração e de atordoamento por nível.
+  icon: {fileID: -1246472217, guid: 9605c09272d0f6343b7f9cd60331c4c0, type: 3}
+  maximumRank: 9
+  soulCost: 10
+  unlockCost: 6
+  soulCostGrowth: 1.75
+  soulCostsByRank: []
+  requiresFlash: 0
+  requiredResourceId: sal-estelar
+  requiredResourceAmount: 4
+  resourceStartsAtRank: 7
+  resourceCostGrowth: 1.4
+  resourceCostsByRank: []
+  unlockedWeaponResourcePath: 
+  effectType: 1
+  effectPerRank: 0.05
+  secondaryEffectPerRank: 0
+  effectStartsAtRank: 2
+  visibleAtStart: 1
+  requireAllRevealPrerequisites: 1
+  requireAllPrerequisites: 1
+  prerequisites: []
+  revealPrerequisites: []
+  editorPosition: {x: -95, y: 36}

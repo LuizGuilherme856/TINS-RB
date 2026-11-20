@@ -26,6 +26,14 @@ namespace TINS.Campaign
         private static readonly int FlashRangeId = Shader.PropertyToID("_FlashRange");
         private static readonly int FlashCosAngleId = Shader.PropertyToID("_FlashCosAngle");
 
+        private static readonly int PurificationWaveId = Shader.PropertyToID("_PurificationWave");
+        private Vector4 purificationWave;
+
+        public void SetPurificationWave(float radius, float width, float strength)
+        {
+            purificationWave = new Vector4(radius, width, strength, 0f);
+        }
+
         private SpriteRenderer overlay;
         private MaterialPropertyBlock properties;
         private Sprite generatedSprite;
@@ -33,7 +41,17 @@ namespace TINS.Campaign
         private BeamMeleeAttack[] flashSources;
         private float nextFlashSearch;
 
-        public float BreuRadius => (lightReveal != null ? lightReveal.Radius : 0f) + penumbraWidth;
+        private CampaignPlanet configuredPlanet;
+        private float CurrentPenumbraWidth => configuredPlanet != null
+            ? configuredPlanet.PenumbraWidthAt(lightReveal != null ? lightReveal.Radius : configuredPlanet.initialLightRadius)
+            : Mathf.Max(0.1f, penumbraWidth);
+
+        public float BreuRadius => (lightReveal != null ? lightReveal.Radius : 0f) + CurrentPenumbraWidth;
+
+        public void ConfigurePlanet(CampaignPlanet planet)
+        {
+            configuredPlanet = planet;
+        }
 
         private void Awake()
         {
@@ -125,7 +143,7 @@ namespace TINS.Campaign
             if (overlay == null || darknessMaterial == null) return;
             Vector2 center = lightReveal != null ? (Vector2)lightReveal.transform.position : Vector2.zero;
             float radius = lightReveal != null ? lightReveal.Radius : 0f;
-            float width = Mathf.Max(0.1f, penumbraWidth);
+            float width = CurrentPenumbraWidth;
             darknessMaterial.SetVector(CenterId, center);
             darknessMaterial.SetFloat(LightRadiusId, radius);
             darknessMaterial.SetFloat(PenumbraWidthId, width);
@@ -150,6 +168,7 @@ namespace TINS.Campaign
             darknessMaterial.SetFloat(FlashCosAngleId, Mathf.Cos(halfAngle * Mathf.Deg2Rad));
             overlay.GetPropertyBlock(properties);
             properties.SetFloat("_PenumbraOpacity", Mathf.Clamp01(penumbraOpacity));
+            properties.SetVector(PurificationWaveId, purificationWave);
             overlay.SetPropertyBlock(properties);
         }
 

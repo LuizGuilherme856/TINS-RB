@@ -8,12 +8,20 @@ namespace TINS.Campaign
     [Serializable] public sealed class CampaignPlanetProgress { public string planetId; public int missionsCompleted; }
     [Serializable] public sealed class CampaignResourceAmount { public string resourceId; public int amount; }
     [Serializable] public sealed class CampaignSkillRank { public string skillId; public int rank; }
+    [Serializable] public sealed class CampaignSkillGrant { public string skillId; public int rank; }
+    [Serializable] public sealed class CampaignSkillPurchase
+    {
+        public string skillId;
+        public int soulsPaid;
+        public string resourceId;
+        public int resourcePaid;
+    }
 
     [Serializable]
     public sealed class CampaignProfile
     {
         public const string FlashSkillId = "flash-duration";
-        public int version = 2;
+        public int version = 3;
         public bool firstExpeditionSettled;
         public bool inheritedFlash;
         public bool HasFlash => Rank(FlashSkillId) > 0;
@@ -23,7 +31,20 @@ namespace TINS.Campaign
         public List<CampaignResourceAmount> resources = new List<CampaignResourceAmount>();
         public List<CampaignSkillRank> skillRanks = new List<CampaignSkillRank>();
         public List<CampaignResourceAmount> investedResources = new List<CampaignResourceAmount>();
+        public List<CampaignSkillGrant> freeSkillGrants = new List<CampaignSkillGrant>();
+        public List<CampaignSkillPurchase> skillPurchases = new List<CampaignSkillPurchase>();
         public int SoulsInvested => soulsInvested;
+        public int CampaignSkillsSoulsInvested
+        {
+            get
+            {
+                int total = 0;
+                if (skillPurchases != null)
+                    foreach (CampaignSkillPurchase purchase in skillPurchases)
+                        if (purchase != null) total += Mathf.Max(0, purchase.soulsPaid);
+                return total;
+            }
+        }
 
         private static string SavePath => Path.Combine(Application.persistentDataPath, "tins-campaign.json");
 
@@ -34,12 +55,14 @@ namespace TINS.Campaign
                 if (File.Exists(SavePath))
                 {
                     CampaignProfile loaded = JsonUtility.FromJson<CampaignProfile>(File.ReadAllText(SavePath));
-                    if (loaded != null && (loaded.version == 1 || loaded.version == 2))
+                    if (loaded != null && (loaded.version == 1 || loaded.version == 2 || loaded.version == 3))
                     {
                         loaded.planetProgress ??= new List<CampaignPlanetProgress>();
                         loaded.resources ??= new List<CampaignResourceAmount>();
                         loaded.skillRanks ??= new List<CampaignSkillRank>();
                         loaded.investedResources ??= new List<CampaignResourceAmount>();
+                        loaded.freeSkillGrants ??= new List<CampaignSkillGrant>();
+                        loaded.skillPurchases ??= new List<CampaignSkillPurchase>();
                         if (loaded.version == 1)
                         {
                             // Existing Flash upgrades imply that this profile already owns the ability.
@@ -49,8 +72,10 @@ namespace TINS.Campaign
                                 loaded.inheritedFlash = true;
                             }
                             loaded.firstExpeditionSettled = loaded.HasFlash || loaded.planetProgress.Exists(p => p != null && p.missionsCompleted > 0);
-                            loaded.version = 2;
                         }
+                        if (loaded.inheritedFlash && loaded.FreeSkillRank(FlashSkillId) == 0)
+                            loaded.freeSkillGrants.Add(new CampaignSkillGrant { skillId = FlashSkillId, rank = 1 });
+                        loaded.version = 3;
                         return loaded;
                     }
                 }
@@ -154,17 +179,98 @@ namespace TINS.Campaign
             item.rank--;
             return true;
         }
+
+        public int FreeSkillRank(string id)
+        {
+            if (freeSkillGrants == null) return 0;
+            CampaignSkillGrant grant = FindGrant(id, false);
+            return grant != null ? Mathf.Max(0, grant.rank) : 0;
+        }
+
+        public void GrantSkillRanks(string id, int amount)
+        {
+            if (string.IsNullOrWhiteSpace(id) || amount <= 0) return;
+            CampaignSkillGrant grant = FindGrant(id, true);
+            grant.rank += amount;
+            CampaignSkillRank skill = FindSkill(id, true);
+            skill.rank += amount;
+        }
+
+        /// <summary>Backfills a one-time purchase ledger for saves created before exact refunds were recorded.</summary>
+        public bool EnsurePurchaseLedger(IEnumerable<CampaignSkill> skills)
+        {
+            if (skills == null) return false;
+            skillPurchases ??= new List<CampaignSkillPurchase>();
+            freeSkillGrants ??= new List<CampaignSkillGrant>();
+            bool changed = false;
+            foreach (CampaignSkill skill in skills)
+            {
+                if (skill == null || string.IsNullOrWhiteSpace(skill.id)) continue;
+                int totalRank = Rank(skill.id);
+                int freeRanks = FreeSkillRank(skill.id);
+                int paidRanks = Mathf.Max(0, totalRank - freeRanks);
+                int recordedPurchases = 0;
+                foreach (CampaignSkillPurchase purchase in skillPurchases)
+                    if (purchase != null && string.Equals(purchase.skillId, skill.id, StringComparison.OrdinalIgnoreCase)) recordedPurchases++;
+
+                while (recordedPurchases < paidRanks)
+                {
+                    int currentRank = freeRanks + recordedPurchases;
+                    skillPurchases.Add(new CampaignSkillPurchase
+                    {
+                        skillId = skill.id,
+                        soulsPaid = skill.CostForRank(currentRank),
+                        resourceId = skill.requiredResourceId,
+                        resourcePaid = skill.ResourceCostForRank(currentRank)
+                    });
+                    recordedPurchases++;
+                    changed = true;
+                }
+            }
+            version = 3;
+            return changed;
+        }
+
         public int Rank(string id)
         {
             CampaignSkillRank item = FindSkill(id, false);
             return item != null ? item.rank : 0;
         }
 
+        public bool IsSkillVisible(CampaignSkill skill)
+        {
+            if (skill == null) return false;
+            if (skill.visibleAtStart || Rank(skill.id) > 0) return true;
+            if (skill.revealPrerequisites != null && skill.revealPrerequisites.Length > 0)
+                return MeetsSkillPrerequisites(skill.revealPrerequisites, skill.requireAllRevealPrerequisites);
+            return skill.prerequisites != null && skill.prerequisites.Length > 0 &&
+                MeetsSkillPrerequisites(skill.prerequisites, skill.requireAllPrerequisites);
+        }
+
+        public bool MeetsSkillRequirements(CampaignSkill skill) => skill != null &&
+            (!skill.requiresFlash || HasFlash) &&
+            MeetsSkillPrerequisites(skill.prerequisites, skill.requireAllPrerequisites);
+
+        private bool MeetsSkillPrerequisites(CampaignSkillPrerequisite[] requirements, bool requireAll)
+        {
+            if (requirements == null || requirements.Length == 0) return true;
+            bool anyMet = false;
+            foreach (CampaignSkillPrerequisite requirement in requirements)
+            {
+                bool met = requirement != null && requirement.skill != null &&
+                    Rank(requirement.skill.id) >= Mathf.Max(1, requirement.minimumRank);
+                if (requireAll && !met) return false;
+                anyMet |= met;
+            }
+            return anyMet;
+        }
+
         public bool CanBuy(CampaignSkill skill)
         {
-            if (skill == null || string.IsNullOrWhiteSpace(skill.id)) return false;
+            if (skill == null || string.IsNullOrWhiteSpace(skill.id) || !IsSkillVisible(skill) ||
+                !MeetsSkillRequirements(skill)) return false;
             int rank = Rank(skill.id);
-            return (!skill.requiresFlash || HasFlash) && rank < Mathf.Max(1, skill.maximumRank) && souls >= skill.CostForRank(rank) &&
+            return rank < Mathf.Max(1, skill.maximumRank) && souls >= skill.CostForRank(rank) &&
                 (string.IsNullOrWhiteSpace(skill.requiredResourceId) || Resource(skill.requiredResourceId) >= skill.ResourceCostForRank(rank));
         }
 
@@ -187,33 +293,46 @@ namespace TINS.Campaign
                 }
                 spent.amount += resourceCost;
             }
+            skillPurchases ??= new List<CampaignSkillPurchase>();
+            skillPurchases.Add(new CampaignSkillPurchase
+            {
+                skillId = skill.id,
+                soulsPaid = soulCost,
+                resourceId = skill.requiredResourceId,
+                resourcePaid = resourceCost
+            });
             FindSkill(skill.id, true).rank++;
             return true;
         }
 
         public void ResetCampaignSkills(IEnumerable<CampaignSkill> skills)
         {
-            foreach (CampaignSkill skill in skills)
+            EnsurePurchaseLedger(skills);
+            HashSet<string> resetIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (skillPurchases != null)
             {
-                CampaignSkillRank entry = FindSkill(skill.id, false);
-                if (entry == null || entry.rank <= 0) continue;
-
-                int firstPaidRank = skill.id == FlashSkillId && inheritedFlash ? 1 : 0;
-                for (int rank = firstPaidRank; rank < entry.rank; rank++)
+                foreach (CampaignSkillPurchase purchase in skillPurchases)
                 {
-                    int refund = Mathf.Min(soulsInvested, skill.CostForRank(rank));
-                    souls += refund;
-                    soulsInvested -= refund;
-
-                    CampaignResourceAmount invested = FindInList(investedResources, skill.requiredResourceId);
-                    if (invested == null) continue;
-                    int materialRefund = Mathf.Min(invested.amount, skill.ResourceCostForRank(rank));
-                    AddResource(invested.resourceId, materialRefund);
-                    invested.amount -= materialRefund;
+                    if (purchase == null) continue;
+                    if (!string.IsNullOrWhiteSpace(purchase.skillId)) resetIds.Add(purchase.skillId);
+                    souls += Mathf.Max(0, purchase.soulsPaid);
+                    soulsInvested = Mathf.Max(0, soulsInvested - Mathf.Max(0, purchase.soulsPaid));
+                    if (!string.IsNullOrWhiteSpace(purchase.resourceId) && purchase.resourcePaid > 0)
+                    {
+                        AddResource(purchase.resourceId, purchase.resourcePaid);
+                        CampaignResourceAmount invested = FindInList(investedResources, purchase.resourceId);
+                        if (invested != null) invested.amount = Mathf.Max(0, invested.amount - purchase.resourcePaid);
+                    }
                 }
+                skillPurchases.Clear();
+            }
 
-                if (skill.id == FlashSkillId) inheritedFlash = false;
-                skillRanks.Remove(entry);
+            foreach (string id in resetIds)
+            {
+                CampaignSkillRank rank = FindSkill(id, false);
+                if (rank == null) continue;
+                rank.rank = FreeSkillRank(id);
+                if (rank.rank <= 0) skillRanks.Remove(rank);
             }
         }
 
@@ -244,6 +363,17 @@ namespace TINS.Campaign
             if (!create) return null;
             CampaignSkillRank created = new CampaignSkillRank { skillId = id };
             skillRanks.Add(created);
+            return created;
+        }
+
+        private CampaignSkillGrant FindGrant(string id, bool create)
+        {
+            freeSkillGrants ??= new List<CampaignSkillGrant>();
+            foreach (CampaignSkillGrant item in freeSkillGrants)
+                if (item != null && string.Equals(item.skillId, id, StringComparison.OrdinalIgnoreCase)) return item;
+            if (!create) return null;
+            CampaignSkillGrant created = new CampaignSkillGrant { skillId = id };
+            freeSkillGrants.Add(created);
             return created;
         }
 

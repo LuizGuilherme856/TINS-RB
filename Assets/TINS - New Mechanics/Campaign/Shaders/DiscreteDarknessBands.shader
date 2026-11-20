@@ -8,6 +8,7 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
         _PenumbraWidth ("Penumbra Width", Float) = 2
         _PenumbraOpacity ("Penumbra Darkness", Range(0,1)) = 0.62
         _BandSize ("Pixel Step", Float) = 0.0625
+        _PurificationWave ("Purification Wave", Vector) = (0,0,0,0)
         _FlashEnabled ("Flash Active", Float) = 0
         _FlashOrigin ("Flash Origin", Vector) = (0,0,0,0)
         _FlashDirection ("Flash Direction", Vector) = (1,0,0,0)
@@ -36,6 +37,7 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
             float _PenumbraWidth;
             float _PenumbraOpacity;
             float _BandSize;
+            float4 _PurificationWave;
             float _FlashEnabled;
             float4 _FlashOrigin;
             float4 _FlashDirection;
@@ -73,6 +75,15 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
                     float insideCone = dot(normalize(toPixel), normalize(_FlashDirection.xy));
                     if (distanceFromFlash <= _FlashRange && insideCone >= _FlashCosAngle)
                         alpha = 0.0;
+                }
+
+                if (_PurificationWave.z > 0.0)
+                {
+                    float fromWave = abs(quantizedDistance - _PurificationWave.x);
+                    float ring = saturate(1.0 - fromWave / max(0.01, _PurificationWave.y));
+                    float glow = quantizedDistance <= _PurificationWave.x ? 0.22 : 0.0;
+                    if (ring > 0.0 || glow > 0.0)
+                        return fixed4(1.0, 0.83, 0.48, max(ring, glow) * _PurificationWave.z);
                 }
 
                 return fixed4(_Color.rgb, alpha * _Color.a);

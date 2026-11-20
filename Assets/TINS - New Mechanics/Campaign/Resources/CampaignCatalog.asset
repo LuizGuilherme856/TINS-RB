@@ -15,148 +15,117 @@ MonoBehaviour:
   planets:
   - id: velaria
     displayName: "Vel\xE1ria"
-    description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras expedi\xE7\xF5es partiram daqui."
+    description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras
+      expedi\xE7\xF5es partiram daqui."
     missionsToPurify: 5
-    missionTargetRadius: 11
+    initialLightRadius: 4
+    missionTargetRadius: 15.4
+    initialPenumbraRadius: 12.17
+    finalPenumbraRadius: 45.199997
     lightGrowthPerSoul: 0.5
     enemySpeedMultiplier: 1.65
-    victorySouls: 22
     enemySettings: {fileID: 11400000, guid: 4050b052283d33847a531eb916c11bdf, type: 2}
     rewardResourceId: ether
     rewardResourceName: "\xC9ter"
     rewardPerMission: 1
+    victorySouls: 22
     mapX: 0.26
     mapY: 0.65
   - id: nivora
     displayName: Nivora
-    description: "Sob as geleiras de Nivora crescem cristais que brilham mesmo longe da luz."
+    description: Sob as geleiras de Nivora crescem cristais que brilham mesmo longe
+      da luz.
     missionsToPurify: 5
+    initialLightRadius: 3.5
     missionTargetRadius: 13
+    initialPenumbraRadius: 6
+    finalPenumbraRadius: 15.5
     lightGrowthPerSoul: 0.45
     enemySpeedMultiplier: 1.68
-    victorySouls: 46
     enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
     rewardResourceId: cristal-frio
     rewardResourceName: Cristal Frio
     rewardPerMission: 2
+    victorySouls: 46
     mapX: 0.42
     mapY: 0.3
   - id: asterim
     displayName: Asterim
     description: "Antigos impactos espalharam Poeira Solar pelos c\xE2nions de Asterim."
     missionsToPurify: 5
+    initialLightRadius: 3.5
     missionTargetRadius: 15
+    initialPenumbraRadius: 6
+    finalPenumbraRadius: 17.5
     lightGrowthPerSoul: 0.38
     enemySpeedMultiplier: 1.7
-    victorySouls: 68
     enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
     rewardResourceId: poeira-solar
     rewardResourceName: Poeira Solar
     rewardPerMission: 2
+    victorySouls: 68
     mapX: 0.61
     mapY: 0.68
   - id: dorsalia
     displayName: "Dors\xE1lia"
-    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos se acumulam nas fendas."
+    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos
+      se acumulam nas fendas."
     missionsToPurify: 5
+    initialLightRadius: 3.5
     missionTargetRadius: 17
+    initialPenumbraRadius: 6
+    finalPenumbraRadius: 19.5
     lightGrowthPerSoul: 0.34
     enemySpeedMultiplier: 1.72
-    victorySouls: 92
     enemySettings: {fileID: 11400000, guid: 53aebfcc6da0a9545bc829f58fe7983d, type: 2}
     rewardResourceId: fragmento-umbral
     rewardResourceName: Fragmento Umbral
     rewardPerMission: 3
+    victorySouls: 92
     mapX: 0.72
     mapY: 0.43
   - id: varkora
     displayName: Varkora
-    description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de Varkora."
+    description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de
+      Varkora."
     missionsToPurify: 5
+    initialLightRadius: 3.5
     missionTargetRadius: 19
+    initialPenumbraRadius: 6
+    finalPenumbraRadius: 21.5
     lightGrowthPerSoul: 0.3
     enemySpeedMultiplier: 1.74
-    victorySouls: 122
     enemySettings: {fileID: 11400000, guid: 09ec12876c955ba448077a70db91c6b0, type: 2}
     rewardResourceId: nucleo-rubro
     rewardResourceName: "N\xFAcleo Rubro"
     rewardPerMission: 3
+    victorySouls: 122
     mapX: 0.83
     mapY: 0.69
   - id: marevia
     displayName: "Mar\xE9via"
-    description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Sal Estelar nas ilhas quando recuam."
+    description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Sal Estelar nas
+      ilhas quando recuam."
     missionsToPurify: 5
+    initialLightRadius: 3.5
     missionTargetRadius: 21
+    initialPenumbraRadius: 6
+    finalPenumbraRadius: 23.5
     lightGrowthPerSoul: 0.27
     enemySpeedMultiplier: 1.76
-    victorySouls: 156
     enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}
     rewardResourceId: sal-estelar
     rewardResourceName: Sal Estelar
     rewardPerMission: 4
+    victorySouls: 156
     mapX: 0.18
     mapY: 0.38
   skills:
-  - id: flash-duration
-    displayName: Flash de Luz
-    description: "Desbloqueia o Flash. Depois, +5% de duração e de atordoamento por nível."
-    unlockCost: 6
-    soulCost: 10
-    requiredResourceId: sal-estelar
-    requiredResourceAmount: 4
-    resourceStartsAtRank: 7
-    maximumRank: 9
-    unlockedWeaponResourcePath: 
-  - id: speed
-    displayName: Passos Livres
-    description: "+5% de velocidade de movimento por n\xEDvel."
-    soulCost: 15
-    requiredResourceId: fragmento-umbral
-    requiredResourceAmount: 3
-    resourceStartsAtRank: 4
-    maximumRank: 6
-    unlockedWeaponResourcePath: 
-  - id: flash-capacity
-    requiresFlash: 1
-    displayName: "C\xE9lula de Luz"
-    description: "+1 carga m\xE1xima do Flash por n\xEDvel."
-    soulCost: 20
-    requiredResourceId: nucleo-rubro
-    requiredResourceAmount: 3
-    resourceStartsAtRank: 5
-    maximumRank: 6
-    unlockedWeaponResourcePath: 
-  - id: flash-recharge
-    requiresFlash: 1
-    displayName: Foco Restaurado
-    description: "\u221210% no tempo de recarga do Flash por n\xEDvel."
-    soulCost: 25
-    requiredResourceId: ether
-    requiredResourceAmount: 1
-    maximumRank: 3
-    unlockedWeaponResourcePath: 
-  - id: solar-vigor
-    displayName: Vigor Solar
-    description: "+1 de vida inicial e m\xE1xima por n\xEDvel."
-    soulCost: 30
-    requiredResourceId: poeira-solar
-    requiredResourceAmount: 2
-    maximumRank: 3
-    unlockedWeaponResourcePath: 
-  - id: weapon-laser-pistol
-    displayName: Pistola Astral
-    description: "Desbloqueia uma nova arma para futuras miss\xF5es."
-    soulCost: 180
-    requiredResourceId: ether
-    requiredResourceAmount: 4
-    maximumRank: 1
-    unlockedWeaponResourcePath: CampaignGuns/laser pistol_GunData
-  - id: weapon-auto-pistol
-    displayName: Pistola de Rajada
-    description: "Desbloqueia uma arma autom\xE1tica para futuras miss\xF5es."
-    soulCost: 450
-    requiredResourceId: cristal-frio
-    requiredResourceAmount: 3
-    maximumRank: 1
-    unlockedWeaponResourcePath: CampaignGuns/automatic pistol_GunData
+  - {fileID: 11400000, guid: 0cb72b933761460395d2a6b0071057ea, type: 2}
+  - {fileID: 11400000, guid: f6d4a56801cd43589ac9af5ade3f666d, type: 2}
+  - {fileID: 11400000, guid: 8c522b9b302a4328af8fc802bbac0da5, type: 2}
+  - {fileID: 11400000, guid: 37e9bc2fba8143978f42b22d073aed9f, type: 2}
+  - {fileID: 11400000, guid: 926bc8c7a26045aca29e70c5a59c1b74, type: 2}
+  - {fileID: 11400000, guid: bb0d8907094c4f0eba83d5014a915545, type: 2}
+  - {fileID: 11400000, guid: 7a7b5440999747b3ab00d7beaf1cd41d, type: 2}
+  - {fileID: 11400000, guid: c1af6b475e3e4a45be724daec83ae9ac, type: 2}

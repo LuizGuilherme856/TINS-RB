@@ -15776,6 +15776,9 @@ MonoBehaviour:
   soulsPerDrop: 1
   flashHud: {fileID: 8942301541280510002}
   towerHealthHud: {fileID: 8942301541280520002}
+  purificationBurstSound: {fileID: 8300000, guid: 11369359834c3804cbd1abd18a010510, type: 3}
+  purificationBurstDuration: 0.9
+  corpseThrowDistance: 5
 --- !u!1 &1226181610
 GameObject:
   m_ObjectHideFlags: 0
@@ -16097,9 +16100,12 @@ MonoBehaviour:
   beamPrefab: {fileID: 3635314772694328555, guid: 48ac4f2f1e373b04d8dcdd704ea46a4b, type: 3}
   duration: 0.5
   stunDuration: 1.5
-  maximumLength: 30
   usesManager: {fileID: 1246629218}
   coneLightPrefab: {fileID: 5031538138105316384, guid: 06f34be4546e9e34182759c27d76faab, type: 3}
+  baseConeAngle: 36
+  baseConeRange: 7
+  anglePerAreaRank: 8
+  rangeFractionPerAreaRank: 0.12
   enableConeLight: 1
   hitboxArcSegments: 24
 --- !u!114 &1246629218
@@ -16115,7 +16121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeamMeleeUsesManager
   maxUses: 3
-  rechargeDurationPerCharge: 5
+  rechargeDuration: 5
   skillCheckTarget: 0.8
   skillCheckWidth: 0.296
   headAnimator: {fileID: 0}

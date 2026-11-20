@@ -349,6 +349,17 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
+    public void DefeatByPurification()
+    {
+        if (currentHealth <= 0f) return;
+        currentHealth = 0f;
+        lastDamageType = DamageType.Explosive;
+        Die();
+        OnZeroHealth?.Invoke();
+        OnHealthChange?.Invoke();
+        if (gameObject.activeSelf) gameObject.SetActive(false);
+    }
+
     #region Replenish Health related
 
     public void SetMaxHealth(float health)

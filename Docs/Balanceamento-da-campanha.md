@@ -78,3 +78,19 @@ Uma sequência automatizada usou controle virtual, movimento, mira, disparo, col
 | Marévia | Vitória | 64,3 s | 3/10 | 65 |
 
 A verificação de economia cobriu todos os níveis, materiais insuficientes, reembolso integral e migração de um perfil com melhorias de flash anteriores. Os tempos são de partidas individuais com mira automatizada. Uma rodada com jogadores iniciantes ainda é necessária para estimar a distribuição real de tempo até a derrota e a taxa de vitórias depois da primeira compra.
+
+
+## Raios de luz e penumbra por planeta
+
+Em `Assets/TINS - New Mechanics/Campaign/Resources/CampaignCatalog.asset`, expanda **Planets** e o planeta desejado. Todos os raios são medidos do centro da torre, em unidades de mundo:
+
+- **Initial Light Radius**: raio iluminado ao iniciar a missão.
+- **Final Light Radius**: raio iluminado necessário para vencer (campo interno `missionTargetRadius`, preservado para manter os valores existentes).
+- **Initial Penumbra Radius**: borda externa da penumbra no início, onde começa o breu e o jogador para.
+- **Final Penumbra Radius**: borda externa da penumbra ao atingir a meta de luz.
+
+A largura da penumbra varia entre os dois estados conforme a luz cresce. Exemplo: luz 3,5 → 11 e penumbra 6 → 13,5 mantém uma faixa de 2,5 unidades. Alterar o raio final da penumbra para 16 faz essa faixa crescer até 5 unidades. Desenho da escuridão e bloqueio do jogador usam a mesma configuração. O flash continua permitindo enxergar brevemente além do limite.
+
+Os valores iniciais do catálogo preservam os raios da cena: luz 3,5, borda da penumbra 6 e raio final da penumbra igual à meta da luz + 2,5. O Inspector corrige valores para a luz final ficar maior que a inicial, a borda da penumbra ficar fora da luz e seu raio final não diminuir. Edite fora do Play Mode para persistir as alterações e reinicie a missão para aplicar seus raios iniciais.
+
+A explosão de vitória continua iluminando toda a arena depois que a luz chega à meta; os raios finais configurados são os do encerramento da defesa, antes desse efeito.

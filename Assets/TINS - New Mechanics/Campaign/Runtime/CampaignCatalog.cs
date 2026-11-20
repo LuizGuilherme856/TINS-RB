@@ -10,7 +10,15 @@ namespace TINS.Campaign
         public string displayName;
         [TextArea] public string description;
         [Min(1)] public int missionsToPurify = 5;
-        [Min(1f)] public float missionTargetRadius = 12f;
+        [Header("Light and Penumbra (world units from the tower)")]
+        [Min(0.01f), Tooltip("Illuminated radius at the start of this planet's missions.")]
+        public float initialLightRadius = 3.5f;
+        [Min(1f), InspectorName("Final Light Radius"), Tooltip("Illuminated radius required to win the mission.")]
+        public float missionTargetRadius = 12f;
+        [Min(0.1f), Tooltip("Outer penumbra radius at mission start. The Breu and movement boundary begin here.")]
+        public float initialPenumbraRadius = 6f;
+        [Min(0.1f), Tooltip("Outer penumbra radius when the light reaches Final Light Radius. Interpolates during purification.")]
+        public float finalPenumbraRadius = 14.5f;
         [Min(0.01f)] public float lightGrowthPerSoul = 0.5f;
         [Min(0f)] public float enemySpeedMultiplier = 1f;
         public CampaignMissionEnemies enemySettings;
@@ -20,34 +28,20 @@ namespace TINS.Campaign
         [Min(0)] public int victorySouls;
         [Range(0f, 1f)] public float mapX = .5f;
         [Range(0f, 1f)] public float mapY = .5f;
-    }
 
-    [Serializable]
-    public sealed class CampaignSkill
-    {
-        public string id;
-        public string displayName;
-        [TextArea] public string description;
-        [Min(0)] public int soulCost = 10;
-        [Min(0)] public int unlockCost;
-        public bool requiresFlash;
-        public string requiredResourceId;
-        [Min(0)] public int requiredResourceAmount;
-        [Min(1), Tooltip("First purchased level that requires this material.")] public int resourceStartsAtRank = 1;
-        [Min(1)] public int maximumRank = 1;
-        public string unlockedWeaponResourcePath;
-
-        public int CostForRank(int currentRank)
+        public void ValidateRadii()
         {
-            if (unlockCost > 0 && currentRank == 0) return unlockCost;
-            int upgradeRank = currentRank - (unlockCost > 0 ? 1 : 0);
-            return Mathf.CeilToInt(Mathf.Max(0, soulCost) * Mathf.Pow(1.75f, Mathf.Max(0, upgradeRank)));
+            initialLightRadius = Mathf.Max(0.01f, initialLightRadius);
+            missionTargetRadius = Mathf.Max(1f, initialLightRadius + 0.1f, missionTargetRadius);
+            initialPenumbraRadius = Mathf.Max(initialLightRadius + 0.1f, initialPenumbraRadius);
+            finalPenumbraRadius = Mathf.Max(missionTargetRadius + 0.1f, initialPenumbraRadius, finalPenumbraRadius);
         }
-        public int ResourceCostForRank(int currentRank)
+
+        public float PenumbraWidthAt(float lightRadius)
         {
-            int paidMaterialRank = currentRank + 1 - Mathf.Max(1, resourceStartsAtRank);
-            return paidMaterialRank < 0 ? 0 :
-                Mathf.CeilToInt(Mathf.Max(0, requiredResourceAmount) * Mathf.Pow(1.4f, paidMaterialRank));
+            float progress = Mathf.InverseLerp(initialLightRadius, missionTargetRadius, lightRadius);
+            return Mathf.Lerp(Mathf.Max(0.1f, initialPenumbraRadius - initialLightRadius),
+                Mathf.Max(0.1f, finalPenumbraRadius - missionTargetRadius), progress);
         }
     }
 
@@ -56,26 +50,108 @@ namespace TINS.Campaign
     {
         public CampaignPlanet[] planets =
         {
-            new CampaignPlanet { id="velaria", displayName="Velária", missionsToPurify=5, missionTargetRadius=11f, lightGrowthPerSoul=0.5f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=1, mapX=.26f, mapY=.65f },
-            new CampaignPlanet { id="nivora", displayName="Nivora", missionsToPurify=5, missionTargetRadius=13f, lightGrowthPerSoul=0.45f, enemySpeedMultiplier=1.68f, victorySouls=46, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=2, mapX=.42f, mapY=.30f },
-            new CampaignPlanet { id="asterim", displayName="Asterim", missionsToPurify=5, missionTargetRadius=15f, lightGrowthPerSoul=0.38f, enemySpeedMultiplier=1.7f, victorySouls=68, rewardResourceId="poeira-solar", rewardResourceName="Poeira Solar", rewardPerMission=2, mapX=.61f, mapY=.68f },
-            new CampaignPlanet { id="dorsalia", displayName="Dorsália", missionsToPurify=5, missionTargetRadius=17f, lightGrowthPerSoul=0.34f, enemySpeedMultiplier=1.72f, victorySouls=92, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=3, mapX=.72f, mapY=.43f },
-            new CampaignPlanet { id="varkora", displayName="Varkora", missionsToPurify=5, missionTargetRadius=19f, lightGrowthPerSoul=0.3f, enemySpeedMultiplier=1.74f, victorySouls=122, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=3, mapX=.83f, mapY=.69f },
-            new CampaignPlanet { id="marevia", displayName="Marévia", missionsToPurify=5, missionTargetRadius=21f, lightGrowthPerSoul=0.27f, enemySpeedMultiplier=1.76f, victorySouls=156, rewardResourceId="sal-estelar", rewardResourceName="Sal Estelar", rewardPerMission=4, mapX=.18f, mapY=.38f }
+            new CampaignPlanet { id="velaria", displayName="Velária", missionsToPurify=5, missionTargetRadius=11f, finalPenumbraRadius=13.5f, lightGrowthPerSoul=0.5f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=1, mapX=.26f, mapY=.65f },
+            new CampaignPlanet { id="nivora", displayName="Nivora", missionsToPurify=5, missionTargetRadius=13f, finalPenumbraRadius=15.5f, lightGrowthPerSoul=0.45f, enemySpeedMultiplier=1.68f, victorySouls=46, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=2, mapX=.42f, mapY=.30f },
+            new CampaignPlanet { id="asterim", displayName="Asterim", missionsToPurify=5, missionTargetRadius=15f, finalPenumbraRadius=17.5f, lightGrowthPerSoul=0.38f, enemySpeedMultiplier=1.7f, victorySouls=68, rewardResourceId="poeira-solar", rewardResourceName="Poeira Solar", rewardPerMission=2, mapX=.61f, mapY=.68f },
+            new CampaignPlanet { id="dorsalia", displayName="Dorsália", missionsToPurify=5, missionTargetRadius=17f, finalPenumbraRadius=19.5f, lightGrowthPerSoul=0.34f, enemySpeedMultiplier=1.72f, victorySouls=92, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=3, mapX=.72f, mapY=.43f },
+            new CampaignPlanet { id="varkora", displayName="Varkora", missionsToPurify=5, missionTargetRadius=19f, finalPenumbraRadius=21.5f, lightGrowthPerSoul=0.3f, enemySpeedMultiplier=1.74f, victorySouls=122, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=3, mapX=.83f, mapY=.69f },
+            new CampaignPlanet { id="marevia", displayName="Marévia", missionsToPurify=5, missionTargetRadius=21f, finalPenumbraRadius=23.5f, lightGrowthPerSoul=0.27f, enemySpeedMultiplier=1.76f, victorySouls=156, rewardResourceId="sal-estelar", rewardResourceName="Sal Estelar", rewardPerMission=4, mapX=.18f, mapY=.38f }
         };
 
-        public CampaignSkill[] skills =
+        public const string FlashAreaSkillId = "flash-area";
+
+        public CampaignSkill[] skills = System.Array.Empty<CampaignSkill>();
+
+        public CampaignSkill FlashSkill => Array.Find(skills ?? System.Array.Empty<CampaignSkill>(),
+            skill => skill != null && skill.id == CampaignProfile.FlashSkillId);
+
+        private void OnValidate()
         {
-            new CampaignSkill { id=CampaignProfile.FlashSkillId, displayName="Flash de Luz", description="Desbloqueia o Flash. Depois, +5% de duração e de atordoamento por nível.", unlockCost=6, soulCost=10, requiredResourceId="sal-estelar", requiredResourceAmount=4, resourceStartsAtRank=7, maximumRank=9 },
-            new CampaignSkill { id="speed", displayName="Passos Livres", description="+5% de velocidade de movimento por nível.", soulCost=15, requiredResourceId="fragmento-umbral", requiredResourceAmount=3, resourceStartsAtRank=4, maximumRank=6 },
-            new CampaignSkill { id="flash-capacity", requiresFlash=true, displayName="Célula de Luz", description="+1 carga máxima do Flash por nível.", soulCost=20, requiredResourceId="nucleo-rubro", requiredResourceAmount=3, resourceStartsAtRank=5, maximumRank=6 },
-            new CampaignSkill { id="flash-recharge", requiresFlash=true, displayName="Foco Restaurado", description="−10% no tempo de recarga do Flash por nível.", soulCost=25, requiredResourceId="ether", requiredResourceAmount=1, maximumRank=3 },
-            new CampaignSkill { id="solar-vigor", displayName="Vigor Solar", description="+1 de vida inicial e máxima por nível.", soulCost=30, requiredResourceId="poeira-solar", requiredResourceAmount=2, maximumRank=3 },
-            new CampaignSkill { id="weapon-laser-pistol", displayName="Pistola Astral", description="Desbloqueia uma nova arma para futuras missões.", soulCost=180, requiredResourceId="ether", requiredResourceAmount=4, maximumRank=1, unlockedWeaponResourcePath="CampaignGuns/laser pistol_GunData" },
-            new CampaignSkill { id="weapon-auto-pistol", displayName="Pistola de Rajada", description="Desbloqueia uma arma automática para futuras missões.", soulCost=450, requiredResourceId="cristal-frio", requiredResourceAmount=3, maximumRank=1, unlockedWeaponResourcePath="CampaignGuns/automatic pistol_GunData" }
-        };
+            if (planets != null)
+                foreach (CampaignPlanet planet in planets) planet?.ValidateRadii();
+            ValidateSkillDefinitions();
+        }
 
-        public CampaignSkill FlashSkill => Array.Find(skills, skill => skill != null && skill.id == CampaignProfile.FlashSkillId);
+        [ContextMenu("Validate Campaign Skill Tree")]
+        private void ValidateSkillDefinitions()
+        {
+            if (skills == null) return;
+            System.Collections.Generic.Dictionary<string, CampaignSkill> byId = new System.Collections.Generic.Dictionary<string, CampaignSkill>(StringComparer.OrdinalIgnoreCase);
+            foreach (CampaignSkill skill in skills)
+            {
+                if (skill == null) continue;
+                if (string.IsNullOrWhiteSpace(skill.id))
+                {
+                    Debug.LogError("A campaign skill has no permanent ID.", this);
+                    continue;
+                }
+                if (byId.ContainsKey(skill.id)) Debug.LogError("Duplicate campaign skill ID: " + skill.id, skill);
+                else byId.Add(skill.id, skill);
+            }
+
+            foreach (CampaignSkill skill in skills)
+            {
+                if (skill == null) continue;
+                ValidateRequirements(skill, skill.prerequisites, byId, "purchase");
+                ValidateRequirements(skill, skill.revealPrerequisites, byId, "reveal");
+            }
+            var visiting = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var visited = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (CampaignSkill skill in skills)
+                if (skill != null && HasPrerequisiteCycle(skill, byId, visiting, visited))
+                {
+                    Debug.LogError("Campaign skill prerequisites contain a cycle near: " + skill.id, skill);
+                    break;
+                }
+        }
+
+        private void ValidateRequirements(CampaignSkill owner, CampaignSkillPrerequisite[] requirements,
+            System.Collections.Generic.Dictionary<string, CampaignSkill> byId, string kind)
+        {
+            if (requirements == null) return;
+            foreach (CampaignSkillPrerequisite requirement in requirements)
+            {
+                if (requirement == null || requirement.skill == null)
+                {
+                    Debug.LogError($"Campaign skill '{owner.id}' has a missing {kind} prerequisite.", owner);
+                    continue;
+                }
+                if (requirement.minimumRank < 1)
+                    Debug.LogError($"Campaign skill '{owner.id}' has a {kind} prerequisite rank below 1.", owner);
+                if (requirement.minimumRank > requirement.skill.maximumRank)
+                    Debug.LogError($"Campaign skill '{owner.id}' requires rank {requirement.minimumRank} from '{requirement.skill.id}', whose maximum is {requirement.skill.maximumRank}.", owner);
+                if (!byId.ContainsKey(requirement.skill.id))
+                    Debug.LogError($"Campaign skill '{owner.id}' references '{requirement.skill.id}', which is not in this catalog.", owner);
+                if (requirement.skill == owner)
+                    Debug.LogError($"Campaign skill '{owner.id}' cannot depend on itself.", owner);
+            }
+        }
+
+        private static bool HasPrerequisiteCycle(CampaignSkill skill,
+            System.Collections.Generic.Dictionary<string, CampaignSkill> byId,
+            System.Collections.Generic.HashSet<string> visiting,
+            System.Collections.Generic.HashSet<string> visited)
+        {
+            if (visiting.Contains(skill.id)) return true;
+            if (!visited.Add(skill.id)) return false;
+            visiting.Add(skill.id);
+            if (HasCycleIn(skill.prerequisites, byId, visiting, visited) ||
+                HasCycleIn(skill.revealPrerequisites, byId, visiting, visited)) return true;
+            visiting.Remove(skill.id);
+            return false;
+        }
+
+        private static bool HasCycleIn(CampaignSkillPrerequisite[] requirements,
+            System.Collections.Generic.Dictionary<string, CampaignSkill> byId,
+            System.Collections.Generic.HashSet<string> visiting,
+            System.Collections.Generic.HashSet<string> visited)
+        {
+            if (requirements == null) return false;
+            foreach (CampaignSkillPrerequisite requirement in requirements)
+                if (requirement != null && requirement.skill != null && byId.TryGetValue(requirement.skill.id, out CampaignSkill dependency) &&
+                    HasPrerequisiteCycle(dependency, byId, visiting, visited)) return true;
+            return false;
+        }
 
         public CampaignPlanet GetPlanet(string id)
         {

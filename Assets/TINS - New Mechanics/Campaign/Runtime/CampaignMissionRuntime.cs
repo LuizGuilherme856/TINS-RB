@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,6 +36,11 @@ namespace TINS.Campaign
         [SerializeField, Min(1)] private int soulsPerDrop = 1;
         [SerializeField] private CampaignFlashHUD flashHud;
         [SerializeField] private CampaignTowerHealthHUD towerHealthHud;
+        [Header("Purification Burst")]
+        [SerializeField] private AudioClip purificationBurstSound;
+        [SerializeField, Min(0.1f)] private float purificationBurstDuration = 0.9f;
+        [SerializeField, Min(0f)] private float corpseThrowDistance = 5f;
+        private readonly List<GameObject> corpses = new();
         private BeamMeleeUsesManager playerCharges;
         private CampaignProfile profile;
         private CampaignPlanet planet;
@@ -57,6 +63,12 @@ namespace TINS.Campaign
             BlueCrystalPickup.Spawn(position, active.soulsPerDrop);
         }
 
+        public void TrackCorpse(GameObject corpse)
+        {
+            corpses.RemoveAll(existing => existing == null);
+            corpses.Add(corpse);
+        }
+
         private void Awake()
         {
             Active = this;
@@ -67,6 +79,7 @@ namespace TINS.Campaign
         {
             if (catalog == null) catalog = Resources.Load<CampaignCatalog>("CampaignCatalog");
             profile = CampaignProfile.Load();
+            if (catalog != null && profile.EnsurePurchaseLedger(catalog.skills)) profile.Save();
             string planetId = CampaignTravel.ConsumeMission();
             if (string.IsNullOrWhiteSpace(planetId)) planetId = catalog != null && catalog.planets != null && catalog.planets.Length > 0 ? catalog.planets[0].id : "velaria";
             planet = catalog != null ? catalog.GetPlanet(planetId) : null;
@@ -77,6 +90,11 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
+            planet.ValidateRadii();
+            // Set the win threshold before Radius, whose setter can invoke the win event.
+            lightReveal.WinRadius = planet.missionTargetRadius;
+            lightReveal.Radius = planet.initialLightRadius;
+            FindFirstObjectByType<CampaignDarknessBands>()?.ConfigurePlanet(planet);
             CampaignMissionEnemies settings = planet.enemySettings;
             initialWave = Wave;
             CampaignCombatRules.SetMissionActive(true,
@@ -96,7 +114,6 @@ namespace TINS.Campaign
             towerHealthHud?.Bind(tower);
             playerHealth.GetComponent<EnsureStartingPistol>()?.Equip(catalog, profile);
             playerHealth.ResetHealth();
-            lightReveal.WinRadius = planet.missionTargetRadius;
             deposit?.ConfigureGrowth(planet.lightGrowthPerSoul);
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
             if (tower.OnTowerDeath != null) tower.OnTowerDeath.AddListener(OnDefenseCoreDestroyed);
@@ -171,12 +188,8 @@ namespace TINS.Campaign
             if (success) profile.CompleteMission(planet);
             profile.Save();
 
-            FindFirstObjectByType<EnemySpawnManager>()?.StopAutomaticSpawning();
-            if (success)
-            {
-                foreach (EnemyHealth enemy in FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None))
-                    if (enemy != null && enemy.currentHealth > 0f) enemy.InstaDieWithNoCorpse();
-            }
+            EnemySpawnManager spawner = FindFirstObjectByType<EnemySpawnManager>();
+            spawner?.StopAutomaticSpawning();
             playerHealth.GetComponent<PlayerInputHandler>()?.SetCanMove(false);
 
             if (missionLabel != null) missionLabel.text = success ? "MISSÃO CONCLUÍDA" : "MISSÃO ENCERRADA";
@@ -184,36 +197,136 @@ namespace TINS.Campaign
                 objectiveLabel.text = $"{planet.displayName}\n{message}\n+{returnedSouls} almas" +
                     (success ? $"\n+{planet.rewardPerMission} {planet.rewardResourceName}" : "") +
                     (firstExpedition && !profile.HasFlash ? "\nFlash de Luz disponível na Base." : "");
-            StartCoroutine(ReturnToBase());
+            StartCoroutine(ReturnToBase(success, spawner));
         }
 
-        private IEnumerator ReturnToBase()
+        private IEnumerator ReturnToBase(bool success, EnemySpawnManager spawner)
         {
-            yield return new WaitForSecondsRealtime(resultReturnDelay);
+            float startTime = Time.unscaledTime;
+            if (success) yield return PlayPurificationBurst(spawner);
+            float remaining = resultReturnDelay - (Time.unscaledTime - startTime);
+            if (remaining > 0f) yield return new WaitForSecondsRealtime(remaining);
             SceneManager.LoadScene(CampaignTravel.BaseScene);
+        }
+
+        private IEnumerator PlayPurificationBurst(EnemySpawnManager spawner)
+        {
+            // The final delivery already paid out and reached the target radius.
+            deposit?.StopAllCoroutines();
+            Vector2 origin = lightReveal.transform.position;
+            float arenaRadius = Mathf.Max(lightReveal.Radius, spawner != null ? spawner.FarthestSpawnDistance(origin) : 0f);
+            Camera camera = Camera.main;
+            if (camera != null && camera.orthographic)
+            {
+                float halfDiagonal = camera.orthographicSize * Mathf.Sqrt(1f + camera.aspect * camera.aspect);
+                arenaRadius = Mathf.Max(arenaRadius, Vector2.Distance(origin, camera.transform.position) + halfDiagonal);
+            }
+
+            foreach (EnemyHealth enemy in FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None))
+                if (enemy != null && enemy.isActiveAndEnabled) enemy.DefeatByPurification();
+
+            var throws = new List<(Transform body, Vector3 start, Vector2 direction, float distance, float angle)>();
+            foreach (GameObject corpse in corpses)
+            {
+                if (corpse == null || !corpse.activeInHierarchy) continue;
+                Vector2 offset = (Vector2)corpse.transform.position - origin;
+                Vector2 direction = offset.sqrMagnitude > 0.001f ? offset.normalized : Vector2.right;
+                float distance = corpseThrowDistance * Random.Range(0.85f, 1.3f);
+                foreach (Rigidbody2D body in corpse.GetComponentsInChildren<Rigidbody2D>())
+                    body.simulated = false;
+                arenaRadius = Mathf.Max(arenaRadius, offset.magnitude + distance);
+                throws.Add((corpse.transform, corpse.transform.position, direction, distance, Random.Range(-160f, 160f)));
+            }
+
+            if (purificationBurstSound != null)
+            {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot(purificationBurstSound, 0.75f);
+            }
+            FindFirstObjectByType<ControlCameraShake>()?.TriggerCameraShake(75f, 2.4f);
+            CampaignDarknessBands darkness = FindFirstObjectByType<CampaignDarknessBands>();
+            float initialRadius = lightReveal.Radius;
+            arenaRadius += 2f; // Keep the final shockwave beyond the visible arena.
+            float elapsed = 0f;
+            while (true)
+            {
+                float progress = Mathf.Clamp01(elapsed / Mathf.Max(0.1f, purificationBurstDuration));
+                float travel = 1f - Mathf.Pow(1f - progress, 2f);
+                float radius = Mathf.Lerp(initialRadius, arenaRadius, travel);
+                lightReveal.Radius = radius;
+                darkness?.SetPurificationWave(radius, 1.35f, 0.9f * (1f - progress));
+                foreach (var launched in throws)
+                    if (launched.body != null)
+                        launched.body.SetPositionAndRotation(launched.start + (Vector3)(launched.direction * launched.distance * travel),
+                            Quaternion.Euler(0f, 0f, launched.angle * travel));
+                if (progress >= 1f) break;
+                yield return null;
+                elapsed += Time.unscaledDeltaTime;
+            }
+            darkness?.SetPurificationWave(0f, 0f, 0f);
         }
 
         private void ApplyCampaignSkills()
         {
-            float flashDuration = 1f + 0.05f * Mathf.Max(0, profile.Rank(CampaignProfile.FlashSkillId) - 1);
-            playerHealth.GetComponent<BeamMeleeAttack>()?.SetCampaignDurationMultiplier(flashDuration);
+            Vector2 flashDurationEffect = Vector2.zero;
+            Vector2 flashAreaEffect = Vector2.zero;
+            float capacityEffect = 0f;
+            float rechargeEffect = 0f;
+            float speedEffect = 0f;
+            float healthEffect = 0f;
+            if (catalog != null && catalog.skills != null)
+            {
+                foreach (CampaignSkill skill in catalog.skills)
+                {
+                    if (skill == null) continue;
+                    int appliedRanks = Mathf.Max(0, profile.Rank(skill.id) - Mathf.Max(1, skill.effectStartsAtRank) + 1);
+                    if (appliedRanks == 0) continue;
+                    float primary = skill.effectPerRank * appliedRanks;
+                    float secondary = skill.secondaryEffectPerRank * appliedRanks;
+                    switch (skill.effectType)
+                    {
+                        case CampaignSkillEffectType.FlashDuration:
+                            flashDurationEffect.x += primary;
+                            break;
+                        case CampaignSkillEffectType.FlashArea:
+                            flashAreaEffect.x += primary;
+                            flashAreaEffect.y += secondary;
+                            break;
+                        case CampaignSkillEffectType.FlashCapacity:
+                            capacityEffect += primary;
+                            break;
+                        case CampaignSkillEffectType.FlashRecharge:
+                            rechargeEffect += primary;
+                            break;
+                        case CampaignSkillEffectType.MovementSpeed:
+                            speedEffect += primary;
+                            break;
+                        case CampaignSkillEffectType.PlayerHealth:
+                            healthEffect += primary;
+                            break;
+                    }
+                }
+            }
+
+            BeamMeleeAttack flash = playerHealth.GetComponent<BeamMeleeAttack>();
+            flash?.SetCampaignDurationMultiplier(1f + flashDurationEffect.x);
+            flash?.SetCampaignArea(flashAreaEffect.x, flashAreaEffect.y);
 
             if (playerCharges != null)
             {
                 playerCharges.enabled = profile.HasFlash;
                 if (profile.HasFlash)
                 {
-                    playerCharges.ConfigureMaximumUses(profile.Rank("flash-capacity"));
-                    float rechargeMultiplier = 1f - 0.1f * profile.Rank("flash-recharge");
+                    playerCharges.ConfigureMaximumUses(Mathf.Max(0, Mathf.RoundToInt(capacityEffect)));
+                    float rechargeMultiplier = 1f - Mathf.Clamp(rechargeEffect, 0f, 0.9f);
                     playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
                     playerCharges.RefillUses();
                 }
             }
 
-            playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + 0.05f * profile.Rank("speed"));
-            int bonusHealth = profile.Rank("solar-vigor");
+            playerHealth.GetComponent<PlayerMovement>()?.SetCampaignSpeedMultiplier(1f + speedEffect);
             GlobalStats stats = AssetFinder.GetGlobalStats();
-            if (stats != null) stats.AddToPlayerInitialHealth += bonusHealth;
+            if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(healthEffect);
         }
 
         private void FixedUpdate()

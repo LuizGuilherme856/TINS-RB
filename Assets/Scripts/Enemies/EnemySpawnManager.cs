@@ -205,6 +205,14 @@ public sealed class EnemySpawnManager : MonoBehaviour
         }
     }
 
+    public float FarthestSpawnDistance(Vector2 origin)
+    {
+        float distance = spawnPoint != null ? Vector2.Distance(origin, spawnPoint.position) : 0f;
+        foreach (Transform point in spawnPoints)
+            if (point != null) distance = Mathf.Max(distance, Vector2.Distance(origin, point.position));
+        return distance;
+    }
+
     private float CurrentLightRadius => purificationManager != null ? Mathf.Max(0f, purificationManager.Radius) : 0f;
 
     private void UpdateAdaptiveWaveSettings()
