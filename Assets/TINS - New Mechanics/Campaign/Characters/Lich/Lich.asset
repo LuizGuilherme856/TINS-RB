@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189d3e3b081dcc84aa2f60926508fda9, type: 3}
+  m_Name: Lich
+  m_EditorClassIdentifier: 
+  nameEnglish: Lich
+  nameChinese: Lich
+  namePortuguese: Lich
+  nameSpanish: Lich
+  shortName: Lich
+  smallIcon: {fileID: 21300000, guid: ad05147ee8024314bc03ca27ee81ad10, type: 3}
+  bigPortrait: {fileID: 21300000, guid: ad05147ee8024314bc03ca27ee81ad10, type: 3}
+  dialoguePortrait: {fileID: 21300000, guid: ad05147ee8024314bc03ca27ee81ad10, type: 3}
+  character: 7
+  <defaultGun>k__BackingField: {fileID: 11400000, guid: 9ff25493bff39be408c39c7b6fb9c6d1, type: 2}
+  <defaultMelee>k__BackingField: {fileID: 11400000, guid: 838cd1f920cc4d6429546bd9c8e2897e, type: 2}
+  <defaultSpecialAbility>k__BackingField: {fileID: 11400000, guid: b81520004e14c9e4d96abd78d19c91f0, type: 2}
+  <defaultDash>k__BackingField: {fileID: 11400000, guid: a19d62725d896af49aceeef8348e0e52, type: 2}
+  <defaultHp>k__BackingField: 7
+  <initialPoints>k__BackingField: 600
+  <chanceToIgnoreDamage>k__BackingField: 0
+  <numberOfGunsItCanCarry>k__BackingField: 3
+  <price>k__BackingField: 0
+  <animatorController>k__BackingField: {fileID: 22100000, guid: 6d6d8175587c406682fc16d026d61e8e, type: 2}
+  corpse: {fileID: 5347488892711525149, guid: e419d082f86045538dd98fcaea0d5ae4, type: 3}
+  hitSfx: {fileID: 8300000, guid: 26a4f2b54cabe6a4e8fb41d7545e817e, type: 3}

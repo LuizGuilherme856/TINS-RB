@@ -5629,6 +5629,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1999349881}
     m_Modifications:
+    - target: {fileID: 5486224884018677124, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51f9148a3d6e489baf02b0ecd084ca42, type: 3}
+    - target: {fileID: 1758747474, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
+      propertyPath: campaignCharacter
+      value: 
+      objectReference: {fileID: 11400000, guid: f011224038af401bb8cf87c9c4466c66, type: 2}
     - target: {fileID: 1492021203, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
       propertyPath: managedReferences[5570990155850842113].OriginalLabel
       value: Sound
@@ -9970,6 +9978,10 @@ MonoBehaviour:
   pixelStepWorld: 0.0625
   penumbraOpacity: 0.62
   darknessMaterial: {fileID: 2100000, guid: fe3b1ddda120dae468e7962a44808e6f, type: 2}
+  legacyFloorRoot: {fileID: 1964959551}
+  legacyGroundTilemaps:
+  - {fileID: 1797022716}
+  - {fileID: 5258124505916484528}
 --- !u!212 &737268294
 SpriteRenderer:
   serializedVersion: 2
@@ -16126,6 +16138,7 @@ MonoBehaviour:
   soulInventory: {fileID: 1246629215}
   missionLabel: {fileID: 163905654}
   objectiveLabel: {fileID: 72494677}
+  deathScreenPrefab: {fileID: 4012365788674183612, guid: 9bfbada7c47ad3544a1bcabd74980296, type: 3}
   resultReturnDelay: 3
   soulsKeptOnFailure: 0.7
   soulDropChance: 1

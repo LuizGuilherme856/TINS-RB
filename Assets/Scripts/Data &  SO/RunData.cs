@@ -129,5 +129,5 @@ public class RunData : ScriptableObject
     }
 }
 
-public enum Character { azaus, nina, hanba,deNiro, death, dog , yodista}
+public enum Character { azaus, nina, hanba,deNiro, death, dog , yodista, lich}
 

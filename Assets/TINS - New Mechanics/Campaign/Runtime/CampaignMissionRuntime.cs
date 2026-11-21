@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,7 @@ namespace TINS.Campaign
         [SerializeField] private BlueCrystalInventory soulInventory;
         [SerializeField] private TMP_Text missionLabel;
         [SerializeField] private TMP_Text objectiveLabel;
+        [SerializeField] private CampaignDeathScreen deathScreenPrefab;
         [SerializeField, Min(0f)] private float resultReturnDelay = 3f;
         [SerializeField, Range(0f, 1f)] private float soulsKeptOnFailure = .7f;
         [SerializeField, Range(0f, 1f)] private float soulDropChance = 1f;
@@ -74,6 +76,8 @@ namespace TINS.Campaign
         private int soulsCollected;
         private int lastInventoryCount;
         private bool resolved;
+        private float? timeScaleBeforeDefeat;
+        private MMTimeManager defeatTimeManager;
 
         public static CampaignMissionRuntime Active { get; private set; }
         public Transform DefenseCore => tower != null ? tower.transform : null;
@@ -217,13 +221,24 @@ namespace TINS.Campaign
 
             EnemySpawnManager spawner = FindFirstObjectByType<EnemySpawnManager>();
             spawner?.StopAutomaticSpawning();
-            playerHealth.GetComponent<PlayerInputHandler>()?.SetCanMove(false);
+            var playerInput = playerHealth.GetComponent<PlayerInputHandler>();
+            playerInput?.SetCanMove(false);
+
+            bool flashAvailable = firstExpedition && !profile.HasFlash;
+            if (!success && deathScreenPrefab != null)
+            {
+                playerInput?.SetPauseInputBlocked(true);
+                PauseForDefeat();
+                Instantiate(deathScreenPrefab).Present(planet.displayName, message, returnedSouls,
+                    flashAvailable, LeaveDefeatScreen);
+                return;
+            }
 
             if (missionLabel != null) missionLabel.text = success ? "MISSÃO CONCLUÍDA" : "MISSÃO ENCERRADA";
             if (objectiveLabel != null)
                 objectiveLabel.text = $"{planet.displayName}\n{message}\n+{returnedSouls} almas" +
                     (success ? $"\n+{planet.rewardPerMission} {planet.rewardResourceName}" : "") +
-                    (firstExpedition && !profile.HasFlash ? "\nFlash de Luz disponível na Base." : "");
+                    (flashAvailable ? "\nFlash de Luz disponível na Base." : "");
             StartCoroutine(ReturnToBase(success, spawner));
         }
 
@@ -234,6 +249,39 @@ namespace TINS.Campaign
             float remaining = resultReturnDelay - (Time.unscaledTime - startTime);
             if (remaining > 0f) yield return new WaitForSecondsRealtime(remaining);
             SceneManager.LoadScene(CampaignTravel.BaseScene);
+        }
+
+        private void LeaveDefeatScreen()
+        {
+            RestoreDefeatTimeScale();
+            SceneManager.LoadScene(CampaignTravel.BaseScene);
+        }
+
+        private void PauseForDefeat()
+        {
+            timeScaleBeforeDefeat = Time.timeScale;
+            // The feedback manager can keep changing global time after a death hit-stop.
+            var manager = FindFirstObjectByType<MMTimeManager>();
+            if (manager != null && manager.isActiveAndEnabled)
+            {
+                defeatTimeManager = manager;
+                timeScaleBeforeDefeat = manager.NormalTimeScale;
+                manager.enabled = false;
+            }
+            Time.timeScale = 0f;
+        }
+
+        private void RestoreDefeatTimeScale()
+        {
+            if (!timeScaleBeforeDefeat.HasValue) return;
+            Time.timeScale = timeScaleBeforeDefeat.Value;
+            timeScaleBeforeDefeat = null;
+            if (defeatTimeManager != null)
+            {
+                defeatTimeManager.ResetTimeScale();
+                defeatTimeManager.enabled = true;
+                defeatTimeManager = null;
+            }
         }
 
         private IEnumerator PlayPurificationBurst(EnemySpawnManager spawner)
@@ -342,21 +390,6 @@ namespace TINS.Campaign
             if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.PlayerHealth).x);
         }
 
-        private void FixedUpdate()
-        {
-            if (resolved || tower == null || tower.currentLife <= 0) return;
-            if (tower.timeSinceLastHit <= tower.immunityAfterDamage) return;
-            foreach (Collider2D hit in Physics2D.OverlapCircleAll(tower.transform.position, 1.1f))
-            {
-                EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();
-                if (enemy != null && enemy.currentHealth > 0 && !enemy.IsCampaignFlashStunned)
-                {
-                    tower.TryTakeDamageFromEnemy();
-                    break;
-                }
-            }
-        }
-
         private void RefreshLabels()
         {
             if (resolved || planet == null) return;
@@ -370,6 +403,7 @@ namespace TINS.Campaign
 
         private void OnDestroy()
         {
+            RestoreDefeatTimeScale();
             if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
             if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
             if (Active == this) Active = null;

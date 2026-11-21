@@ -19,6 +19,11 @@ namespace TINS.Campaign
         public float initialPenumbraRadius = 6f;
         [Min(0.1f), Tooltip("Outer penumbra radius when the light reaches Final Light Radius. Interpolates during purification.")]
         public float finalPenumbraRadius = 14.5f;
+        [Header("Mission terrain")]
+        [Tooltip("Optional 16×16 floor atlas. Rows from top to bottom: purified, lit, penumbra, and Breu.")]
+        public Texture2D floorTiles;
+        [Range(0f, 1f), Tooltip("Fraction of the illuminated radius that displays purified grass.")]
+        public float purifiedGrassRadiusRatio = .6f;
         [Min(0.01f)] public float lightGrowthPerSoul = 0.5f;
         [Min(0f)] public float enemySpeedMultiplier = 1f;
         public CampaignMissionEnemies enemySettings;

@@ -23,6 +23,7 @@ public class MoveTowardsPlayer : MonoBehaviour
     private StatusEffect currentStatusEffect = StatusEffect.None;
     private StatusEffectOnEnemy statusEffectOnEnemy;
     private bool canMove = true;
+    private bool pausedForTowerAttack;
     private EnemyHealth enemyHealth;
     private PurificationReveal purificationReveal;
 
@@ -55,6 +56,7 @@ public class MoveTowardsPlayer : MonoBehaviour
             if (rb2d != null && !enemyHealth.IsCampaignFlashRepelled) rb2d.linearVelocity = Vector2.zero;
             return;
         }
+        if (pausedForTowerAttack) return;
         if (target == null || rb2d == null || enemyData == null) return;
         if (CampaignCombatRules.IsCampaignMission && purificationReveal == null)
             purificationReveal = FindFirstObjectByType<PurificationReveal>();
@@ -115,6 +117,8 @@ public class MoveTowardsPlayer : MonoBehaviour
     {
         this.canMove = canMove;
     }
+
+    public void PauseForTowerAttack(bool paused) => pausedForTowerAttack = paused;
 
     //Animation-event adapters without parameters.
     public void CanMove()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TINS.Campaign
@@ -15,6 +16,8 @@ namespace TINS.Campaign
         [SerializeField, Min(0.01f)] private float pixelStepWorld = 0.0625f;
         [SerializeField, Range(0f, 1f)] private float penumbraOpacity = 0.62f;
         [SerializeField] private Material darknessMaterial;
+        [SerializeField] private Transform legacyFloorRoot;
+        [SerializeField] private Renderer[] legacyGroundTilemaps;
 
         private static readonly int CenterId = Shader.PropertyToID("_Center");
         private static readonly int LightRadiusId = Shader.PropertyToID("_LightRadius");
@@ -25,6 +28,11 @@ namespace TINS.Campaign
         private static readonly int FlashDirectionId = Shader.PropertyToID("_FlashDirection");
         private static readonly int FlashRangeId = Shader.PropertyToID("_FlashRange");
         private static readonly int FlashCosAngleId = Shader.PropertyToID("_FlashCosAngle");
+        private static readonly int TerrainTilesId = Shader.PropertyToID("_TerrainTiles");
+        private static readonly int TerrainAtlasSizeId = Shader.PropertyToID("_TerrainAtlasSize");
+        private static readonly int TerrainEnabledId = Shader.PropertyToID("_TerrainEnabled");
+        private static readonly int TerrainOnlyId = Shader.PropertyToID("_TerrainOnly");
+        private static readonly int PurifiedRadiusId = Shader.PropertyToID("_PurifiedRadius");
 
         private static readonly int PurificationWaveId = Shader.PropertyToID("_PurificationWave");
         private Vector4 purificationWave;
@@ -35,6 +43,8 @@ namespace TINS.Campaign
         }
 
         private SpriteRenderer overlay;
+        private SpriteRenderer terrain;
+        private readonly List<Renderer> hiddenFloor = new();
         private MaterialPropertyBlock properties;
         private Sprite generatedSprite;
         private bool ownsDarknessMaterial;
@@ -51,6 +61,45 @@ namespace TINS.Campaign
         public void ConfigurePlanet(CampaignPlanet planet)
         {
             configuredPlanet = planet;
+            bool useTerrain = planet?.floorTiles != null;
+            if (useTerrain && terrain == null)
+            {
+                var ground = new GameObject("Mission terrain");
+                ground.transform.SetParent(transform, false);
+                terrain = ground.AddComponent<SpriteRenderer>();
+                terrain.sprite = overlay.sprite;
+                terrain.sharedMaterial = darknessMaterial;
+                terrain.sortingOrder = -4;
+            }
+            if (terrain != null) terrain.enabled = useTerrain;
+
+            if (!useTerrain)
+            {
+                RestoreLegacyFloor();
+            }
+            else if (hiddenFloor.Count == 0)
+            {
+                if (legacyFloorRoot != null)
+                    foreach (var renderer in legacyFloorRoot.GetComponentsInChildren<SpriteRenderer>(true))
+                        if (renderer.name == "Purified Floor" || renderer.name == "Corrupted Floor")
+                            HideLegacyFloor(renderer);
+                if (legacyGroundTilemaps != null)
+                    foreach (var tilemap in legacyGroundTilemaps) HideLegacyFloor(tilemap);
+            }
+        }
+
+        private void HideLegacyFloor(Renderer renderer)
+        {
+            if (renderer == null || !renderer.enabled) return;
+            renderer.enabled = false;
+            hiddenFloor.Add(renderer);
+        }
+
+        private void RestoreLegacyFloor()
+        {
+            foreach (var renderer in hiddenFloor)
+                if (renderer != null) renderer.enabled = true;
+            hiddenFloor.Clear();
         }
 
         private void Awake()
@@ -144,11 +193,12 @@ namespace TINS.Campaign
             Vector2 center = lightReveal != null ? (Vector2)lightReveal.transform.position : Vector2.zero;
             float radius = lightReveal != null ? lightReveal.Radius : 0f;
             float width = CurrentPenumbraWidth;
-            darknessMaterial.SetVector(CenterId, center);
-            darknessMaterial.SetFloat(LightRadiusId, radius);
-            darknessMaterial.SetFloat(PenumbraWidthId, width);
-            darknessMaterial.SetFloat(BandSizeId, Mathf.Max(0.01f, pixelStepWorld));
-            darknessMaterial.SetColor("_Color", Color.black);
+            overlay.GetPropertyBlock(properties);
+            properties.SetVector(CenterId, center);
+            properties.SetFloat(LightRadiusId, radius);
+            properties.SetFloat(PenumbraWidthId, width);
+            properties.SetFloat(BandSizeId, Mathf.Max(0.01f, pixelStepWorld));
+            properties.SetColor("_Color", Color.black);
             Vector3 flashOrigin = Vector3.zero;
             Vector2 flashDirection = Vector2.right;
             float flashRange = 0f;
@@ -161,19 +211,34 @@ namespace TINS.Campaign
                         flashActive = true;
                         break;
                     }
-            darknessMaterial.SetFloat(FlashEnabledId, flashActive ? 1f : 0f);
-            darknessMaterial.SetVector(FlashOriginId, flashOrigin);
-            darknessMaterial.SetVector(FlashDirectionId, flashDirection);
-            darknessMaterial.SetFloat(FlashRangeId, flashRange);
-            darknessMaterial.SetFloat(FlashCosAngleId, Mathf.Cos(halfAngle * Mathf.Deg2Rad));
-            overlay.GetPropertyBlock(properties);
+            properties.SetFloat(FlashEnabledId, flashActive ? 1f : 0f);
+            properties.SetVector(FlashOriginId, flashOrigin);
+            properties.SetVector(FlashDirectionId, flashDirection);
+            properties.SetFloat(FlashRangeId, flashRange);
+            properties.SetFloat(FlashCosAngleId, Mathf.Cos(halfAngle * Mathf.Deg2Rad));
             properties.SetFloat("_PenumbraOpacity", Mathf.Clamp01(penumbraOpacity));
             properties.SetVector(PurificationWaveId, purificationWave);
+            Texture2D tiles = configuredPlanet?.floorTiles;
+            bool useTerrain = terrain != null && terrain.enabled && tiles != null;
+            properties.SetFloat(TerrainEnabledId, useTerrain ? 1f : 0f);
+            properties.SetFloat(TerrainOnlyId, 0f);
+            if (useTerrain)
+            {
+                properties.SetTexture(TerrainTilesId, tiles);
+                properties.SetVector(TerrainAtlasSizeId, new Vector4(tiles.width, tiles.height, 0f, 0f));
+                properties.SetFloat(PurifiedRadiusId, radius * configuredPlanet.purifiedGrassRadiusRatio);
+            }
             overlay.SetPropertyBlock(properties);
+            if (useTerrain)
+            {
+                properties.SetFloat(TerrainOnlyId, 1f);
+                terrain.SetPropertyBlock(properties);
+            }
         }
 
         private void OnDestroy()
         {
+            RestoreLegacyFloor();
             if (generatedSprite != null) Destroy(generatedSprite);
             if (ownsDarknessMaterial && darknessMaterial != null) Destroy(darknessMaterial);
         }

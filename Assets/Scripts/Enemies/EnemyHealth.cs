@@ -494,6 +494,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void BeginCampaignMissionState()
     {
+        if (CompareTag("Enemy") && !TryGetComponent<EnemyTowerAttack>(out _))
+            gameObject.AddComponent<EnemyTowerAttack>();
         IsProtectedUntilPlayerMelee = false;
         invulnerableTimer = 0f;
         campaignFlashStunned = false;

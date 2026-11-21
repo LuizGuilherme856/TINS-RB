@@ -33,6 +33,7 @@ public class EnemyMovementAnimation : MonoBehaviour
     [SerializeField] protected bool usesParentRigidBodyAndAI = false;
 
     [SerializeField] protected bool usesMomentumInFlipAnimation = false;
+    [SerializeField] private bool faceCurrentTarget;
 
 
 
@@ -165,7 +166,9 @@ public class EnemyMovementAnimation : MonoBehaviour
     //Extracted for reuse.
     protected virtual void Flip()
     {
-        Vector3 direction = (targetTransform.transform.position - myRigidbody.transform.position).normalized;
+        Transform facingTarget = faceCurrentTarget && enemyAI != null ? enemyAI.GetCurrentTargetTransform() : targetTransform;
+        if (facingTarget == null || myRigidbody == null) return;
+        Vector3 direction = (facingTarget.position - myRigidbody.transform.position).normalized;
 
         if (direction.x > 0)
         {

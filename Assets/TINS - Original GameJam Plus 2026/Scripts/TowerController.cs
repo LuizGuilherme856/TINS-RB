@@ -89,7 +89,7 @@ public class TowerController : MonoBehaviour
 
     }
 
-    /// <summary>Called only by the demon's tower-attack animation event.</summary>
+    /// <summary>Applies one tower hit when an enemy reaches the impact of its attack.</summary>
     public bool TryTakeDamageFromEnemy()
     {
         if (currentLife <= 0 || timeSinceLastHit <= immunityAfterDamage) return false;

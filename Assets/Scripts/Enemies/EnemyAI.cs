@@ -116,7 +116,8 @@ public class EnemyAI : MonoBehaviour
 
         if (pausedForTowerAttack)
         {
-            if (myRigidbody != null) myRigidbody.linearVelocity = Vector2.zero;
+            if (myRigidbody != null && myRigidbody.bodyType != RigidbodyType2D.Static)
+                myRigidbody.linearVelocity = Vector2.zero;
             return;
         }
 
@@ -238,7 +239,8 @@ public class EnemyAI : MonoBehaviour
     public void PauseForTowerAttack(bool paused)
     {
         pausedForTowerAttack = paused;
-        if (paused && myRigidbody != null) myRigidbody.linearVelocity = Vector2.zero;
+        if (paused && myRigidbody != null && myRigidbody.bodyType != RigidbodyType2D.Static)
+            myRigidbody.linearVelocity = Vector2.zero;
     }
 
     public void ApplyExternalKnockback(Vector2 impulse, float movementLockDuration)

@@ -56,7 +56,8 @@ public class HandlePlayerHeadHit : MonoBehaviour
     {
         foreach (HeadObject HeadObjectI in headObjects)
         {
-            HeadObjectI.headGameObject.SetActive(false);
+            if (HeadObjectI.headGameObject != null)
+                HeadObjectI.headGameObject.SetActive(false);
         }
     }
 

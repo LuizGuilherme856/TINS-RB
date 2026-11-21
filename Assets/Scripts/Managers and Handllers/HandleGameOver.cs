@@ -39,11 +39,22 @@ public class HandleGameOver : MonoBehaviour
 
     private void OnEnable()
     {
-        if (TINS.Campaign.CampaignCombatRules.IsCampaignMission) return;
         hasPlayedDeathScreen = false;
-        playerHealth.OnZeroHealth += PlayEndScreen;
-        playerHealth.OnZeroHealth += () => playerData.AddDeath();
-        playerHealth.OnZeroHealth += () => scoreManager.NewScore();
+        playerHealth.OnZeroHealth += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        if (playerHealth != null) playerHealth.OnZeroHealth -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        // By the time the player dies, the campaign has taken ownership of the result.
+        if (TINS.Campaign.CampaignCombatRules.IsCampaignMission) return;
+        PlayEndScreen();
+        playerData.AddDeath();
+        scoreManager.NewScore();
     }
 
     public void PlayEndScreen()

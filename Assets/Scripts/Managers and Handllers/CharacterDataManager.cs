@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharacterDataManager : MonoBehaviour
 {
     [SerializeField] private CharacterData currentCharacterData;
+    [SerializeField] private CharacterData campaignCharacter;
     public List<CharacterData> charactersData;
 
     private Animator myAnimator;
@@ -77,7 +78,9 @@ public class CharacterDataManager : MonoBehaviour
     {
         bool campaignScene = gameObject.scene.name == TINS.Campaign.CampaignTravel.BaseScene ||
             gameObject.scene.name == TINS.Campaign.CampaignTravel.MissionScene;
-        if (!campaignScene && data != null && data.character != Character.yodista) return data;
+        if (campaignScene && campaignCharacter != null) return campaignCharacter;
+        if (!campaignScene && data != null && data.character != Character.yodista && data.character != Character.lich)
+            return data;
         var fallback = charactersData.Find(item => item != null && item.character == Character.azaus);
         if (fallback == null) throw new System.InvalidOperationException("Console character fallback Azaus is missing.");
         return fallback;
