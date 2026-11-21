@@ -1,15 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using TINS.Campaign;
 
 /// <summary>Reloads the full Flash supply when its last charge is spent.</summary>
 public sealed class BeamMeleeUsesManager : MonoBehaviour
 {
-    [SerializeField, Min(1)] private int maxUses = 3;
-    [FormerlySerializedAs("rechargeDurationPerCharge")]
-    [SerializeField, Min(0.1f)] private float rechargeDuration = 5f;
-    [SerializeField, Range(0f, 1f)] private float skillCheckTarget = 0.8f;
-    [SerializeField, Range(0.02f, 0.5f)] private float skillCheckWidth = 0.296f;
     [Header("Player head charge animation")]
     [SerializeField] private Animator headAnimator;
     [SerializeField] private string[] headStateNames = { "PlayerHeadState1", "PlayerHeadState2", "PlayerHeadState3", "PlayerHeadState4" };
@@ -17,22 +12,23 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
     public event Action<int, int> OnUsesChanged;
     public event Action<int> OnUseSpent;
     public int UsesRemaining { get; private set; }
-    public int MaxUses => Mathf.Max(1, maxUses);
+    public int MaxUses => Mathf.Max(1, FlashData.Shared.maxUses + additionalUses);
     public bool LastNoChargeAttemptResolvedSkillCheck { get; private set; }
     public bool LastNoChargeAttemptSucceeded { get; private set; }
     public bool IsRecharging => isActiveAndEnabled && UsesRemaining == 0;
-    public float RechargeProgress => IsRecharging ? 1f - Mathf.Clamp01(rechargeTimer / rechargeDuration) : 1f;
+    public float RechargeProgress => IsRecharging ? 1f - Mathf.Clamp01(rechargeTimer / RechargeDuration) : 1f;
 
-    public float SkillCheckWidth => skillCheckWidth;
-    public float SkillCheckTarget => Mathf.Clamp(skillCheckTarget, SkillCheckWidth * 0.5f, 1f - SkillCheckWidth * 0.5f);
+    public float SkillCheckWidth => FlashData.Shared.skillCheckWidth;
+    public float SkillCheckTarget => Mathf.Clamp(FlashData.Shared.skillCheckTarget, SkillCheckWidth * 0.5f, 1f - SkillCheckWidth * 0.5f);
     public bool IsSkillCheckAvailable => IsRecharging && rechargeTimer > 0f && !skillCheckFailedThisCharge;
 
+    private int additionalUses;
+    private float? configuredRechargeDuration;
     private float rechargeTimer;
     private bool skillCheckFailedThisCharge;
 
     private void Awake()
     {
-        if (headAnimator == null) headAnimator = FindHeadAnimator();
         UsesRemaining = MaxUses;
         UpdateHeadAnimation();
     }
@@ -70,7 +66,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
             if (!IsSkillCheckAvailable) return false;
 
             LastNoChargeAttemptResolvedSkillCheck = true;
-            LastNoChargeAttemptSucceeded = Mathf.Abs(RechargeProgress - SkillCheckTarget) <= skillCheckWidth * 0.5f;
+            LastNoChargeAttemptSucceeded = Mathf.Abs(RechargeProgress - SkillCheckTarget) <= SkillCheckWidth * 0.5f;
             if (LastNoChargeAttemptSucceeded) RefillUses();
             else
             {
@@ -90,7 +86,7 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     private void BeginRecharge()
     {
-        rechargeTimer = rechargeDuration;
+        rechargeTimer = RechargeDuration;
         skillCheckFailedThisCharge = false;
     }
 
@@ -121,22 +117,22 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
 
     public void ConfigureMaximumUses(int additionalUses)
     {
-        int previousMaximum = maxUses;
-        maxUses = Mathf.Max(1, previousMaximum + additionalUses);
+        int previousMaximum = MaxUses;
+        this.additionalUses = additionalUses;
         bool wasRecharging = IsRecharging;
-        UsesRemaining = Mathf.Clamp(UsesRemaining + maxUses - previousMaximum, 0, MaxUses);
+        UsesRemaining = Mathf.Clamp(UsesRemaining + MaxUses - previousMaximum, 0, MaxUses);
         if (IsRecharging && !wasRecharging) BeginRecharge();
         UpdateHeadAnimation();
         OnUsesChanged?.Invoke(UsesRemaining, MaxUses);
     }
 
-    public float RechargeDuration => rechargeDuration;
+    public float RechargeDuration => configuredRechargeDuration ?? FlashData.Shared.rechargeDuration;
 
     public void ConfigureRechargeDuration(float duration)
     {
         float remainingFraction = 1f - RechargeProgress;
-        rechargeDuration = Mathf.Max(0.1f, duration);
-        if (IsRecharging) rechargeTimer = rechargeDuration * remainingFraction;
+        configuredRechargeDuration = Mathf.Max(0.1f, duration);
+        if (IsRecharging) rechargeTimer = RechargeDuration * remainingFraction;
     }
 
     private void UpdateHeadAnimation()
@@ -146,13 +142,5 @@ public sealed class BeamMeleeUsesManager : MonoBehaviour
         stateIndex = Mathf.Clamp(stateIndex, 0, 3);
         string stateName = headStateNames[stateIndex];
         if (!string.IsNullOrEmpty(stateName)) headAnimator.Play(stateName, 0, 0f);
-    }
-
-    private Animator FindHeadAnimator()
-    {
-        Animator[] animators = GetComponentsInChildren<Animator>(true);
-        for (int i = 0; i < animators.Length; i++)
-            if (animators[i] != null && animators[i].name.ToLowerInvariant().Contains("head")) return animators[i];
-        return null;
     }
 }

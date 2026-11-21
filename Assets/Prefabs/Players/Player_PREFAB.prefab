@@ -34250,6 +34250,10 @@ GameObject:
   - component: {fileID: 8725358637290654838}
   - component: {fileID: 3353695738210405516}
   - component: {fileID: 6737348762075230622}
+  - component: {fileID: 4481559838815660383}
+  - component: {fileID: 6660523515132947802}
+  - component: {fileID: 1436397653161089765}
+  - component: {fileID: 8372153316439465729}
   m_Layer: 11
   m_Name: Player_PREFAB
   m_TagString: Player
@@ -34337,7 +34341,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -888216814, guid: 24978af51a928e34c821e89ec43cf70c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51f9148a3d6e489baf02b0ecd084ca42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -35074,6 +35078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacterData: {fileID: 11400000, guid: ab67ced511fe3ef489c4968f6a1df255, type: 2}
+  campaignCharacter: {fileID: 11400000, guid: f011224038af401bb8cf87c9c4466c66, type: 2}
   charactersData:
   - {fileID: 11400000, guid: eb2ab77753ca85649a6995e75c7f218a, type: 2}
   - {fileID: 11400000, guid: ab67ced511fe3ef489c4968f6a1df255, type: 2}
@@ -35128,6 +35133,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inSafeArea: 0
   inDamageArea: 0
+--- !u!114 &4481559838815660383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486224884018677120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad3b7ef6d802584dabb4c470838d5e7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BlueCrystalInventory
+  count: 0
+  playerOrbitRadius: 1.1
+  playerOrbitSpeed: 85
+  playerOrbitSpeedDifference: 8
+  playerOrbitPhaseStep: 137.5
+  absorptionDuration: 0.32
+--- !u!114 &6660523515132947802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486224884018677120}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dd3ee69216cd54b99e1416ce54c06a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BeamMeleeUsesManager
+  headAnimator: {fileID: 0}
+  headStateNames:
+  - PlayerHeadState1
+  - PlayerHeadState2
+  - PlayerHeadState3
+  - PlayerHeadState4
+--- !u!114 &1436397653161089765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486224884018677120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d154f1b344ba545a3b0b0f8926d5e2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BeamMeleeAttack
+  playerInput: {fileID: 5486224884018677144}
+  beamOrigin: {fileID: 5486224884018677125}
+  usesManager: {fileID: 6660523515132947802}
+--- !u!114 &8372153316439465729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486224884018677120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5977b50b6190944aaf57c3fb9a5799, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::EnsureStartingPistol
+  gunInventory: {fileID: 9170395124740432100}
+  startingPistol: {fileID: 11400000, guid: 13522032fe334e1f862a3ecc601881c9, type: 2}
 --- !u!1 &5523769274737813579
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8119902adac83e4489a3b70267a3acc8, type: 3}
+  m_Name: FlashData
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.FlashData
+  duration: 0.5
+  stunDuration: 1.5
+  coneAngle: 36
+  coneRange: 7
+  waveTravelTime: 0.14
+  cameraShakeMagnitude: 1.05
+  pushSpeed: 2.5
+  maxUses: 3
+  rechargeDuration: 2
+  skillCheckTarget: 0.8
+  skillCheckWidth: 0.296
+  enableConeLight: 1
+  lightColor: {r: 4, g: 3.1597245, b: 1.8039217, a: 1}
+  lightIntensity: 0.68
+  lightFalloff: 0.808
+  innerRadiusFraction: 0.71466124
+  innerAngleFraction: 0.5842138
+  volumetricLight: 1
+  volumeIntensity: 0.035
+  castShadows: 1
+  shadowIntensity: 0.75
+  shadowSoftness: 0.3
+  shadowSoftnessFalloff: 0.5
+  castVolumetricShadows: 1
+  volumetricShadowIntensity: 0.9
+  trailLifetime: 1.1
+  durationPercentPerRank: 5
+  anglePerRank: 8
+  rangePercentPerRank: 12
+  usesPerRank: 1
+  rechargeReductionPercentPerRank: 10
+  repulsionPushSpeed: 13
+  eliteRecoveryUses: 1
+  turretCooldown: 22
+  beamPrefab: {fileID: 3635314772694328555, guid: 48ac4f2f1e373b04d8dcdd704ea46a4b, type: 3}
+  coneLightPrefab: {fileID: 5031538138105316384, guid: 06f34be4546e9e34182759c27d76faab, type: 3}
+  hitboxArcSegments: 24

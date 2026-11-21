@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: flash-capacity
   displayName: Célula de Luz
-  description: +1 carga máxima do Flash por nível.
+  description: Aumenta o número de cargas do Flash.
   icon: {fileID: -1089351995, guid: 852e340944c9cd6468329e12ce36e914, type: 3}
   maximumRank: 6
   soulCost: 20
@@ -29,8 +29,6 @@ MonoBehaviour:
   resourceCostsByRank: []
   unlockedWeaponResourcePath: 
   effectType: 3
-  effectPerRank: 1
-  secondaryEffectPerRank: 0
   effectStartsAtRank: 1
   visibleAtStart: 0
   requireAllRevealPrerequisites: 1

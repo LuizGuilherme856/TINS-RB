@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: flash-area
   displayName: Área do Flash
-  description: +8° de abertura e +12% do alcance base por nível.
+  description: Aumenta a abertura e o alcance do Flash.
   icon: {fileID: 1865289319, guid: 852e340944c9cd6468329e12ce36e914, type: 3}
   maximumRank: 4
   soulCost: 25
@@ -29,8 +29,6 @@ MonoBehaviour:
   resourceCostsByRank: []
   unlockedWeaponResourcePath: 
   effectType: 2
-  effectPerRank: 8
-  secondaryEffectPerRank: 0.12
   effectStartsAtRank: 1
   visibleAtStart: 0
   requireAllRevealPrerequisites: 1

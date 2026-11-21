@@ -43,6 +43,7 @@ namespace TINS.Campaign
         private MaterialPropertyBlock properties;
         private Sprite generatedSprite;
         private bool ownsDarknessMaterial;
+        private CampaignFlashTrail flashTrail;
 
         private CampaignPlanet configuredPlanet;
         private float CurrentPenumbraWidth => configuredPlanet != null
@@ -53,6 +54,8 @@ namespace TINS.Campaign
 
         public void ConfigurePlanet(CampaignPlanet planet)
         {
+            flashTrail?.Dispose();
+            flashTrail = null;
             configuredPlanet = planet;
             bool useTerrain = planet?.floorTiles != null;
             if (useTerrain && terrain == null)
@@ -79,6 +82,17 @@ namespace TINS.Campaign
                 if (legacyGroundTilemaps != null)
                     foreach (var tilemap in legacyGroundTilemaps) HideLegacyFloor(tilemap);
             }
+        }
+
+        public void StampFlashTrail(Vector2 origin, Vector2 direction, float radius, float halfAngle, float fullRange)
+        {
+            if (!isActiveAndEnabled || terrain == null || !terrain.enabled || lightReveal == null) return;
+
+            // Cover the playable area at its largest plus the reach of the upgraded flash.
+            flashTrail ??= new CampaignFlashTrail(lightReveal.transform.position,
+                Mathf.Max(BreuRadius, configuredPlanet.finalPenumbraRadius) + Mathf.Max(12f, fullRange),
+                FlashData.Shared.trailLifetime);
+            flashTrail.Stamp(origin, direction, radius, halfAngle);
         }
 
         private void HideLegacyFloor(Renderer renderer)
@@ -198,6 +212,11 @@ namespace TINS.Campaign
                 properties.SetVector(TerrainAtlasSizeId, new Vector4(tiles.width, tiles.height, 0f, 0f));
                 properties.SetFloat(PurifiedRadiusId, radius * configuredPlanet.purifiedGrassRadiusRatio);
             }
+            if (flashTrail != null)
+                flashTrail.Apply(properties);
+            else
+                properties.SetVector(CampaignFlashTrail.BoundsId, Vector4.zero);
+
             overlay.SetPropertyBlock(properties);
             if (useTerrain)
             {
@@ -208,6 +227,7 @@ namespace TINS.Campaign
 
         private void OnDestroy()
         {
+            flashTrail?.Dispose();
             RestoreLegacyFloor();
             if (generatedSprite != null) Destroy(generatedSprite);
             if (ownsDarknessMaterial && darknessMaterial != null) Destroy(darknessMaterial);

@@ -10,30 +10,11 @@ public sealed class BeamMeleeAttack : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler playerInput;
     [SerializeField] private Transform beamOrigin;
-    [SerializeField] private GameObject beamPrefab;
-    [SerializeField, Min(0.05f)] private float duration = 0.5f;
-    [SerializeField, Min(0.1f)] private float stunDuration = 1.5f;
     [SerializeField] private BeamMeleeUsesManager usesManager;
-    [SerializeField] private GameObject coneLightPrefab;
-
-    [Header("Cone Light")]
-    [SerializeField, Range(5f, 180f), Tooltip("Abertura total do cone, em graus, antes das melhorias.")]
-    private float baseConeAngle = 36f;
-    [SerializeField, Min(0.1f), Tooltip("Distância do flash, em unidades de mundo, antes das melhorias.")]
-    private float baseConeRange = 7f;
-    [SerializeField, Min(0f)] private float anglePerAreaRank = 8f;
-    [SerializeField, Min(0f)] private float rangeFractionPerAreaRank = 0.12f;
-    [SerializeField] private bool enableConeLight = true;
-    [SerializeField, Range(3, 64)] private int hitboxArcSegments = 24;
-
-    [Header("Flash Impact")]
-    [SerializeField, Min(0.02f)] private float waveTravelTime = 0.14f;
-    [SerializeField, Min(0f)] private float cameraShakeMagnitude = 1.05f;
-
-    [SerializeField, Min(0f)] private float basePushSpeed = 2.5f;
 
     private ControlCameraShake cameraShake;
-    private float FlashDuration => duration * campaignDurationMultiplier;
+    private CampaignDarknessBands darkness;
+    private float FlashDuration => FlashData.Shared.duration * campaignDurationMultiplier;
     private readonly List<ActiveBeam> activeBeams = new List<ActiveBeam>();
     private float campaignDurationMultiplier = 1f;
     private int areaRank;
@@ -61,19 +42,20 @@ public sealed class BeamMeleeAttack : MonoBehaviour
 
     public bool FireBeam()
     {
-        if (usesManager == null || !usesManager.isActiveAndEnabled || beamPrefab == null || beamOrigin == null) return false;
-        if (enableConeLight && coneLightPrefab == null)
+        if (usesManager == null || !usesManager.isActiveAndEnabled || beamOrigin == null) return false;
+        FlashData data = FlashData.Shared;
+        if (data == null || data.beamPrefab == null || (data.enableConeLight && data.coneLightPrefab == null))
         {
-            Debug.LogError("Beam melee has Cone Light enabled but no cone prefab assigned.", this);
+            Debug.LogError("Configure the beam and cone in the shared FlashData asset.", this);
             return false;
         }
 
-        GameObject beam = Instantiate(beamPrefab);
+        GameObject beam = Instantiate(data.beamPrefab);
         PlayerMeleeAttackSource attackSource = beam.GetComponent<PlayerMeleeAttackSource>();
         Health playerHealth = GetComponentInParent<Health>();
         if (attackSource == null || playerHealth == null)
         {
-            Debug.LogError("Cone attack setup requires PlayerMeleeAttackSource and the player Health component.", beamPrefab);
+            Debug.LogError("Cone attack setup requires PlayerMeleeAttackSource and the player Health component.", data.beamPrefab);
             Destroy(beam);
             return false;
         }
@@ -104,28 +86,23 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         PolygonCollider2D hitbox = beam.AddComponent<PolygonCollider2D>();
         hitbox.isTrigger = true;
         Light2D coneLight = null;
-        float rangeFraction = campaignRangeFractionBonus + rangeFractionPerAreaRank * areaRank;
-        float angleBonus = campaignAngleBonus + anglePerAreaRank * areaRank;
-        float range = Mathf.Max(0.1f, baseConeRange * (1f + rangeFraction));
-        float angle = Mathf.Clamp(baseConeAngle + angleBonus, 5f, 180f);
-        if (enableConeLight)
+        float rangeFraction = campaignRangeFractionBonus + data.rangePercentPerRank / 100f * areaRank;
+        float angleBonus = campaignAngleBonus + data.anglePerRank * areaRank;
+        float range = Mathf.Max(0.1f, data.coneRange * (1f + rangeFraction));
+        float angle = Mathf.Clamp(data.coneAngle + angleBonus, 5f, 180f);
+        if (data.enableConeLight)
         {
-            GameObject coneObject = Instantiate(coneLightPrefab);
+            GameObject coneObject = Instantiate(data.coneLightPrefab);
             coneLight = coneObject.GetComponent<Light2D>();
             if (coneLight == null)
             {
-                Debug.LogError("Cone light prefab must have a Light2D component on its root.", coneLightPrefab);
+                Debug.LogError("Cone light prefab must have a Light2D component on its root.", data.coneLightPrefab);
                 Destroy(coneObject);
                 Destroy(beam);
                 return false;
             }
 
-            float innerRadiusRatio = coneLight.pointLightInnerRadius / Mathf.Max(0.1f, coneLight.pointLightOuterRadius);
-            float innerAngleRatio = coneLight.pointLightInnerAngle / Mathf.Max(5f, coneLight.pointLightOuterAngle);
-            coneLight.pointLightOuterRadius = range;
-            coneLight.pointLightInnerRadius = range * Mathf.Clamp01(innerRadiusRatio);
-            coneLight.pointLightOuterAngle = angle;
-            coneLight.pointLightInnerAngle = angle * Mathf.Clamp01(innerAngleRatio);
+            data.ConfigureLight(coneLight, range, angle);
         }
         SetConeHitbox(hitbox, range, angle);
         activeBeams.Add(new ActiveBeam
@@ -139,14 +116,17 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             lightInnerRadius = coneLight != null ? coneLight.pointLightInnerRadius : 0f
         });
 
+        if (coneLight != null && darkness == null && CampaignCombatRules.IsCampaignMission)
+            darkness = FindFirstObjectByType<CampaignDarknessBands>();
+
         ActiveBeam activeBeam = activeBeams[activeBeams.Count - 1];
         UpdateBeam(activeBeam);
-        if (cameraShakeMagnitude > 0f)
+        if (data.cameraShakeMagnitude > 0f)
         {
             if (cameraShake == null) cameraShake = FindFirstObjectByType<ControlCameraShake>();
             Vector2 forward = activeBeam.transform.right;
             cameraShake?.TriggerCameraShake(Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg,
-                cameraShakeMagnitude);
+                data.cameraShakeMagnitude);
         }
         CampaignMissionRuntime.Active?.DeployFlashTurret(transform.position);
         return true;
@@ -219,7 +199,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             origin,
             Quaternion.Euler(0f, 0f, angleDegrees));
         float age = Time.time - beam.startTime;
-        float travelTime = Mathf.Min(waveTravelTime, FlashDuration * 0.65f);
+        float travelTime = Mathf.Min(FlashData.Shared.waveTravelTime, FlashDuration * 0.65f);
         float travel = Mathf.Clamp01(age / travelTime);
         float rangeFraction = Mathf.Lerp(0.08f, 1f, 1f - (1f - travel) * (1f - travel));
         beam.reach = beam.coneRange * rangeFraction;
@@ -239,6 +219,13 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             // URP 2D point-light arcs are authored along local +Y; the beam sprite
             // uses local +X, so compensate by 90 degrees to keep them aligned.
             lightTransform.SetPositionAndRotation(origin, Quaternion.Euler(0f, 0f, angleDegrees - 90f));
+            if (fade > 0.18f && darkness != null)
+            {
+                // Leave a trail in the bright part of the cone. The soft outer edge is light only.
+                float trailRadius = Mathf.Lerp(beam.coneLight.pointLightInnerRadius, beam.reach, 0.75f);
+                float trailAngle = Mathf.Lerp(beam.coneLight.pointLightInnerAngle, beam.coneAngle, 0.65f);
+                darkness.StampFlashTrail(origin, direction, trailRadius, trailAngle * 0.5f, beam.coneRange);
+            }
         }
     }
 
@@ -249,7 +236,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         float halfAngle = beam.coneAngle * 0.5f;
         CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
         float upgradedPushSpeed = mission?.SkillEffect(CampaignSkillEffectType.FlashRepulsion).x ?? 0f;
-        float pushSpeed = Mathf.Max(basePushSpeed, upgradedPushSpeed);
+        float pushSpeed = Mathf.Max(FlashData.Shared.pushSpeed, upgradedPushSpeed);
         Transform pushOrigin = upgradedPushSpeed > 0f ? mission.DefenseCore : null;
         foreach (Collider2D hit in hits)
         {
@@ -262,7 +249,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             bool colliderInCone = closestOffset.sqrMagnitude <= range * range && Vector2.Angle(direction, closestOffset) <= halfAngle;
             // Flash concussion is guaranteed on a cone hit, including against status-immune enemies.
             if (!centerInCone && !colliderInCone) continue;
-            enemy.ApplyCampaignFlashStun(stunDuration * campaignDurationMultiplier);
+            enemy.ApplyCampaignFlashStun(FlashData.Shared.stunDuration * campaignDurationMultiplier);
             if (pushSpeed > 0f && beam.repelledEnemies.Add(enemy))
             {
                 Vector2 away = pushOrigin != null
@@ -276,7 +263,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     {
         if (hitbox == null) return;
 
-        int segments = Mathf.Clamp(hitboxArcSegments, 3, 64);
+        int segments = Mathf.Clamp(FlashData.Shared.hitboxArcSegments, 3, 64);
         Vector2[] points = new Vector2[segments + 2];
         points[0] = Vector2.zero;
         float halfAngle = angle * 0.5f;
@@ -292,15 +279,17 @@ public sealed class BeamMeleeAttack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        FlashData data = FlashData.Shared;
+        if (data == null) return;
         Transform source = beamOrigin != null ? beamOrigin : transform;
         Vector3 origin = source.position;
-        float halfAngle = baseConeAngle * 0.5f;
+        float halfAngle = data.coneAngle * 0.5f;
         Vector3 previous = origin;
         Gizmos.color = new Color(0.25f, 0.9f, 1f, 0.85f);
         for (int i = 0; i <= 24; i++)
         {
             float angle = Mathf.Lerp(-halfAngle, halfAngle, i / 24f);
-            Vector3 point = origin + Quaternion.AngleAxis(angle, Vector3.forward) * source.right * baseConeRange;
+            Vector3 point = origin + Quaternion.AngleAxis(angle, Vector3.forward) * source.right * data.coneRange;
             Gizmos.DrawLine(previous, point);
             previous = point;
         }

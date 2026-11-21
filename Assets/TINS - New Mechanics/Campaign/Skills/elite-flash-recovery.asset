@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: elite-flash-recovery
   displayName: "Recuperação por Abate"
-  description: "Derrotar um elite ou chefe devolve uma carga de Flash, até o limite."
+  description: Recupera cargas de Flash ao derrotar elites ou chefes.
   icon: {fileID: -1987937445, guid: 9605c09272d0f6343b7f9cd60331c4c0, type: 3}
   maximumRank: 1
   soulCost: 95
@@ -28,8 +28,6 @@ MonoBehaviour:
   resourceCostGrowth: 1.4
   resourceCostsByRank: []
   effectType: 16
-  effectPerRank: 1
-  secondaryEffectPerRank: 0
   effectPrefab: {fileID: 0}
   orbitalEffect: {fileID: 0}
   effectStartsAtRank: 1

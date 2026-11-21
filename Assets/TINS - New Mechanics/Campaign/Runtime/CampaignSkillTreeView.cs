@@ -188,7 +188,7 @@ namespace TINS.Campaign
                 if (skill != null)
                 {
                     string effect = FormatEffectProgress(skill, rank);
-                    detailsLabel.text = $"<color=#DA8DAB>NÍVEL {rank}/{skill.maximumRank}</color>\n\n" + skill.description;
+                    detailsLabel.text = $"<color=#DA8DAB>NÍVEL {rank}/{skill.maximumRank}</color>\n\n" + skill.Description;
                     if (!string.IsNullOrEmpty(effect)) detailsLabel.text += "\n\n" + effect;
                 }
             }
@@ -259,7 +259,8 @@ namespace TINS.Campaign
             string currentText = FormatEffectValue(skill, current.x, current.y);
             if (string.IsNullOrEmpty(currentText)) return string.Empty;
             if (!hasNextEffect) return "Benefício atual: " + currentText;
-            string nextText = FormatEffectValue(skill, skill.effectPerRank, skill.secondaryEffectPerRank);
+            Vector2 nextBonus = skill.EffectAtRank(rank + 1) - current;
+            string nextText = FormatEffectValue(skill, nextBonus.x, nextBonus.y);
             return "Benefício atual: " + currentText + "\nPróxima compra: " + nextText;
         }
 

@@ -8,12 +8,17 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
         _PenumbraWidth ("Penumbra Width", Float) = 2
         _PenumbraOpacity ("Penumbra Darkness", Range(0,1)) = 0.62
         _BandSize ("Pixel Step", Float) = 0.0625
+        _BorderNoise ("Edge Noise", Range(0,0.3)) = 0.15
+        _BreathExpansion ("Breathing Expansion", Range(0,0.5)) = 0.18
+        _BreathPeriod ("Breathing Period (seconds)", Float) = 4.6
         _PurificationWave ("Purification Wave", Vector) = (0,0,0,0)
         [NoScaleOffset] _TerrainTiles ("16 px Terrain Tiles", 2D) = "white" {}
         [HideInInspector] _TerrainAtlasSize ("Terrain Atlas Size", Vector) = (112,64,0,0)
         [HideInInspector] _TerrainEnabled ("Terrain Enabled", Float) = 0
         [HideInInspector] _TerrainOnly ("Terrain Pass", Float) = 0
         [HideInInspector] _PurifiedRadius ("Purified Grass Radius", Float) = 0
+        [HideInInspector][NoScaleOffset] _FlashTrail ("Flash Trail Times", 2D) = "black" {}
+        [HideInInspector] _FlashTrailBounds ("Flash Trail Bounds and Time", Vector) = (0,0,0,0)
     }
     SubShader
     {
@@ -42,12 +47,17 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
             float _PenumbraWidth;
             float _PenumbraOpacity;
             float _BandSize;
+            float _BorderNoise;
+            float _BreathExpansion;
+            float _BreathPeriod;
             float4 _PurificationWave;
             sampler2D _TerrainTiles;
             float4 _TerrainAtlasSize;
             float _TerrainEnabled;
             float _TerrainOnly;
             float _PurifiedRadius;
+            sampler2D _FlashTrail;
+            float4 _FlashTrailBounds;
 
             struct appdata { float3 vertex : POSITION; };
             struct v2f { float4 vertex : SV_POSITION; float2 world : TEXCOORD0; half2 lightingUV : TEXCOORD1; };
@@ -71,14 +81,64 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
                 return tex2D(_TerrainTiles, (texel + 0.5) / _TerrainAtlasSize.xy).rgb;
             }
 
+            half3 SampleFlashTerrain(float2 world, float band)
+            {
+                half3 ground = SampleTerrain(world, band);
+                if (_FlashTrailBounds.w <= 0.0 || band == 0.0)
+                    return ground;
+
+                float2 uv = (world - _FlashTrailBounds.xy) * _FlashTrailBounds.z;
+                if (any(uv < 0.0) || any(uv >= 1.0))
+                    return ground;
+
+                float lastFlash = tex2D(_FlashTrail, uv).r;
+                float age = _FlashTrailBounds.w - lastFlash;
+                if (lastFlash <= 0.0 || age >= 1.0)
+                    return ground;
+
+                // Fresh grass gives way to lighter purple before the original palette returns.
+                half purified = 1.0 - smoothstep(0.22, 0.46, age);
+                half linger = 1.0 - smoothstep(0.60, 1.0, age);
+                half3 penumbra = band == 3.0 ? SampleTerrain(world, 2.0) : ground;
+                return lerp(lerp(ground, penumbra, linger), SampleTerrain(world, 0.0), purified);
+            }
+
+            float HashCell(float2 cell)
+            {
+                float3 seed = frac(cell.xyx * 0.1031);
+                seed += dot(seed, seed.yzx + 33.33);
+                return frac((seed.x + seed.y) * seed.z);
+            }
+
+            float EdgeNoise(float2 pixel)
+            {
+                // Stable six-pixel clusters, with a little variation at each pixel.
+                float2 patch = pixel / 6.0;
+                float2 cell = floor(patch);
+                float2 blend = smoothstep(0.0, 1.0, frac(patch));
+                float bottom = lerp(HashCell(cell), HashCell(cell + float2(1, 0)), blend.x);
+                float top = lerp(HashCell(cell + float2(0, 1)), HashCell(cell + float2(1, 1)), blend.x);
+                return lerp(lerp(bottom, top, blend.y), HashCell(pixel), 0.24) * 2.0 - 1.0;
+            }
+
             half4 frag(v2f i) : SV_Target
             {
                 float stepSize = max(0.01, _BandSize);
-                float distanceFromLight = length(i.world - _Center.xy);
-                float quantizedDistance = floor(distanceFromLight / stepSize) * stepSize;
-                float band = quantizedDistance < _PurifiedRadius ? 0.0 : 1.0;
-                if (quantizedDistance >= _LightRadius)
-                    band = quantizedDistance >= _LightRadius + _PenumbraWidth ? 3.0 : 2.0;
+                float2 pixel = floor(i.world / stepSize);
+                float2 pixelCenter = (pixel + 0.5) * stepSize;
+                float phase = _Time.y * (TWO_PI / max(0.1, _BreathPeriod));
+                float breath = _BreathExpansion * (0.5 - 0.5 * cos(phase));
+                float distanceFromEdge = length(pixelCenter - _Center.xy) - breath;
+                float outerRadius = _LightRadius + _PenumbraWidth;
+                float nearestEdge = min(abs(distanceFromEdge - _LightRadius), abs(distanceFromEdge - outerRadius));
+                if (_PurifiedRadius > 0.0)
+                    nearestEdge = min(nearestEdge, abs(distanceFromEdge - _PurifiedRadius));
+                if (nearestEdge < _BorderNoise)
+                    distanceFromEdge += EdgeNoise(pixel) * _BorderNoise;
+
+                float band = _PurifiedRadius > 0.0 && distanceFromEdge < _PurifiedRadius ? 0.0 : 1.0;
+                if (distanceFromEdge >= _LightRadius)
+                    band = distanceFromEdge >= outerRadius ? 3.0 : 2.0;
                 float alpha = band == 3.0 ? 1.0 : (band == 2.0 ? _PenumbraOpacity : 0.0);
                 // The Flash uses the renderer's Additive blend style. Its Light2D
                 // buffer already includes the shadows from the scene's ShadowCaster2D components.
@@ -92,7 +152,7 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
 
                 if (_TerrainOnly > 0.5)
                 {
-                    half3 ground = SampleTerrain(i.world, band);
+                    half3 ground = SampleFlashTerrain(i.world, band);
                     // The same light lifts pale blades more than dark soil.
                     half3 reflectedLight = light * (0.34 + 0.90 * ground);
                     return half4(ground + reflectedLight, 1.0);
@@ -100,14 +160,15 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
 
                 half3 darknessColor = _Color.rgb;
                 if (_TerrainEnabled > 0.5 && alpha > 0.0)
-                    darknessColor = SampleTerrain(i.world, band);
+                    darknessColor = SampleFlashTerrain(i.world, band);
                 half4 overlay = half4(darknessColor, alpha * _Color.a);
 
                 if (_PurificationWave.z > 0.0)
                 {
-                    float fromWave = abs(quantizedDistance - _PurificationWave.x);
+                    float waveDistance = floor(length(i.world - _Center.xy) / stepSize) * stepSize;
+                    float fromWave = abs(waveDistance - _PurificationWave.x);
                     float ring = saturate(1.0 - fromWave / max(0.01, _PurificationWave.y));
-                    float glow = quantizedDistance <= _PurificationWave.x ? 0.22 : 0.0;
+                    float glow = waveDistance <= _PurificationWave.x ? 0.22 : 0.0;
                     if (ring > 0.0 || glow > 0.0)
                         overlay = half4(1.0, 0.83, 0.48, max(ring, glow) * _PurificationWave.z);
                 }

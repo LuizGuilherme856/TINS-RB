@@ -150,8 +150,6 @@ public static class CampaignProjectInstaller
         SetObject(flash, "playerInput", missionInput);
         SetObject(flash, "usesManager", charges);
         SetObject(flash, "beamOrigin", player.transform);
-        SetObject(flash, "beamPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/Prefabs/PlayerMouseBeam.prefab"));
-        SetObject(flash, "coneLightPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/TINS - New Mechanics/Prefabs/Melee Cone Light.prefab"));
         EnemySpawnManager spawner = FindFirst<EnemySpawnManager>(scene);
         if (spawner == null) throw new System.InvalidOperationException("Mission spawner is missing.");
         SetObject(spawner, "enemyPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemies/Demoninho/Demoninho no path finding.prefab"));

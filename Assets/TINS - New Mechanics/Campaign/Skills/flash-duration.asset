@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: flash-duration
   displayName: Flash de Luz
-  description: Desbloqueia o Flash. Depois, +5% de duração e de atordoamento por nível.
+  description: Desbloqueia o Flash e amplia a duração do feixe e do atordoamento.
   icon: {fileID: 21300000, guid: 5b817a678be83c94c836f978b6e833ea, type: 3}
   maximumRank: 9
   soulCost: 10
@@ -29,8 +29,6 @@ MonoBehaviour:
   resourceCostsByRank: []
   unlockedWeaponResourcePath: 
   effectType: 1
-  effectPerRank: 0.05
-  secondaryEffectPerRank: 0
   effectStartsAtRank: 2
   visibleAtStart: 1
   requireAllRevealPrerequisites: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: flash-recharge
   displayName: Foco Restaurado
-  description: −10% no tempo de recarga do Flash por nível.
+  description: Reduz o tempo de recarga do Flash.
   icon: {fileID: 1386206378, guid: 852e340944c9cd6468329e12ce36e914, type: 3}
   maximumRank: 3
   soulCost: 25
@@ -29,8 +29,6 @@ MonoBehaviour:
   resourceCostsByRank: []
   unlockedWeaponResourcePath: 
   effectType: 4
-  effectPerRank: 0.1
-  secondaryEffectPerRank: 0
   effectStartsAtRank: 1
   visibleAtStart: 0
   requireAllRevealPrerequisites: 1

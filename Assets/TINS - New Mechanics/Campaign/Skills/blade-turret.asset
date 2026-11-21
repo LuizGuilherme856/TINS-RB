@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignSkill
   id: blade-turret
   displayName: "Torreta de Lâminas"
-  description: "Usar o Flash instala uma armadilha giratória por 11 s. Intervalo de 22 s."
+  description: Usar o Flash instala uma armadilha giratória por 11 s.
   icon: {fileID: 901113176, guid: 6f4d673c5680ce44292665edbb15fa58, type: 3}
   maximumRank: 1
   soulCost: 130
@@ -28,8 +28,6 @@ MonoBehaviour:
   resourceCostGrowth: 1.4
   resourceCostsByRank: []
   effectType: 11
-  effectPerRank: 22
-  secondaryEffectPerRank: 0
   effectPrefab: {fileID: 177165337631226547, guid: f1e953ad009a900489069b6c1e4e839d, type: 3}
   orbitalEffect: {fileID: 0}
   effectStartsAtRank: 1

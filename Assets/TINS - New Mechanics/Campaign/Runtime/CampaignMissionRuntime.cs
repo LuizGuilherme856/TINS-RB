@@ -376,7 +376,7 @@ namespace TINS.Campaign
                 {
                     playerCharges.ConfigureMaximumUses(Mathf.Max(0, Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.FlashCapacity).x)));
                     float rechargeMultiplier = 1f - Mathf.Clamp(SkillEffect(CampaignSkillEffectType.FlashRecharge).x, 0f, 0.9f);
-                    playerCharges.ConfigureRechargeDuration(playerCharges.RechargeDuration * rechargeMultiplier);
+                    playerCharges.ConfigureRechargeDuration(FlashData.Shared.rechargeDuration * rechargeMultiplier);
                     playerCharges.RefillUses();
                 }
             }

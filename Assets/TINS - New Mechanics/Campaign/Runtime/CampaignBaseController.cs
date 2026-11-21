@@ -417,7 +417,7 @@ namespace TINS.Campaign
                 string costText = maxed ? "MÁXIMO" : $"{(canBuy ? "Comprar" : "Custo")} · {skill.CostForRank(rank)} almas{materialText}";
                 if (skill.requiresFlash && !profile.HasFlash) costText = "Requer Flash de Luz";
                 if (skillLabels[i] != null)
-                    skillLabels[i].text = $"{skill.displayName}  {rank}/{skill.maximumRank}\n{skill.description}\n{costText}";
+                    skillLabels[i].text = $"{skill.displayName}  {rank}/{skill.maximumRank}\n{skill.Description}\n{costText}";
                 skillButtons[i].interactable = canBuy;
             }
 

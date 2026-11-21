@@ -61,9 +61,9 @@ namespace TINS.Campaign
 
         [Header("Effect per level")]
         public CampaignSkillEffectType effectType;
-        [Tooltip("Amount applied at each purchased level (or at each rank from Effect Starts At Rank).")]
+        [Tooltip("Amount applied per level. Edit Flash skill values in the shared FlashData asset.")]
         public float effectPerRank;
-        [Tooltip("Optional second value for effects with two parameters, such as cone degrees and range fraction.")]
+        [Tooltip("Optional second value per level. Edit Flash range bonuses in FlashData.")]
         public float secondaryEffectPerRank;
         [Tooltip("Optional prefab deployed by this upgrade during a campaign mission.")]
         public GameObject effectPrefab;
@@ -83,10 +83,43 @@ namespace TINS.Campaign
         public CampaignSkill[] exclusiveWith = Array.Empty<CampaignSkill>();
         public Vector2 editorPosition;
 
+        public Vector2 EffectPerRank
+        {
+            get
+            {
+                var original = new Vector2(effectPerRank, secondaryEffectPerRank);
+                return FlashData.Shared?.EffectPerRank(effectType, original) ?? original;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                Vector2 bonus = EffectPerRank;
+                return effectType switch
+                {
+                    CampaignSkillEffectType.FlashDuration =>
+                        $"Desbloqueia o Flash. Depois, +{bonus.x * 100f:0.#}% de duração e atordoamento por nível.",
+                    CampaignSkillEffectType.FlashArea =>
+                        $"+{bonus.x:0.#}° de abertura e +{bonus.y * 100f:0.#}% do alcance base por nível.",
+                    CampaignSkillEffectType.FlashCapacity =>
+                        $"+{bonus.x:0.#} carga(s) do Flash por nível.",
+                    CampaignSkillEffectType.FlashRecharge =>
+                        $"−{bonus.x * 100f:0.#}% do tempo base de recarga por nível.",
+                    CampaignSkillEffectType.EliteFlashRecovery =>
+                        $"Derrotar um elite ou chefe devolve {bonus.x:0.#} carga(s) de Flash, até o limite.",
+                    CampaignSkillEffectType.BladeTurret =>
+                        $"{description} Intervalo de {bonus.x:0.#} s.",
+                    _ => description
+                };
+            }
+        }
+
         public Vector2 EffectAtRank(int rank)
         {
             int activeRanks = Mathf.Max(0, Mathf.Min(rank, maximumRank) - Mathf.Max(1, effectStartsAtRank) + 1);
-            return new Vector2(effectPerRank * activeRanks, secondaryEffectPerRank * activeRanks);
+            return EffectPerRank * activeRanks;
         }
 
         public int CostForRank(int currentRank)
