@@ -22,21 +22,29 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _TerrainTiles:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BandSize: 0.0625
     - _FlashCosAngle: 1
     - _FlashEnabled: 0
     - _FlashRange: 0
-    - _LightRadius: 11
+    - _LightRadius: 15
     - _PenumbraOpacity: 0.62
-    - _PenumbraWidth: 21.451578
+    - _PenumbraWidth: 29.04105
+    - _PurifiedRadius: 0
+    - _TerrainEnabled: 0
+    - _TerrainOnly: 0
     m_Colors:
     - _Center: {r: -3.91, g: 7.23, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _FlashDirection: {r: 1, g: 0, b: 0, a: 0}
     - _FlashOrigin: {r: 0, g: 0, b: 0, a: 0}
     - _PurificationWave: {r: 0, g: 0, b: 0, a: 0}
+    - _TerrainAtlasSize: {r: 112, g: 64, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

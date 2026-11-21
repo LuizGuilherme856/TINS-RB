@@ -9,11 +9,6 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
         _PenumbraOpacity ("Penumbra Darkness", Range(0,1)) = 0.62
         _BandSize ("Pixel Step", Float) = 0.0625
         _PurificationWave ("Purification Wave", Vector) = (0,0,0,0)
-        _FlashEnabled ("Flash Active", Float) = 0
-        _FlashOrigin ("Flash Origin", Vector) = (0,0,0,0)
-        _FlashDirection ("Flash Direction", Vector) = (1,0,0,0)
-        _FlashRange ("Flash Range", Float) = 0
-        _FlashCosAngle ("Flash Half Angle Cosine", Float) = 0.9
         [NoScaleOffset] _TerrainTiles ("16 px Terrain Tiles", 2D) = "white" {}
         [HideInInspector] _TerrainAtlasSize ("Terrain Atlas Size", Vector) = (112,64,0,0)
         [HideInInspector] _TerrainEnabled ("Terrain Enabled", Float) = 0
@@ -22,7 +17,7 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
     }
     SubShader
     {
-        Tags { "Queue"="Transparent+500" "RenderType"="Transparent" "IgnoreProjector"="True" }
+        Tags { "Queue"="Transparent+500" "RenderType"="Transparent" "IgnoreProjector"="True" "RenderPipeline"="UniversalPipeline" }
         Cull Off
         Lighting Off
         ZWrite Off
@@ -31,42 +26,42 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
 
         Pass
         {
-            CGPROGRAM
+            Tags { "LightMode"="Universal2D" }
+
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc"
+            #pragma multi_compile USE_SHAPE_LIGHT_TYPE_1 __
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/LightingUtility.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/ShapeLightVariables.hlsl"
 
-            fixed4 _Color;
+            half4 _Color;
             float4 _Center;
             float _LightRadius;
             float _PenumbraWidth;
             float _PenumbraOpacity;
             float _BandSize;
             float4 _PurificationWave;
-            float _FlashEnabled;
-            float4 _FlashOrigin;
-            float4 _FlashDirection;
-            float _FlashRange;
-            float _FlashCosAngle;
             sampler2D _TerrainTiles;
             float4 _TerrainAtlasSize;
             float _TerrainEnabled;
             float _TerrainOnly;
             float _PurifiedRadius;
 
-            struct appdata { float4 vertex : POSITION; };
-            struct v2f { float4 vertex : SV_POSITION; float2 world : TEXCOORD0; };
+            struct appdata { float3 vertex : POSITION; };
+            struct v2f { float4 vertex : SV_POSITION; float2 world : TEXCOORD0; half2 lightingUV : TEXCOORD1; };
 
             v2f vert(appdata v)
             {
                 v2f o;
-                float4 world = mul(unity_ObjectToWorld, v.vertex);
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.world = world.xy;
+                o.vertex = TransformObjectToHClip(v.vertex);
+                o.world = TransformObjectToWorld(v.vertex).xy;
+                o.lightingUV = ComputeScreenPos(o.vertex / o.vertex.w).xy;
                 return o;
             }
 
-            fixed3 SampleTerrain(float2 world, float band)
+            half3 SampleTerrain(float2 world, float band)
             {
                 // Each world unit is one 16×16 tile. All four palettes share its variant.
                 float2 cell = floor(world);
@@ -76,7 +71,7 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
                 return tex2D(_TerrainTiles, (texel + 0.5) / _TerrainAtlasSize.xy).rgb;
             }
 
-            fixed4 frag(v2f i) : SV_Target
+            half4 frag(v2f i) : SV_Target
             {
                 float stepSize = max(0.01, _BandSize);
                 float distanceFromLight = length(i.world - _Center.xy);
@@ -85,23 +80,28 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
                 if (quantizedDistance >= _LightRadius)
                     band = quantizedDistance >= _LightRadius + _PenumbraWidth ? 3.0 : 2.0;
                 float alpha = band == 3.0 ? 1.0 : (band == 2.0 ? _PenumbraOpacity : 0.0);
-                bool inFlash = false;
+                // The Flash uses the renderer's Additive blend style. Its Light2D
+                // buffer already includes the shadows from the scene's ShadowCaster2D components.
+                half3 light = 0.0;
+                #if USE_SHAPE_LIGHT_TYPE_1
+                    light = SAMPLE_TEXTURE2D(_ShapeLightTexture1, sampler_ShapeLightTexture1, i.lightingUV).rgb * _HDREmulationScale;
+                #endif
+                half lightStrength = max(light.r, max(light.g, light.b));
+                // Lift the existing darkness gradually as the light grows.
+                alpha *= exp2(-lightStrength * 3.4);
 
-                if (_FlashEnabled > 0.5)
+                if (_TerrainOnly > 0.5)
                 {
-                    float2 toPixel = i.world - _FlashOrigin.xy;
-                    float distanceFromFlash = length(toPixel);
-                    float insideCone = dot(normalize(toPixel), normalize(_FlashDirection.xy));
-                    if (distanceFromFlash <= _FlashRange && insideCone >= _FlashCosAngle)
-                    {
-                        inFlash = true;
-                        alpha = 0.0;
-                    }
+                    half3 ground = SampleTerrain(i.world, band);
+                    // The same light lifts pale blades more than dark soil.
+                    half3 reflectedLight = light * (0.34 + 0.90 * ground);
+                    return half4(ground + reflectedLight, 1.0);
                 }
 
-                // The ground and darkness overlay use the same circular masks and world grid.
-                if (_TerrainOnly > 0.5)
-                    return fixed4(SampleTerrain(i.world, inFlash ? min(band, 1.0) : band), 1.0);
+                half3 darknessColor = _Color.rgb;
+                if (_TerrainEnabled > 0.5 && alpha > 0.0)
+                    darknessColor = SampleTerrain(i.world, band);
+                half4 overlay = half4(darknessColor, alpha * _Color.a);
 
                 if (_PurificationWave.z > 0.0)
                 {
@@ -109,15 +109,12 @@ Shader "TINS/Campaign/Discrete Darkness Bands"
                     float ring = saturate(1.0 - fromWave / max(0.01, _PurificationWave.y));
                     float glow = quantizedDistance <= _PurificationWave.x ? 0.22 : 0.0;
                     if (ring > 0.0 || glow > 0.0)
-                        return fixed4(1.0, 0.83, 0.48, max(ring, glow) * _PurificationWave.z);
+                        overlay = half4(1.0, 0.83, 0.48, max(ring, glow) * _PurificationWave.z);
                 }
 
-                fixed3 darknessColor = _Color.rgb;
-                if (_TerrainEnabled > 0.5 && alpha > 0.0)
-                    darknessColor = SampleTerrain(i.world, band);
-                return fixed4(darknessColor, alpha * _Color.a);
+                return overlay;
             }
-            ENDCG
+            ENDHLSL
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TINS.Campaign
 
         private IReadOnlyList<CampaignPlanetMarker> orderedMarkers;
         private float animationTime;
-        private float pixelSize = 2f;
+        private float screenPixel = 1f;
 
         internal Color Tint(CampaignDestinationState state) => state switch
         {
@@ -46,13 +46,14 @@ namespace TINS.Campaign
             mesh.Clear();
             if (canvas != null)
             {
-                float relativeScale = canvas.transform.InverseTransformVector(rectTransform.TransformVector(Vector3.right)).magnitude;
-                pixelSize = 1f / Mathf.Max(.01f, canvas.scaleFactor * relativeScale);
+                Canvas root = canvas.rootCanvas;
+                float relativeScale = root.transform.InverseTransformVector(rectTransform.TransformVector(Vector3.right)).magnitude;
+                screenPixel = 1f / Mathf.Max(.01f, root.scaleFactor * relativeScale);
             }
             if (sun != null)
             {
                 Vector2 center = CenterOf(sun);
-                Ellipse(mesh, center, new Vector2(91, 82), 1, orbit);
+                Ellipse(mesh, center, sun.rect.size * .5f + Vector2.one * 5f, 1, orbit);
                 Ellipse(mesh, center, new Vector2(235, 146), 1, Alpha(orbit, .58f), 10f);
                 Ellipse(mesh, center, new Vector2(493, 282), 1, Alpha(orbit, .53f), -5f);
             }
@@ -152,7 +153,7 @@ namespace TINS.Campaign
         private float Radius(CampaignPlanetMarker marker)
         {
             var art = marker.PlanetArt.rectTransform;
-            Vector2 size = rectTransform.InverseTransformVector(art.parent.TransformVector(art.rect.size));
+            Vector2 size = rectTransform.InverseTransformVector(art.TransformVector(art.rect.size));
             return Mathf.Min(Mathf.Abs(size.x), Mathf.Abs(size.y)) * .5f;
         }
 
@@ -164,41 +165,82 @@ namespace TINS.Campaign
 
         private void Ellipse(VertexHelper mesh, Vector2 center, Vector2 radius, float thickness, Color tint, float tilt = 0)
         {
-            const int segments = 64;
-            Quaternion rotation = Quaternion.Euler(0, 0, tilt);
-            Vector2 last = center + (Vector2)(rotation * new Vector3(radius.x, 0));
-            for (int i = 1; i <= segments; i++)
+            // Increase curve resolution with the on-screen size. Shared cross sections keep the ring closed.
+            float screenRadius = Mathf.Max(radius.x, radius.y) / screenPixel;
+            int segments = Mathf.Clamp(Mathf.CeilToInt(Mathf.PI * Mathf.Sqrt(screenRadius / .4f)), 40, 256);
+            float tiltRadians = tilt * Mathf.Deg2Rad;
+            float cosTilt = Mathf.Cos(tiltRadians);
+            float sinTilt = Mathf.Sin(tiltRadians);
+            int first = mesh.currentVertCount;
+            for (int i = 0; i < segments; i++)
             {
                 float angle = i * (2f * Mathf.PI / segments);
-                Vector2 next = center + (Vector2)(rotation * new Vector3(radius.x * Mathf.Cos(angle), radius.y * Mathf.Sin(angle)));
-                Line(mesh, last, next, thickness, tint);
-                last = next;
+                float x = Mathf.Cos(angle);
+                float y = Mathf.Sin(angle);
+                Vector2 point = Rotate(new Vector2(radius.x * x, radius.y * y), cosTilt, sinTilt);
+                Vector2 normal = Rotate(new Vector2(radius.y * x, radius.x * y).normalized, cosTilt, sinTilt);
+                int section = AddStrokeSection(mesh, center + point, normal, thickness, tint);
+                if (i > 0) JoinStrokeSections(mesh, section - 4, section);
             }
+            JoinStrokeSections(mesh, mesh.currentVertCount - 4, first);
         }
 
-        private void Quad(VertexHelper mesh, Vector2 center, Vector2 size, Color tint)
+        private static Vector2 Rotate(Vector2 vector, float cos, float sin)
+            => new(vector.x * cos - vector.y * sin, vector.x * sin + vector.y * cos);
+
+        private static void Quad(VertexHelper mesh, Vector2 center, Vector2 size, Color tint)
         {
-            Vector2 horizontal = Vector2.right * (Mathf.Max(pixelSize, size.x) * .5f);
-            Vector2 vertical = Vector2.up * (Mathf.Max(pixelSize, size.y) * .5f);
-            Strip(mesh, center - horizontal, center + horizontal, vertical, tint);
+            Vector2 half = size * .5f;
+            int index = mesh.currentVertCount;
+            mesh.AddVert(center - half, tint, Vector2.zero);
+            mesh.AddVert(center + new Vector2(-half.x, half.y), tint, Vector2.zero);
+            mesh.AddVert(center + half, tint, Vector2.zero);
+            mesh.AddVert(center + new Vector2(half.x, -half.y), tint, Vector2.zero);
+            mesh.AddTriangle(index, index + 1, index + 2);
+            mesh.AddTriangle(index, index + 2, index + 3);
         }
 
         private void Line(VertexHelper mesh, Vector2 start, Vector2 end, float width, Color tint)
         {
-            Vector2 direction = (end - start).normalized;
-            float thickness = Mathf.Max(pixelSize, width);
-            Strip(mesh, start, end, new Vector2(-direction.y, direction.x) * (thickness * .5f), tint);
+            Vector2 delta = end - start;
+            float length = delta.magnitude;
+            if (length <= Mathf.Epsilon) return;
+
+            Vector2 direction = delta / length;
+            Vector2 normal = new(-direction.y, direction.x);
+            Vector2 endFeather = direction * Mathf.Min(screenPixel * .5f, length * .5f);
+            Color clear = Alpha(tint, 0f);
+            int first = AddStrokeSection(mesh, start - endFeather, normal, width, clear);
+            int bodyStart = AddStrokeSection(mesh, start + endFeather, normal, width, tint);
+            int bodyEnd = AddStrokeSection(mesh, end - endFeather, normal, width, tint);
+            int last = AddStrokeSection(mesh, end + endFeather, normal, width, clear);
+            JoinStrokeSections(mesh, first, bodyStart);
+            JoinStrokeSections(mesh, bodyStart, bodyEnd);
+            JoinStrokeSections(mesh, bodyEnd, last);
         }
 
-        private static void Strip(VertexHelper mesh, Vector2 start, Vector2 end, Vector2 normal, Color tint)
+        private int AddStrokeSection(VertexHelper mesh, Vector2 point, Vector2 normal, float width, Color tint)
         {
-            int index = mesh.currentVertCount;
-            mesh.AddVert(start - normal, tint, Vector2.zero);
-            mesh.AddVert(start + normal, tint, Vector2.zero);
-            mesh.AddVert(end + normal, tint, Vector2.zero);
-            mesh.AddVert(end - normal, tint, Vector2.zero);
-            mesh.AddTriangle(index, index + 1, index + 2);
-            mesh.AddTriangle(index, index + 2, index + 3);
+            // Fade across one screen pixel while leaving the stroke width in map units.
+            float outer = (width + screenPixel) * .5f;
+            float inner = Mathf.Max(0f, (width - screenPixel) * .5f);
+            Color clear = Alpha(tint, 0f);
+            Color center = Alpha(tint, Mathf.Min(1f, width / screenPixel));
+            int start = mesh.currentVertCount;
+            mesh.AddVert(point - normal * outer, clear, Vector2.zero);
+            mesh.AddVert(point - normal * inner, center, Vector2.zero);
+            mesh.AddVert(point + normal * inner, center, Vector2.zero);
+            mesh.AddVert(point + normal * outer, clear, Vector2.zero);
+            return start;
+        }
+
+        private static void JoinStrokeSections(VertexHelper mesh, int from, int to)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                mesh.AddTriangle(from + i, from + i + 1, to + i + 1);
+                mesh.AddTriangle(from + i, to + i + 1, to + i);
+            }
         }
     }
 }

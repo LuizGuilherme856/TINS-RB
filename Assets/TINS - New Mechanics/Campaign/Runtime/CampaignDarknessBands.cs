@@ -23,11 +23,6 @@ namespace TINS.Campaign
         private static readonly int LightRadiusId = Shader.PropertyToID("_LightRadius");
         private static readonly int PenumbraWidthId = Shader.PropertyToID("_PenumbraWidth");
         private static readonly int BandSizeId = Shader.PropertyToID("_BandSize");
-        private static readonly int FlashEnabledId = Shader.PropertyToID("_FlashEnabled");
-        private static readonly int FlashOriginId = Shader.PropertyToID("_FlashOrigin");
-        private static readonly int FlashDirectionId = Shader.PropertyToID("_FlashDirection");
-        private static readonly int FlashRangeId = Shader.PropertyToID("_FlashRange");
-        private static readonly int FlashCosAngleId = Shader.PropertyToID("_FlashCosAngle");
         private static readonly int TerrainTilesId = Shader.PropertyToID("_TerrainTiles");
         private static readonly int TerrainAtlasSizeId = Shader.PropertyToID("_TerrainAtlasSize");
         private static readonly int TerrainEnabledId = Shader.PropertyToID("_TerrainEnabled");
@@ -48,8 +43,6 @@ namespace TINS.Campaign
         private MaterialPropertyBlock properties;
         private Sprite generatedSprite;
         private bool ownsDarknessMaterial;
-        private BeamMeleeAttack[] flashSources;
-        private float nextFlashSearch;
 
         private CampaignPlanet configuredPlanet;
         private float CurrentPenumbraWidth => configuredPlanet != null
@@ -134,7 +127,6 @@ namespace TINS.Campaign
                 }
             }
             if (darknessMaterial != null) overlay.sharedMaterial = darknessMaterial;
-            flashSources = FindObjectsByType<BeamMeleeAttack>(FindObjectsSortMode.None);
         }
 
         private void LateUpdate()
@@ -155,11 +147,6 @@ namespace TINS.Campaign
                 if (input != null) player = input.transform;
             }
             if (playerBody == null && player != null) playerBody = player.GetComponent<Rigidbody2D>();
-            if (flashSources == null || flashSources.Length == 0 || Time.unscaledTime >= nextFlashSearch)
-            {
-                nextFlashSearch = Time.unscaledTime + 1f;
-                flashSources = FindObjectsByType<BeamMeleeAttack>(FindObjectsSortMode.None);
-            }
         }
 
         private void FitToCamera()
@@ -199,23 +186,6 @@ namespace TINS.Campaign
             properties.SetFloat(PenumbraWidthId, width);
             properties.SetFloat(BandSizeId, Mathf.Max(0.01f, pixelStepWorld));
             properties.SetColor("_Color", Color.black);
-            Vector3 flashOrigin = Vector3.zero;
-            Vector2 flashDirection = Vector2.right;
-            float flashRange = 0f;
-            float halfAngle = 0f;
-            bool flashActive = false;
-            if (flashSources != null)
-                foreach (BeamMeleeAttack flash in flashSources)
-                    if (flash != null && flash.TryGetActiveCone(out flashOrigin, out flashDirection, out flashRange, out halfAngle))
-                    {
-                        flashActive = true;
-                        break;
-                    }
-            properties.SetFloat(FlashEnabledId, flashActive ? 1f : 0f);
-            properties.SetVector(FlashOriginId, flashOrigin);
-            properties.SetVector(FlashDirectionId, flashDirection);
-            properties.SetFloat(FlashRangeId, flashRange);
-            properties.SetFloat(FlashCosAngleId, Mathf.Cos(halfAngle * Mathf.Deg2Rad));
             properties.SetFloat("_PenumbraOpacity", Mathf.Clamp01(penumbraOpacity));
             properties.SetVector(PurificationWaveId, purificationWave);
             Texture2D tiles = configuredPlanet?.floorTiles;

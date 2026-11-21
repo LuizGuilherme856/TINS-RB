@@ -47,18 +47,22 @@ namespace TINS.Campaign
         private CampaignPlanetMarker[] campaignOrder;
         private float rotationTime;
         private int displayedFrame;
-        private CampaignPlanetBoardPixels pixelBoard;
 
-        private void OnEnable()
+        private void OnEnable() => FitLayout();
+
+        private void OnRectTransformDimensionsChange() => FitLayout();
+
+        private void FitLayout()
         {
             if (layout == null) return;
-            pixelBoard ??= new CampaignPlanetBoardPixels((RectTransform)transform, layout);
-            pixelBoard.Show();
+            Vector2 available = ((RectTransform)transform).rect.size;
+            Vector2 design = layout.rect.size;
+            if (available.x <= 0f || available.y <= 0f || design.x <= 0f || design.y <= 0f) return;
+
+            // Use one continuous factor so all authored dimensions retain their proportions.
+            float scale = Mathf.Min(available.x / design.x, available.y / design.y);
+            layout.localScale = new Vector3(scale, scale, 1f);
         }
-
-        private void OnDisable() => pixelBoard?.Hide();
-
-        private void OnRectTransformDimensionsChange() => pixelBoard?.Fit();
 
         public void Configure(CampaignCatalog campaignCatalog, CampaignProfile campaignProfile,
             Action<int> launchMission, Action close)
@@ -116,7 +120,7 @@ namespace TINS.Campaign
 
             CampaignPlanetMarker destination = selected != null && selected.Button.interactable
                 ? selected : DefaultDestination();
-            if (resetView) mapViewport?.Focus(destination?.PlanetArt.rectTransform);
+            if (resetView) mapViewport?.FitOverview();
             Select(destination != null ? destination.Button : closeButton);
         }
 
@@ -275,7 +279,6 @@ namespace TINS.Campaign
 
         private void OnDestroy()
         {
-            pixelBoard?.Dispose();
             foreach (CampaignPlanetRotation rotation in rotations.Values) rotation.Release();
         }
 

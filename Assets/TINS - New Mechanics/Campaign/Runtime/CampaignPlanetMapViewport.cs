@@ -11,8 +11,6 @@ namespace TINS.Campaign
         [SerializeField, Range(.25f, 1f)] private float minimumZoom = .54f;
         [SerializeField, Min(1f)] private float maximumZoom = 1.65f;
 
-        private CampaignPlanetBoardRaycaster raycaster;
-        private Canvas canvas;
         private CampaignPlanetMarker[] markers;
         private Vector2 pan;
         private float zoom = 1f;
@@ -24,6 +22,25 @@ namespace TINS.Campaign
         public void ZoomIn() => ChangeZoom(1.2f, Vector2.zero);
 
         public void ZoomOut() => ChangeZoom(1f / 1.2f, Vector2.zero);
+
+        internal void FitOverview()
+        {
+            markers ??= chart.GetComponentsInChildren<CampaignPlanetMarker>(true);
+            if (markers.Length == 0)
+            {
+                Focus(null);
+                return;
+            }
+
+            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(chart, markers[0].transform);
+            foreach (var marker in markers)
+                bounds.Encapsulate(RectTransformUtility.CalculateRelativeRectTransformBounds(chart, marker.transform));
+
+            Vector2 available = Viewport.rect.size - Vector2.one * 32f;
+            zoom = Mathf.Clamp(Mathf.Min(available.x / bounds.size.x, available.y / bounds.size.y), minimumZoom, 1f);
+            pan = -(Vector2)bounds.center * zoom;
+            ApplyView();
+        }
 
         internal void Focus(RectTransform destination)
         {
@@ -53,7 +70,7 @@ namespace TINS.Campaign
         public void OnScroll(PointerEventData data)
         {
             float ticks = Mathf.Clamp(data.scrollDelta.y, -3f, 3f);
-            if (ticks == 0f || !TryGetLocalPoint(data.position, out Vector2 point)) return;
+            if (ticks == 0f || !TryGetLocalPoint(data.position, data.enterEventCamera, out Vector2 point)) return;
             ChangeZoom(Mathf.Pow(1.2f, ticks), point);
             data.Use();
         }
@@ -61,14 +78,14 @@ namespace TINS.Campaign
         public void OnBeginDrag(PointerEventData data)
         {
             if (dragPointer.HasValue || data.button == PointerEventData.InputButton.Right ||
-                !TryGetLocalPoint(data.pressPosition, out lastDragPoint)) return;
+                !TryGetLocalPoint(data.pressPosition, data.pressEventCamera, out lastDragPoint)) return;
             dragPointer = data.pointerId;
             pan = chart.anchoredPosition;
         }
 
         public void OnDrag(PointerEventData data)
         {
-            if (dragPointer != data.pointerId || !TryGetLocalPoint(data.position, out var point)) return;
+            if (dragPointer != data.pointerId || !TryGetLocalPoint(data.position, data.pressEventCamera, out var point)) return;
             pan += point - lastDragPoint;
             lastDragPoint = point;
             ApplyView();
@@ -90,18 +107,11 @@ namespace TINS.Campaign
             ApplyView();
         }
 
-        private bool TryGetLocalPoint(Vector2 screenPoint, out Vector2 local)
-        {
-            local = default;
-            if (raycaster == null) raycaster = GetComponentInParent<CampaignPlanetBoardRaycaster>();
-            return raycaster != null && raycaster.TryGetBufferPoint(screenPoint, out var pixel) &&
-                   RectTransformUtility.ScreenPointToLocalPointInRectangle(Viewport, pixel, raycaster.eventCamera, out local);
-        }
+        private bool TryGetLocalPoint(Vector2 screenPoint, Camera eventCamera, out Vector2 local)
+            => RectTransformUtility.ScreenPointToLocalPointInRectangle(Viewport, screenPoint, eventCamera, out local);
 
         private void ApplyView()
         {
-            if (canvas == null) canvas = GetComponentInParent<Canvas>();
-            float scale = canvas != null ? canvas.scaleFactor : 1f;
             Vector2 limit = Vector2.Max(Vector2.zero, (chart.rect.size * zoom - Viewport.rect.size) * .5f);
             pan = Vector2.Max(-limit, Vector2.Min(limit, pan));
             if (!Mathf.Approximately(chart.localScale.x, zoom))
@@ -111,8 +121,7 @@ namespace TINS.Campaign
                 foreach (var marker in markers) marker.UpdateMapLabels(zoom);
                 if (sunCaption != null) sunCaption.enabled = zoom >= .7f;
             }
-            // Snap the pan to the off-screen Canvas grid without rounding away small pointer movements.
-            chart.anchoredPosition = new Vector2(Mathf.Round(pan.x * scale), Mathf.Round(pan.y * scale)) / scale;
+            chart.anchoredPosition = pan;
         }
     }
 }

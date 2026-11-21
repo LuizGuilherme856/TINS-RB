@@ -26,6 +26,14 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     [SerializeField] private bool enableConeLight = true;
     [SerializeField, Range(3, 64)] private int hitboxArcSegments = 24;
 
+    [Header("Flash Impact")]
+    [SerializeField, Min(0.02f)] private float waveTravelTime = 0.14f;
+    [SerializeField, Min(0f)] private float cameraShakeMagnitude = 1.05f;
+
+    [SerializeField, Min(0f)] private float basePushSpeed = 2.5f;
+
+    private ControlCameraShake cameraShake;
+    private float FlashDuration => duration * campaignDurationMultiplier;
     private readonly List<ActiveBeam> activeBeams = new List<ActiveBeam>();
     private float campaignDurationMultiplier = 1f;
     private int areaRank;
@@ -39,7 +47,10 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         public float coneRange;
         public float coneAngle;
         public float startTime;
-        public HashSet<EnemyHealth> repelledEnemies;
+        public float reach;
+        public float lightIntensity;
+        public float lightInnerRadius;
+        public readonly HashSet<EnemyHealth> repelledEnemies = new();
     }
 
     private void Awake()
@@ -117,7 +128,6 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             coneLight.pointLightInnerAngle = angle * Mathf.Clamp01(innerAngleRatio);
         }
         SetConeHitbox(hitbox, range, angle);
-        float pushSpeed = CampaignMissionRuntime.Active?.SkillEffect(CampaignSkillEffectType.FlashRepulsion).x ?? 0f;
         activeBeams.Add(new ActiveBeam
         {
             transform = beam.transform,
@@ -125,10 +135,19 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             coneRange = range,
             coneAngle = angle,
             startTime = Time.time,
-            repelledEnemies = pushSpeed > 0f ? new HashSet<EnemyHealth>() : null
+            lightIntensity = coneLight != null ? coneLight.intensity : 0f,
+            lightInnerRadius = coneLight != null ? coneLight.pointLightInnerRadius : 0f
         });
 
-        UpdateBeam(activeBeams[activeBeams.Count - 1]);
+        ActiveBeam activeBeam = activeBeams[activeBeams.Count - 1];
+        UpdateBeam(activeBeam);
+        if (cameraShakeMagnitude > 0f)
+        {
+            if (cameraShake == null) cameraShake = FindFirstObjectByType<ControlCameraShake>();
+            Vector2 forward = activeBeam.transform.right;
+            cameraShake?.TriggerCameraShake(Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg,
+                cameraShakeMagnitude);
+        }
         CampaignMissionRuntime.Active?.DeployFlashTurret(transform.position);
         return true;
     }
@@ -157,7 +176,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         for (int i = activeBeams.Count - 1; i >= 0; i--)
         {
             ActiveBeam beam = activeBeams[i];
-            if (beam.transform == null || Time.time - beam.startTime >= duration * campaignDurationMultiplier)
+            if (beam.transform == null || Time.time - beam.startTime >= FlashDuration)
             {
                 if (beam.transform != null) Destroy(beam.transform.gameObject);
                 if (beam.coneLight != null) Destroy(beam.coneLight.gameObject);
@@ -199,13 +218,23 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         beam.transform.SetPositionAndRotation(
             origin,
             Quaternion.Euler(0f, 0f, angleDegrees));
-        beam.transform.localScale = Vector3.one;
+        float age = Time.time - beam.startTime;
+        float travelTime = Mathf.Min(waveTravelTime, FlashDuration * 0.65f);
+        float travel = Mathf.Clamp01(age / travelTime);
+        float rangeFraction = Mathf.Lerp(0.08f, 1f, 1f - (1f - travel) * (1f - travel));
+        beam.reach = beam.coneRange * rangeFraction;
+        beam.transform.localScale = Vector3.one * rangeFraction;
+
+        float fade = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(travelTime, FlashDuration, age));
 
         if (CampaignCombatRules.IsCampaignMission)
             StunEnemiesInCone(origin, direction, beam);
 
         if (beam.coneLight != null)
         {
+            beam.coneLight.pointLightOuterRadius = beam.reach;
+            beam.coneLight.pointLightInnerRadius = beam.lightInnerRadius * rangeFraction;
+            beam.coneLight.intensity = beam.lightIntensity * fade * Mathf.Lerp(1.25f, 1f, travel);
             Transform lightTransform = beam.coneLight.transform;
             // URP 2D point-light arcs are authored along local +Y; the beam sprite
             // uses local +X, so compensate by 90 degrees to keep them aligned.
@@ -213,32 +242,15 @@ public sealed class BeamMeleeAttack : MonoBehaviour
         }
     }
 
-    public bool TryGetActiveCone(out Vector3 origin, out Vector2 direction, out float range, out float halfAngle)
-    {
-        for (int i = activeBeams.Count - 1; i >= 0; i--)
-        {
-            ActiveBeam beam = activeBeams[i];
-            if (beam.transform == null || Time.time - beam.startTime >= duration * campaignDurationMultiplier) continue;
-            origin = beam.transform.position;
-            direction = beam.transform.right;
-            range = beam.coneRange;
-            halfAngle = beam.coneAngle * 0.5f;
-            return true;
-        }
-        origin = Vector3.zero;
-        direction = Vector2.right;
-        range = 0f;
-        halfAngle = 0f;
-        return false;
-    }
-
     private void StunEnemiesInCone(Vector3 origin, Vector2 direction, ActiveBeam beam)
     {
-        float range = beam.coneRange;
+        float range = beam.reach;
         Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
         float halfAngle = beam.coneAngle * 0.5f;
         CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
-        float pushSpeed = mission?.SkillEffect(CampaignSkillEffectType.FlashRepulsion).x ?? 0f;
+        float upgradedPushSpeed = mission?.SkillEffect(CampaignSkillEffectType.FlashRepulsion).x ?? 0f;
+        float pushSpeed = Mathf.Max(basePushSpeed, upgradedPushSpeed);
+        Transform pushOrigin = upgradedPushSpeed > 0f ? mission.DefenseCore : null;
         foreach (Collider2D hit in hits)
         {
             if (hit == null) continue;
@@ -251,10 +263,10 @@ public sealed class BeamMeleeAttack : MonoBehaviour
             // Flash concussion is guaranteed on a cone hit, including against status-immune enemies.
             if (!centerInCone && !colliderInCone) continue;
             enemy.ApplyCampaignFlashStun(stunDuration * campaignDurationMultiplier);
-            if (beam.repelledEnemies != null && beam.repelledEnemies.Add(enemy))
+            if (pushSpeed > 0f && beam.repelledEnemies.Add(enemy))
             {
-                Vector2 away = mission?.DefenseCore != null
-                    ? (Vector2)(enemy.transform.position - mission.DefenseCore.position) : offset;
+                Vector2 away = pushOrigin != null
+                    ? (Vector2)(enemy.transform.position - pushOrigin.position) : offset;
                 enemy.ApplyCampaignFlashRepulsion(away.sqrMagnitude > .001f ? away : direction, pushSpeed);
             }
         }
