@@ -172,6 +172,39 @@ public class HandleAttackOnEnemy : MonoBehaviour
         }
     }
 
+    public EnemyHealth SlashTarget => enemyHealth;
+
+    public bool TrySlashHit(MeleeData weapon, SlashStep step, Vector2 direction, float multiplier, bool finisher)
+    {
+        if (!enemyHealth.isActiveAndEnabled || enemyHealth.currentHealth <= 0f ||
+            (enemyHealth.invulnerableTimer > 0f && !enemyHealth.IsCampaignFlashStunned) || enemyHealth.IsProtectedUntilPlayerMelee ||
+            IsImmuneToTheDamage(weapon.damageType)) return false;
+
+        var damage = MeleeStats.RollDamage(weapon, step.damage * multiplier);
+        if (enemyData.immuneToInstaKill && damage.critical == CriticalDamage.instaKill) return false;
+
+        float before = enemyHealth.currentHealth;
+        Vector2 impulse = direction * (weapon.knockBackForce * step.push * enemyData.pushDamping);
+        bool resistsStagger = enemyData.bossOrElite || enemyHealth is BossHealth;
+        if (resistsStagger) impulse *= 0.15f;
+        impulse = ClampKnockbackAgainstWalls_TechBooh(impulse, weapon.projectileSize);
+        ApplyDamage(impulse, weapon.damageType, damage, comboFinisher: finisher);
+        if (enemyHealth.currentHealth >= before) return false;
+
+        OnTakeMeleeDamage?.Invoke();
+        if (enemyHealth.currentHealth <= 0f) return true;
+        ApplyStatusEffect(weapon.statusDuration, weapon.statusDamagePerSec, weapon.statusChance, weapon.damageType);
+        if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
+        {
+            if (!resistsStagger && TryGetComponent(out EnemyAI ai))
+                ai.ApplyExternalKnockback(impulse, finisher ? 0.28f : 0.12f);
+            else
+                rb.AddForce(impulse, ForceMode2D.Impulse);
+            knockbackWallProtectionTimer_TechBooh = knockbackWallProtectionDuration_TechBooh;
+        }
+        return true;
+    }
+
     private void ApplyMomentum(GameObject collisionGameObject, DamageObjectStats _bulletStats)
     {
         var _bulletRigidBody = collisionGameObject.GetComponent<Rigidbody2D>();
@@ -368,7 +401,7 @@ public class HandleAttackOnEnemy : MonoBehaviour
         knockbackWallProtectionTimer_TechBooh = 0f;
     }
 
-    private void ApplyDamage(Vector3 _momemtum, DamageType _damageType, (float damage, CriticalDamage critical) _damage, bool triggerHitFeedback = true )
+    private void ApplyDamage(Vector3 _momemtum, DamageType _damageType, (float damage, CriticalDamage critical) _damage, bool triggerHitFeedback = true, bool? comboFinisher = null)
     {
         //Calculate damage using the enemy's elemental resistance to this damage type.
         float damageCalculation = _damage.damage + _damage.damage * Damage2.GetResistance(enemyData.enemyElement, _damageType);
@@ -386,7 +419,12 @@ public class HandleAttackOnEnemy : MonoBehaviour
 
         _damage = (damageCalculation, _damage.critical);
 
-        DamageHealth(_momemtum, _damageType, _damage);
+        if (comboFinisher.HasValue)
+        {
+            enemyHealth.SetLastHitInfo(_momemtum, _damageType, true);
+            enemyHealth.ApplyHealthDamage(_damage.damage, comboFinisher.Value);
+        }
+        else DamageHealth(_momemtum, _damageType, _damage);
 
 
         //TriggerAttackEnemyFeedback(_damage.damage, _damageType, _damage.critical, damageOnStatus);

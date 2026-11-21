@@ -5,6 +5,14 @@ using UnityEngine;
 //[CreateAssetMenu(fileName = "new Melee", menuName = "Melee")]
 public class MeleeData : WeaponData
 {
+    [Header("Three-hit slash")]
+    public bool useSlashCombo;
+    public SlashStep openingSlash = new SlashStep(0.035f, 0.09f, 0.085f, 1.65f, 100f, 10f, 0.8f, 0.08f, 0.03f);
+    public SlashStep returnSlash = new SlashStep(0.025f, 0.08f, 0.075f, 1.7f, 115f, 3f, 0.85f, 0.1f, 0.02f);
+    public SlashStep finishingSlash = new SlashStep(0.09f, 0.12f, 0.22f, 2.0f, 135f, 6f, 1.5f, 1.8f, 0.065f);
+    [Min(0f)] public float comboInputBuffer = 0.12f;
+    [Min(0f)] public float comboLinkWindow = 0.38f;
+
     [Header("Feedbacks")]
     [Range(0, 0.1f)] public float freezeFrameTime = 0.01f;
     [Range(-1,1)] public float lensDistortion = -0.2f;

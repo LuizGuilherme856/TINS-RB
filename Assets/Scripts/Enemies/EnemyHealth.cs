@@ -330,7 +330,9 @@ public class EnemyHealth : MonoBehaviour
         lastDamageType = damageType;
     }
 
-    public virtual void SetDamage(float amount)
+    public virtual void SetDamage(float amount) => ApplyHealthDamage(amount, true);
+
+    public virtual void ApplyHealthDamage(float amount, bool allowFlashExecution)
     {
         if (IsProtectedUntilPlayerMelee) return;
 
@@ -340,7 +342,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Aux.Print("Health damage", showDebug);
 
-        currentHealth -= CampaignCombatRules.IsCampaignMission && campaignFlashStunned ? Mathf.Max(amount, currentHealth) : amount;
+        currentHealth -= allowFlashExecution && CampaignCombatRules.IsCampaignMission && campaignFlashStunned ? Mathf.Max(amount, currentHealth) : amount;
         if (currentHealth <= 0) //Dead.
         {
             currentHealth = 0;

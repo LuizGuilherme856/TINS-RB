@@ -145,7 +145,7 @@ public class InteractWithPlayer : MonoBehaviour
         }
 
         // TechBooh: script recompilation in Play Mode triggers OnDisable/OnEnable.
-        // Restore subscriptions so interaction and A/E prompts remain current.
+        // Restore subscriptions so interaction and A/F prompts remain current.
         BindPlayerInputHandler_TechBooh(FindMainPlayerInputHandler_TechBooh());
 
         if (stationSpriteRenderer == null && changeShaderOnInteraction)
@@ -311,7 +311,7 @@ public class InteractWithPlayer : MonoBehaviour
         {
             string fallbackButton = deviceType switch
             {
-                InputPromptDeviceType.KeyboardMouse => "E",
+                InputPromptDeviceType.KeyboardMouse => "F",
                 InputPromptDeviceType.NintendoSwitch => "B",
                 _ => "A"
             };

@@ -101,16 +101,16 @@ public class EnemyAI : MonoBehaviour
     {
         UpdateTowerLightSpeedMultiplier();
 
-        if (CampaignCombatRules.IsCampaignMission && enemyHealth != null && enemyHealth.IsCampaignFlashStunned)
-        {
-            if (myRigidbody != null && !enemyHealth.IsCampaignFlashRepelled) myRigidbody.linearVelocity = Vector2.zero;
-            return;
-        }
-
         // Let external impulses move the enemy without A* immediately counteracting them.
         if (externalKnockbackTime > 0f)
         {
             externalKnockbackTime -= Time.fixedDeltaTime;
+            return;
+        }
+
+        if (CampaignCombatRules.IsCampaignMission && enemyHealth != null && enemyHealth.IsCampaignFlashStunned)
+        {
+            if (myRigidbody != null && !enemyHealth.IsCampaignFlashRepelled) myRigidbody.linearVelocity = Vector2.zero;
             return;
         }
 

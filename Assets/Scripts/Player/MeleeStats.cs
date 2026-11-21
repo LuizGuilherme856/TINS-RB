@@ -29,6 +29,11 @@ public class MeleeStats : DamageObjectStats
 
     public override (float damage, CriticalDamage critical) GetDamage()
     {
+        return RollDamage(weaponData, damageMultiplier_powerUp);
+    }
+
+    public static (float damage, CriticalDamage critical) RollDamage(WeaponData weaponData, float multiplier)
+    {
         if (Random.Range(0.01f, 100f) < weaponData.instaKillChance)
         {
             return ( float.MaxValue, CriticalDamage.instaKill);
@@ -37,11 +42,11 @@ public class MeleeStats : DamageObjectStats
         if (Random.Range(0, 100f) <= weaponData.criticalChance)
         {
             // Debug.Log("Critical damage");
-            return (weaponData.GetDamage() * weaponData.criticalMultiplier *damageMultiplier_powerUp, CriticalDamage.critical);
+            return (weaponData.GetDamage() * weaponData.criticalMultiplier * multiplier, CriticalDamage.critical);
         }
         else
         {
-            return (weaponData.GetDamage() *damageMultiplier_powerUp, CriticalDamage.no);
+            return (weaponData.GetDamage() * multiplier, CriticalDamage.no);
         }
     }
 

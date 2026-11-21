@@ -30,7 +30,7 @@ public class BuyTrap : InteractWithPlayer
             : InputPromptDeviceType.KeyboardMouse;
         string buttonPrompt = buttons != null
             ? buttons.GetInteractionButton(deviceType)
-            : deviceType == InputPromptDeviceType.KeyboardMouse ? "E" : "A";
+            : deviceType == InputPromptDeviceType.KeyboardMouse ? "F" : "A";
         generalTextBoxUI.SetText("Press " + buttonPrompt + " To " + openText + " for " + price);
     }
 

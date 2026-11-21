@@ -20,7 +20,7 @@ namespace TINS.Campaign
             if (baseController == null) baseController = GetComponentInParent<CampaignBaseController>();
             if (baseController == null) baseController = FindFirstObjectByType<CampaignBaseController>();
             if (prompt != null)
-                prompt.text = stationType == BaseStationType.MissionBoard ? "E / A  ·  MISSÕES" : "E / A  ·  HABILIDADES";
+                prompt.text = stationType == BaseStationType.MissionBoard ? "F / A  ·  MISSÕES" : "F / A  ·  HABILIDADES";
             SetPromptVisible(false);
         }
 

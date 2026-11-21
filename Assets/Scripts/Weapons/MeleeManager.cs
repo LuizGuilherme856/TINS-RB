@@ -24,6 +24,7 @@ public class MeleeManager : MonoBehaviour
     [field:SerializeField] public float currentAttackRateTimer { get; private set; }
 
     private HandleSpecialAttack handleSpecialAttack;
+    private SlashCombo combo;
 
     //Dash-related.
     //public event Action OnChangeAction;
@@ -42,6 +43,7 @@ public class MeleeManager : MonoBehaviour
 
     private void Awake()
     {
+        if (playerAction == PlayerAction.melee) combo = new SlashCombo(meleeAttackHandler, playerInput);
         if(playerAction == PlayerAction.special || playerAction == PlayerAction.dash) //Apply additional settings for special attacks and dashes.
         {
             handleSpecialAttack = GetComponent<HandleSpecialAttack>();
@@ -79,6 +81,7 @@ public class MeleeManager : MonoBehaviour
         {
             case PlayerAction.melee:
                 playerInput.OnMeleeButtonDown += Attack;
+                playerInput.DashPerformed += CancelCombo;
                 break;
             case PlayerAction.special:
                 playerInput.OnSpecialAttackButtonDown += Attack;
@@ -95,6 +98,11 @@ public class MeleeManager : MonoBehaviour
 
     private void OnDisable()
     {
+        playerInput.OnMeleeButtonDown -= Attack;
+        playerInput.OnSpecialAttackButtonDown -= Attack;
+        playerInput.OnDash -= Attack;
+        playerInput.DashPerformed -= CancelCombo;
+        CancelCombo();
         if (playerAction == PlayerAction.special)
         {
             //Skill that resets special cooldown on an enemy kill.
@@ -131,6 +139,11 @@ public class MeleeManager : MonoBehaviour
 
     private void Update()
     {
+        if (combo != null && combo.Active)
+        {
+            if (disableAttacks || !playerInput.CanPerformMelee) CancelCombo();
+            else combo.Tick();
+        }
         /*
           * Accumulate time up to the action interval times maximum charges and the relevant multiplier.
           */
@@ -144,6 +157,12 @@ public class MeleeManager : MonoBehaviour
         if (meleeData == null || disableAttacks)
         {
             meleeAttackHandler.PlayCantAttackFeedback();
+            return;
+        }
+
+        if (combo != null && combo.Active)
+        {
+            combo.Press();
             return;
         }
 
@@ -164,7 +183,8 @@ public class MeleeManager : MonoBehaviour
             Vector3 dashOrigin = playerInput.transform.position;
             if (meleeData.instantiateGameObjectOnAttack)
             {
-                if (playerAction == PlayerAction.dash) // For dashes, calculate direction from player input.
+                if (combo != null && meleeData.useSlashCombo) combo.Start(meleeData);
+                else if (playerAction == PlayerAction.dash) // For dashes, calculate direction from player input.
                 {
                     meleeAttackHandler.InstantiateMeleeAttack(playerInput.GetMovementAngle());
                 }
@@ -176,7 +196,10 @@ public class MeleeManager : MonoBehaviour
             }
             currentAttackRateTimer -= statsCalculator.CalculatePerActionCoolDown(meleeData.attackRate, playerAction);
             if (playerAction == PlayerAction.dash)
+            {
+                playerInput.NotifyDashPerformed();
                 CampaignMissionRuntime.Active?.DeployDashDecoy(dashOrigin);
+            }
         }
         else
         {
@@ -187,6 +210,7 @@ public class MeleeManager : MonoBehaviour
 
     public void SetMeleeWeapon(MeleeData newMelee)
     {
+        CancelCombo();
         meleeData = newMelee;
         meleeAttackHandler.UpdateMeleeData(meleeData);
         OnChangeMeleeWeapon?.Invoke();
@@ -208,6 +232,14 @@ public class MeleeManager : MonoBehaviour
     public void SetAttacksEnabled(bool enabled)
     {
         disableAttacks = !enabled;
+        if (!enabled) CancelCombo();
+    }
+
+    private void CancelCombo() => combo?.Cancel();
+
+    private void OnDestroy()
+    {
+        if (upgradeManager != null) upgradeManager.OnChangeStats -= UpdateTimerOnUpgrade;
     }
 
     public void RefillActions()

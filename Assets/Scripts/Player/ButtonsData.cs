@@ -31,6 +31,7 @@ public class InputPromptProfile
     public bool useTmpSprites = true;
 
     public string interactionButton;
+    public bool interactionAsText;
     public string dashButton;
     public string fireButton;
     public string specialButton;
@@ -53,7 +54,8 @@ public class InputPromptProfile
             return string.Empty;
         }
 
-        return allowTmpSprite && useTmpSprites
+        bool interactionUsesText = action == InputPromptAction.Interaction && interactionAsText;
+        return allowTmpSprite && useTmpSprites && !interactionUsesText
             ? "<sprite name=" + button + ">"
             : button;
     }

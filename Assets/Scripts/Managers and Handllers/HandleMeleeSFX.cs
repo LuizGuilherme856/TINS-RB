@@ -35,7 +35,16 @@ public class HandleMeleeSFX : MonoBehaviour
         mmf_sound.MinVolume = meleeData.volume;
         mmf_sound.MaxVolume = meleeData.volume;
 
+        float minPitch = mmf_sound.MinPitch;
+        float maxPitch = mmf_sound.MaxPitch;
+        if (meleeAttackHandler.IsFinishingSlash)
+        {
+            mmf_sound.MinPitch *= 0.8f;
+            mmf_sound.MaxPitch *= 0.8f;
+        }
         mmf_player.PlayFeedbacks();
+        mmf_sound.MinPitch = minPitch;
+        mmf_sound.MaxPitch = maxPitch;
     }
 
     private void UpdateMeleeData()

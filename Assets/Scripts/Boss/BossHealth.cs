@@ -14,7 +14,7 @@ public class BossHealth : EnemyHealth
     private bool reachedMinHealth = false;
     public event Action OnMinHealth;
 
-    public override void SetDamage(float amount)
+    public override void ApplyHealthDamage(float amount, bool allowFlashExecution)
     {
 
         if(currentHealth/maxHealth <= minHpPercentage_ && reachedMinHealth == false) //Do not apply damage below the minimum health threshold.

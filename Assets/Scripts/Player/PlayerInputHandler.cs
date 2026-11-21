@@ -53,6 +53,10 @@ public class PlayerInputHandler : MonoBehaviour
     // can automatically choose Xbox, PlayStation, or Nintendo Switch glyphs.
     [field: SerializeField] public InputPromptDeviceType CurrentPromptDevice { get; private set; }
 
+    private InputAction flashAction;
+    public event Action DashPerformed;
+    public void NotifyDashPerformed() => DashPerformed?.Invoke();
+    public bool CanPerformMelee => playerClone || (canMove && health != null && health.GetCurrentHealth() > 0f);
     private bool canMove = true;
     private bool allowPauseInputWhenCantMove = false;
     private bool pauseInputBlocked = false;
@@ -81,6 +85,8 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnEnable()
     {
         ApplyConsoleOnlyInputMode();
+        flashAction = playerInput?.actions.FindAction("Player/Flash");
+        if (flashAction != null) flashAction.performed += ReadFlashInput;
         // TechBooh: menus use InputSystemUIInputModule and may bypass
         // gameplay callbacks; this listener updates prompts for UI input too.
         anyButtonPressListener_TechBooh?.Dispose();
@@ -89,6 +95,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        if (flashAction != null) flashAction.performed -= ReadFlashInput;
         anyButtonPressListener_TechBooh?.Dispose();
         anyButtonPressListener_TechBooh = null;
     }
@@ -527,9 +534,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    private void ReadFlashInput(InputAction.CallbackContext context)
+    {
+        if (!isOnMenu && !playerClone && CanPerformMelee && TINS.Campaign.CampaignCombatRules.IsCampaignMission &&
+            TryGetComponent(out BeamMeleeAttack flash))
+        {
+            UpdateInputDeviceFromContext_TechBooh(context);
+            flash.FireBeam();
+        }
+    }
+
     public void ReadMeleeInput(InputAction.CallbackContext context)
     {
-        if (canMove && !playerClone && TINS.Campaign.CampaignCombatRules.IsCampaignMission && TryGetComponent(out BeamMeleeAttack flash))
+        if (context.control?.device is Gamepad && canMove && !playerClone && TINS.Campaign.CampaignCombatRules.IsCampaignMission && TryGetComponent(out BeamMeleeAttack flash))
         {
             UpdateInputDeviceFromContext_TechBooh(context);
             if (context.performed && health.GetCurrentHealth() > 0) flash.FireBeam();

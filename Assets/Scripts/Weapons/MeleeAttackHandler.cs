@@ -67,9 +67,22 @@ public class MeleeAttackHandler : MonoBehaviour
         
     }
 
-    private void Start()
+    public Rigidbody2D PlayerBody => playerRb2D;
+    public float DamageMultiplier => damageMultiplier;
+    public bool IsFinishingSlash { get; private set; }
+
+    public void PlaySlashSwing(bool finisher)
     {
-        
+        IsFinishingSlash = finisher;
+        OnMeleeAttack?.Invoke();
+        IsFinishingSlash = false;
+    }
+
+    public void PlaySlashImpact(float duration, float angle, float shake)
+    {
+        if (controlCameraShake != null) controlCameraShake.TriggerCameraShake(angle, shake);
+        freezeFrameFeedback.FreezeFrameDuration = duration;
+        mmfPlayer_FreezeTime.PlayFeedbacks();
     }
 
     public void InstantiateMeleeAttack(float aimAngle)

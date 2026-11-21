@@ -43,6 +43,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Flash",
+                    "type": "Button",
+                    "id": "e32ec7dd-901e-47e0-9801-8e75623c8109",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "82def14b-d3ef-4c19-849d-c4e33c18c69a",
@@ -338,11 +347,22 @@
                 {
                     "name": "",
                     "id": "c75e0ba4-5ee0-40a5-8e52-fe83f1d80f71",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d853b4dc-720d-4cff-a7ee-c334fd168623",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -360,7 +380,7 @@
                 {
                     "name": "",
                     "id": "5f3c2cbb-e8bb-474f-83e8-3050167a65bd",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
