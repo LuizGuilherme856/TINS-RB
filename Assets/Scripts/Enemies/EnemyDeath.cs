@@ -14,6 +14,7 @@ public class EnemyDeath : MonoBehaviour
     [SerializeField] private SimpleCorpseType onlySimpleImpactCorpse = SimpleCorpseType.no; //Simple corpse mode always uses the impact corpse, ignoring other variants.
 
     [SerializeField] private bool corpseFromPool = true;
+    [SerializeField] private bool matchSpriteFacing;
     private EnemyMovementAnimation enemyMovement;
     private PoolCreator poolCreator;
 
@@ -61,6 +62,9 @@ public class EnemyDeath : MonoBehaviour
             if (enemyCorpseImpact != null)
             {
                 GameObject corpse = Instantiate(enemyCorpseImpact, transform.position, transform.rotation);
+                if (matchSpriteFacing && TryGetComponent(out SpriteRenderer source) &&
+                    corpse.TryGetComponent(out SpriteRenderer corpseSprites))
+                    corpseSprites.flipX = source.flipX;
                 TINS.Campaign.CampaignMissionRuntime.Active?.TrackCorpse(corpse);
             }
             return;

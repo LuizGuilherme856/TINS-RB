@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c057dbbf07014aba1a8cd3bb7eca6, type: 3}
+  m_Name: Aranha do Eclipse Data
+  m_EditorClassIdentifier: 
+  nameEnglish: Aranha do Eclipse
+  descriptionEnglish: 
+  nameChinese: 
+  descriptionChinese: 
+  namePortuguese: Aranha do Eclipse
+  descriptionPortuguese: 
+  nameSpanish: 
+  weaponDescriptionSpanish: 
+  EnemyName: Aranha do Eclipse
+  enemyType: 0
+  isFlier: 0
+  bossOrElite: 0
+  spawnPoints: 1
+  giveXp: 1
+  xp: 5
+  giveBloodPoints: 1
+  health: 8
+  enemyElement: 0
+  ignoreMassWhenMoving: 0
+  updateHpOnlyAfterWave: 0
+  healthUpdateMode: 4
+  healthIncreaseCustomCoefficient: 0.2
+  healthIncreaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 9
+      value: 10
+      inSlope: 3.0946965
+      outSlope: 3.0946965
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 25
+      inSlope: 3.618439
+      outSlope: 3.618439
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10851872
+    - serializedVersion: 3
+      time: 26
+      value: 150
+      inSlope: 14.720956
+      outSlope: 14.720956
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 100
+      value: 1000
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  hpUntillwave5Multiplier: 0.75
+  hpUntillwave10Multiplier: 0.75
+  hpUntillwave15Multiplier: 1
+  speed: 8
+  increaseSpeedEveryWave: 1
+  maxSpeed: 1000
+  pushDamping: 1
+  healthIncreasesEveryWave: 1
+  minDistanceToIncreaseSpeed: 25
+  speedMultiplierWhenNotVisible: 2
+  updatePathInterval: 1
+  increaseHealthOnRainWaves: 1
+  addWaveNumberToHealth: 0
+  speed_easyMode: 400
+  health_easyMode: 2
+  secondFormSpeedMultiplier: 1
+  immuneToStatus: 0
+  immuneToFire: 0
+  immuneToIce: 0
+  immuneToSlash: 0
+  immuneToImpact: 0
+  immuneToPoison: 0
+  immuneToExplosion: 0
+  immuneToInstaKill: 0
+  weakenessToIce: 0
+  attackDamage: 1
+  attackRate: 1
+  minDistanceToAttack: 0
+  attackForce: 10
+  timeAfterRespawnToAttack: 2
+  projectile: {fileID: 0}
+  maxDistanceToShoot: 0
+  ProjectileSpeed: 0
+  fireRate: 4
+  useRandomFireRate: 0
+  fireRateInterval:
+    min: 0
+    max: 0
+  increaseFireRateEveryWave: 1
+  minFireRate: 0.5
+  bulletsPerShot: 0
+  increaseBulletsPerShotEveryXWaves: 15
+  multipleBulletAngleOffset: 0
+  runData: {fileID: 11400000, guid: f42d64ec81b6361479b5ef954b8169f4, type: 2}

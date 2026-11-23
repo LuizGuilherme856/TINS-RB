@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &594672977739927324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8703852094122568127, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 51488ab009668254a94d436f7d15c458, type: 2}
+    - target: {fileID: -4935042520265898175, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: <enemyData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 51488ab009668254a94d436f7d15c458, type: 2}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: corpseSlashUp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: corpseFromPool
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: corpseExplosion
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: corpseSlashDown
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: enemyCorpseImpact
+      value: 
+      objectReference: {fileID: 8136829547993565026, guid: ebdd07d015c3f4446bbd59855ab079b9, type: 3}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: hasFourDirections
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: matchSpriteFacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565063104026983432, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: corpseSlashHorizontal
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141232, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab7715b4079c6a44a8ff7e371ef18463, type: 2}
+    - target: {fileID: 4749819838516141233, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141234, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141237, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141238, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141238, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141238, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141238, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8188
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Name
+      value: Espinho Andante
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194542415032580893, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.65250003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194542415032580893, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194542415032580893, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194542415032580893, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203787002272207403, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203787002272207403, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.015
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5973932859319528310}
+    - targetCorrespondingSourceObject: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1971154863973957962}
+  m_SourcePrefab: {fileID: 100100000, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+--- !u!1 &5308068399814661026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+  m_PrefabInstance: {fileID: 594672977739927324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5973932859319528310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308068399814661026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d154a4e2e1230e440b50bc8613bac26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTowerAttack
+  attackAnimator: {fileID: 5308068399814661036}
+  targetTower: {fileID: 0}
+  attackRange: 1.2
+  attackCooldown: 1
+  attackAnimationDuration: 1.06
+  simulatedWindup: 0.3
+  useAnimationEvent: 1
+  attackTrigger: TowerAttack
+--- !u!114 &1971154863973957962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308068399814661026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bb38db7f09f234fbeafe61bb305dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignEnemyAnimation
+--- !u!95 &5308068399814661036 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4749819838516141232, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+  m_PrefabInstance: {fileID: 594672977739927324}
+  m_PrefabAsset: {fileID: 0}
