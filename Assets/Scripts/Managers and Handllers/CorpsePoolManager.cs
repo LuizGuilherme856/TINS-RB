@@ -19,6 +19,7 @@ public class CorpsePoolManager : MonoBehaviour
             {
                 var pooledGameObject = objectPoolers[i].GetPooledGameObject();
                 pooledGameObject.SetActive(true);
+                EnemyDeath.ApplyCorpseAppearance(pooledGameObject);
                 return pooledGameObject;
             }
         }

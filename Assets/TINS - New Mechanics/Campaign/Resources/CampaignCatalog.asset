@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignCatalog
   planets:
   - id: velaria
-    displayName: "Vel\xE1ria"
+    displayName: Vharn
     description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras
       expedi\xE7\xF5es partiram daqui."
     missionsToPurify: 5
@@ -34,8 +34,8 @@ MonoBehaviour:
     mapX: 0.26
     mapY: 0.65
   - id: nivora
-    displayName: Nivora
-    description: Sob as geleiras de Nivora crescem cristais que brilham mesmo longe
+    displayName: Khal-Neth
+    description: Sob as geleiras de Khal-Neth crescem cristais que brilham mesmo longe
       da luz.
     missionsToPurify: 5
     initialLightRadius: 3.5
@@ -52,8 +52,8 @@ MonoBehaviour:
     mapX: 0.42
     mapY: 0.3
   - id: asterim
-    displayName: Asterim
-    description: "Antigos impactos espalharam Poeira Solar pelos c\xE2nions de Asterim."
+    displayName: Oth-Zai
+    description: "Antigos impactos espalharam Poeira Solar pelos c\xE2nions de Oth-Zai."
     missionsToPurify: 5
     initialLightRadius: 3.5
     missionTargetRadius: 15
@@ -69,8 +69,8 @@ MonoBehaviour:
     mapX: 0.61
     mapY: 0.68
   - id: dorsalia
-    displayName: "Dors\xE1lia"
-    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos
+    displayName: Ulthrem
+    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Ulthrem. Seus fragmentos
       se acumulam nas fendas."
     missionsToPurify: 5
     initialLightRadius: 3.5
@@ -87,9 +87,9 @@ MonoBehaviour:
     mapX: 0.72
     mapY: 0.43
   - id: varkora
-    displayName: Varkora
+    displayName: Ghorvath
     description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de
-      Varkora."
+      Ghorvath."
     missionsToPurify: 5
     initialLightRadius: 3.5
     missionTargetRadius: 19
@@ -105,8 +105,8 @@ MonoBehaviour:
     mapX: 0.83
     mapY: 0.69
   - id: marevia
-    displayName: "Mar\xE9via"
-    description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Sal Estelar nas
+    displayName: Nhalassar
+    description: "As mar\xE9s de Nhalassar deixam dep\xF3sitos de Sal Estelar nas
       ilhas quando recuam."
     missionsToPurify: 5
     initialLightRadius: 3.5

@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
 
+    private const float CorpseMaxBrightness = 0.6f;
+    private const int CorpseMinimumSortingOrder = 2;
+
     [SerializeField] private GameObject enemyCorpseImpact; //Impact is the damage type of the killing hit.
     [SerializeField] private GameObject corpseSlashHorizontal, corpseSlashUp, corpseSlashDown;
     [SerializeField] private GameObject corpseExplosion;
@@ -65,6 +68,7 @@ public class EnemyDeath : MonoBehaviour
                 if (matchSpriteFacing && TryGetComponent(out SpriteRenderer source) &&
                     corpse.TryGetComponent(out SpriteRenderer corpseSprites))
                     corpseSprites.flipX = source.flipX;
+                ApplyCorpseAppearance(corpse);
                 TINS.Campaign.CampaignMissionRuntime.Active?.TrackCorpse(corpse);
             }
             return;
@@ -139,6 +143,25 @@ public class EnemyDeath : MonoBehaviour
         }
 
     }
+
+    internal static void ApplyCorpseAppearance(GameObject corpse)
+    {
+        foreach (SpriteRenderer sprite in corpse.GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            sprite.sortingLayerName = "Default";
+            sprite.sortingOrder = Mathf.Max(sprite.sortingOrder, CorpseMinimumSortingOrder);
+
+            Color tint = sprite.color;
+            float brightness = tint.maxColorComponent;
+            if (brightness > CorpseMaxBrightness)
+            {
+                // Cap brightness so a pooled sprite keeps the same shade on reuse.
+                float scale = CorpseMaxBrightness / brightness;
+                sprite.color = new Color(tint.r * scale, tint.g * scale, tint.b * scale, tint.a);
+            }
+        }
+    }
+
 
     private GameObject SlashedCorpseSpawn(Vector3 lastHitDirection, Direction enemyDirection = Direction.East)
     {
