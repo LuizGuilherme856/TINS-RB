@@ -40,7 +40,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
     private int activeEnemies;
     private CampaignMissionEnemies campaignSettings;
     private float initialLightRadius;
-    private readonly List<(CampaignEnemyEntry entry, IObjectPool<PoolCreator> pool)> campaignPools = new();
+    private readonly List<(CampaignEnemyEntry entry, IObjectPool<PoolCreator> original, IObjectPool<PoolCreator> fourDirections)> campaignPools = new();
 
     private void Awake()
     {
@@ -132,12 +132,21 @@ public sealed class EnemySpawnManager : MonoBehaviour
             foreach (CampaignEnemyEntry entry in settings.enemies)
             {
                 if (entry == null || entry.weight <= 0f || !ValidatePrefab(entry.prefab, "Campaign")) continue;
-                if (!poolsByPrefab.TryGetValue(entry.prefab, out IObjectPool<PoolCreator> pool))
+                var original = PoolFor(entry.prefab);
+                var fourDirections = entry.fourDirectionPrefab != null && ValidatePrefab(entry.fourDirectionPrefab, "Campaign four-direction")
+                    ? PoolFor(entry.fourDirectionPrefab)
+                    : null;
+                campaignPools.Add((entry, original, fourDirections));
+            }
+
+            IObjectPool<PoolCreator> PoolFor(GameObject prefab)
+            {
+                if (!poolsByPrefab.TryGetValue(prefab, out var pool))
                 {
-                    pool = CreatePool(entry.prefab);
-                    poolsByPrefab.Add(entry.prefab, pool);
+                    pool = CreatePool(prefab);
+                    poolsByPrefab.Add(prefab, pool);
                 }
-                campaignPools.Add((entry, pool));
+                return pool;
             }
         }
 
@@ -161,16 +170,23 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (totalWeight <= 0f) return null;
 
         float roll = Random.Range(0f, totalWeight);
-        IObjectPool<PoolCreator> lastEligible = null;
-        foreach (var candidate in campaignPools)
+        int selection = -1;
+        for (int i = 0; i < campaignPools.Count; i++)
         {
+            var candidate = campaignPools[i];
             if (candidate.entry.minimumLightRadius > radius || candidate.entry.weight <= 0f) continue;
-            lastEligible = candidate.pool;
-            elite = candidate.entry.isElite;
+            selection = i;
             roll -= candidate.entry.weight;
-            if (roll <= 0f) return candidate.pool;
+            if (roll <= 0f) break;
         }
-        return lastEligible;
+        if (selection < 0) return null;
+
+        var selected = campaignPools[selection];
+        elite = selected.entry.isElite;
+        float chance = campaignSettings.fourDirectionChance;
+        return selected.fourDirections != null && (chance >= 1f || (chance > 0f && Random.value < chance))
+            ? selected.fourDirections
+            : selected.original;
     }
 
     public void StopAutomaticSpawning()

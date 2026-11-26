@@ -1,0 +1,168 @@
+.shakesprite {
+    --surface: #e2e4e7;
+    --panel: #f0f1f3;
+    --stage: #d4d9dd;
+    --line: #aeb7be;
+    --muted: #3e4c57;
+    --tool: #c0e8e0;
+    --tool-hover: #abe0d6;
+    --tool-edge: #28786b;
+    --error: #a52626;
+    flex-grow: 1;
+    background-color: var(--surface);
+    padding: 8px;
+}
+
+.shakesprite--dark {
+    --surface: #292d31;
+    --panel: #34393e;
+    --stage: #1e2226;
+    --line: #4c565e;
+    --muted: #bcc7cf;
+    --tool: #26594f;
+    --tool-hover: #2e6b60;
+    --tool-edge: #71cdbb;
+    --error: #ffac9f;
+}
+
+.shakesprite .row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.shakesprite .grow {
+    flex-grow: 1;
+    min-width: 32px;
+}
+
+.shakesprite .asset-bar {
+    margin-bottom: 6px;
+}
+
+.shakesprite .workspace {
+    flex-grow: 1;
+    min-height: 160px;
+}
+
+.shakesprite .edit-bar,
+.shakesprite .timeline,
+.shakesprite .layout-bar,
+.shakesprite .footer {
+    background-color: var(--panel);
+    padding: 3px 4px;
+    flex-shrink: 0;
+}
+
+.shakesprite .edit-bar {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.shakesprite .layout-bar {
+    flex-wrap: wrap;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.shakesprite .pixel-canvas,
+.shakesprite .empty-panel {
+    flex-grow: 1;
+    min-height: 110px;
+    background-color: var(--stage);
+    overflow: hidden;
+    border-width: 1px;
+    border-color: var(--line);
+}
+
+.shakesprite .empty-panel {
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+.shakesprite .empty-title {
+    -unity-font-style: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.shakesprite .empty-hint {
+    color: var(--muted);
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.shakesprite .ink { width: 56px; }
+.shakesprite .zoom { width: 66px; }
+.shakesprite #layout { min-width: 114px; }
+.shakesprite #play { min-width: 50px; }
+.shakesprite #previous,
+.shakesprite #next { min-width: 25px; }
+
+.shakesprite .active-tool {
+    background-color: var(--tool);
+    border-color: var(--tool-edge);
+}
+
+.shakesprite .active-tool:hover {
+    background-color: var(--tool-hover);
+}
+
+.shakesprite .compact-number {
+    width: 82px;
+}
+
+.shakesprite .compact-number > .unity-base-field__label {
+    min-width: 0;
+    width: auto;
+    margin-right: 5px;
+}
+
+.shakesprite #fps { width: 69px; }
+
+.shakesprite .frame-label {
+    min-width: 100px;
+    color: var(--muted);
+    -unity-text-align: middle-right;
+    margin-right: 6px;
+}
+
+.shakesprite .footer {
+    margin-top: 6px;
+    min-height: 29px;
+    border-radius: 4px;
+}
+
+.shakesprite .status {
+    flex-grow: 1;
+    flex-shrink: 1;
+    white-space: normal;
+    color: var(--muted);
+    margin: 1px 6px;
+}
+
+.shakesprite .status-error {
+    color: var(--error);
+}
+
+.shakesprite #save,
+.shakesprite #save-copy {
+    flex-shrink: 0;
+}
+
+.shakesprite .clip-timing {
+    color: var(--muted);
+    margin-left: 6px;
+}
+
+.shakesprite #save:enabled {
+    background-color: var(--tool);
+    border-color: var(--tool-edge);
+}
+
+.shakesprite #save:enabled:hover {
+    background-color: var(--tool-hover);
+}

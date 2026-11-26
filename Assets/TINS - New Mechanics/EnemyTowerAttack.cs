@@ -72,6 +72,8 @@ public sealed class EnemyTowerAttack : MonoBehaviour
 
         if (useAnimationEvent)
         {
+            if (TryGetComponent(out CampaignEnemyAnimation direction))
+                direction.FaceAttackTarget(targetTower.transform.position - transform.position);
             attackAnimator.ResetTrigger(attackTrigger);
             attackAnimator.SetTrigger(attackTrigger);
         }

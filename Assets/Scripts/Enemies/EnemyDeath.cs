@@ -68,6 +68,7 @@ public class EnemyDeath : MonoBehaviour
                 if (matchSpriteFacing && TryGetComponent(out SpriteRenderer source) &&
                     corpse.TryGetComponent(out SpriteRenderer corpseSprites))
                     corpseSprites.flipX = source.flipX;
+                GetComponent<TINS.Campaign.CampaignEnemyAnimation>()?.CopyCorpseFacing(corpse);
                 ApplyCorpseAppearance(corpse);
                 TINS.Campaign.CampaignMissionRuntime.Active?.TrackCorpse(corpse);
             }

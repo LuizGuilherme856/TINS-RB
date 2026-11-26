@@ -9,6 +9,8 @@ namespace TINS.Campaign
     {
         [Tooltip("Enemy prefab with EnemyHealth and PoolCreator on the root.")]
         public GameObject prefab;
+        [Tooltip("Optional visual variant used for the four-direction animation test.")]
+        public GameObject fourDirectionPrefab;
         [Min(0f), Tooltip("Relative chance among the enemies available at the current light radius.")]
         public float weight = 1f;
         [Min(0f), Tooltip("Set to zero to make this enemy available from the start.")]
@@ -47,6 +49,8 @@ namespace TINS.Campaign
         [Min(0f)] public float minimumReinforcementRadius;
 
         [Header("Enemy roster")]
+        [Range(0f, 1f), Tooltip("Chance to use the four-direction prefab for an enemy that has one. 0 uses the original; 1 always uses the variant.")]
+        public float fourDirectionChance;
         public List<CampaignEnemyEntry> enemies = new List<CampaignEnemyEntry>();
 
         public int ActiveEnemyLimit(float lightGrowth)
