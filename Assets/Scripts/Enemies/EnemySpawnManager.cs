@@ -41,6 +41,9 @@ public sealed class EnemySpawnManager : MonoBehaviour
     private CampaignMissionEnemies campaignSettings;
     private float initialLightRadius;
     private readonly List<(CampaignEnemyEntry entry, IObjectPool<PoolCreator> original, IObjectPool<PoolCreator> fourDirections)> campaignPools = new();
+    public int EliteMilestoneCount { get; private set; }
+    public int SpawnedEliteMilestones { get; private set; }
+    public float EliteMilestoneRadius(int index) => campaignPools[index].entry.minimumLightRadius;
 
     private void Awake()
     {
@@ -92,7 +95,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
         UpdateAdaptiveWaveSettings();
         if (activeEnemies >= maxEnemies) return null;
         Transform chosenSpawn = GetRandomValidSpawnSpot();
-        if (chosenSpawn == null) chosenSpawn = spawnPoint;
+        if (chosenSpawn == null && (campaignSettings == null || IsValid(spawnPoint))) chosenSpawn = spawnPoint;
         if (chosenSpawn == null) return null;
 
         IObjectPool<PoolCreator> selectedPool = SelectEnemyPool(out bool elite);
@@ -116,6 +119,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (defenseCore != null && enemy.TryGetComponent(out ChangeTarget targeting))
             targeting.SetNewTarget(defenseCore);
         activeEnemies++;
+        if (elite && campaignSettings != null) SpawnedEliteMilestones++;
         return enemy.gameObject;
     }
 
@@ -123,12 +127,14 @@ public sealed class EnemySpawnManager : MonoBehaviour
     {
         StopAutomaticSpawning();
         campaignSettings = settings;
-        initialLightRadius = CurrentLightRadius;
+        initialLightRadius = CurrentPressureRadius;
+        campaignPools.Clear();
+        EliteMilestoneCount = 0;
+        SpawnedEliteMilestones = 0;
 
         if (settings != null)
         {
             var poolsByPrefab = new Dictionary<GameObject, IObjectPool<PoolCreator>>();
-            campaignPools.Clear();
             foreach (CampaignEnemyEntry entry in settings.enemies)
             {
                 if (entry == null || entry.weight <= 0f || !ValidatePrefab(entry.prefab, "Campaign")) continue;
@@ -137,7 +143,11 @@ public sealed class EnemySpawnManager : MonoBehaviour
                     ? PoolFor(entry.fourDirectionPrefab)
                     : null;
                 campaignPools.Add((entry, original, fourDirections));
+                if (entry.isElite) EliteMilestoneCount++;
             }
+            campaignPools.Sort((left, right) => left.entry.isElite == right.entry.isElite
+                ? left.entry.minimumLightRadius.CompareTo(right.entry.minimumLightRadius)
+                : right.entry.isElite.CompareTo(left.entry.isElite));
 
             IObjectPool<PoolCreator> PoolFor(GameObject prefab)
             {
@@ -163,15 +173,24 @@ public sealed class EnemySpawnManager : MonoBehaviour
             return elite ? elitePool : regularPool;
         }
 
-        float radius = CurrentLightRadius;
+        float radius = CurrentPressureRadius;
+        if (SpawnedEliteMilestones < EliteMilestoneCount && EliteMilestoneRadius(SpawnedEliteMilestones) <= radius)
+        {
+            elite = true;
+            return CampaignVariant(SpawnedEliteMilestones);
+        }
+
         float totalWeight = 0f;
-        foreach (var candidate in campaignPools)
-            if (candidate.entry.minimumLightRadius <= radius) totalWeight += Mathf.Max(0f, candidate.entry.weight);
+        for (int i = EliteMilestoneCount; i < campaignPools.Count; i++)
+        {
+            CampaignEnemyEntry entry = campaignPools[i].entry;
+            if (entry.minimumLightRadius <= radius) totalWeight += entry.weight;
+        }
         if (totalWeight <= 0f) return null;
 
         float roll = Random.Range(0f, totalWeight);
         int selection = -1;
-        for (int i = 0; i < campaignPools.Count; i++)
+        for (int i = EliteMilestoneCount; i < campaignPools.Count; i++)
         {
             var candidate = campaignPools[i];
             if (candidate.entry.minimumLightRadius > radius || candidate.entry.weight <= 0f) continue;
@@ -179,10 +198,12 @@ public sealed class EnemySpawnManager : MonoBehaviour
             roll -= candidate.entry.weight;
             if (roll <= 0f) break;
         }
-        if (selection < 0) return null;
+        return selection >= 0 ? CampaignVariant(selection) : null;
+    }
 
+    private IObjectPool<PoolCreator> CampaignVariant(int selection)
+    {
         var selected = campaignPools[selection];
-        elite = selected.entry.isElite;
         float chance = campaignSettings.fourDirectionChance;
         return selected.fourDirections != null && (chance >= 1f || (chance > 0f && Random.value < chance))
             ? selected.fourDirections
@@ -218,7 +239,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
             UpdateAdaptiveWaveSettings();
             yield return new WaitForSeconds(Mathf.Max(0.1f, spawnInterval));
             if (SpawnEnemy() == null || campaignSettings == null ||
-                campaignSettings.spawnsBetweenReinforcements <= 0 || CurrentLightRadius < campaignSettings.minimumReinforcementRadius)
+                campaignSettings.spawnsBetweenReinforcements <= 0 || CurrentPressureRadius < campaignSettings.minimumReinforcementRadius)
                 continue;
             if (++spawnsSinceGroup < campaignSettings.spawnsBetweenReinforcements) continue;
 
@@ -237,10 +258,12 @@ public sealed class EnemySpawnManager : MonoBehaviour
     }
 
     private float CurrentLightRadius => purificationManager != null ? Mathf.Max(0f, purificationManager.Radius) : 0f;
+    private float CurrentPressureRadius => campaignSettings != null && CampaignMissionRuntime.Active != null
+        ? CampaignMissionRuntime.Active.EnemyPressureRadius : CurrentLightRadius;
 
     private void UpdateAdaptiveWaveSettings()
     {
-        float radius = CurrentLightRadius;
+        float radius = CurrentPressureRadius;
         if (campaignSettings != null)
         {
             float growth = radius - initialLightRadius;
@@ -333,19 +356,47 @@ public sealed class EnemySpawnManager : MonoBehaviour
     protected Transform GetRandomValidSpawnSpot()
     {
         validSpawnPoints.Clear();
+        Transform nearest = null;
+        float nearestDistance = float.PositiveInfinity;
+        Transform lightCenter = centerLocation != null ? centerLocation : purificationManager?.transform;
+        float bandStart = MinimumSpawnDistance;
+        float bandEnd = bandStart + (campaignSettings != null ? Mathf.Max(0.1f, campaignSettings.spawnBandWidth) : 0f);
+
         foreach (Transform target in spawnPoints)
         {
-            if (target != null && IsValid(target))
-                validSpawnPoints.Add(target);
+            if (target == null) continue;
+            float distance = lightCenter != null ? Vector2.Distance(lightCenter.position, target.position) : float.PositiveInfinity;
+            if (distance < bandStart) continue;
+            if (campaignSettings != null && lightCenter != null)
+            {
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearest = target;
+                }
+                if (distance > bandEnd) continue;
+            }
+            validSpawnPoints.Add(target);
         }
 
         if (validSpawnPoints.Count == 0)
-            return null;
+            return nearest;
 
         return validSpawnPoints[Random.Range(0, validSpawnPoints.Count)];
     }
 
-    /// <summary>A valid spawn point is outside the purification radius plus margin.</summary>
+    private float MinimumSpawnDistance
+    {
+        get
+        {
+            float radius = campaignSettings != null && CampaignMissionRuntime.Active != null
+                ? CampaignMissionRuntime.Active.EnemySpawnBoundary
+                : CurrentLightRadius;
+            return radius + extraMargin;
+        }
+    }
+
+    /// <summary>A valid spawn point is beyond the active light boundary plus margin.</summary>
     protected bool IsValid(Transform targetToCheck)
     {
         if (targetToCheck == null)
@@ -357,8 +408,6 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (lightCenter == null)
             return true;
 
-        float radius = purificationManager != null ? purificationManager.Radius : 0f;
-        float minDistance = radius + extraMargin;
-        return Vector2.Distance(lightCenter.position, targetToCheck.position) >= minDistance;
+        return Vector2.Distance(lightCenter.position, targetToCheck.position) >= MinimumSpawnDistance;
     }
 }

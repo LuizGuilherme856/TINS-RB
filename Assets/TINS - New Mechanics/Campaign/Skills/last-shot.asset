@@ -33,10 +33,12 @@ MonoBehaviour:
   effectPrefab: {fileID: 0}
   orbitalEffect: {fileID: 0}
   effectStartsAtRank: 1
-  visibleAtStart: 1
+  visibleAtStart: 0
   requireAllRevealPrerequisites: 1
   requireAllPrerequisites: 1
-  prerequisites: []
+  prerequisites:
+  - skill: {fileID: 11400000, guid: 0cb72b933761460395d2a6b0071057ea, type: 2}
+    minimumRank: 1
   revealPrerequisites: []
   exclusiveWith: []
   editorPosition: {x: 72, y: -289}

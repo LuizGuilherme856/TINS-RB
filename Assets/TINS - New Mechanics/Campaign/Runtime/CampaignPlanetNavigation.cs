@@ -83,7 +83,7 @@ namespace TINS.Campaign
                 marker.Button.onClick.AddListener(() => ShowPlanet(marker));
                 marker.DirectionalFocus += KeepDestinationVisible;
             }
-            routeChart?.Bind(campaignOrder);
+            routeChart?.Bind(catalog, campaignOrder);
             closeButton.onClick.AddListener(() => close());
             backButton.onClick.AddListener(() => TryGoBack());
             launchButton.onClick.AddListener(() =>
@@ -144,7 +144,8 @@ namespace TINS.Campaign
         private void RefreshMap()
         {
             int purifiedCount = 0;
-            int firstAvailable = -1;
+            int availableCount = 0;
+            CampaignPlanet firstAvailable = null;
             for (int i = 0; i < campaignOrder.Length; i++)
             {
                 CampaignPlanet planet = catalog.planets[i];
@@ -153,7 +154,11 @@ namespace TINS.Campaign
                 if (isPurified) purifiedCount++;
                 var state = !profile.IsUnlocked(catalog, i) ? CampaignDestinationState.Locked
                     : isPurified ? CampaignDestinationState.Purified : CampaignDestinationState.Available;
-                if (state == CampaignDestinationState.Available && firstAvailable < 0) firstAvailable = i;
+                if (state == CampaignDestinationState.Available)
+                {
+                    availableCount++;
+                    firstAvailable ??= planet;
+                }
 
                 var marker = campaignOrder[i];
                 if (marker != null)
@@ -162,11 +167,13 @@ namespace TINS.Campaign
 
             if (campaignProgress != null)
                 campaignProgress.text = $"{purifiedCount}/{campaignOrder.Length} planetas purificados";
+            bool allPurified = purifiedCount > 0 && purifiedCount == campaignOrder.Length;
             if (mapHint != null)
-                mapHint.text = firstAvailable < 0 ? "Purificação concluída"
-                    : firstAvailable == campaignOrder.Length - 1 ? $"Último destino: {catalog.planets[firstAvailable].displayName}"
-                    : $"Próxima rota: purifique {catalog.planets[firstAvailable].displayName}.";
-            routeChart?.SetVerticesDirty();
+                mapHint.text = allPurified ? "O Sol voltou a brilhar."
+                    : availableCount > 1 ? $"{availableCount} rotas abertas. Escolha a próxima expedição."
+                    : firstAvailable != null ? $"Rota aberta para {firstAvailable.displayName}."
+                    : "Nenhuma rota de expedição disponível.";
+            routeChart?.ShowSun(allPurified);
         }
 
         private Color DestinationColor(CampaignDestinationState state)
@@ -181,7 +188,9 @@ namespace TINS.Campaign
             selectedIndex = index;
             CampaignPlanet planet = catalog.planets[index];
             CampaignPlanet prerequisite = profile.FirstUnpurifiedPrerequisite(catalog, index);
-            PlaySound(prerequisite == null ? selectSound : lockedSound);
+            bool unlocked = profile.IsUnlocked(catalog, index);
+            bool protect = profile.IsPurified(planet);
+            PlaySound(unlocked ? selectSound : lockedSound);
             focusedPlanet.sprite = marker.PlanetArt.sprite;
             focusedPlanet.color = marker.PlanetArt.color;
             detailImage.sprite = marker.DetailImage;
@@ -191,10 +200,11 @@ namespace TINS.Campaign
                 $"{CampaignCatalog.ResourceIcon(planet.rewardResourceId)}{planet.rewardPerMission} {planet.rewardResourceName}";
             progress.text = prerequisite != null
                 ? $"Conclua {prerequisite.missionsToPurify} missões em {prerequisite.displayName} ({profile.MissionsOn(prerequisite.id)}/{prerequisite.missionsToPurify})."
-                : profile.IsPurified(planet)
-                    ? "Purificado"
+                : !unlocked ? "Rota indisponível."
+                : protect
+                    ? $"Mantenha o centro de luz ativo por {Mathf.CeilToInt(planet.protectionDuration)} s."
                     : $"Purificação  {profile.MissionsOn(planet.id)}/{planet.missionsToPurify}";
-            launchButton.interactable = prerequisite == null;
+            launchButton.interactable = unlocked;
             if (detailMeter != null)
             {
                 CampaignPlanet target = prerequisite ?? planet;
@@ -209,12 +219,12 @@ namespace TINS.Campaign
                 detailStatus.text = marker.State switch
                 {
                     CampaignDestinationState.Locked => "ROTA BLOQUEADA",
-                    CampaignDestinationState.Purified => "PLANETA PURIFICADO",
+                    CampaignDestinationState.Purified => "MISSÃO DE PROTEÇÃO",
                     _ => "EXPEDIÇÃO DISPONÍVEL"
                 };
             }
             if (launchButton.GetComponentInChildren<TMP_Text>() is TMP_Text launchLabel)
-                launchLabel.text = prerequisite == null ? "Iniciar missão" : "Missão bloqueada";
+                launchLabel.text = unlocked ? protect ? "Proteger" : "Iniciar missão" : "Missão bloqueada";
 
             RectTransform art = marker.PlanetArt.rectTransform;
             RectTransform focus = focusedPlanet.rectTransform;

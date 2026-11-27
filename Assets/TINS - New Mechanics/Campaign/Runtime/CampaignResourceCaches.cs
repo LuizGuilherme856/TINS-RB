@@ -30,7 +30,11 @@ namespace TINS.Campaign
                 // Each cache lies inside the penumbra at a different stage of light growth.
                 float progress = .55f * i / Mathf.Max(1, planet.resourceCacheCount - 1);
                 float lightRadius = Mathf.Lerp(planet.initialLightRadius, planet.missionTargetRadius, progress);
-                float radius = lightRadius + .5f * planet.PenumbraWidthAt(lightRadius);
+                float outerRadius = lightRadius + planet.PenumbraWidthAt(lightRadius);
+                float innerRadius = lightRadius;
+                if (i > 0 && outerRadius > planet.initialPenumbraRadius + .16f)
+                    innerRadius = Mathf.Max(innerRadius, planet.initialPenumbraRadius + .08f);
+                float radius = Mathf.Lerp(innerRadius, outerRadius, .5f);
                 float angle = startAngle + sector * (i + Random.Range(-.15f, .15f));
                 Vector2 position = center + radius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 

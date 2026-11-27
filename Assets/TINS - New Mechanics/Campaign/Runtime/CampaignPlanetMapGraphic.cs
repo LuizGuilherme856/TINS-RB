@@ -10,6 +10,7 @@ namespace TINS.Campaign
     public sealed class CampaignPlanetMapGraphic : MaskableGraphic
     {
         [SerializeField] private RectTransform sun;
+        [SerializeField] private TMPro.TMP_Text sunStatus;
         [SerializeField] private CampaignPlanetMarker[] markers;
         [SerializeField] private Color blocked = new Color32(130, 139, 170, 255);
         [SerializeField] private Color available = new Color32(242, 192, 120, 255);
@@ -17,6 +18,8 @@ namespace TINS.Campaign
         [SerializeField] private Color orbit = new Color32(55, 73, 105, 125);
 
         private IReadOnlyList<CampaignPlanetMarker> orderedMarkers;
+        private readonly List<(CampaignPlanetMarker from, CampaignPlanetMarker to)> routes = new();
+        private bool sunLit;
         private float animationTime;
         private float screenPixel = 1f;
 
@@ -27,9 +30,33 @@ namespace TINS.Campaign
             _ => blocked
         };
 
-        internal void Bind(IReadOnlyList<CampaignPlanetMarker> campaignOrder)
+        internal void Bind(CampaignCatalog catalog, IReadOnlyList<CampaignPlanetMarker> campaignOrder)
         {
             orderedMarkers = campaignOrder;
+            routes.Clear();
+            for (int i = 0; i < campaignOrder.Count; i++)
+            {
+                CampaignPlanetMarker destination = campaignOrder[i];
+                if (destination == null || catalog.planets[i]?.prerequisitePlanetIds == null) continue;
+                foreach (string requiredId in catalog.planets[i].prerequisitePlanetIds)
+                {
+                    int sourceIndex = catalog.IndexOf(requiredId);
+                    if (sourceIndex >= 0 && campaignOrder[sourceIndex] != null)
+                        routes.Add((campaignOrder[sourceIndex], destination));
+                }
+            }
+            SetVerticesDirty();
+        }
+
+        internal void ShowSun(bool lit)
+        {
+            sunLit = lit;
+            if (sun != null && sun.TryGetComponent(out Image art)) art.enabled = !lit;
+            if (sunStatus != null)
+            {
+                sunStatus.text = lit ? "Sol restaurado" : "Sol apagado";
+                sunStatus.color = lit ? new Color32(255, 212, 115, 255) : blocked;
+            }
             SetVerticesDirty();
         }
 
@@ -53,9 +80,11 @@ namespace TINS.Campaign
             if (sun != null)
             {
                 Vector2 center = CenterOf(sun);
-                Ellipse(mesh, center, sun.rect.size * .5f + Vector2.one * 5f, 1, orbit);
-                Ellipse(mesh, center, new Vector2(235, 146), 1, Alpha(orbit, .58f), 10f);
-                Ellipse(mesh, center, new Vector2(493, 282), 1, Alpha(orbit, .53f), -5f);
+                Color orbitTint = sunLit ? new Color32(246, 165, 87, 145) : orbit;
+                Ellipse(mesh, center, sun.rect.size * .5f + Vector2.one * 5f, 1, orbitTint);
+                Ellipse(mesh, center, new Vector2(235, 146), 1, Alpha(orbitTint, .58f), 10f);
+                Ellipse(mesh, center, new Vector2(493, 282), 1, Alpha(orbitTint, .53f), -5f);
+                if (sunLit) DrawSolarSurface(mesh, center);
             }
 
             var destinations = orderedMarkers ?? markers;
@@ -64,23 +93,34 @@ namespace TINS.Campaign
             foreach (var marker in destinations)
                 pointerOnMap |= marker != null && marker.IsHovered;
 
-            CampaignPlanetMarker previous = null;
-            foreach (var marker in destinations)
-            {
-                if (marker == null)
-                {
-                    previous = null;
-                    continue;
-                }
-
-                if (previous != null) DrawRoute(mesh, previous, marker);
-                previous = marker;
-            }
+            foreach (var route in routes) DrawRoute(mesh, route.from, route.to);
 
             foreach (var marker in destinations)
             {
                 if (marker == null) continue;
                 DrawMarker(mesh, marker, marker.IsHovered || (!pointerOnMap && marker.IsFocused));
+            }
+        }
+
+        private void DrawSolarSurface(VertexHelper mesh, Vector2 center)
+        {
+            const int cells = 23;
+            const int middle = cells / 2;
+            float size = Mathf.Min(sun.rect.width, sun.rect.height) / cells;
+            float shift = Mathf.Floor(animationTime * 2f);
+            for (int y = -middle; y <= middle; y++)
+            {
+                for (int x = -middle; x <= middle; x++)
+                {
+                    int distance = x * x + y * y;
+                    if (distance > 121) continue;
+                    float band = Mathf.Sin((x - y + shift) * .33f) + Mathf.Cos((x + y * 2f) * .36f);
+                    Color32 shade = distance >= 104 ? new Color32(242, 133, 55, 255)
+                        : band > .38f ? new Color32(255, 239, 164, 255)
+                        : band < -.32f ? new Color32(242, 166, 61, 255)
+                        : new Color32(255, 206, 99, 255);
+                    Quad(mesh, center + new Vector2(x, y) * size, Vector2.one * size, shade);
+                }
             }
         }
 

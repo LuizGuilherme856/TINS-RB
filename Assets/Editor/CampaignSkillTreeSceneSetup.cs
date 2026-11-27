@@ -88,7 +88,9 @@ public static class CampaignSkillTreeSceneSetup
         TMP_Text status = MoveText(panel.transform, card.transform, "Campaign Tree Status", "", 15f, TextAlignmentOptions.MidlineLeft, Accent);
         Place(status.rectTransform, Vector2.zero, Vector2.right, new Vector2(24f, 14f), new Vector2(-24f, 54f));
         Button buyButton = StyleButton(panel.transform, card.transform, "Buy Selected Campaign Skill", "COMPRAR",
-            Vector2.zero, Vector2.right, new Vector2(24f, 56f), new Vector2(-24f, 94f), 17f, new Color32(162, 64, 100, 255));
+            Vector2.zero, new Vector2(.5f, 0f), new Vector2(24f, 56f), new Vector2(-4f, 94f), 16f, new Color32(162, 64, 100, 255));
+        Button refundButton = StyleButton(panel.transform, card.transform, "Refund Selected Campaign Skill", "REEMBOLSAR",
+            new Vector2(.5f, 0f), Vector2.right, new Vector2(4f, 56f), new Vector2(-24f, 94f), 15f, Border);
         Button resetButton = StyleButton(panel.transform, panel.transform, "Reset Campaign Upgrades", "Reiniciar melhorias",
             Vector2.right, Vector2.right, new Vector2(-332f, 24f), new Vector2(-28f, 64f), 16f, Border);
         StyleButton(panel.transform, panel.transform, "Close Skill Tree", "VOLTAR", Vector2.one, Vector2.one,
@@ -213,6 +215,7 @@ public static class CampaignSkillTreeSceneSetup
         SetObject(tree, "detailsLabel", details);
         SetObject(tree, "statusLabel", status);
         SetObject(tree, "buySelectedButton", buyButton);
+        SetObject(tree, "refundSelectedButton", refundButton);
         SetObject(tree, "resetButton", resetButton);
         SetObject(tree, "zoomOutButton", zoomOut);
         SetObject(tree, "zoomInButton", zoomIn);

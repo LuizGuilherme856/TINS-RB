@@ -22,6 +22,8 @@ namespace TINS.Campaign
         private const float SlotHeight = 16f;
         private const float SlotStep = 12f;
         private const float RowStep = 20f;
+        private const float TrackHeight = 7f;
+        private const float ReadyDuration = .85f;
         private const int EmptyFrame = 4;
 
         private readonly List<UnityEngine.UI.RawImage> slots = new();
@@ -39,6 +41,10 @@ namespace TINS.Campaign
         private SpriteRenderer playerSprite;
         private int visibleSlots;
         private float trackWidth;
+        private bool wasRecharging;
+        private bool statusVisible;
+        private float readyUntil;
+        private int displayedTenths;
 
         private void Awake()
         {
@@ -75,6 +81,9 @@ namespace TINS.Campaign
             progressMarker.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 197, 94, 255);
             skillCheckMarker.GetComponent<UnityEngine.UI.Image>().color = new Color32(116, 236, 212, 210);
             skillCheckMarker.SetAsLastSibling();
+            reloadingLabel.fontSize = 13f;
+            reloadingLabel.alignment = TextAlignmentOptions.Center;
+            reloadingLabel.raycastTarget = false;
             reloadingLabel.enabled = false;
         }
 
@@ -86,9 +95,15 @@ namespace TINS.Campaign
             gameObject.SetActive(source != null);
             if (manager == null) return;
 
+            wasRecharging = manager.IsRecharging;
+            statusVisible = false;
+            reloadingLabel.enabled = false;
+            readyUntil = 0f;
+            displayedTenths = -1;
             manager.OnUseSpent += AnimateShot;
             manager.OnUsesChanged += RefreshCapacity;
             RefreshCapacity(manager.UsesRemaining, manager.MaxUses);
+            LayoutPanel(false, false);
             Redraw();
         }
 
@@ -118,10 +133,10 @@ namespace TINS.Campaign
             if (visibleSlots != maximum)
             {
                 visibleSlots = maximum;
-                trackWidth = (Mathf.Min(maximum, SlotsPerRow) - 1) * SlotStep + SlotWidth;
-                Layout(reloadBar, 3f, trackWidth, 5f);
-                Layout(reloadTrack, 0f, trackWidth, 5f);
-                Layout(travelArea, 0f, trackWidth, 5f);
+                trackWidth = Mathf.Max(92f, (Mathf.Min(maximum, SlotsPerRow) - 1) * SlotStep + SlotWidth);
+                Layout(reloadBar, 3f, trackWidth, TrackHeight);
+                Layout(reloadTrack, 0f, trackWidth, TrackHeight);
+                Layout(travelArea, 0f, trackWidth, TrackHeight);
                 for (int i = 0; i < slots.Count; i++)
                 {
                     slots[i].gameObject.SetActive(i < maximum);
@@ -132,18 +147,20 @@ namespace TINS.Campaign
                     slots[i].rectTransform.anchoredPosition += Vector2.right * ((i % SlotsPerRow - (countInRow - 1) * 0.5f) * SlotStep);
                 }
 
-                LayoutPanel(manager.IsRecharging);
+                LayoutPanel(manager.IsRecharging, statusVisible);
             }
 
             for (int i = 0; i < remaining; i++) shotTimes[i] = float.NegativeInfinity;
         }
 
-        private void LayoutPanel(bool reloading)
+        private void LayoutPanel(bool reloading, bool showStatus)
         {
-            float bottom = reloading ? 10f : 3f;
+            float bottom = reloading ? TrackHeight + 5f : 3f;
             int rows = (visibleSlots + SlotsPerRow - 1) / SlotsPerRow;
+            float chargesTop = bottom + (rows - 1) * RowStep + SlotHeight;
             Layout(chargeRow, bottom, trackWidth, 0f);
-            Layout(panel, 0f, trackWidth + 10f, bottom + (rows - 1) * RowStep + SlotHeight + 3f);
+            Layout(reloadingLabel.rectTransform, chargesTop + 1f, trackWidth + 12f, 16f);
+            Layout(panel, 0f, trackWidth + 14f, chargesTop + (showStatus ? 20f : 3f));
             root.sizeDelta = panel.sizeDelta;
         }
 
@@ -224,20 +241,44 @@ namespace TINS.Campaign
             }
 
             bool reloading = manager.IsRecharging;
-            if (reloadBar.gameObject.activeSelf != reloading)
+            if (reloading != wasRecharging)
             {
-                reloadBar.gameObject.SetActive(reloading);
-                LayoutPanel(reloading);
+                wasRecharging = reloading;
+                displayedTenths = -1;
+                if (!reloading)
+                {
+                    readyUntil = Time.time + ReadyDuration;
+                    reloadingLabel.color = new Color32(153, 245, 228, 255);
+                    reloadingLabel.text = "FLASH PRONTO";
+                }
             }
+            bool showStatus = reloading || Time.time < readyUntil;
+            if (statusVisible != showStatus || reloadBar.gameObject.activeSelf != reloading)
+            {
+                statusVisible = showStatus;
+                reloadingLabel.enabled = showStatus;
+                reloadBar.gameObject.SetActive(reloading);
+                LayoutPanel(reloading, showStatus);
+            }
+
             if (!reloading) return;
 
-            PlaceBarSegment(progressMarker, 0f, manager.RechargeProgress, 4f);
+            float progress = manager.RechargeProgress;
+            int tenths = Mathf.CeilToInt((1f - progress) * manager.RechargeDuration * 10f);
+            if (tenths != displayedTenths)
+            {
+                displayedTenths = tenths;
+                reloadingLabel.color = new Color32(255, 219, 147, 255);
+                reloadingLabel.SetText("RECARGA {0:1} s", tenths / 10f);
+            }
+
+            PlaceBarSegment(progressMarker, 0f, progress, TrackHeight - 2f);
             skillCheckMarker.gameObject.SetActive(manager.IsSkillCheckAvailable);
             if (manager.IsSkillCheckAvailable)
             {
                 float halfWidth = manager.SkillCheckWidth * 0.5f;
                 PlaceBarSegment(skillCheckMarker, manager.SkillCheckTarget - halfWidth,
-                    manager.SkillCheckTarget + halfWidth, 5f);
+                    manager.SkillCheckTarget + halfWidth, TrackHeight);
             }
         }
 

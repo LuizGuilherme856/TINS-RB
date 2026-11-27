@@ -13,7 +13,7 @@ namespace TINS.Campaign
     {
         public static CampaignBaseController Active { get; private set; }
         public event Action<int> SoulsChanged;
-        private enum Panel { None, Missions, Skills }
+        private enum Panel { None, Menu, Missions, Skills }
 
         [SerializeField] private CampaignCatalog catalog;
         [SerializeField] private PlayerInputHandler playerInput;
@@ -22,6 +22,7 @@ namespace TINS.Campaign
         [SerializeField] private CampaignPlanetNavigation planetNavigation;
         [SerializeField] private CampaignPlanetWindow planetWindow;
         [SerializeField] private GameObject skillPanel;
+        [SerializeField] private CampaignMainMenu mainMenu;
         [SerializeField] private TMP_Text soulsLabel;
         [SerializeField] private TMP_Text resourceLabel;
         [SerializeField] private TMP_Text statusLabel;
@@ -119,6 +120,11 @@ namespace TINS.Campaign
                     skillButtons[i].onClick.AddListener(() => BuySkill(index));
                 }
             Refresh();
+            if (mainMenu != null)
+            {
+                mainMenu.Bind(ClosePanels, () => OpenFromMenu(ShowMissionBoard), () => OpenFromMenu(ShowSkillTree));
+                if (CampaignMainMenu.ClaimTitleScreen()) ShowMainMenu();
+            }
         }
 
         private void ConfigureCampaignSkills()
@@ -222,9 +228,15 @@ namespace TINS.Campaign
         private void Update()
         {
             UpdateNearbyStation();
-            if (currentPanel == Panel.None) return;
+            bool escape = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
+            bool back = Gamepad.current?.buttonEast.wasPressedThisFrame == true;
+            if (currentPanel == Panel.None)
+            {
+                if (escape || Gamepad.current?.startButton.wasPressedThisFrame == true) ShowMainMenu();
+                return;
+            }
             if (currentPanel == Panel.Skills) FitSkillPanelToCanvas();
-            if (Keyboard.current?.escapeKey.wasPressedThisFrame == true || Gamepad.current?.buttonEast.wasPressedThisFrame == true)
+            if (escape || back)
             {
                 if (currentPanel == Panel.Missions && planetNavigation != null && planetNavigation.TryGoBack()) return;
                 ClosePanels();
@@ -292,6 +304,22 @@ namespace TINS.Campaign
             if (planetNavigation == null) SelectFirst(planetButtons);
         }
 
+        public void ShowMainMenu()
+        {
+            if (mainMenu == null || currentPanel != Panel.None) return;
+            currentPanel = Panel.Menu;
+            SetPlayerPaused(true);
+            UpdateNearbyStation();
+            Refresh();
+            mainMenu.gameObject.SetActive(true);
+        }
+
+        private void OpenFromMenu(Action open)
+        {
+            ClosePanels();
+            open();
+        }
+
         public void ShowSkillTree()
         {
             if (catalog == null || skillPanel == null || currentPanel != Panel.None) return;
@@ -300,7 +328,7 @@ namespace TINS.Campaign
             SetPlayerPaused(true);
             skillPanel.SetActive(true);
             FitSkillPanelToCanvas();
-            campaignSkillTree?.Bind(catalog, profile, TryBuyTreeSkill, ResetSkills);
+            campaignSkillTree?.Bind(catalog, profile, TryBuyTreeSkill, TryRefundTreeSkill, ResetSkills);
             Refresh();
             EventSystem.current?.SetSelectedGameObject(campaignSkillTree != null
                 ? campaignSkillTree.InitialButton?.gameObject
@@ -310,6 +338,7 @@ namespace TINS.Campaign
         public void ClosePanels()
         {
             currentPanel = Panel.None;
+            if (mainMenu != null) mainMenu.gameObject.SetActive(false);
             if (planetNavigation != null) planetNavigation.gameObject.SetActive(false);
             if (missionPanel != null) missionPanel.SetActive(false);
             if (skillPanel != null) skillPanel.SetActive(false);
@@ -323,7 +352,7 @@ namespace TINS.Campaign
         {
             if (catalog == null || profile == null || index < 0 || index >= catalog.planets.Length || !profile.IsUnlocked(catalog, index))
             {
-                statusMessage = "Purifique o planeta anterior para liberar este destino.";
+                statusMessage = "Purifique os planetas indicados para liberar esta rota.";
                 Refresh();
                 return;
             }
@@ -360,6 +389,14 @@ namespace TINS.Campaign
             return true;
         }
 
+        private bool TryRefundTreeSkill(CampaignSkill skill)
+        {
+            if (!profile.TryRefundRank(skill, catalog.skills)) return false;
+            profile.Save();
+            Refresh();
+            return true;
+        }
+
         private void ResetSkills()
         {
             if (profile == null) return;
@@ -372,23 +409,23 @@ namespace TINS.Campaign
         private void Refresh()
         {
             if (profile == null || catalog == null) return;
-            bool showingCampaignSkills = currentPanel == Panel.Skills;
+            bool hideBaseHud = currentPanel is Panel.Skills or Panel.Menu;
             string souls = $"{CampaignCatalog.ResourceIcon("almas")}ALMAS  {profile.souls:N0}";
             string resources = FormatResources();
             if (soulsLabel != null)
             {
-                soulsLabel.enabled = !showingCampaignSkills;
+                soulsLabel.enabled = !hideBaseHud;
                 soulsLabel.text = souls;
             }
             SoulsChanged?.Invoke(profile.souls);
             if (resourceLabel != null)
             {
-                resourceLabel.enabled = !showingCampaignSkills;
+                resourceLabel.enabled = !hideBaseHud;
                 resourceLabel.text = resources;
             }
             if (statusLabel != null)
             {
-                statusLabel.enabled = !showingCampaignSkills;
+                statusLabel.enabled = !hideBaseHud;
                 statusLabel.text = statusMessage;
             }
             if (campaignSkillsWallet != null) campaignSkillsWallet.text = $"{souls}   ·   {resources}";

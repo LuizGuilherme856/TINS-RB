@@ -18,13 +18,16 @@ MonoBehaviour:
     description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras
       expedi\xE7\xF5es partiram daqui."
     missionsToPurify: 5
+    prerequisitePlanetIds: []
+    protectionDuration: 75
     initialLightRadius: 4
     missionTargetRadius: 15.4
     initialPenumbraRadius: 12.17
-    finalPenumbraRadius: 45.199997
+    finalPenumbraRadius: 20.4
     floorTiles: {fileID: 2800000, guid: e36264b840274710a224ab73d740f7d9, type: 3}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.1
+    lightGrowthPerSoul: 0.15
+    soulDropChance: 0.8
     enemySpeedMultiplier: 1.65
     enemySettings: {fileID: 11400000, guid: 4050b052283d33847a531eb916c11bdf, type: 2}
     rewardResourceId: ether
@@ -41,19 +44,23 @@ MonoBehaviour:
     description: Sob as geleiras de Khal-Neth crescem cristais que brilham mesmo
       longe da luz.
     missionsToPurify: 5
+    prerequisitePlanetIds:
+    - velaria
+    protectionDuration: 75
     initialLightRadius: 3.5
-    missionTargetRadius: 13
+    missionTargetRadius: 20
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 15.5
+    finalPenumbraRadius: 23.5
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.45
+    lightGrowthPerSoul: 0.17
+    soulDropChance: 0.82
     enemySpeedMultiplier: 1.68
     enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
     rewardResourceId: cristal-frio
     rewardResourceName: Cristal Frio
-    rewardPerMission: 4
-    victorySouls: 46
+    rewardPerMission: 6
+    victorySouls: 55
     mapX: 0.42
     mapY: 0.3
     resourceCacheSprite: {fileID: 21300000, guid: 744b9deaecf0c0f46acf314c7cd06360, type: 3}
@@ -64,19 +71,23 @@ MonoBehaviour:
     description: "Antigos impactos espalharam Poeira Estelar pelos c\xE2nions de
       Oth-Zai."
     missionsToPurify: 5
+    prerequisitePlanetIds:
+    - velaria
+    protectionDuration: 75
     initialLightRadius: 3.5
-    missionTargetRadius: 15
+    missionTargetRadius: 22
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 17.5
+    finalPenumbraRadius: 26
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.38
+    lightGrowthPerSoul: 0.18
+    soulDropChance: 0.85
     enemySpeedMultiplier: 1.7
     enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
     rewardResourceId: poeira-solar
     rewardResourceName: Poeira Estelar
-    rewardPerMission: 2
-    victorySouls: 68
+    rewardPerMission: 7
+    victorySouls: 76
     mapX: 0.61
     mapY: 0.68
     resourceCacheSprite: {fileID: 21300000, guid: e6143833913f8ac4eaaf1128bafa6c48, type: 3}
@@ -87,19 +98,23 @@ MonoBehaviour:
     description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Ulthrem. Seus fragmentos
       se acumulam nas fendas."
     missionsToPurify: 5
+    prerequisitePlanetIds:
+    - nivora
+    protectionDuration: 75
     initialLightRadius: 3.5
-    missionTargetRadius: 17
+    missionTargetRadius: 24
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 19.5
+    finalPenumbraRadius: 28.5
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.34
+    lightGrowthPerSoul: 0.19
+    soulDropChance: 0.88
     enemySpeedMultiplier: 1.72
     enemySettings: {fileID: 11400000, guid: 53aebfcc6da0a9545bc829f58fe7983d, type: 2}
     rewardResourceId: fragmento-umbral
     rewardResourceName: Fragmento Umbral
-    rewardPerMission: 3
-    victorySouls: 92
+    rewardPerMission: 8
+    victorySouls: 98
     mapX: 0.72
     mapY: 0.43
     resourceCacheSprite: {fileID: 21300000, guid: 1102a23837e48d645812338d3eb2b5ef, type: 3}
@@ -110,19 +125,23 @@ MonoBehaviour:
     description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de
       Ghorvath."
     missionsToPurify: 5
+    prerequisitePlanetIds:
+    - asterim
+    protectionDuration: 75
     initialLightRadius: 3.5
-    missionTargetRadius: 19
+    missionTargetRadius: 26
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 21.5
+    finalPenumbraRadius: 31
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.3
+    lightGrowthPerSoul: 0.2
+    soulDropChance: 0.9
     enemySpeedMultiplier: 1.74
     enemySettings: {fileID: 11400000, guid: 09ec12876c955ba448077a70db91c6b0, type: 2}
     rewardResourceId: nucleo-rubro
     rewardResourceName: "N\xFAcleo Rubro"
-    rewardPerMission: 1
-    victorySouls: 122
+    rewardPerMission: 9
+    victorySouls: 126
     mapX: 0.83
     mapY: 0.69
     resourceCacheSprite: {fileID: 21300000, guid: 52cf2927e6c97b344a4a1691a21ea27b, type: 3}
@@ -133,19 +152,24 @@ MonoBehaviour:
     description: "As mar\xE9s de Nhalassar deixam dep\xF3sitos de Granalita nas ilhas
       quando recuam."
     missionsToPurify: 5
+    prerequisitePlanetIds:
+    - dorsalia
+    - varkora
+    protectionDuration: 75
     initialLightRadius: 3.5
-    missionTargetRadius: 21
+    missionTargetRadius: 28
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 23.5
+    finalPenumbraRadius: 33.5
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.27
+    lightGrowthPerSoul: 0.2
+    soulDropChance: 0.92
     enemySpeedMultiplier: 1.76
     enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}
     rewardResourceId: sal-estelar
     rewardResourceName: Granalita
-    rewardPerMission: 6
-    victorySouls: 156
+    rewardPerMission: 10
+    victorySouls: 158
     mapX: 0.18
     mapY: 0.38
     resourceCacheSprite: {fileID: 21300000, guid: 6421fc0287f44df4684019ab3d460fbf, type: 3}
@@ -173,3 +197,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27000d4baf97562c8d33809aeb1b3799, type: 2}
   - {fileID: 11400000, guid: 29d5b34a812e5abab81a9b95640d920f, type: 2}
   - {fileID: 11400000, guid: af6af6c3ddc65846ae7e618685110828, type: 2}
+  - {fileID: 11400000, guid: c6ca6601c77bc514e9fe47a5a9bfdc8a, type: 2}
+  - {fileID: 11400000, guid: dd1fde97a5082984f966dcd98aed1a11, type: 2}

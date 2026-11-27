@@ -9,6 +9,7 @@ using UnityEngine.Audio;
 /// </summary>
 public class GameDataAndSettings : MonoBehaviour
 {
+    private static GameDataAndSettings activeSession;
     private static bool hasLoadedPlayerSave = false;
     public AudioMixer audioMixer;
     [SerializeField] private float defaultVolume = -20f;
@@ -41,6 +42,16 @@ public class GameDataAndSettings : MonoBehaviour
 
     private void Awake()
     {
+        if (activeSession != null && activeSession != this)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+            return;
+        }
+        activeSession = this;
+        if (transform.parent != null) transform.SetParent(null, true);
+        DontDestroyOnLoad(gameObject);
+
         if (playerHolder == null) playerHolder = Try.FindObjectOfType<PlayerHolder>();
 
         if (playerData == null && playerHolder != null)
@@ -66,13 +77,7 @@ public class GameDataAndSettings : MonoBehaviour
 
     private void Start()
     {
-        
-        //PlayerPrefs.DeleteAll();
-
-        SingletonPattern();
-
         RefreshLanguage();
-
         RefreshSettings();
     }
 
@@ -113,26 +118,6 @@ public class GameDataAndSettings : MonoBehaviour
 
         RefreshVsync();
     }
-
-    private void SingletonPattern()
-    {
-        int numberGameSessions = FindObjectsByType<GameDataAndSettings>(FindObjectsSortMode.None).Length; // Count all session instances; each scene may otherwise create a duplicate and reset the score.
-
-        if (numberGameSessions > 1) //Keep only one instance using the singleton pattern.
-        {
-            Debug.LogError("Mais de um game session: " + numberGameSessions);
-
-            gameObject.SetActive(false); //Deactivate duplicates before destroying them to avoid callbacks.
-            Destroy(gameObject);//Destroy this duplicate session instance.
-        }
-        else
-        {
-            if (transform.parent != null) transform.SetParent(null, true);
-            DontDestroyOnLoad(gameObject); //Preserve the object across scene loads.
-            //Reuse the same GAMESESSION object in every scene.
-        }
-    }
-
 
     private void RefreshLanguage()
     {

@@ -24,7 +24,9 @@ namespace TINS.Campaign
         EliteFlashRecovery,
         ExtraDash,
         MonkeyDecoy,
-        GunCritical
+        GunCritical,
+        LightGrowth,
+        SoulDropChance
     }
 
     [Serializable]

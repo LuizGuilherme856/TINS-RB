@@ -19,15 +19,16 @@ MonoBehaviour:
   healthMultiplier: 0.8
   maximumActiveEnemies: 15
   extraActiveEnemiesPerLightUnit: 1.3
-  secondsRemovedPerLightUnit: 0.085
+  secondsRemovedPerLightUnit: 0.07
   minimumSpawnInterval: 0.85
+  spawnBandWidth: 9
   extraHealthPerWave: 0.05
   spawnsBetweenReinforcements: 0
   extraEnemiesInGroup: 0
   minimumReinforcementRadius: 0
   fourDirectionChance: 0.5
   enemies:
-  - prefab: {fileID: 4749819838516141246, guid: d7e1db5e77e2f9243a8f21705dfc631a, type: 3}
+  - prefab: {fileID: 4749819838516141246, guid: e504682668435e7499015facb8019950, type: 3}
     fourDirectionPrefab: {fileID: 0}
     weight: 100
     minimumLightRadius: 0
@@ -35,15 +36,15 @@ MonoBehaviour:
   - prefab: {fileID: 6995047779684293138, guid: 97678915f3000a74bb0b5e8597b5a40f, type: 3}
     fourDirectionPrefab: {fileID: 3592130329762380995, guid: 3c3574174aa4eea4992df49844eb2c69, type: 3}
     weight: 55
-    minimumLightRadius: 0
+    minimumLightRadius: 8
     isElite: 0
   - prefab: {fileID: 5308068399814661026, guid: e611fc406536e4a48b9d10ebc63b3876, type: 3}
     fourDirectionPrefab: {fileID: 7961925949224153581, guid: f656dfb009eb87048a31190520fdfdcd, type: 3}
     weight: 24
-    minimumLightRadius: 5.5
-    isElite: 0
+    minimumLightRadius: 11.5
+    isElite: 1
   - prefab: {fileID: 810965685932513368, guid: 330ab1b274c155742a8c7f65c9620c83, type: 3}
     fourDirectionPrefab: {fileID: 0}
     weight: 58
-    minimumLightRadius: 0
+    minimumLightRadius: 6.5
     isElite: 0

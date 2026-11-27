@@ -29,9 +29,33 @@ Os efeitos existentes são aplicados a partir dos níveis comprados, sem acumula
 
 Cada compra registra o custo em almas e materiais. O botão de reinício devolve esses valores registrados, mesmo que os custos do asset sejam rebalanceados depois. Saves antigos recebem um ledger estimado uma vez usando os custos atuais, pois eles não armazenavam o custo histórico por compra.
 
-## Ramos de combate e defesa
+## Habilidades da campanha
 
-- **Mobilidade**. Passos Livres revela Dash Extra e Ímã de Cristais. Dash Extra libera Mamaco Isca, que atrai inimigos no ponto de saída do dash por 10 segundos. Ao expirar, cada inimigo volta ao alvo anterior. O intervalo entre iscas começa ao colocá-las e dura 18 segundos.
-- **Armas**. Último Tiro revela Recarga Explosiva, Mira Precisa e duas especializações incompatíveis, Disparo Duplo e Disparo Espalhado. Reiniciar a árvore permite trocar de especialização. Mira Precisa começa em 5% de crítico e chega a 20% no nível 4. Nesse nível, 15% dos críticos viram supercríticos.
-- **Flash**. Área do Flash revela Onda de Repulsão e depois Torreta de Lâminas. A torreta fica no ponto de uso do Flash e dura até 11 segundos, com intervalo de 22 segundos. Célula de Luz libera Recuperação por Abate. A opção **Is Elite** na lista de inimigos do planeta define quais variantes rendem uma carga, além dos chefes que já têm essa marca.
-- **Torre**. Vigor Solar revela Lâminas Guardiãs. Cada nível inicia a missão com uma lâmina em órbita da torre. Cada golpe recebido pela torre remove uma lâmina durante a missão.
+A árvore abre com **Flash de Luz**, **Passos Livres** e **Vigor Solar**. Os níveis dessas três habilidades custam só almas. A primeira expedição garante as 6 almas do desbloqueio de Flash. Os preços seguintes crescem a cada nível até o limite de cada habilidade.
+
+| Habilidade | Efeito | Níveis |
+|---|---|---:|
+| Flash de Luz | Desbloqueia o Flash. A partir do nível 2, aumenta duração e atordoamento em 5% por nível. | 9 |
+| Passos Livres | +5% de velocidade de movimento por nível. | 6 |
+| Vigor Solar | +1 de vida inicial e máxima por nível. | 5 |
+| Área do Flash | Aumenta a abertura e o alcance do cone. | 4 |
+| Célula de Luz | Aumenta o número de cargas. | 6 |
+| Foco Restaurado | Reduz o tempo de recarga. | 3 |
+| Onda de Repulsão | Aumenta o empurrão do Flash e repele inimigos para longe da torre. | 1 |
+| Torreta de Lâminas | Usar Flash instala uma torreta por 11 s, com intervalo de 22 s. | 1 |
+| Recuperação por Abate | Recarrega Flash ao derrotar elites ou chefes. | 1 |
+| Dash Extra | Adiciona uma carga de dash. | 1 |
+| Ímã de Cristais | Amplia em 0,75 unidade o alcance de coleta por nível. | 3 |
+| Mamaco Isca | Atrai inimigos por 10 s no ponto de saída do dash, com intervalo de 18 s. | 1 |
+| Último Tiro | Dobra o dano do disparo que esvazia o pente. | 1 |
+| Recarga Explosiva | Iniciar a recarga com o pente vazio detona uma explosão. | 1 |
+| Mira Precisa | Dá +5 pontos percentuais de crítico por nível. No nível 4, 15% dos críticos viram supercríticos. | 4 |
+| Disparo Duplo | Dá 18% de chance por nível de disparar outra bala sem gastar munição extra. | 2 |
+| Disparo Espalhado | Adiciona dois projéteis e consome um cartucho extra. Cada projétil causa 60% do dano normal. | 1 |
+| Pistola Astral | Desbloqueia a arma por 180 almas e 4 Éter de Vharn. | 1 |
+| Pistola de Rajada | Desbloqueia a arma por 450 almas e 3 Cristais Frios de Khal-Neth. | 1 |
+| Lâminas Guardiãs | Uma lâmina por nível protege a torre. Cada golpe recebido remove uma lâmina. O nível 2 custa também 4 Fragmentos Umbrais de Ulthrem. | 2 |
+| Luz Nutrida | Aumenta em 8% o crescimento da luz por alma entregue a cada nível. A partir do nível 2, exige Éter. | 4 |
+| Colheita de Almas | Aumenta em 3 pontos percentuais a chance de um inimigo deixar uma alma por nível, até 100%. Exige Cristal Frio. | 3 |
+
+**Reembolsar** devolve o custo registrado do último nível pago da habilidade selecionada. Quando outro upgrade comprado precisa daquele nível, o painel indica qual upgrade reembolsar primeiro. Disparo Duplo e Disparo Espalhado são incompatíveis e o reembolso permite trocar de especialização depois de devolver os níveis comprados.

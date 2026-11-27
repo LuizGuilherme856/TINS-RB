@@ -15,7 +15,7 @@ namespace TINS.Campaign
         public float weight = 1f;
         [Min(0f), Tooltip("Set to zero to make this enemy available from the start.")]
         public float minimumLightRadius;
-        [Tooltip("This enemy counts as an elite for campaign effects, even if its base enemy data is not marked as a boss.")]
+        [Tooltip("Spawn this elite once when its light radius is reached. It appears as a marker on the mission bar.")]
         public bool isElite;
     }
 
@@ -39,6 +39,8 @@ namespace TINS.Campaign
         [Min(0f)] public float extraActiveEnemiesPerLightUnit = 1.3f;
         [Min(0f)] public float secondsRemovedPerLightUnit = 0.085f;
         [Min(0.1f)] public float minimumSpawnInterval = 0.85f;
+        [Min(0.1f), Tooltip("Prefer spawn points this many world units beyond the edge of the darkness.")]
+        public float spawnBandWidth = 9f;
         [Min(0f), Tooltip("Additional fraction of initial health per wave. 0.2 adds 20% each wave.")]
         public float extraHealthPerWave = 0.10f;
 

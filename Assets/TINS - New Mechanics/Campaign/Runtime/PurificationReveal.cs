@@ -13,6 +13,7 @@ public sealed class PurificationReveal : MonoBehaviour
     [SerializeField] public float radius = 2f;
     [Min(0.01f)] public float WinRadius = 10f;
     public UnityEvent OnWinGame = new UnityEvent();
+    public bool NotifyAtWinRadius { get; set; } = true;
     [Min(0f)]
     [Tooltip("Extra light radius beyond the purification edge, used only for the soft falloff.")]
     [SerializeField] private float glowLightPadding = 0.75f;
@@ -96,7 +97,7 @@ public sealed class PurificationReveal : MonoBehaviour
             purificationLight.pointLightInnerRadius = radius;
         }
 
-        if (Application.isPlaying && !hasInvokedWinGame && radius >= Mathf.Max(0.01f, WinRadius))
+        if (Application.isPlaying && NotifyAtWinRadius && !hasInvokedWinGame && radius >= Mathf.Max(0.01f, WinRadius))
         {
             hasInvokedWinGame = true;
             OnWinGame?.Invoke();

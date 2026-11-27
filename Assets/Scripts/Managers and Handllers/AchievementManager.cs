@@ -103,7 +103,8 @@ public class AchievementManager : MonoBehaviour
         // unlocked all other achievements before it was added.
         TryUnlockAllAchievements_TechBooh();
 
-        if (lookForPackaPunch == true)
+        if (lookForPackaPunch && !TINS.Campaign.CampaignCombatRules.IsCampaignMission &&
+            TINS.Campaign.CampaignBaseController.Active == null)
         {
             // Find the scene's Pack-a-Punch station and subscribe to it.
             UpgradeWeapon packAPunch = Try.FindObjectOfType<UpgradeWeapon>();

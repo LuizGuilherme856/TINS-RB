@@ -115,15 +115,23 @@ namespace TINS.Campaign
         public bool IsUnlocked(CampaignCatalog catalog, int index)
         {
             if (catalog == null || catalog.planets == null || index < 0 || index >= catalog.planets.Length) return false;
-            return FirstUnpurifiedPrerequisite(catalog, index) == null;
+            CampaignPlanet planet = catalog.planets[index];
+            if (planet == null) return false;
+            if (planet.prerequisitePlanetIds == null) return true;
+            foreach (string requiredId in planet.prerequisitePlanetIds)
+                if (!IsPurified(catalog.GetPlanet(requiredId))) return false;
+            return true;
         }
 
         public CampaignPlanet FirstUnpurifiedPrerequisite(CampaignCatalog catalog, int index)
         {
-            for (int i = 0; i < index; i++)
+            if (catalog?.planets == null || index < 0 || index >= catalog.planets.Length) return null;
+            var requirements = catalog.planets[index]?.prerequisitePlanetIds;
+            if (requirements == null) return null;
+            foreach (string requiredId in requirements)
             {
-                CampaignPlanet prerequisite = catalog.planets[i];
-                if (!IsPurified(prerequisite)) return prerequisite;
+                CampaignPlanet prerequisite = catalog.GetPlanet(requiredId);
+                if (prerequisite != null && !IsPurified(prerequisite)) return prerequisite;
             }
             return null;
         }
@@ -260,14 +268,21 @@ namespace TINS.Campaign
             return null;
         }
 
-        private bool MeetsSkillPrerequisites(CampaignSkillPrerequisite[] requirements, bool requireAll)
+        private bool MeetsSkillPrerequisites(CampaignSkillPrerequisite[] requirements, bool requireAll,
+            string changedSkillId = null, int changedRank = 0)
         {
             if (requirements == null || requirements.Length == 0) return true;
             bool anyMet = false;
             foreach (CampaignSkillPrerequisite requirement in requirements)
             {
-                bool met = requirement != null && requirement.skill != null &&
-                    Rank(requirement.skill.id) >= Mathf.Max(1, requirement.minimumRank);
+                bool met = false;
+                if (requirement != null && requirement.skill != null)
+                {
+                    string requiredId = requirement.skill.id;
+                    int rank = string.Equals(requiredId, changedSkillId, StringComparison.OrdinalIgnoreCase)
+                        ? changedRank : Rank(requiredId);
+                    met = rank >= Mathf.Max(1, requirement.minimumRank);
+                }
                 if (requireAll && !met) return false;
                 anyMet |= met;
             }
@@ -314,6 +329,55 @@ namespace TINS.Campaign
             return true;
         }
 
+        public bool HasRefundableRank(CampaignSkill skill) => LastPurchaseIndex(skill) >= 0;
+
+        private int LastPurchaseIndex(CampaignSkill skill)
+        {
+            if (skill == null || skillPurchases == null || Rank(skill.id) <= FreeSkillRank(skill.id)) return -1;
+            return skillPurchases.FindLastIndex(purchase => purchase != null &&
+                string.Equals(purchase.skillId, skill.id, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public CampaignSkill GetRefundBlocker(CampaignSkill skill, IEnumerable<CampaignSkill> skills)
+        {
+            if (skill == null || skills == null) return null;
+            int remainingRank = Rank(skill.id) - 1;
+            bool losesFlash = remainingRank <= 0 && string.Equals(skill.id, FlashSkillId, StringComparison.OrdinalIgnoreCase);
+            foreach (CampaignSkill owned in skills)
+            {
+                if (owned == null || owned == skill || Rank(owned.id) <= 0) continue;
+                if ((losesFlash && owned.requiresFlash) ||
+                    (MeetsSkillPrerequisites(owned.prerequisites, owned.requireAllPrerequisites) &&
+                     !MeetsSkillPrerequisites(owned.prerequisites, owned.requireAllPrerequisites, skill.id, remainingRank)))
+                    return owned;
+            }
+            return null;
+        }
+
+        public bool TryRefundRank(CampaignSkill skill, IEnumerable<CampaignSkill> skills)
+        {
+            int index = LastPurchaseIndex(skill);
+            if (index < 0 || GetRefundBlocker(skill, skills) != null) return false;
+
+            RefundPurchase(skillPurchases[index]);
+            skillPurchases.RemoveAt(index);
+            CampaignSkillRank rank = FindSkill(skill.id, false);
+            if (--rank.rank == 0) skillRanks.Remove(rank);
+            return true;
+        }
+
+        private void RefundPurchase(CampaignSkillPurchase purchase)
+        {
+            int refundedSouls = Mathf.Max(0, purchase.soulsPaid);
+            souls += refundedSouls;
+            soulsInvested = Mathf.Max(0, soulsInvested - refundedSouls);
+            if (string.IsNullOrWhiteSpace(purchase.resourceId) || purchase.resourcePaid <= 0) return;
+
+            AddResource(purchase.resourceId, purchase.resourcePaid);
+            CampaignResourceAmount invested = FindInList(investedResources, purchase.resourceId);
+            if (invested != null) invested.amount = Mathf.Max(0, invested.amount - purchase.resourcePaid);
+        }
+
         public void ResetCampaignSkills(IEnumerable<CampaignSkill> skills)
         {
             EnsurePurchaseLedger(skills);
@@ -324,14 +388,7 @@ namespace TINS.Campaign
                 {
                     if (purchase == null) continue;
                     if (!string.IsNullOrWhiteSpace(purchase.skillId)) resetIds.Add(purchase.skillId);
-                    souls += Mathf.Max(0, purchase.soulsPaid);
-                    soulsInvested = Mathf.Max(0, soulsInvested - Mathf.Max(0, purchase.soulsPaid));
-                    if (!string.IsNullOrWhiteSpace(purchase.resourceId) && purchase.resourcePaid > 0)
-                    {
-                        AddResource(purchase.resourceId, purchase.resourcePaid);
-                        CampaignResourceAmount invested = FindInList(investedResources, purchase.resourceId);
-                        if (invested != null) invested.amount = Mathf.Max(0, invested.amount - purchase.resourcePaid);
-                    }
+                    RefundPurchase(purchase);
                 }
                 skillPurchases.Clear();
             }

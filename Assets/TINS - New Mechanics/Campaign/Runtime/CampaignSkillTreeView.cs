@@ -18,6 +18,7 @@ namespace TINS.Campaign
         [SerializeField] private TMP_Text detailsLabel;
         [SerializeField] private TMP_Text statusLabel;
         [SerializeField] private Button buySelectedButton;
+        [SerializeField] private Button refundSelectedButton;
         [SerializeField] private Button resetButton;
         [SerializeField] private Button zoomInButton;
         [SerializeField] private Button zoomOutButton;
@@ -40,6 +41,7 @@ namespace TINS.Campaign
         private CampaignCatalog catalog;
         private CampaignProfile profile;
         private Func<CampaignSkill, bool> tryPurchase;
+        private Func<CampaignSkill, bool> tryRefund;
         private Action resetSkills;
         private CampaignSkillTreeNodeView selected;
         private string status;
@@ -48,11 +50,12 @@ namespace TINS.Campaign
         public Button InitialButton => selected != null ? selected.NodeButton : null;
 
         public void Bind(CampaignCatalog campaignCatalog, CampaignProfile campaignProfile,
-            Func<CampaignSkill, bool> purchase, Action reset)
+            Func<CampaignSkill, bool> purchase, Func<CampaignSkill, bool> refund, Action reset)
         {
             catalog = campaignCatalog;
             profile = campaignProfile;
             tryPurchase = purchase;
+            tryRefund = refund;
             resetSkills = reset;
             if (buySelectedButton != null)
             {
@@ -65,6 +68,7 @@ namespace TINS.Campaign
                 resetButton.onClick.AddListener(ResetSkills);
             }
             BindButton(zoomInButton, ZoomIn);
+            BindButton(refundSelectedButton, RefundSelected);
             BindButton(zoomOutButton, ZoomOut);
             BindButton(centerTreeButton, CenterTree);
             status = string.Empty;
@@ -217,6 +221,8 @@ namespace TINS.Campaign
                 TMP_Text label = buySelectedButton.GetComponentInChildren<TMP_Text>();
                 if (label != null) label.text = maxed ? "NÍVEL MÁXIMO" : "COMPRAR";
             }
+            if (refundSelectedButton != null)
+                refundSelectedButton.interactable = profile.HasRefundableRank(skill);
             if (statusLabel != null)
             {
                 string reason = skill != null && !maxed ? GetRequirementMessage(skill) : string.Empty;
@@ -278,6 +284,8 @@ namespace TINS.Campaign
                 case CampaignSkillEffectType.CrystalMagnet: return $"+{primary:0.#} un. de alcance";
                 case CampaignSkillEffectType.GuardianBlades: return $"{primary:0.#} lâmina(s)";
                 case CampaignSkillEffectType.DoubleTap: return $"{primary * 100f:0.#}% de disparar outra bala";
+                case CampaignSkillEffectType.LightGrowth: return $"+{primary * 100f:0.#}% de raio por alma";
+                case CampaignSkillEffectType.SoulDropChance: return $"+{primary * 100f:0.#} p.p. de chance de cair alma";
                 default: return string.Empty;
             }
         }
@@ -302,6 +310,27 @@ namespace TINS.Campaign
             selected?.Pulse(true);
             PlaySound(purchaseSound, .62f);
             purchaseFeedback?.PlayFeedbacks();
+            Refresh();
+        }
+
+        private void RefundSelected()
+        {
+            CampaignSkill skill = selected != null ? selected.SkillAsset : null;
+            if (skill == null || Time.unscaledTime - lastPurchaseTime < purchaseInputCooldown) return;
+            lastPurchaseTime = Time.unscaledTime;
+            CampaignSkill blocker = profile.GetRefundBlocker(skill, catalog.skills);
+            if (blocker != null || tryRefund == null || !tryRefund(skill))
+            {
+                status = blocker != null ? $"Reembolse {blocker.displayName} primeiro." : "Nenhum nível pago para reembolsar.";
+                PlaySound(deniedSound, .6f);
+                purchaseErrorFeedback?.PlayFeedbacks();
+            }
+            else
+            {
+                status = "Último nível reembolsado.";
+                PlaySound(selectSound, .45f);
+                resetFeedback?.PlayFeedbacks();
+            }
             Refresh();
         }
 

@@ -39,11 +39,14 @@ namespace TINS.Campaign
         [SerializeField] private TMP_Text objectiveLabel;
         [SerializeField] private CampaignDeathScreen deathScreenPrefab;
         [SerializeField, Min(0f)] private float resultReturnDelay = 3f;
+        [SerializeField, Min(1f)] private float extractionDuration = 7f;
+        [SerializeField, Min(.1f)] private float extractionRadius = 2.2f;
         [SerializeField, Range(0f, 1f)] private float soulsKeptOnFailure = .7f;
-        [SerializeField, Range(0f, 1f)] private float soulDropChance = 1f;
         [SerializeField, Min(1)] private int soulsPerDrop = 1;
         [SerializeField] private CampaignFlashHUD flashHud;
         [SerializeField] private CampaignTowerHealthHUD towerHealthHud;
+        [SerializeField] private CampaignMissionTimeline missionTimeline;
+        [SerializeField] private CampaignMissionTutorial tutorial;
         [Header("Purification Burst")]
         [SerializeField] private AudioClip purificationBurstSound;
         [SerializeField, Min(0.1f)] private float purificationBurstDuration = 0.9f;
@@ -74,6 +77,10 @@ namespace TINS.Campaign
         private CampaignPlanet planet;
         private CampaignDarknessBands darkness;
         private CampaignResourceCaches resourceCaches;
+        private PlayerInputHandler playerInput;
+        private float protectionStartedAt;
+        private float extractionEndsAt;
+        private bool boardedExtraction;
         private int initialWave;
         private int soulsCollected;
         private int lastInventoryCount;
@@ -83,7 +90,17 @@ namespace TINS.Campaign
 
         public static CampaignMissionRuntime Active { get; private set; }
         public Transform DefenseCore => tower != null ? tower.transform : null;
-        public int Wave => Mathf.Max(1, 1 + Mathf.FloorToInt((lightReveal != null ? lightReveal.Radius : 0f) / 3f));
+        internal float EnemySpawnBoundary => darkness != null ? darkness.BreuRadius : lightReveal.Radius;
+        internal float EnemyPressureRadius => IsProtection
+            ? Mathf.Lerp(planet.initialLightRadius, planet.missionTargetRadius, ProtectionProgress)
+            : lightReveal != null ? lightReveal.Radius : 0f;
+        public bool IsProtection { get; private set; }
+        public float ProtectionRemaining => IsProtection
+            ? Mathf.Max(0f, ProtectionDuration - (Time.time - protectionStartedAt)) : 0f;
+        internal float ProtectionProgress => IsProtection ? 1f - ProtectionRemaining / ProtectionDuration : 0f;
+        private float ProtectionDuration => Mathf.Max(10f, planet.protectionDuration);
+        internal float ExtractionRemaining => Mathf.Max(0f, extractionEndsAt - Time.unscaledTime);
+        public int Wave => Mathf.Max(1, 1 + Mathf.FloorToInt(EnemyPressureRadius / 3f));
         public CampaignPlanet Planet => planet;
         public int SoulsCollected => soulsCollected;
         public bool IsResolved => resolved;
@@ -91,7 +108,9 @@ namespace TINS.Campaign
         public static void TryDropSoul(Vector3 position)
         {
             CampaignMissionRuntime active = Active;
-            if (active == null || active.resolved || Random.value > active.soulDropChance) return;
+            if (active == null || active.resolved || active.planet == null) return;
+            float chance = Mathf.Clamp01(active.planet.soulDropChance + active.SkillEffect(CampaignSkillEffectType.SoulDropChance).x);
+            if (chance <= 0f || (chance < 1f && Random.value >= chance)) return;
             BlueCrystalPickup.Spawn(position, active.soulsPerDrop);
         }
 
@@ -130,9 +149,14 @@ namespace TINS.Campaign
             if (profileChanged) profile.Save();
 
             planet.ValidateRadii();
+            IsProtection = profile.IsPurified(planet);
+            protectionStartedAt = Time.time;
             // Set the win threshold before Radius, whose setter can invoke the win event.
+            lightReveal.NotifyAtWinRadius = !IsProtection;
             lightReveal.WinRadius = planet.missionTargetRadius;
-            lightReveal.Radius = planet.initialLightRadius;
+            lightReveal.Radius = IsProtection
+                ? Mathf.Lerp(planet.initialLightRadius, planet.missionTargetRadius, .5f)
+                : planet.initialLightRadius;
             darkness = FindFirstObjectByType<CampaignDarknessBands>();
             darkness?.ConfigurePlanet(planet);
             if (darkness != null && planet.resourceCacheCount > 0 && planet.resourceCacheSprite != null &&
@@ -152,12 +176,14 @@ namespace TINS.Campaign
             AssetFinder.GetGlobalStats()?.ResetValues();
             AssetFinder.GetRuneInventory()?.ResetUpgrades();
             playerCharges = playerHealth.GetComponent<BeamMeleeUsesManager>();
+            playerInput = playerHealth.GetComponent<PlayerInputHandler>();
             ApplyCampaignSkills();
             flashHud?.Bind(profile.HasFlash ? playerCharges : null);
             towerHealthHud?.Bind(tower);
             playerHealth.GetComponent<EnsureStartingPistol>()?.Equip(catalog, profile);
             playerHealth.ResetHealth();
-            deposit?.ConfigureGrowth(planet.lightGrowthPerSoul);
+            float growth = planet.lightGrowthPerSoul * (1f + SkillEffect(CampaignSkillEffectType.LightGrowth).x);
+            deposit?.ConfigureGrowth(growth);
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
             if (tower.OnTowerDeath != null) tower.OnTowerDeath.AddListener(OnDefenseCoreDestroyed);
             EnemyHealth[] existingEnemies = FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
@@ -174,7 +200,11 @@ namespace TINS.Campaign
             foreach (MoveTowardsPlayer enemy in simpleChasers)
                 if (enemy != null) enemy.SetTarget(tower.transform);
 
-            FindFirstObjectByType<EnemySpawnManager>()?.StartCampaignSpawning(settings);
+            var spawner = FindFirstObjectByType<EnemySpawnManager>();
+            spawner?.StartCampaignSpawning(settings);
+            missionTimeline?.Bind(this, planet, spawner);
+            if (!profile.firstExpeditionSettled && !IsProtection && catalog.IndexOf(planet.id) == 0)
+                tutorial?.Begin(this, playerInput, lightReveal);
             RefreshLabels();
         }
 
@@ -198,9 +228,9 @@ namespace TINS.Campaign
                 Finish(false, "O centro de luz foi destruído.");
                 return;
             }
-            if (lightReveal != null && planet != null && lightReveal.Radius >= planet.missionTargetRadius)
+            if (planet != null && (IsProtection ? ProtectionRemaining <= 0f : lightReveal.Radius >= planet.missionTargetRadius))
             {
-                Finish(true, "Missão concluída.");
+                Finish(true, IsProtection ? "A área continua purificada." : "A área foi purificada.");
                 return;
             }
             if (resourceCaches != null && darkness != null)
@@ -241,7 +271,6 @@ namespace TINS.Campaign
 
             EnemySpawnManager spawner = FindFirstObjectByType<EnemySpawnManager>();
             spawner?.StopAutomaticSpawning();
-            var playerInput = playerHealth.GetComponent<PlayerInputHandler>();
             playerInput?.SetCanMove(false);
 
             bool flashAvailable = firstExpedition && !profile.HasFlash;
@@ -254,7 +283,8 @@ namespace TINS.Campaign
                 return;
             }
 
-            if (missionLabel != null) missionLabel.text = success ? "MISSÃO CONCLUÍDA" : "MISSÃO ENCERRADA";
+            if (missionLabel != null) missionLabel.text = !success ? "MISSÃO ENCERRADA"
+                : IsProtection ? "PLANETA PROTEGIDO" : "MISSÃO CONCLUÍDA";
             if (objectiveLabel != null)
                 objectiveLabel.text = $"{planet.displayName}\n{message}\n{CampaignCatalog.ResourceIcon("almas")}+{returnedSouls} almas" +
                     ResourceRewardText(returnedMaterials + (success ? planet.rewardPerMission : 0), "\n") +
@@ -264,11 +294,36 @@ namespace TINS.Campaign
 
         private IEnumerator ReturnToBase(bool success, EnemySpawnManager spawner)
         {
-            float startTime = Time.unscaledTime;
-            if (success) yield return PlayPurificationBurst(spawner);
-            float remaining = resultReturnDelay - (Time.unscaledTime - startTime);
-            if (remaining > 0f) yield return new WaitForSecondsRealtime(remaining);
+            if (success)
+            {
+                yield return PlayPurificationBurst(spawner);
+                yield return WaitForExtraction();
+            }
+            else if (resultReturnDelay > 0f)
+                yield return new WaitForSecondsRealtime(resultReturnDelay);
             SceneManager.LoadScene(CampaignTravel.BaseScene);
+        }
+
+        private IEnumerator WaitForExtraction()
+        {
+            string rewards = objectiveLabel != null ? objectiveLabel.text : string.Empty;
+            extractionEndsAt = Time.unscaledTime + extractionDuration;
+            playerHealth.SetInvulnerableTime(extractionDuration);
+            playerInput?.SetCanMove(true);
+            if (playerInput != null) playerInput.OnInteract += TryBoardExtraction;
+            if (objectiveLabel != null)
+                objectiveLabel.text = rewards + "\nInteraja perto do centro para embarcar.";
+
+            while (!boardedExtraction && ExtractionRemaining > 0f) yield return null;
+
+            if (playerInput != null) playerInput.OnInteract -= TryBoardExtraction;
+            if (missionLabel != null) missionLabel.text = "EXTRAÇÃO CONCLUÍDA";
+        }
+
+        private void TryBoardExtraction()
+        {
+            if (Vector2.Distance(playerHealth.transform.position, DefenseCore.position) <= extractionRadius)
+                boardedExtraction = true;
         }
 
         private void LeaveDefeatScreen()
@@ -416,11 +471,11 @@ namespace TINS.Campaign
         private void RefreshLabels()
         {
             if (resolved || planet == null) return;
-            if (missionLabel != null) missionLabel.text = $"MISSÃO  ·  {planet.displayName}";
+            if (missionLabel != null) missionLabel.text = $"{(IsProtection ? "PROTEGER" : "MISSÃO")}  ·  {planet.displayName}";
             if (objectiveLabel != null)
             {
-                float progress = Mathf.Clamp01(lightReveal.Radius / Mathf.Max(1f, planet.missionTargetRadius));
-                objectiveLabel.text = $"Defenda o centro\nLUZ {progress:P0}   ·   ALMAS {soulInventory?.Count ?? 0}" +
+                string objective = IsProtection ? "Mantenha o centro de luz ativo" : "Defenda o centro";
+                objectiveLabel.text = $"{objective}\n{CampaignCatalog.ResourceIcon("almas")}{soulInventory?.Count ?? 0} almas" +
                     ResourceRewardText(resourceCaches?.Collected ?? 0, "\n");
             }
         }
@@ -428,6 +483,7 @@ namespace TINS.Campaign
         private void OnDestroy()
         {
             RestoreDefeatTimeScale();
+            if (playerInput != null) playerInput.OnInteract -= TryBoardExtraction;
             if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
             if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
             if (Active == this) Active = null;
