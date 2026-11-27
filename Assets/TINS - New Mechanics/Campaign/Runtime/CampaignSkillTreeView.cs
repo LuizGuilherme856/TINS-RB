@@ -95,7 +95,7 @@ namespace TINS.Campaign
             CampaignSkill selectedSkill = selected != null ? (selected.SkillAsset != null ? selected.SkillAsset : FindCatalogSkill(selected.SkillId)) : null;
             if (selectedSkill != null) selected.SetSelected(profile.Rank(selectedSkill.id), CanPurchase(selectedSkill), true);
             RefreshDetails();
-            if (walletLabel != null) walletLabel.text = $"ALMAS  {profile.souls:N0}    ·    MATERIAIS  {FormatResources()}";
+            if (walletLabel != null) walletLabel.text = $"{CampaignCatalog.ResourceIcon("almas")}ALMAS  {profile.souls:N0}    ·    MATERIAIS  {FormatResources()}";
             if (statusLabel != null) statusLabel.text = status;
             if (resetButton != null) resetButton.interactable = profile.skillPurchases != null && profile.skillPurchases.Count > 0;
         }
@@ -198,9 +198,9 @@ namespace TINS.Campaign
                 if (skill != null && !maxed)
                 {
                     int materialCost = skill.ResourceCostForRank(rank);
-                    detailCost.text = $"{skill.CostForRank(rank):N0} almas";
+                    detailCost.text = $"{CampaignCatalog.ResourceIcon("almas")}{skill.CostForRank(rank):N0} almas";
                     if (materialCost > 0)
-                        detailCost.text += $"  +  {materialCost} {DisplayResource(skill.requiredResourceId)}";
+                        detailCost.text += $"  +  {CampaignCatalog.ResourceIcon(skill.requiredResourceId)}{materialCost} {DisplayResource(skill.requiredResourceId)}";
                 }
                 else if (maxed) detailCost.text = "Nível máximo";
             }
@@ -326,7 +326,11 @@ namespace TINS.Campaign
             if (profile.resources == null) return "—";
             List<string> amounts = new List<string>();
             foreach (CampaignResourceAmount resource in profile.resources)
-                if (resource != null && resource.amount > 0) amounts.Add(DisplayResource(resource.resourceId) + " " + resource.amount);
+            {
+                if (resource == null || resource.amount <= 0) continue;
+                string icon = CampaignCatalog.ResourceIcon(resource.resourceId);
+                amounts.Add((icon.Length > 0 ? icon : DisplayResource(resource.resourceId) + " ") + resource.amount);
+            }
             return amounts.Count == 0 ? "—" : string.Join("   ·   ", amounts);
         }
 

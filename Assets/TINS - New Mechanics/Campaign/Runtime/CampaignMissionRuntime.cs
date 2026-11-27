@@ -72,6 +72,8 @@ namespace TINS.Campaign
         private BeamMeleeUsesManager playerCharges;
         private CampaignProfile profile;
         private CampaignPlanet planet;
+        private CampaignDarknessBands darkness;
+        private CampaignResourceCaches resourceCaches;
         private int initialWave;
         private int soulsCollected;
         private int lastInventoryCount;
@@ -109,7 +111,6 @@ namespace TINS.Campaign
         {
             if (catalog == null) catalog = Resources.Load<CampaignCatalog>("CampaignCatalog");
             profile = CampaignProfile.Load();
-            if (catalog != null && profile.EnsurePurchaseLedger(catalog.skills)) profile.Save();
             string planetId = CampaignTravel.ConsumeMission();
             if (string.IsNullOrWhiteSpace(planetId)) planetId = catalog != null && catalog.planets != null && catalog.planets.Length > 0 ? catalog.planets[0].id : "velaria";
             planet = catalog != null ? catalog.GetPlanet(planetId) : null;
@@ -120,11 +121,23 @@ namespace TINS.Campaign
                 enabled = false;
                 return;
             }
+            bool profileChanged = profile.EnsurePurchaseLedger(catalog.skills);
+            if (profile.lastVisitedPlanetId != planet.id)
+            {
+                profile.lastVisitedPlanetId = planet.id;
+                profileChanged = true;
+            }
+            if (profileChanged) profile.Save();
+
             planet.ValidateRadii();
             // Set the win threshold before Radius, whose setter can invoke the win event.
             lightReveal.WinRadius = planet.missionTargetRadius;
             lightReveal.Radius = planet.initialLightRadius;
-            FindFirstObjectByType<CampaignDarknessBands>()?.ConfigurePlanet(planet);
+            darkness = FindFirstObjectByType<CampaignDarknessBands>();
+            darkness?.ConfigurePlanet(planet);
+            if (darkness != null && planet.resourceCacheCount > 0 && planet.resourceCacheSprite != null &&
+                catalog.depletedCacheSprite != null && !string.IsNullOrWhiteSpace(planet.rewardResourceId))
+                resourceCaches = new CampaignResourceCaches(transform, lightReveal.transform.position, planet, catalog.depletedCacheSprite);
             CampaignMissionEnemies settings = planet.enemySettings;
             initialWave = Wave;
             CampaignCombatRules.SetMissionActive(true,
@@ -186,7 +199,12 @@ namespace TINS.Campaign
                 return;
             }
             if (lightReveal != null && planet != null && lightReveal.Radius >= planet.missionTargetRadius)
+            {
                 Finish(true, "Missão concluída.");
+                return;
+            }
+            if (resourceCaches != null && darkness != null)
+                resourceCaches.CollectNearby(playerHealth.transform.position, darkness.BreuRadius);
             RefreshLabels();
         }
 
@@ -216,6 +234,8 @@ namespace TINS.Campaign
                 profile.firstExpeditionSettled = true;
             }
             profile.souls = Mathf.Max(0, profile.souls + returnedSouls);
+            int returnedMaterials = resourceCaches?.Collected ?? 0;
+            profile.AddResource(planet.rewardResourceId, returnedMaterials);
             if (success) profile.CompleteMission(planet);
             profile.Save();
 
@@ -230,14 +250,14 @@ namespace TINS.Campaign
                 playerInput?.SetPauseInputBlocked(true);
                 PauseForDefeat();
                 Instantiate(deathScreenPrefab).Present(planet.displayName, message, returnedSouls,
-                    flashAvailable, LeaveDefeatScreen);
+                    ResourceRewardText(returnedMaterials), flashAvailable, LeaveDefeatScreen);
                 return;
             }
 
             if (missionLabel != null) missionLabel.text = success ? "MISSÃO CONCLUÍDA" : "MISSÃO ENCERRADA";
             if (objectiveLabel != null)
-                objectiveLabel.text = $"{planet.displayName}\n{message}\n+{returnedSouls} almas" +
-                    (success ? $"\n+{planet.rewardPerMission} {planet.rewardResourceName}" : "") +
+                objectiveLabel.text = $"{planet.displayName}\n{message}\n{CampaignCatalog.ResourceIcon("almas")}+{returnedSouls} almas" +
+                    ResourceRewardText(returnedMaterials + (success ? planet.rewardPerMission : 0), "\n") +
                     (flashAvailable ? "\nFlash de Luz disponível na Base." : "");
             StartCoroutine(ReturnToBase(success, spawner));
         }
@@ -319,7 +339,6 @@ namespace TINS.Campaign
                 audio.PlayOneShot(purificationBurstSound, 0.75f);
             }
             FindFirstObjectByType<ControlCameraShake>()?.TriggerCameraShake(75f, 2.4f);
-            CampaignDarknessBands darkness = FindFirstObjectByType<CampaignDarknessBands>();
             float initialRadius = lightReveal.Radius;
             arenaRadius += 2f; // Keep the final shockwave beyond the visible arena.
             float elapsed = 0f;
@@ -390,6 +409,10 @@ namespace TINS.Campaign
             if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.PlayerHealth).x);
         }
 
+        private string ResourceRewardText(int amount, string prefix = "") => amount > 0
+            ? $"{prefix}{CampaignCatalog.ResourceIcon(planet.rewardResourceId)}+{amount} {planet.rewardResourceName}"
+            : string.Empty;
+
         private void RefreshLabels()
         {
             if (resolved || planet == null) return;
@@ -397,7 +420,8 @@ namespace TINS.Campaign
             if (objectiveLabel != null)
             {
                 float progress = Mathf.Clamp01(lightReveal.Radius / Mathf.Max(1f, planet.missionTargetRadius));
-                objectiveLabel.text = $"Defenda o centro\nLUZ {progress:P0}   ·   ALMAS {soulInventory?.Count ?? 0}";
+                objectiveLabel.text = $"Defenda o centro\nLUZ {progress:P0}   ·   ALMAS {soulInventory?.Count ?? 0}" +
+                    ResourceRewardText(resourceCaches?.Collected ?? 0, "\n");
             }
         }
 

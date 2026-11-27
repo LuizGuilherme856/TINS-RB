@@ -29,7 +29,7 @@ namespace TINS.Campaign
             returnButton.onClick.AddListener(Continue);
         }
 
-        internal void Present(string destination, string failureReason, int souls, bool flashAvailable, Action onReturn)
+        internal void Present(string destination, string failureReason, int souls, string materials, bool flashAvailable, Action onReturn)
         {
             returnToBase = onReturn;
             reason.text = $"{destination}  ·  {failureReason}";
@@ -39,6 +39,7 @@ namespace TINS.Campaign
                 1 => "+1 alma",
                 _ => $"+{souls} almas"
             };
+            if (!string.IsNullOrEmpty(materials)) reward.text += $"  ·  {materials}";
             unlockHint.text = flashAvailable ? "Flash de Luz disponível na Base." : string.Empty;
             summary.alpha = 0f;
             summary.interactable = false;

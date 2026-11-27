@@ -187,7 +187,8 @@ namespace TINS.Campaign
             detailImage.sprite = marker.DetailImage;
             planetName.text = planet.displayName;
             description.text = planet.description;
-            rewards.text = $"{planet.victorySouls} almas + {planet.rewardPerMission} {planet.rewardResourceName}";
+            rewards.text = $"{CampaignCatalog.ResourceIcon("almas")}{planet.victorySouls} almas + " +
+                $"{CampaignCatalog.ResourceIcon(planet.rewardResourceId)}{planet.rewardPerMission} {planet.rewardResourceName}";
             progress.text = prerequisite != null
                 ? $"Conclua {prerequisite.missionsToPurify} missões em {prerequisite.displayName} ({profile.MissionsOn(prerequisite.id)}/{prerequisite.missionsToPurify})."
                 : profile.IsPurified(planet)

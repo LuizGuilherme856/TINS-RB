@@ -33,6 +33,13 @@ namespace TINS.Campaign
         [Min(0)] public int victorySouls;
         [Range(0f, 1f)] public float mapX = .5f;
         [Range(0f, 1f)] public float mapY = .5f;
+        [Header("Resource caches")]
+        [Tooltip("Sprite for a cache containing this planet's reward material.")]
+        public Sprite resourceCacheSprite;
+        [Min(0), Tooltip("Number of caches scattered per mission. Set to zero to disable.")]
+        public int resourceCacheCount = 3;
+        [Min(1), Tooltip("Amount of this planet's material collected per cache.")]
+        public int resourcePerCache = 1;
 
         public void ValidateRadii()
         {
@@ -55,16 +62,29 @@ namespace TINS.Campaign
     {
         public CampaignPlanet[] planets =
         {
-            new CampaignPlanet { id="velaria", displayName="Vharn", missionsToPurify=5, missionTargetRadius=11f, finalPenumbraRadius=13.5f, lightGrowthPerSoul=0.5f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=1, mapX=.26f, mapY=.65f },
-            new CampaignPlanet { id="nivora", displayName="Khal-Neth", missionsToPurify=5, missionTargetRadius=13f, finalPenumbraRadius=15.5f, lightGrowthPerSoul=0.45f, enemySpeedMultiplier=1.68f, victorySouls=46, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=2, mapX=.42f, mapY=.30f },
-            new CampaignPlanet { id="asterim", displayName="Oth-Zai", missionsToPurify=5, missionTargetRadius=15f, finalPenumbraRadius=17.5f, lightGrowthPerSoul=0.38f, enemySpeedMultiplier=1.7f, victorySouls=68, rewardResourceId="poeira-solar", rewardResourceName="Poeira Solar", rewardPerMission=2, mapX=.61f, mapY=.68f },
+            new CampaignPlanet { id="velaria", displayName="Vharn", missionsToPurify=5, missionTargetRadius=11f, finalPenumbraRadius=13.5f, lightGrowthPerSoul=0.5f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=5, mapX=.26f, mapY=.65f },
+            new CampaignPlanet { id="nivora", displayName="Khal-Neth", missionsToPurify=5, missionTargetRadius=13f, finalPenumbraRadius=15.5f, lightGrowthPerSoul=0.45f, enemySpeedMultiplier=1.68f, victorySouls=46, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=4, mapX=.42f, mapY=.30f },
+            new CampaignPlanet { id="asterim", displayName="Oth-Zai", missionsToPurify=5, missionTargetRadius=15f, finalPenumbraRadius=17.5f, lightGrowthPerSoul=0.38f, enemySpeedMultiplier=1.7f, victorySouls=68, rewardResourceId="poeira-solar", rewardResourceName="Poeira Estelar", rewardPerMission=2, mapX=.61f, mapY=.68f },
             new CampaignPlanet { id="dorsalia", displayName="Ulthrem", missionsToPurify=5, missionTargetRadius=17f, finalPenumbraRadius=19.5f, lightGrowthPerSoul=0.34f, enemySpeedMultiplier=1.72f, victorySouls=92, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=3, mapX=.72f, mapY=.43f },
-            new CampaignPlanet { id="varkora", displayName="Ghorvath", missionsToPurify=5, missionTargetRadius=19f, finalPenumbraRadius=21.5f, lightGrowthPerSoul=0.3f, enemySpeedMultiplier=1.74f, victorySouls=122, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=3, mapX=.83f, mapY=.69f },
-            new CampaignPlanet { id="marevia", displayName="Nhalassar", missionsToPurify=5, missionTargetRadius=21f, finalPenumbraRadius=23.5f, lightGrowthPerSoul=0.27f, enemySpeedMultiplier=1.76f, victorySouls=156, rewardResourceId="sal-estelar", rewardResourceName="Sal Estelar", rewardPerMission=4, mapX=.18f, mapY=.38f }
+            new CampaignPlanet { id="varkora", displayName="Ghorvath", missionsToPurify=5, missionTargetRadius=19f, finalPenumbraRadius=21.5f, lightGrowthPerSoul=0.3f, enemySpeedMultiplier=1.74f, victorySouls=122, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=1, mapX=.83f, mapY=.69f },
+            new CampaignPlanet { id="marevia", displayName="Nhalassar", missionsToPurify=5, missionTargetRadius=21f, finalPenumbraRadius=23.5f, lightGrowthPerSoul=0.27f, enemySpeedMultiplier=1.76f, victorySouls=156, rewardResourceId="sal-estelar", rewardResourceName="Granalita", rewardPerMission=6, mapX=.18f, mapY=.38f }
         };
 
         public const string FlashAreaSkillId = "flash-area";
 
+        internal static string ResourceIcon(string id)
+        {
+            string name = id?.ToLowerInvariant();
+            return name switch
+            {
+                "almas" or "ether" or "cristal-frio" or "poeira-solar" or "fragmento-umbral" or "nucleo-rubro" or "sal-estelar"
+                    => $"<sprite=\"Campaign Resource Icons\" name=\"{name}\"> ",
+                _ => string.Empty,
+            };
+        }
+
+        [Tooltip("Sprite shared by all caches after they are collected.")]
+        public Sprite depletedCacheSprite;
         public CampaignSkill[] skills = System.Array.Empty<CampaignSkill>();
 
         public CampaignSkill FlashSkill => Array.Find(skills ?? System.Array.Empty<CampaignSkill>(),

@@ -20,6 +20,7 @@ namespace TINS.Campaign
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private GameObject missionPanel;
         [SerializeField] private CampaignPlanetNavigation planetNavigation;
+        [SerializeField] private CampaignPlanetWindow planetWindow;
         [SerializeField] private GameObject skillPanel;
         [SerializeField] private TMP_Text soulsLabel;
         [SerializeField] private TMP_Text resourceLabel;
@@ -83,13 +84,18 @@ namespace TINS.Campaign
                 return;
             }
             if (profile.EnsurePurchaseLedger(catalog.skills)) profile.Save();
+            planetWindow?.Show(catalog, profile);
             if (planetNavigation == null) EnsureMapLayers();
             if (playerInput == null) playerInput = FindFirstObjectByType<PlayerInputHandler>();
             if (playerMovement == null && playerInput != null) playerMovement = playerInput.GetComponent<PlayerMovement>();
             if (campaignSkillTree == null && skillPanel != null)
                 campaignSkillTree = skillPanel.GetComponent<CampaignSkillTreeView>();
             stations = FindObjectsByType<BaseStationInteractable>(FindObjectsSortMode.None);
-            if (playerInput != null) playerInput.OnInteract += InteractWithNearestStation;
+            if (playerInput != null)
+            {
+                playerInput.OnInteract += InteractWithNearestStation;
+                playerInput.OnControllerChange += RefreshStationPrompt;
+            }
             if (missionPanel != null) missionPanel.SetActive(false);
             if (planetNavigation != null)
             {
@@ -245,7 +251,16 @@ namespace TINS.Campaign
             if (nearbyStation == nearest) return;
             if (nearbyStation != null) nearbyStation.SetPromptVisible(false);
             nearbyStation = nearest;
-            if (nearbyStation != null) nearbyStation.SetPromptVisible(true);
+            if (nearbyStation != null)
+            {
+                RefreshStationPrompt();
+                nearbyStation.SetPromptVisible(true);
+            }
+        }
+
+        private void RefreshStationPrompt()
+        {
+            if (nearbyStation != null) nearbyStation.SetPromptDevice(playerInput.CurrentPromptDevice);
         }
 
         private void InteractWithNearestStation()
@@ -258,7 +273,11 @@ namespace TINS.Campaign
         private void OnDestroy()
         {
             if (Active == this) Active = null;
-            if (playerInput != null) playerInput.OnInteract -= InteractWithNearestStation;
+            if (playerInput != null)
+            {
+                playerInput.OnInteract -= InteractWithNearestStation;
+                playerInput.OnControllerChange -= RefreshStationPrompt;
+            }
         }
 
         public void ShowMissionBoard()
@@ -354,7 +373,7 @@ namespace TINS.Campaign
         {
             if (profile == null || catalog == null) return;
             bool showingCampaignSkills = currentPanel == Panel.Skills;
-            string souls = $"ALMAS  {profile.souls:N0}";
+            string souls = $"{CampaignCatalog.ResourceIcon("almas")}ALMAS  {profile.souls:N0}";
             string resources = FormatResources();
             if (soulsLabel != null)
             {
@@ -434,7 +453,8 @@ namespace TINS.Campaign
             {
                 if (item == null || item.amount <= 0) continue;
                 if (!first) text.Append("   ·   ");
-                text.Append(DisplayResource(item.resourceId)).Append(' ').Append(item.amount);
+                string icon = CampaignCatalog.ResourceIcon(item.resourceId);
+                text.Append(icon.Length > 0 ? icon : DisplayResource(item.resourceId) + " ").Append(item.amount);
                 first = false;
             }
             return first ? "MATERIAIS  —" : text.ToString();

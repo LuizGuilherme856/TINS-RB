@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TINS.Campaign
 {
+    [DefaultExecutionOrder(1000)]
     public sealed class CampaignFlashHUD : MonoBehaviour
     {
         [SerializeField] private UnityEngine.UI.RawImage[] chargeSlots;
@@ -14,41 +15,76 @@ namespace TINS.Campaign
         [SerializeField] private RectTransform travelArea;
         [SerializeField] private RectTransform progressMarker;
         [SerializeField] private RectTransform skillCheckMarker;
+        [SerializeField, Min(0f)] private float headGap = 0.12f;
 
-        private const int SlotsPerRow = 6;
-        private const float RowStep = 44f;
+        private const int SlotsPerRow = 8;
+        private const float SlotWidth = 8f;
+        private const float SlotHeight = 16f;
+        private const float SlotStep = 12f;
+        private const float RowStep = 20f;
         private const int EmptyFrame = 4;
+
         private readonly List<UnityEngine.UI.RawImage> slots = new();
         private readonly List<float> shotTimes = new();
-        private readonly List<float> slotHeights = new();
         private readonly Rect[] frameUvs = new Rect[5];
         private BeamMeleeUsesManager manager;
-        private Vector2 firstRowBarPosition;
+        private Camera gameplayCamera;
+        private Canvas canvas;
+        private CanvasGroup visibility;
+        private RectTransform root;
+        private RectTransform parent;
+        private RectTransform panel;
+        private RectTransform reloadTrack;
+        private RectTransform chargeRow;
+        private SpriteRenderer playerSprite;
         private int visibleSlots;
+        private float trackWidth;
 
         private void Awake()
         {
-            firstRowBarPosition = reloadBar.anchoredPosition;
+            root = (RectTransform)transform;
+            root.pivot = new Vector2(0.5f, 0f);
+            parent = (RectTransform)root.parent;
+            canvas = GetComponentInParent<Canvas>();
+            visibility = gameObject.AddComponent<CanvasGroup>();
+            visibility.blocksRaycasts = false;
+            visibility.interactable = false;
+            visibility.alpha = 0f;
+            root.SetAsLastSibling();
+
             foreach (var slot in chargeSlots) AddSlot(slot);
+            chargeRow = (RectTransform)chargeSlots[0].transform.parent;
             for (int i = 0; i < EmptyFrame; i++)
             {
                 Sprite sprite = chargeFrames[Mathf.Max(0, i - 1)];
-                // The Aseprite frames contain a strip of charges. Use just the relevant four pixels.
+                // The source frames contain a strip. Sample just the relevant charge.
                 int chargeOffset = i == 1 || i == 2 ? 6 : 12;
                 frameUvs[i] = FrameUv(sprite, chargeOffset, 10);
             }
             frameUvs[EmptyFrame] = FrameUv(chargeFrames[3], 0, 6);
+
+            panel = (RectTransform)transform.Find("Flash Panel");
+            var backdrop = panel.GetComponent<UnityEngine.UI.Image>();
+            backdrop.sprite = null;
+            backdrop.color = new Color32(18, 15, 35, 235);
+            panel.Find("Flash Icon").gameObject.SetActive(false);
+            var track = reloadBar.GetComponentInChildren<UnityEngine.UI.Image>(true);
+            reloadTrack = track.rectTransform;
+            track.sprite = null;
+            track.color = new Color32(65, 53, 83, 255);
+            progressMarker.GetComponent<UnityEngine.UI.Image>().color = new Color32(255, 197, 94, 255);
+            skillCheckMarker.GetComponent<UnityEngine.UI.Image>().color = new Color32(116, 236, 212, 210);
+            skillCheckMarker.SetAsLastSibling();
+            reloadingLabel.enabled = false;
         }
 
         public void Bind(BeamMeleeUsesManager source)
         {
             Unbind();
             manager = source;
-            if (manager == null)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
+            playerSprite = source != null ? source.GetComponent<SpriteRenderer>() : null;
+            gameObject.SetActive(source != null);
+            if (manager == null) return;
 
             manager.OnUseSpent += AnimateShot;
             manager.OnUsesChanged += RefreshCapacity;
@@ -57,6 +93,10 @@ namespace TINS.Campaign
         }
 
         private void OnDestroy() => Unbind();
+
+        private void OnEnable() => Canvas.willRenderCanvases += UpdatePosition;
+
+        private void OnDisable() => Canvas.willRenderCanvases -= UpdatePosition;
 
         private void Unbind()
         {
@@ -73,45 +113,101 @@ namespace TINS.Campaign
         private void RefreshCapacity(int remaining, int maximum)
         {
             while (slots.Count < maximum)
-            {
-                int index = slots.Count;
-                var template = chargeSlots[index % SlotsPerRow];
-                var slot = Instantiate(template, template.transform.parent, false);
-                slot.name = $"Charge {index + 1:00}";
-                slot.rectTransform.sizeDelta = new Vector2(slot.rectTransform.sizeDelta.x, slotHeights[index % SlotsPerRow]);
-                slot.rectTransform.anchoredPosition += Vector2.up * (index / SlotsPerRow * RowStep);
-                AddSlot(slot);
-            }
+                AddSlot(Instantiate(chargeSlots[0], chargeSlots[0].transform.parent, false));
 
             if (visibleSlots != maximum)
             {
                 visibleSlots = maximum;
+                trackWidth = (Mathf.Min(maximum, SlotsPerRow) - 1) * SlotStep + SlotWidth;
+                Layout(reloadBar, 3f, trackWidth, 5f);
+                Layout(reloadTrack, 0f, trackWidth, 5f);
+                Layout(travelArea, 0f, trackWidth, 5f);
                 for (int i = 0; i < slots.Count; i++)
+                {
                     slots[i].gameObject.SetActive(i < maximum);
-                reloadBar.anchoredPosition = firstRowBarPosition + Vector2.up * ((maximum - 1) / SlotsPerRow * RowStep);
+                    if (i >= maximum) continue;
+                    int row = i / SlotsPerRow;
+                    int countInRow = Mathf.Min(SlotsPerRow, maximum - row * SlotsPerRow);
+                    Layout(slots[i].rectTransform, row * RowStep, SlotWidth, SlotHeight);
+                    slots[i].rectTransform.anchoredPosition += Vector2.right * ((i % SlotsPerRow - (countInRow - 1) * 0.5f) * SlotStep);
+                }
+
+                LayoutPanel(manager.IsRecharging);
             }
 
             for (int i = 0; i < remaining; i++) shotTimes[i] = float.NegativeInfinity;
         }
 
+        private void LayoutPanel(bool reloading)
+        {
+            float bottom = reloading ? 10f : 3f;
+            int rows = (visibleSlots + SlotsPerRow - 1) / SlotsPerRow;
+            Layout(chargeRow, bottom, trackWidth, 0f);
+            Layout(panel, 0f, trackWidth + 10f, bottom + (rows - 1) * RowStep + SlotHeight + 3f);
+            root.sizeDelta = panel.sizeDelta;
+        }
+
         private void AddSlot(UnityEngine.UI.RawImage slot)
         {
             slots.Add(slot);
-            slotHeights.Add(slot.rectTransform.sizeDelta.y);
+            slot.raycastTarget = false;
             shotTimes.Add(float.NegativeInfinity);
         }
 
         private void LateUpdate()
         {
-            if (manager != null) Redraw();
+            if (manager == null) return;
+            Redraw();
+        }
+
+        private void UpdatePosition()
+        {
+            if (manager == null) return;
+            if (gameplayCamera == null) gameplayCamera = Camera.main;
+            if (gameplayCamera == null || !manager.isActiveAndEnabled)
+            {
+                visibility.alpha = 0f;
+                return;
+            }
+            Vector3 head = manager.transform.position;
+            head.y = playerSprite != null ? playerSprite.bounds.max.y + headGap : head.y + 1f + headGap;
+            // The Game view and pixel-perfect camera can change pixel size before rendering.
+            Vector3 viewport = gameplayCamera.WorldToViewportPoint(head);
+            if (viewport.z <= 0f || viewport.x < 0f || viewport.x > 1f || viewport.y < 0f || viewport.y > 1f ||
+                !TryGetCanvasPosition(head, viewport, out Vector2 local))
+            {
+                visibility.alpha = 0f;
+                return;
+            }
+            visibility.alpha = 1f;
+            float halfWidth = root.rect.width * root.localScale.x * 0.5f;
+            float height = root.rect.height * root.localScale.y;
+            local.x = Mathf.Clamp(local.x, parent.rect.xMin + halfWidth, parent.rect.xMax - halfWidth);
+            local.y = Mathf.Clamp(local.y, parent.rect.yMin, parent.rect.yMax - height);
+            root.localPosition = new Vector3(local.x, local.y, root.localPosition.z);
+        }
+
+        private bool TryGetCanvasPosition(Vector3 head, Vector3 viewport, out Vector2 local)
+        {
+            if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+                return RectTransformUtility.ScreenPointToLocalPointInRectangle(parent,
+                    gameplayCamera.WorldToScreenPoint(head), canvas.worldCamera, out local);
+
+            var canvasRect = (RectTransform)canvas.rootCanvas.transform;
+            Rect view = gameplayCamera.rect;
+            Vector2 normalized = view.position + Vector2.Scale(view.size, viewport);
+            Vector2 point = canvasRect.rect.min + Vector2.Scale(canvasRect.rect.size, normalized);
+            local = parent.InverseTransformPoint(canvasRect.TransformPoint(point));
+            return true;
         }
 
         private void Redraw()
         {
+            int remaining = manager.UsesRemaining;
             for (int i = 0; i < visibleSlots; i++)
             {
                 int frame = EmptyFrame;
-                if (i < manager.UsesRemaining)
+                if (i < remaining)
                     frame = 0;
                 else
                 {
@@ -121,32 +217,44 @@ namespace TINS.Campaign
                 }
 
                 var slot = slots[i];
+                slot.color = frame == EmptyFrame ? new Color32(151, 138, 171, 255) : Color.white;
                 if (slot.uvRect == frameUvs[frame]) continue;
                 slot.texture = chargeFrames[Mathf.Clamp(frame - 1, 0, 3)].texture;
                 slot.uvRect = frameUvs[frame];
-                Vector2 size = slot.rectTransform.sizeDelta;
-                size.y = slotHeights[i] * (frame == EmptyFrame ? 0.6f : 1f);
-                slot.rectTransform.sizeDelta = size;
             }
 
             bool reloading = manager.IsRecharging;
-            reloadingLabel.enabled = reloading;
-            reloadBar.gameObject.SetActive(reloading);
+            if (reloadBar.gameObject.activeSelf != reloading)
+            {
+                reloadBar.gameObject.SetActive(reloading);
+                LayoutPanel(reloading);
+            }
             if (!reloading) return;
-            float cursorHalfHeight = progressMarker.rect.height * 0.5f;
-            float travel = Mathf.Max(0f, travelArea.rect.height - 2f * cursorHalfHeight);
-            PlaceMarker(progressMarker, cursorHalfHeight, travel, manager.RechargeProgress);
+
+            PlaceBarSegment(progressMarker, 0f, manager.RechargeProgress, 4f);
             skillCheckMarker.gameObject.SetActive(manager.IsSkillCheckAvailable);
-            if (!manager.IsSkillCheckAvailable) return;
-            skillCheckMarker.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, travel * manager.SkillCheckWidth);
-            PlaceMarker(skillCheckMarker, cursorHalfHeight, travel, manager.SkillCheckTarget);
+            if (manager.IsSkillCheckAvailable)
+            {
+                float halfWidth = manager.SkillCheckWidth * 0.5f;
+                PlaceBarSegment(skillCheckMarker, manager.SkillCheckTarget - halfWidth,
+                    manager.SkillCheckTarget + halfWidth, 5f);
+            }
         }
 
-        private static void PlaceMarker(RectTransform marker, float cursorHalfHeight, float travel, float progress)
+        private static void Layout(RectTransform rect, float y, float width, float height)
         {
-            Vector2 position = marker.anchoredPosition;
-            position.y = -cursorHalfHeight - (1f - progress) * travel;
-            marker.anchoredPosition = position;
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0f);
+            rect.pivot = new Vector2(0.5f, 0f);
+            rect.anchoredPosition = new Vector2(0f, y);
+            rect.sizeDelta = new Vector2(width, height);
+        }
+
+        private void PlaceBarSegment(RectTransform rect, float start, float end, float height)
+        {
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, 0.5f);
+            rect.pivot = new Vector2(0f, 0.5f);
+            rect.anchoredPosition = new Vector2(start * trackWidth, 0f);
+            rect.sizeDelta = new Vector2((end - start) * trackWidth, height);
         }
 
         private static Rect FrameUv(Sprite sprite, int x, int height)

@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 namespace TINS.Campaign
@@ -8,10 +7,20 @@ namespace TINS.Campaign
     [RequireComponent(typeof(CircleCollider2D))]
     public sealed class BaseStationInteractable : MonoBehaviour
     {
+        private static readonly int OutlineFade = Shader.PropertyToID("_InnerOutlineFade");
+
         [SerializeField] private BaseStationType stationType;
         [SerializeField] private CampaignBaseController baseController;
-        [SerializeField] private TMP_Text prompt;
         [SerializeField, Min(0.1f)] private float interactionRadius = 1.65f;
+        [SerializeField] private SpriteRenderer outlinedSprite;
+        [SerializeField] private SpriteRenderer promptIcon;
+        [SerializeField] private Sprite keyboardIcon;
+        [SerializeField] private Sprite xboxIcon;
+        [SerializeField] private Sprite playStationIcon;
+        [SerializeField] private Sprite switchIcon;
+
+        private MaterialPropertyBlock outlineProperties;
+        private Vector3 promptCenter;
 
         public float InteractionRadiusSquared => interactionRadius * interactionRadius;
 
@@ -19,8 +28,7 @@ namespace TINS.Campaign
         {
             if (baseController == null) baseController = GetComponentInParent<CampaignBaseController>();
             if (baseController == null) baseController = FindFirstObjectByType<CampaignBaseController>();
-            if (prompt != null)
-                prompt.text = stationType == BaseStationType.MissionBoard ? "F / A  ·  MISSÕES" : "F / A  ·  HABILIDADES";
+            if (promptIcon != null) promptCenter = promptIcon.transform.localPosition;
             SetPromptVisible(false);
         }
 
@@ -30,7 +38,30 @@ namespace TINS.Campaign
 
         public void SetPromptVisible(bool visible)
         {
-            if (prompt != null) prompt.gameObject.SetActive(visible);
+            if (promptIcon != null) promptIcon.enabled = visible;
+            if (outlinedSprite == null) return;
+
+            outlineProperties ??= new MaterialPropertyBlock();
+            outlinedSprite.GetPropertyBlock(outlineProperties);
+            outlineProperties.SetFloat(OutlineFade, visible ? 1f : 0f);
+            outlinedSprite.SetPropertyBlock(outlineProperties);
+        }
+
+        public void SetPromptDevice(InputPromptDeviceType device)
+        {
+            if (promptIcon == null) return;
+
+            Sprite icon = device switch
+            {
+                InputPromptDeviceType.KeyboardMouse => keyboardIcon,
+                InputPromptDeviceType.PlayStation => playStationIcon,
+                InputPromptDeviceType.NintendoSwitch => switchIcon,
+                _ => xboxIcon
+            };
+            promptIcon.sprite = icon;
+            var anchor = promptIcon.transform;
+            Vector3 offset = icon != null ? Vector3.Scale(icon.bounds.center, anchor.localScale) : Vector3.zero;
+            anchor.localPosition = promptCenter - anchor.localRotation * offset;
         }
 
         public void Open()

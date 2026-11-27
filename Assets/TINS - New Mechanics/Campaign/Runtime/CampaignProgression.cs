@@ -24,6 +24,7 @@ namespace TINS.Campaign
         public int version = 3;
         public bool firstExpeditionSettled;
         public bool inheritedFlash;
+        public string lastVisitedPlanetId;
         public bool HasFlash => Rank(FlashSkillId) > 0;
         public int souls;
         public int soulsInvested;
