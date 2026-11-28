@@ -295,19 +295,19 @@ public class BuyWeapon : InteractWithPlayer
 
     private void HealOnBuy()
     {
-        if (globalStats.healthPointsToHealOnBuyWeapon > 0)
+        if (globalStats.ForCurrentRun.healthPointsToHealOnBuyWeapon > 0)
         {
-            player.GetComponent<Health>().ReplenishHealth(globalStats.healthPointsToHealOnBuyWeapon);
+            player.GetComponent<Health>().ReplenishHealth(globalStats.ForCurrentRun.healthPointsToHealOnBuyWeapon);
         }
-        else if (globalStats.healthPointsToHealOnBuyWeapon < 0)
+        else if (globalStats.ForCurrentRun.healthPointsToHealOnBuyWeapon < 0)
         {
-            player.GetComponent<Health>().SetDamage(-globalStats.healthPointsToHealOnBuyWeapon);
+            player.GetComponent<Health>().SetDamage(-globalStats.ForCurrentRun.healthPointsToHealOnBuyWeapon);
         }
     }
 
     private void TryToBuyAmmo(GunData gun)
     {
-        if (pointManager.currentPoints >= gun.ammoPrice && gun.currentSpareAmmo < gun.GetMaxSpareAmmo())
+        if (pointManager.currentPoints >= gun.ammoPrice && gunInventory.GetAmmo(gun).Reserve < gun.GetMaxSpareAmmo())
         {
             gunInventory.RefillAmmo(gun);
             pointManager.RemovePoints(gun.ammoPrice);

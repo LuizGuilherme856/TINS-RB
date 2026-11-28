@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace TINS.Campaign
@@ -54,6 +55,13 @@ namespace TINS.Campaign
             finalPenumbraRadius = Mathf.Max(missionTargetRadius + 0.1f, initialPenumbraRadius, finalPenumbraRadius);
         }
 
+        internal CampaignPlanet CopyForMission()
+        {
+            var mission = (CampaignPlanet)MemberwiseClone();
+            mission.ValidateRadii();
+            return mission;
+        }
+
         public float PenumbraWidthAt(float lightRadius)
         {
             float progress = Mathf.InverseLerp(initialLightRadius, missionTargetRadius, lightRadius);
@@ -76,16 +84,16 @@ namespace TINS.Campaign
         };
 
         public const string FlashAreaSkillId = "flash-area";
+        private static TMP_SpriteAsset resourceIcons;
 
         internal static string ResourceIcon(string id)
         {
-            string name = id?.ToLowerInvariant();
-            return name switch
-            {
-                "almas" or "ether" or "cristal-frio" or "poeira-solar" or "fragmento-umbral" or "nucleo-rubro" or "sal-estelar"
-                    => $"<sprite=\"Campaign Resource Icons\" name=\"{name}\"> ",
-                _ => string.Empty,
-            };
+            if (string.IsNullOrWhiteSpace(id)) return string.Empty;
+            if (resourceIcons == null) resourceIcons = Resources.Load<TMP_SpriteAsset>("Sprite Assets/Campaign Resource Icons");
+            string name = id.ToLowerInvariant();
+            return resourceIcons != null && resourceIcons.GetSpriteIndexFromName(name) >= 0
+                ? $"<sprite=\"Campaign Resource Icons\" name=\"{name}\"> "
+                : string.Empty;
         }
 
         [Tooltip("Sprite shared by all caches after they are collected.")]

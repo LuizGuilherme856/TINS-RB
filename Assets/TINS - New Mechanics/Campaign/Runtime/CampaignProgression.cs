@@ -48,59 +48,96 @@ namespace TINS.Campaign
         }
 
         private static string SavePath => Path.Combine(Application.persistentDataPath, "tins-campaign.json");
+        private static readonly object SaveLock = new object();
+        [NonSerialized] private bool recoveredFromBackup;
 
-        public static CampaignProfile Load()
+        public static CampaignProfile Load() => LoadFrom(SavePath);
+
+        internal static CampaignProfile LoadFrom(string path)
         {
-            try
+            lock (SaveLock)
             {
-                if (File.Exists(SavePath))
-                {
-                    CampaignProfile loaded = JsonUtility.FromJson<CampaignProfile>(File.ReadAllText(SavePath));
-                    if (loaded != null && (loaded.version == 1 || loaded.version == 2 || loaded.version == 3))
-                    {
-                        loaded.planetProgress ??= new List<CampaignPlanetProgress>();
-                        loaded.resources ??= new List<CampaignResourceAmount>();
-                        loaded.skillRanks ??= new List<CampaignSkillRank>();
-                        loaded.investedResources ??= new List<CampaignResourceAmount>();
-                        loaded.freeSkillGrants ??= new List<CampaignSkillGrant>();
-                        loaded.skillPurchases ??= new List<CampaignSkillPurchase>();
-                        if (loaded.version == 1)
-                        {
-                            // Existing Flash upgrades imply that this profile already owns the ability.
-                            if (loaded.HasFlash || loaded.Rank("flash-capacity") > 0 || loaded.Rank("flash-recharge") > 0)
-                            {
-                                loaded.FindSkill(FlashSkillId, true).rank++;
-                                loaded.inheritedFlash = true;
-                            }
-                            loaded.firstExpeditionSettled = loaded.HasFlash || loaded.planetProgress.Exists(p => p != null && p.missionsCompleted > 0);
-                        }
-                        if (loaded.inheritedFlash && loaded.FreeSkillRank(FlashSkillId) == 0)
-                            loaded.freeSkillGrants.Add(new CampaignSkillGrant { skillId = FlashSkillId, rank = 1 });
-                        loaded.version = 3;
-                        return loaded;
-                    }
-                }
+                CampaignProfile profile = ReadProfile(path);
+                if (profile != null) return profile;
+                profile = ReadProfile(path + ".bak");
+                if (profile == null) return new CampaignProfile();
+                profile.recoveredFromBackup = true;
+                return profile;
             }
-            catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException)
-            {
-                Debug.LogError("Não foi possível ler a campanha: " + exception.Message);
-            }
-            return new CampaignProfile();
         }
 
-        public bool Save()
+        private static CampaignProfile ReadProfile(string path)
         {
             try
             {
-                string directory = Path.GetDirectoryName(SavePath);
-                if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
-                File.WriteAllText(SavePath, JsonUtility.ToJson(this, true));
-                return true;
+                if (!File.Exists(path)) return null;
+                // Initialize the version to an invalid value so a document without it cannot mask the backup.
+                var loaded = new CampaignProfile { version = 0 };
+                JsonUtility.FromJsonOverwrite(File.ReadAllText(path), loaded);
+                if (loaded.version < 1 || loaded.version > 3)
+                    throw new InvalidDataException("Versão do perfil de campanha inválida ou incompatível.");
+                loaded.planetProgress ??= new List<CampaignPlanetProgress>();
+                loaded.resources ??= new List<CampaignResourceAmount>();
+                loaded.skillRanks ??= new List<CampaignSkillRank>();
+                loaded.investedResources ??= new List<CampaignResourceAmount>();
+                loaded.freeSkillGrants ??= new List<CampaignSkillGrant>();
+                loaded.skillPurchases ??= new List<CampaignSkillPurchase>();
+                if (loaded.version == 1)
+                {
+                    if (loaded.HasFlash || loaded.Rank("flash-capacity") > 0 || loaded.Rank("flash-recharge") > 0)
+                    {
+                        loaded.FindSkill(FlashSkillId, true).rank++;
+                        loaded.inheritedFlash = true;
+                    }
+                    loaded.firstExpeditionSettled = loaded.HasFlash || loaded.planetProgress.Exists(p => p != null && p.missionsCompleted > 0);
+                }
+                if (loaded.inheritedFlash && loaded.FreeSkillRank(FlashSkillId) == 0)
+                    loaded.freeSkillGrants.Add(new CampaignSkillGrant { skillId = FlashSkillId, rank = 1 });
+                loaded.version = 3;
+                return loaded;
             }
-            catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException)
+            catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException ||
+                exception is ArgumentException || exception is InvalidDataException)
             {
-                Debug.LogError("Não foi possível salvar a campanha: " + exception.Message);
-                return false;
+                Debug.LogWarning("Não foi possível ler o perfil " + Path.GetFileName(path) + ": " + exception.Message);
+                return null;
+            }
+        }
+
+        public bool Save() => SaveTo(SavePath);
+
+        internal bool SaveTo(string path)
+        {
+            lock (SaveLock)
+            {
+                string temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
+                try
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(path)));
+                    using (var stream = new FileStream(temporary, FileMode.CreateNew))
+                    {
+                        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(this, true));
+                        stream.Write(bytes, 0, bytes.Length);
+                        stream.Flush(true);
+                    }
+                    if (File.Exists(path))
+                        File.Replace(temporary, path, recoveredFromBackup ? null : path + ".bak", true);
+                    else
+                        File.Move(temporary, path);
+                    recoveredFromBackup = false;
+                    return true;
+                }
+                catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException)
+                {
+                    Debug.LogError("Não foi possível salvar a campanha: " + exception.Message);
+                    return false;
+                }
+                finally
+                {
+                    try { File.Delete(temporary); }
+                    catch (IOException) { }
+                    catch (UnauthorizedAccessException) { }
+                }
             }
         }
 

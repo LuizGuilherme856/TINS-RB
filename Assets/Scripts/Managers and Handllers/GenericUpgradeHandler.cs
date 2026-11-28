@@ -67,11 +67,11 @@ public class GenericUpgradeHandler : MonoBehaviour
 
             //Also remove it from the inventory used during scene changes
             //so a lost blade does not respawn in the next scene.
-            foreach (var orbitalUpgradesItem in globalStats.orbitalUpgrades)
+            foreach (var orbitalUpgradesItem in globalStats.ForCurrentRun.orbitalUpgrades)
             {
                 if(orbitalUpgradesItem.meleeDataToOrbit.meleeGameObject.Equals(InfiniteBladeGameObject))
                 {
-                    globalStats.orbitalUpgrades.Remove(orbitalUpgradesItem);
+                    globalStats.ForCurrentRun.orbitalUpgrades.Remove(orbitalUpgradesItem);
                     break;
                 }
             }
@@ -82,11 +82,11 @@ public class GenericUpgradeHandler : MonoBehaviour
     private void TryToGetAnExtraHealth()
     {
         //Prevent idle healing in safe zones.
-        if (!canAutoHeal || globalStats.ChanceOfGain1HpEvery30s <= 0) return;
+        if (!canAutoHeal || globalStats.ForCurrentRun.ChanceOfGain1HpEvery30s <= 0) return;
 
          triesToGetAnExtraHealth++;
 
-        if ( Random.Range(0f, 1f) > globalStats.ChanceOfGain1HpEvery30s && triesToGetAnExtraHealth < maxTriesToGetAnExtraHealth)
+        if ( Random.Range(0f, 1f) > globalStats.ForCurrentRun.ChanceOfGain1HpEvery30s && triesToGetAnExtraHealth < maxTriesToGetAnExtraHealth)
         {
             return;
         }
@@ -118,7 +118,7 @@ public class GenericUpgradeHandler : MonoBehaviour
 
     private void TryToActivateShield()
     {
-        float duration = globalStats.ShieldDurationOnTakingDamage;
+        float duration = globalStats.ForCurrentRun.ShieldDurationOnTakingDamage;
 
         if (duration <= 0) return;
         shield_PowerUp.ActivateShield(duration);

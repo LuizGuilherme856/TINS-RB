@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GunInventory : MonoBehaviour
@@ -21,6 +22,16 @@ public class GunInventory : MonoBehaviour
     private GunData defaultGun;
     private CharacterDataManager characterDataHolder;
     private List<GunData> guns = new();
+    private sealed class RunAmmo
+    {
+        public GunInventory Owner;
+        public readonly Dictionary<GunData, GunAmmo> Weapons = new();
+    }
+
+    private static ConditionalWeakTable<RunData, RunAmmo> legacyAmmoByRun = new();
+    private RunAmmo legacyAmmo;
+    private Dictionary<GunData, GunAmmo> ammoByGun = new();
+    internal bool IsCampaignLoadout { get; private set; }
     private CharacterData characterData;
     //private int maxGuns= 0;
     private RunData runData;
@@ -28,21 +39,47 @@ public class GunInventory : MonoBehaviour
 
 
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetLegacyAmmo() => legacyAmmoByRun = new();
+
+    public GunAmmo GetAmmo(GunData gun)
+    {
+        if (gun == null) return null;
+        if (!ammoByGun.TryGetValue(gun, out GunAmmo ammo))
+        {
+            ammo = new GunAmmo();
+            ammo.Reset(gun);
+            ammoByGun.Add(gun, ammo);
+        }
+        return ammo;
+    }
+
+    internal bool IsStartingGun(GunData gun) => gun != null && gun == defaultGun;
+
     private void Awake()
     {
         characterDataHolder = GetComponent<CharacterDataManager>();
-        runData = GetComponent<RunDataManager>().GetRunData();
+        runData = GetComponent<RunDataManager>()?.GetRunData();
 
         
 
         if(enemyWaveManager == null) enemyWaveManager = AssetFinder.GetEnemyWaveManager();
 
-        if (playerClone == false) characterData = characterDataHolder.GetCurrentCharacterData();
-
-        defaultGun = characterData.defaultGun;
-
-        guns.Clear();
-        guns = runData.guns;
+        characterData = characterDataHolder != null ? characterDataHolder.GetCurrentCharacterData() : runData?.currentCharacter;
+        defaultGun = characterData != null ? characterData.defaultGun : null;
+        // The original game's player restores ammunition across scene changes.
+        if (!playerClone && runData != null)
+        {
+            RunAmmo session = legacyAmmoByRun.GetOrCreateValue(runData);
+            if (session.Owner == null)
+            {
+                session.Owner = this;
+                legacyAmmo = session;
+                ammoByGun = session.Weapons;
+                guns = runData.guns ??= new List<GunData>();
+            }
+        }
+        if (legacyAmmo == null && runData?.guns != null) guns.AddRange(runData.guns);
         OnWeaponChange?.Invoke();
 
         if (guns.Count == 0) gunManager.SetEquipedGun(null);
@@ -55,19 +92,38 @@ public class GunInventory : MonoBehaviour
     {
         playerInput.OnMouseScrollDown += PreviousGun;
         playerInput.OnMouseScrollUp += NextGun;
-        playerInput.OnKey1 += () => EquipGunByIndex(0);
-        playerInput.OnKey2 += () => EquipGunByIndex(1);
-        playerInput.OnKey3 += () => EquipGunByIndex(2);
-        playerInput.OnKey4 += () => EquipGunByIndex(3);
+        playerInput.OnKey1 += EquipFirstGun;
+        playerInput.OnKey2 += EquipSecondGun;
+        playerInput.OnKey3 += EquipThirdGun;
+        playerInput.OnKey4 += EquipFourthGun;
 
-        enemyWaveManager.OnEnemyDied += TryToRefillAmmo;
+        if (enemyWaveManager != null) enemyWaveManager.OnEnemyDied += TryToRefillAmmo;
     }
 
     private void OnDisable()
     {
-        enemyWaveManager.OnEnemyDied -= TryToRefillAmmo;
+        playerInput.OnMouseScrollDown -= PreviousGun;
+        playerInput.OnMouseScrollUp -= NextGun;
+        playerInput.OnKey1 -= EquipFirstGun;
+        playerInput.OnKey2 -= EquipSecondGun;
+        playerInput.OnKey3 -= EquipThirdGun;
+        playerInput.OnKey4 -= EquipFourthGun;
+        if (enemyWaveManager != null) enemyWaveManager.OnEnemyDied -= TryToRefillAmmo;
     }
 
+    private void EquipFirstGun() => EquipGunByIndex(0);
+    private void EquipSecondGun() => EquipGunByIndex(1);
+    private void EquipThirdGun() => EquipGunByIndex(2);
+    private void EquipFourthGun() => EquipGunByIndex(3);
+
+    private void OnDestroy() => ReleaseLegacyAmmo();
+
+    private void ReleaseLegacyAmmo()
+    {
+        if (legacyAmmo == null) return;
+        if (legacyAmmo.Owner == this) legacyAmmo.Owner = null;
+        legacyAmmo = null;
+    }
 
     private void Start()
     {
@@ -80,7 +136,7 @@ public class GunInventory : MonoBehaviour
         {
             guns.Clear();
             guns.Add(newGun);
-            guns[0].SetFullAmmo();
+            GetAmmo(newGun).Reset(newGun);
         }
         else if (guns.Count >= GetMaxGuns())
         {
@@ -92,8 +148,9 @@ public class GunInventory : MonoBehaviour
             {
                 if (guns[i] == currentGun)
                 {
+                    ammoByGun.Remove(currentGun);
                     guns[i] = newGun;
-                    guns[i].SetFullAmmo();
+                    GetAmmo(newGun).Reset(newGun);
                     Aux.Print("Arma substituida", showDebug);
 
                 }
@@ -103,7 +160,7 @@ public class GunInventory : MonoBehaviour
         else
         {
             guns.Add(newGun);
-            guns[GetGunIndex(newGun)].SetFullAmmo();
+            GetAmmo(newGun).Reset(newGun);
         }
 
         EquipGun(newGun);
@@ -123,15 +180,16 @@ public class GunInventory : MonoBehaviour
             guns.Insert(0, startingGun);
         }
 
-        startingGun.SetFullAmmo();
-        startingGun.SetMaxSpareAmmo();
+        GetAmmo(startingGun).Reset(startingGun);
         EquipGun(startingGun);
     }
 
     public void RemoveCurrentWeapon()
     {
         Aux.Print("Remove gun", showDebug);
-        guns.Remove(GetCurrentEquipedGun());
+        GunData equipped = GetCurrentEquipedGun();
+        if (equipped != null) ammoByGun.Remove(equipped);
+        guns.Remove(equipped);
 
         if (guns.Count == 0) gunManager.PlayerHasNoGun();
         else EquipGunByIndex(0);
@@ -157,9 +215,12 @@ public class GunInventory : MonoBehaviour
     /// </summary>
     public void RefillAmmo(GunData gun)
     {
-        guns[GetGunIndex(gun)].SetMaxSpareAmmo();
+        if (gun == null || !HasThisGun(gun)) return;
+        RefillReserve(gun);
         EquipGun(gun);
     }
+
+    public void RefillReserve(GunData gun) => GetAmmo(gun)?.RefillReserve(gun);
 
     public void RefillAmmoCurrentGun(bool playFeedback = false)
     {
@@ -180,7 +241,7 @@ public class GunInventory : MonoBehaviour
     /// </summary>
     private void TryToRefillAmmo()
     {
-        if (UnityEngine.Random.Range(0f, 1f) <= globalStats.chanceOfFillingAmmoOnKill)
+        if (UnityEngine.Random.Range(0f, 1f) <= globalStats.ForCurrentRun.chanceOfFillingAmmoOnKill)
         {
             RefillAmmoCurrentGun(true);
         }
@@ -195,7 +256,8 @@ public class GunInventory : MonoBehaviour
         foreach (var g in guns)
         {
             if (g == null) continue;
-            if (g.currentAmmoOnClip <= 0 && g.currentSpareAmmo <= 0)
+            GunAmmo ammo = GetAmmo(g);
+            if (ammo.Rounds <= 0 && ammo.Reserve <= 0)
                 return true;
         }
 
@@ -261,21 +323,6 @@ public class GunInventory : MonoBehaviour
 
     #region Getters and Setters
 
-    private int GetGunIndex(GunData gun)
-    {
-        int index = 0;
-
-        for (int i = 0; i < guns.Count; i++)
-        {
-            if (guns[i] == gun)
-            {
-                index = i;
-            }
-        }
-
-        return index;
-    }
-
     private int GetCurrentGunIndex()
     {
         int currentGunIndex = 0;
@@ -301,6 +348,7 @@ public class GunInventory : MonoBehaviour
     public void ResetGuns()
     {
         guns.Clear();
+        ammoByGun.Clear();
         if (defaultGun == null)
         {
             gunManager.PlayerHasNoGun();
@@ -308,8 +356,7 @@ public class GunInventory : MonoBehaviour
             return;
         }
         guns.Add(defaultGun);
-        guns[GetGunIndex(defaultGun)].SetFullAmmo();
-        guns[GetGunIndex(defaultGun)].SetMaxSpareAmmo();
+        GetAmmo(defaultGun).Reset(defaultGun);
         EquipGun(defaultGun); // Equip the default gun so the player cannot retain a weapon they no longer own.
     }
 
@@ -317,10 +364,19 @@ public class GunInventory : MonoBehaviour
     {
         defaultGun = gunData;
         guns.Clear();
+        ammoByGun.Clear();
         if (defaultGun == null) return;
         guns.Add(defaultGun);
-        guns[GetGunIndex(defaultGun)].SetFullAmmo();
-        guns[GetGunIndex(defaultGun)].SetMaxSpareAmmo();
+        GetAmmo(defaultGun).Reset(defaultGun);
+    }
+
+    internal void BeginCampaignLoadout(GunData gunData)
+    {
+        IsCampaignLoadout = true;
+        ReleaseLegacyAmmo();
+        guns = new List<GunData>();
+        ammoByGun = new Dictionary<GunData, GunAmmo>();
+        ResetGuns(gunData);
     }
 
     public void SetGuns(List<GunData> guns)
@@ -338,7 +394,7 @@ public class GunInventory : MonoBehaviour
     public int GetMaxGuns()
     {
         
-        var maxGuns = (int)(characterData.numberOfGunsItCanCarry + globalStats.increaseWeaponCapacityBy);// + runeUpgradeManager.GetNumberOfExtraGuns();
+        var maxGuns = (int)(characterData.numberOfGunsItCanCarry + globalStats.ForCurrentRun.increaseWeaponCapacityBy);// + runeUpgradeManager.GetNumberOfExtraGuns();
         if (!playerClone && TINS.Campaign.CampaignCombatRules.IsCampaignMission)
             maxGuns = Mathf.Max(maxGuns, guns.Count);
         return Mathf.FloorToInt(Aux.MinValueToReturn(maxGuns, 1));

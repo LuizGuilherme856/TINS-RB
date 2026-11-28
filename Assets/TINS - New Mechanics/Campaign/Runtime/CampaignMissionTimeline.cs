@@ -26,6 +26,12 @@ namespace TINS.Campaign
         private float fillTweenElapsed;
         private string previousFormat;
         private int previousValue = -1;
+        private string previousBossName;
+        private Vector2Int previousDirection;
+        private bool previousFinalWave;
+        private bool previousCountdown;
+        private string bossFormat;
+        private string waveFormat;
 
         public void Bind(CampaignMissionRuntime runtime, CampaignPlanet planet, EnemySpawnManager spawns)
         {
@@ -87,15 +93,30 @@ namespace TINS.Campaign
             }
             else if (spawner != null && !string.IsNullOrEmpty(spawner.ActiveBossName))
             {
-                format = $"CHEFE  ·  {spawner.ActiveBossName.ToUpperInvariant()}";
+                string bossName = spawner.ActiveBossName;
+                if (previousBossName != bossName)
+                {
+                    previousBossName = bossName;
+                    bossFormat = $"CHEFE  ·  {bossName.ToUpperInvariant()}";
+                }
+                format = bossFormat;
             }
             else if (spawner != null && spawner.WaveDirection != Vector2Int.zero)
             {
                 Vector2Int direction = spawner.WaveDirection;
-                string side = direction.y > 0 ? "NORTE" : direction.y < 0 ? "SUL" : direction.x > 0 ? "LESTE" : "OESTE";
                 value = Mathf.CeilToInt(spawner.WaveWarningRemaining - 0.001f);
-                string wave = spawner.IsBossWaveAnnounced ? "ONDA FINAL" : "ONDA";
-                format = value > 0 ? $"{wave}  ·  {side}  {{0}} s" : $"{wave}  ·  {side}";
+                bool finalWave = spawner.IsBossWaveAnnounced;
+                bool countdown = value > 0;
+                if (previousDirection != direction || previousFinalWave != finalWave || previousCountdown != countdown)
+                {
+                    previousDirection = direction;
+                    previousFinalWave = finalWave;
+                    previousCountdown = countdown;
+                    string side = direction.y > 0 ? "NORTE" : direction.y < 0 ? "SUL" : direction.x > 0 ? "LESTE" : "OESTE";
+                    string wave = finalWave ? "ONDA FINAL" : "ONDA";
+                    waveFormat = countdown ? $"{wave}  ·  {side}  {{0}} s" : $"{wave}  ·  {side}";
+                }
+                format = waveFormat;
             }
             if (value != previousValue || format != previousFormat)
             {
@@ -154,8 +175,8 @@ namespace TINS.Campaign
 
         private static void SetSpan(RectTransform rect, float start, float end)
         {
-            rect.anchorMin = new Vector2(start, rect.anchorMin.y);
-            rect.anchorMax = new Vector2(end, rect.anchorMax.y);
+            if (rect.anchorMin.x != start) rect.anchorMin = new Vector2(start, rect.anchorMin.y);
+            if (rect.anchorMax.x != end) rect.anchorMax = new Vector2(end, rect.anchorMax.y);
         }
     }
 }

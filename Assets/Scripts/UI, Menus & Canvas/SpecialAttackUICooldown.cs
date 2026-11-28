@@ -77,7 +77,7 @@ public class SpecialAttackUICooldown : MonoBehaviour
 
         int currentCharges = meleeManager.GetCurrentActionQuantity();
         //Already full; no update needed.
-        if (currentCharges == globalStats.maxSpecialActionQuantity)
+        if (currentCharges == globalStats.ForCurrentRun.maxSpecialActionQuantity)
         {
             icon.fillAmount = 1;
             loadingIcon.enabled = false;
@@ -97,11 +97,11 @@ public class SpecialAttackUICooldown : MonoBehaviour
             fillAmount = Mathf.Abs(meleeManager.GetTotalActionCooldown_Percentage(1));
             icon.fillAmount = fillAmount;
 
-            if (globalStats.maxSpecialActionQuantity == 1) //Single charge.
+            if (globalStats.ForCurrentRun.maxSpecialActionQuantity == 1) //Single charge.
             {
                 loadingIcon.enabled = false;
             }
-            else if (globalStats.maxSpecialActionQuantity > 1)  //Multiple charges.
+            else if (globalStats.ForCurrentRun.maxSpecialActionQuantity > 1)  //Multiple charges.
             {
                 loadingIcon.enabled = true;
 

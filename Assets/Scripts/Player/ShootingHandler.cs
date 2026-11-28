@@ -74,7 +74,7 @@ public class ShootingHandler : MonoBehaviour
     }
 
 
-    public void InstantiateShot(Vector3 firePoint, float aimAngle)
+    public void InstantiateShot(Vector3 firePoint, float aimAngle, int magazineRounds)
     {
         //When an enemy is very close, spawn the bullet at the player so it does not
         //appear behind the enemy; otherwise, use the weapon muzzle.
@@ -99,7 +99,7 @@ public class ShootingHandler : MonoBehaviour
         else
         {
             CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
-            float extraShotChance = globalStats.chanceOfShootingExtraBullet +
+            float extraShotChance = globalStats.ForCurrentRun.chanceOfShootingExtraBullet +
                 (mission?.SkillEffect(CampaignSkillEffectType.DoubleTap).x ?? 0f);
             int extraShot = UnityEngine.Random.value < extraShotChance ? 1 : 0;
             int scattered = Mathf.RoundToInt(mission?.SkillEffect(CampaignSkillEffectType.ScatterShot).x ?? 0f);
@@ -111,7 +111,7 @@ public class ShootingHandler : MonoBehaviour
 
             for (int i = 0; i < numberOfBulets; i++)
             {
-                UpdateProjectileProperties(projectiles, i);
+                UpdateProjectileProperties(projectiles, i, magazineRounds);
                 float? spread = null;
                 if (scattered > 0) spread = (i - (numberOfBulets - 1) * .5f) * Mathf.Max(9f, gunData.multipleBulletAngleOffset);
                 else if (mission != null && extraShot > 0 && i == numberOfBulets - 1 && numberOfBulets == 2)
@@ -122,7 +122,7 @@ public class ShootingHandler : MonoBehaviour
                 {
                     for (int j = 0; j < gunData.GetLinedUpBulletsPerShot(); j++)
                     {
-                        UpdateProjectileProperties(linedUpProjectiles, j);
+                        UpdateProjectileProperties(linedUpProjectiles, j, magazineRounds);
                         //Copy shot data from the preceding bullet.
                         //Each trailing bullet retains 90% of its predecessor's value.
                         float speedMultiplier = 90 - j * 3;
@@ -144,7 +144,7 @@ public class ShootingHandler : MonoBehaviour
 
     }
 
-    private void UpdateProjectileProperties(Projectile[] projectiles, int i)
+    private void UpdateProjectileProperties(Projectile[] projectiles, int i, int magazineRounds)
     {
         projectiles[i] = miniObjectPooler.GetPooledGameObject().GetComponent<Projectile>();
         
@@ -159,10 +159,10 @@ public class ShootingHandler : MonoBehaviour
         bool hasScatter = (mission?.SkillEffect(CampaignSkillEffectType.ScatterShot).x ?? 0f) > 0f;
         bulletStats.SetDamageMultiplier_PowerUp(damageMultiplier * (hasScatter ? .60f : 1f));
 
-        bool lastShotUpgrade = globalStats.doubleDamageOnLastBullet ||
+        bool lastShotUpgrade = globalStats.ForCurrentRun.doubleDamageOnLastBullet ||
             (mission?.SkillEffect(CampaignSkillEffectType.LastShot).x ?? 0f) > 0f;
         // Instantiation happens before ammo is deducted, so the next consumption identifies the final shot.
-        if (gunData.currentAmmoOnClip <= CampaignCombatRules.RoundsPerShot(gunData) && lastShotUpgrade)
+        if (magazineRounds <= CampaignCombatRules.RoundsPerShot(gunData) && lastShotUpgrade)
         {
             bulletStats.SetDamageMultiplier_FirstBullet(2);
         }

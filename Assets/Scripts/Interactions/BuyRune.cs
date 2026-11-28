@@ -150,7 +150,7 @@ public class BuyRune : InteractWithPlayer
 
     private int GetPrice()
     {
-        float runePrice = runeData.price * globalStats.runePriceMultiplier * globalStats.globalPriceMultiplier; //Price after skill discounts.
+        float runePrice = runeData.price * globalStats.ForCurrentRun.runePriceMultiplier * globalStats.ForCurrentRun.globalPriceMultiplier; //Price after skill discounts.
         float price = runePrice + runePrice * runeData.priceMultiplier * runeInventory.GetUpgradeCount(runeData);
         if (price > runeData.maxPrice) price = runeData.maxPrice;
         return (int)price;
@@ -169,7 +169,7 @@ public class BuyRune : InteractWithPlayer
             if (activeEffectsItem.GetType() == typeof(OrbitalUpgrade_ActiveEffect))
             {
                 //The explicit cast is required despite the preceding type check.
-                runeInventory.globalStats.orbitalUpgrades.Add((OrbitalUpgrade_ActiveEffect)activeEffectsItem);
+                runeInventory.globalStats.ForCurrentRun.orbitalUpgrades.Add((OrbitalUpgrade_ActiveEffect)activeEffectsItem);
             }
         }
 

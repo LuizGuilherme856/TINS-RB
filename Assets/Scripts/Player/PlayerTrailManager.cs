@@ -21,7 +21,7 @@ public class PlayerTrailManager : MonoBehaviour
         PlaceObjectsAtPlayerPosition(fireTrailObjects);
 
 
-        //switch (globalStats.walkTrailDamageType)
+        //switch (globalStats.ForCurrentRun.walkTrailDamageType)
         //{
         //    case DamageType.Puncture:
         //        break;

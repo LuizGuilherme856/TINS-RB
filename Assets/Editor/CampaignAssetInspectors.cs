@@ -8,6 +8,20 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UIElements.Button;
 
+[CustomEditor(typeof(CampaignMissionEnemies))]
+public sealed class CampaignMissionEnemiesInspector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        var catalog = Resources.Load<CampaignCatalog>("CampaignCatalog");
+        var planetNames = catalog?.planets?.Where(planet => planet != null && planet.enemySettings == target)
+            .Select(planet => planet.displayName).ToArray();
+        if (planetNames is { Length: > 0 })
+            EditorGUILayout.LabelField("Elenco de " + string.Join(", ", planetNames), EditorStyles.boldLabel);
+        DrawDefaultInspector();
+    }
+}
+
 [CustomPropertyDrawer(typeof(CampaignPlanet))]
 public sealed class CampaignPlanetDrawer : PropertyDrawer
 {
@@ -26,7 +40,16 @@ public sealed class CampaignPlanetDrawer : PropertyDrawer
         AddFields(light, planet, "initialLightRadius", "missionTargetRadius", "initialPenumbraRadius",
             "finalPenumbraRadius", "lightGrowthPerSoul", "floorTiles", "purifiedGrassRadiusRatio");
         var combat = AddGroup(root, "Inimigos e recompensas");
-        AddFields(combat, planet, "enemySettings", "enemySpeedMultiplier", "soulDropChance", "rewardResourceName",
+        AddFields(combat, planet, "enemySettings");
+        var fallbackSpeed = new PropertyField(planet.FindPropertyRelative("enemySpeedMultiplier"),
+            "Multiplicador de velocidade sem elenco");
+        combat.Add(fallbackSpeed);
+        SerializedProperty roster = planet.FindPropertyRelative("enemySettings");
+        void ShowFallbackSpeed(SerializedProperty value) => fallbackSpeed.style.display =
+            value.objectReferenceValue == null ? DisplayStyle.Flex : DisplayStyle.None;
+        ShowFallbackSpeed(roster);
+        root.TrackPropertyValue(roster, ShowFallbackSpeed);
+        AddFields(combat, planet, "soulDropChance", "rewardResourceName",
             "rewardResourceId", "rewardPerMission", "victorySouls");
         var caches = AddGroup(root, "Caches de recursos");
         AddFields(caches, planet, "resourceCacheCount", "resourcePerCache", "resourceCacheSprite");
@@ -41,14 +64,14 @@ public sealed class CampaignPlanetDrawer : PropertyDrawer
         var root = new VisualElement();
         SerializedObject asset = planet.serializedObject;
         string path = planet.FindPropertyRelative("prerequisitePlanetIds").propertyPath;
-        string selectedId = planet.FindPropertyRelative("id").stringValue;
+        SerializedProperty selectedId = planet.FindPropertyRelative("id");
         var catalog = (CampaignCatalog)asset.targetObject;
         var list = new VisualElement();
         root.Add(new Label("Planetas exigidos para liberar a rota"));
         root.Add(list);
 
         bool CanRequire(CampaignPlanet option) => option != null && !string.IsNullOrWhiteSpace(option.id) &&
-            !DependsOn(catalog, option, selectedId, new HashSet<string>());
+            !DependsOn(catalog, option, selectedId.stringValue, new HashSet<string>());
 
         void Rebuild(SerializedProperty requirements)
         {
@@ -112,7 +135,7 @@ public sealed class CampaignPlanetDrawer : PropertyDrawer
         return root;
     }
 
-    private static bool DependsOn(CampaignCatalog catalog, CampaignPlanet planet, string id, HashSet<string> visited)
+    internal static bool DependsOn(CampaignCatalog catalog, CampaignPlanet planet, string id, HashSet<string> visited)
     {
         if (planet.id == id) return true;
         if (!visited.Add(planet.id) || planet.prerequisitePlanetIds == null) return false;
@@ -170,7 +193,7 @@ public sealed class CampaignSkillInspector : Editor
                 case CampaignSkillEffectType.None:
                     break;
                 case CampaignSkillEffectType.WeaponUnlock:
-                    AddFields(configuration, "unlockedWeaponResourcePath");
+                    AddFields(configuration, "unlockedWeapon");
                     break;
                 case CampaignSkillEffectType.FlashDuration:
                 case CampaignSkillEffectType.FlashArea:
@@ -183,6 +206,11 @@ public sealed class CampaignSkillInspector : Editor
                         { objectType = typeof(FlashData), value = FlashData.Shared, allowSceneObjects = false };
                     flash.SetEnabled(false);
                     configuration.Add(flash);
+                    var skill = (CampaignSkill)target;
+                    Vector2 bonus = skill.EffectPerRank;
+                    configuration.Add(new Label(bonus.y == 0f
+                        ? $"Valor por nível aplicado pelo jogo: {bonus.x:0.###}"
+                        : $"Valores por nível aplicados pelo jogo: {bonus.x:0.###} / {bonus.y:0.###}"));
                     AddFields(configuration, "effectStartsAtRank");
                     if ((CampaignSkillEffectType)value.enumValueIndex == CampaignSkillEffectType.BladeTurret)
                         AddFields(configuration, "effectPrefab");

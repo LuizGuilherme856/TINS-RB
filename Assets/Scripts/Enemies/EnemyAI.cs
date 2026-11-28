@@ -42,9 +42,9 @@ public class EnemyAI : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         statusEffectOnEnemy = GetComponent<StatusEffectOnEnemy>();
         enemyHealth = GetComponent<EnemyHealth>();
-        purificationReveal = FindFirstObjectByType<PurificationReveal>();
+        purificationReveal = CampaignMissionRuntime.Active?.TowerLight;
+        if (purificationReveal == null) purificationReveal = FindFirstObjectByType<PurificationReveal>();
 
-        InvokeRepeating(nameof(UpdatePath), 0, enemyData.updatePathInterval);
     }
 
     protected virtual void OnEnable()
@@ -53,15 +53,26 @@ public class EnemyAI : MonoBehaviour
         externalKnockbackTime = 0f;
         towerLightSpeedMultiplier = 1f;
         if (enemyHealth != null) enemyHealth.OnMeleeProtectionBroken += HandleMeleeProtectionBroken;
-        if(onMenu) return; //Do nothing in menus.
-        //Observe state changes and update the cached value.
-        if (isNPC == false) statusEffectOnEnemy.OnStatusChange += () => currentStatusEffect = statusEffectOnEnemy.GetCurrentStatus(); 
+        currentWayPoint = 0;
+        path = null;
+        if (usesAStar && enemyData != null && !CampaignCombatRules.IsCampaignMission)
+            InvokeRepeating(nameof(UpdatePath), 0f, Mathf.Max(.01f, enemyData.updatePathInterval));
+        if (!onMenu && !isNPC && statusEffectOnEnemy != null)
+        {
+            RefreshStatus();
+            statusEffectOnEnemy.OnStatusChange += RefreshStatus;
+        }
     }
 
     protected virtual void OnDisable()
     {
         if (enemyHealth != null) enemyHealth.OnMeleeProtectionBroken -= HandleMeleeProtectionBroken;
+        if (statusEffectOnEnemy != null) statusEffectOnEnemy.OnStatusChange -= RefreshStatus;
+        CancelInvoke(nameof(UpdatePath));
+        if (seeker != null) seeker.CancelCurrentPathRequest();
     }
+
+    private void RefreshStatus() => currentStatusEffect = statusEffectOnEnemy.GetCurrentStatus();
 
     private void HandleMeleeProtectionBroken()
     {
@@ -204,7 +215,7 @@ public class EnemyAI : MonoBehaviour
     private void UpdateTowerLightSpeedMultiplier()
     {
         if (purificationReveal == null)
-            purificationReveal = FindFirstObjectByType<PurificationReveal>();
+            purificationReveal = CampaignMissionRuntime.Active?.TowerLight;
 
         if (purificationReveal == null)
         {
@@ -220,7 +231,7 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void OnPathComplete(Path path)
     {
-        if(path.error == false)
+        if(isActiveAndEnabled && path.error == false)
         {
             this.path = path;
             currentWayPoint = 0;

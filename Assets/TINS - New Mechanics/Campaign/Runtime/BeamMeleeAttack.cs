@@ -16,6 +16,7 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     private CampaignDarknessBands darkness;
     private float FlashDuration => FlashData.Shared.duration * campaignDurationMultiplier;
     private readonly List<ActiveBeam> activeBeams = new List<ActiveBeam>();
+    private readonly List<Collider2D> coneOverlaps = new List<Collider2D>(32);
     private float campaignDurationMultiplier = 1f;
     private int areaRank;
     private float campaignAngleBonus;
@@ -232,13 +233,15 @@ public sealed class BeamMeleeAttack : MonoBehaviour
     private void StunEnemiesInCone(Vector3 origin, Vector2 direction, ActiveBeam beam)
     {
         float range = beam.reach;
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
+        var filter = new ContactFilter2D { useTriggers = Physics2D.queriesHitTriggers };
+        filter.SetLayerMask(Physics2D.DefaultRaycastLayers);
+        Physics2D.OverlapCircle(origin, range, filter, coneOverlaps);
         float halfAngle = beam.coneAngle * 0.5f;
         CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
         float upgradedPushSpeed = mission?.SkillEffect(CampaignSkillEffectType.FlashRepulsion).x ?? 0f;
         float pushSpeed = Mathf.Max(FlashData.Shared.pushSpeed, upgradedPushSpeed);
         Transform pushOrigin = upgradedPushSpeed > 0f ? mission.DefenseCore : null;
-        foreach (Collider2D hit in hits)
+        foreach (Collider2D hit in coneOverlaps)
         {
             if (hit == null) continue;
             EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();

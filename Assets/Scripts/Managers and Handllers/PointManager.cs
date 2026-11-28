@@ -32,7 +32,7 @@ public class PointManager : MonoBehaviour
     private int numberOfDoublePointsActive = 0;
     public int GetInitialPoints(int initialPoints = 0)
     {
-        return initialPoints + globalStats.extraInitialPoints;
+        return initialPoints + globalStats.ForCurrentRun.extraInitialPoints;
     }
     public void AddXp(int xp)
     {
@@ -62,7 +62,7 @@ public class PointManager : MonoBehaviour
             }
         }
 
-        newPoints += globalStats.extraPointsPerKill; //A blessing.
+        newPoints += globalStats.ForCurrentRun.extraPointsPerKill; //A blessing.
 
         currentPoints += newPoints;
         lastPointsAdded = newPoints;

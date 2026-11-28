@@ -68,7 +68,7 @@ public class MeleeData : WeaponData
     {
         if (globalStats == null) globalStats = AssetFinder.GetGlobalStats();
 
-        return (int)(base.GetPrice() * globalStats.meleeWeaponPriceMultiplier * globalStats.globalPriceMultiplier);
+        return (int)(base.GetPrice() * globalStats.ForCurrentRun.meleeWeaponPriceMultiplier * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
 
 

@@ -12,7 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private Health health;
-    private Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
     private PlayerInput playerInput;
     private Vector2 oldJoystickAim, newJoystickAim, movementInput;
 
@@ -68,7 +68,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        if (mainCamera == null && !isOnMenu) mainCamera = Camera.main;
         playerInput = GetComponent<PlayerInput>();
         if (isOnMenu == false)
             health = GetComponent<Health>();
@@ -291,6 +291,8 @@ public class PlayerInputHandler : MonoBehaviour
         else //is using a mouse
         {
             Vector2 mouse = Input.mousePosition;
+            if (mainCamera == null) mainCamera = Camera.main;
+            if (mainCamera == null) return 0f;
             Vector3 screenPoint = mainCamera.WorldToScreenPoint(transform.position);
 
             //Find the vector from screen center to the mouse and calculate its angle.

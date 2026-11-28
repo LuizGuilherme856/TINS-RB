@@ -63,7 +63,7 @@ public class HandlePowerUpEffects : MonoBehaviour
 
         foreach (var gun in guns)
         {
-            gun.SetMaxSpareAmmo();
+            gunInventory.RefillReserve(gun);
         }
 
         //gunManager.GetEquipedGun()?.SetMaxSpareAmmo();
@@ -71,7 +71,7 @@ public class HandlePowerUpEffects : MonoBehaviour
 
     public void ExtraLife()
     {
-        health.ReplenishHealth(globalStats.AddToHpHealedByHearts);
+        health.ReplenishHealth(globalStats.ForCurrentRun.AddToHpHealedByHearts);
     }
 
     public void ExtraPoints()

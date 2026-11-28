@@ -83,32 +83,6 @@ public static class CampaignProjectInstaller
             catalog = ScriptableObject.CreateInstance<CampaignCatalog>();
             AssetDatabase.CreateAsset(catalog, CatalogPath);
         }
-        if (catalog.skills != null)
-        {
-            foreach (CampaignSkill skill in catalog.skills)
-            {
-                if (skill == null) continue;
-                if (skill.id == "weapon-laser-pistol") skill.unlockedWeaponResourcePath = "CampaignGuns/laser pistol_GunData";
-                if (skill.id == "weapon-auto-pistol") skill.unlockedWeaponResourcePath = "CampaignGuns/automatic pistol_GunData";
-            }
-        }
-        if (catalog.planets != null)
-        {
-            foreach (CampaignPlanet planet in catalog.planets)
-            {
-                if (planet == null) continue;
-                switch (planet.id)
-                {
-                    case "velaria": planet.enemySpeedMultiplier = .70f; break;
-                    case "nivora": planet.enemySpeedMultiplier = .72f; break;
-                    case "asterim": planet.enemySpeedMultiplier = .74f; break;
-                    case "dorsalia": planet.enemySpeedMultiplier = .76f; break;
-                    case "varkora": planet.enemySpeedMultiplier = .78f; break;
-                    case "marevia": planet.enemySpeedMultiplier = .80f; break;
-                }
-            }
-        }
-        EditorUtility.SetDirty(catalog);
         return catalog;
     }
 
@@ -143,6 +117,7 @@ public static class CampaignProjectInstaller
             input.gameObject.activeInHierarchy && input.GetComponentInParent<Health>() != null && !input.GetIsClone());
         if (missionInput == null && holder != null) missionInput = holder.GetPlayerInputHandler();
         if (missionInput == null) throw new System.InvalidOperationException("Mission player is missing.");
+        SetObject(missionInput, "mainCamera", Camera.main);
         GameObject player = missionInput.gameObject;
         if (!player.TryGetComponent(out BlueCrystalInventory souls)) souls = player.AddComponent<BlueCrystalInventory>();
         if (!player.TryGetComponent(out BeamMeleeUsesManager charges)) charges = player.AddComponent<BeamMeleeUsesManager>();
@@ -174,7 +149,7 @@ public static class CampaignProjectInstaller
         EnsureStartingPistol startingPistol = FindFirst<EnsureStartingPistol>(scene);
         if (startingPistol == null && gunInventory != null)
             startingPistol = gunInventory.gameObject.AddComponent<EnsureStartingPistol>();
-        GunData simplePistol = AssetDatabase.LoadAssetAtPath<GunData>("Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns/simple Pistol_GunData.asset");
+        GunData simplePistol = AssetDatabase.LoadAssetAtPath<GunData>("Assets/TINS - New Mechanics/Campaign/Resources/CampaignGuns/TINS Starting Pistol.asset");
         if (startingPistol != null)
         {
             SetObject(startingPistol, "gunInventory", gunInventory);
@@ -193,6 +168,10 @@ public static class CampaignProjectInstaller
         SetObject(runtime, "lightReveal", reveal);
         SetObject(runtime, "playerHealth", playerHealth);
         SetObject(runtime, "soulInventory", inventory);
+        SetObject(runtime, "spawner", spawner);
+        HolderScriptableObjects sharedAssets = FindFirst<HolderScriptableObjects>(scene);
+        SetObject(runtime, "statsDefinition", sharedAssets?.globalStats);
+        SetObject(runtime, "runes", sharedAssets?.runeInventory);
         CampaignFlashHUD flashHud = FindFirst<CampaignFlashHUD>(scene);
         if (flashHud == null)
         {
@@ -225,6 +204,7 @@ public static class CampaignProjectInstaller
         renderer.maskInteraction = SpriteMaskInteraction.None;
         CampaignDarknessBands darkness = overlayObject.GetComponent<CampaignDarknessBands>();
         if (darkness == null) darkness = overlayObject.AddComponent<CampaignDarknessBands>();
+        SetObject(runtime, "darkness", darkness);
         SetObject(darkness, "lightReveal", reveal);
         SetObject(darkness, "player", playerHealth != null ? playerHealth.transform : null);
         SetObject(darkness, "playerBody", playerHealth != null ? playerHealth.GetComponent<Rigidbody2D>() : null);

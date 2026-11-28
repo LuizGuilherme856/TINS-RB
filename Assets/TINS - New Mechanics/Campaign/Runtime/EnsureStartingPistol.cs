@@ -11,22 +11,21 @@ public sealed class EnsureStartingPistol : MonoBehaviour
     {
         if (gunInventory == null) gunInventory = GetComponent<GunInventory>();
         if (gunInventory == null || startingPistol == null) return;
-        gunInventory.ResetGuns(startingPistol);
+        gunInventory.BeginCampaignLoadout(startingPistol);
         if (catalog != null && catalog.skills != null && profile != null)
         {
             foreach (CampaignSkill skill in catalog.skills)
             {
                 if (skill == null) continue;
-                if (string.IsNullOrWhiteSpace(skill.unlockedWeaponResourcePath) || profile.Rank(skill.id) <= 0) continue;
-                GunData weapon = Resources.Load<GunData>(skill.unlockedWeaponResourcePath);
+                if (skill.effectType != CampaignSkillEffectType.WeaponUnlock || profile.Rank(skill.id) <= 0) continue;
+                GunData weapon = skill.GetUnlockedWeapon();
                 if (weapon == null)
                 {
-                    Debug.LogWarning($"Arma da campanha ausente: {skill.unlockedWeaponResourcePath}", this);
+                    Debug.LogWarning($"Configure a arma desbloqueada por {skill.displayName}.", skill);
                     continue;
                 }
                 if (gunInventory.HasThisGun(weapon)) continue;
 
-                weapon.SetFullAmmo();
                 gunInventory.GetGuns().Add(weapon);
             }
         }

@@ -90,12 +90,12 @@ public class TowerController : MonoBehaviour
     }
 
     /// <summary>Applies one tower hit when an enemy reaches the impact of its attack.</summary>
-    public bool TryTakeDamageFromEnemy()
+    public bool TryTakeDamageFromEnemy(int damage = 1)
     {
         if (currentLife <= 0 || timeSinceLastHit <= immunityAfterDamage) return false;
 
         timeSinceLastHit = 0f;
-        currentLife = Mathf.Max(0, currentLife - 1);
+        currentLife = Mathf.Max(0, currentLife - Mathf.Max(1, damage));
         Damaged?.Invoke();
         if (purificationLightDamageFeedback == null)
             CachePurificationLightFeedback();

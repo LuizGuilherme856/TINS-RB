@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StopOnDirectionChange(input);
             walkDirection = GetWalkDirection(input);
-            rb.AddForce(walkDirection * (playerData.walkSpeed * globalStats.playerWalkSpeedMultiplier * campaignSpeedMultiplier));
+            rb.AddForce(walkDirection * (playerData.walkSpeed * globalStats.ForCurrentRun.playerWalkSpeedMultiplier * campaignSpeedMultiplier));
         }
 
         lastInput = input;

@@ -156,9 +156,10 @@ public class BomberAI : EnemyAI
  
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         OnChangeState -= StateChangeFeedback;
+        base.OnDisable();
     }
 
     /// <summary>

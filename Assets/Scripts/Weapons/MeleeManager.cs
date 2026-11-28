@@ -218,7 +218,7 @@ public class MeleeManager : MonoBehaviour
 
     public void TryToResetCooldown()
     {
-        if(Random.Range(0f, 1f) < globalStats.resetSpecialAbilityOnEnemyDeathChance)
+        if(Random.Range(0f, 1f) < globalStats.ForCurrentRun.resetSpecialAbilityOnEnemyDeathChance)
         {
             currentAttackRateTimer = statsCalculator.CalculateMaxTimeCoolDown(meleeData.attackRate, playerAction);
         }

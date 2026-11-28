@@ -111,7 +111,7 @@ public class SkillTreeManager : MonoBehaviour
         try
         {
             Debug.Log("Resetando todos os stats...");
-            globalStats.ResetValues();
+            globalStats.ForCurrentRun.ResetValues();
             Debug.Log("Stats resetados com sucesso.");
         }
         catch (System.Exception e)

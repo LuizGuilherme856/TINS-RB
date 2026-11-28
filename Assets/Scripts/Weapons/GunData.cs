@@ -5,7 +5,6 @@ using System;
 //[CreateAssetMenu(fileName ="new gun", menuName = "Gun")]
 public class GunData : WeaponData
 {
-    public event Action OnAmmoChange;
 
     #region gun stats
 
@@ -100,56 +99,9 @@ public class GunData : WeaponData
     [Range(0, 1)] public float impactFxSpawnProbability = 1;
     [Range(0, 1)] public float deathFxSpawnProbability = 1;
 
-    public int currentAmmoOnClip { get; private set; }
-    [Tooltip("nao conta a muni��o que ta no pente. Seria a muni��o reserva")]
-    public int currentSpareAmmo { get; private set; }
-
-
-
     #endregion
 
     #region Ammo Related
-
-    public void DecreaseAmmoOnClip()
-    {
-
-        currentAmmoOnClip -= GetAmmoConsumedPerShot();
-
-        //Take excess consumption from reserve ammunition.
-        if (currentAmmoOnClip < 0)
-        {
-            DecreaseSpareAmmo(-currentAmmoOnClip);
-            currentAmmoOnClip = 0;
-        }
-
-        OnAmmoChange?.Invoke();
-    }
-  
-    public void DecreaseSpareAmmo(int ammoUsed)
-    {
-        currentSpareAmmo -= ammoUsed;
-
-        if(currentSpareAmmo< 0) currentSpareAmmo= 0;
-        OnAmmoChange?.Invoke();
-    }
-
-    public void SetAmmoOnClip( int ammo)
-    {
-        currentAmmoOnClip = ammo;
-        OnAmmoChange?.Invoke();
-    }
-
-    public void SetFullAmmo()
-    {
-        currentAmmoOnClip = maxAmmoOnClip;
-        currentSpareAmmo = statsCalculator.CalculateNewSpareAmmo(maxSpareAmmo);
-    }
-
-    public void SetMaxSpareAmmo()
-    {
-        currentSpareAmmo = statsCalculator.CalculateNewSpareAmmo(maxSpareAmmo);
-        OnAmmoChange?.Invoke();
-    }
 
     public int GetAmmoConsumedPerShot(bool defaultValue = false)
     {
@@ -323,15 +275,9 @@ public class GunData : WeaponData
     {
         if(globalStats == null) globalStats = AssetFinder.GetGlobalStats();
 
-        return (int)(base.GetPrice() * globalStats.gunPriceMultiplier * globalStats.globalPriceMultiplier);
+        return (int)(base.GetPrice() * globalStats.ForCurrentRun.gunPriceMultiplier * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
 
-    public bool IsClipFull()
-    {
-        return currentAmmoOnClip == GetMaxAmmoOnClip();
-    }
-
-    
     [ContextMenu("Buff ammo 30%")]
     public void BuffAmmo()
     {

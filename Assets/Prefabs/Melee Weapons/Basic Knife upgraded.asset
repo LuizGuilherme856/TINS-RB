@@ -55,6 +55,38 @@ MonoBehaviour:
   minDamageFalloff: 1
   globalStats: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
   useSlashCombo: 1
+  openingSlash:
+    windup: 0.035
+    activeTime: 0.09
+    recovery: 0.085
+    reach: 1.65
+    arc: 100
+    lungeSpeed: 10
+    damage: 0.8
+    push: 0.08
+    hitStop: 0.03
+  returnSlash:
+    windup: 0.025
+    activeTime: 0.08
+    recovery: 0.075
+    reach: 1.7
+    arc: 115
+    lungeSpeed: 3
+    damage: 0.85
+    push: 0.1
+    hitStop: 0.02
+  finishingSlash:
+    windup: 0.09
+    activeTime: 0.12
+    recovery: 0.22
+    reach: 2
+    arc: 135
+    lungeSpeed: 6
+    damage: 1.5
+    push: 1.8
+    hitStop: 0.065
+  comboInputBuffer: 0.12
+  comboLinkWindow: 0.38
   freezeFrameTime: 0.1
   lensDistortion: -0.3
   hasTrail: 0

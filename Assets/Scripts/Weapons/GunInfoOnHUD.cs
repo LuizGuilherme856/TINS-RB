@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 using MoreMountains.Feedbacks;
 
 /// <summary>
@@ -32,6 +31,7 @@ public class GunInfoOnHUD : MonoBehaviour
 
     private GunInventory gunInventory;
     private GunData currentGun;
+    private GunAmmo currentAmmo;
     private Sprite simplePistolSprite;
     private readonly List<UnityEngine.UI.Image> bulletSlots = new List<UnityEngine.UI.Image>();
     private readonly List<float> shotTimes = new List<float>();
@@ -69,7 +69,8 @@ public class GunInfoOnHUD : MonoBehaviour
     private void OnDisable()
     {
         UnbindGunInventory();
-        if (currentGun != null) currentGun.OnAmmoChange -= RefreshCurrentAmmo;
+        if (currentAmmo != null) currentAmmo.Changed -= RefreshCurrentAmmo;
+        currentAmmo = null;
         currentGun = null;
         SetCampaignHudActive(false);
     }
@@ -131,7 +132,7 @@ public class GunInfoOnHUD : MonoBehaviour
         {
             if (campaignWeaponImage != null)
             {
-                bool isSimplePistol = currentGun.name.IndexOf("simple pistol", StringComparison.OrdinalIgnoreCase) >= 0;
+                bool isSimplePistol = gunInventory != null && gunInventory.IsStartingGun(currentGun);
                 campaignWeaponImage.sprite = isSimplePistol
                     && simplePistolSprite != null
                     ? simplePistolSprite
@@ -149,7 +150,7 @@ public class GunInfoOnHUD : MonoBehaviour
 
     private void RefreshCurrentAmmo()
     {
-        if (currentGun == null)
+        if (currentAmmo == null)
         {
             if (ammoOnclipText != null) ammoOnclipText.text = "- -";
             if (spareAmmoText != null) spareAmmoText.text = "- -";
@@ -157,11 +158,11 @@ public class GunInfoOnHUD : MonoBehaviour
             return;
         }
 
-        if (ammoOnclipText != null) ammoOnclipText.text = currentGun.currentAmmoOnClip.ToString();
+        if (ammoOnclipText != null) ammoOnclipText.text = currentAmmo.Rounds.ToString();
         if (spareAmmoText != null)
             spareAmmoText.text = TINS.Campaign.CampaignCombatRules.IsCampaignMission
                 ? "âˆž"
-                : currentGun.currentSpareAmmo.ToString();
+                : currentAmmo.Reserve.ToString();
 
         if (campaignHudActive) RefreshCampaignMagazine();
     }
@@ -169,7 +170,7 @@ public class GunInfoOnHUD : MonoBehaviour
     private void RefreshCampaignMagazine()
     {
         int maxAmmo = Mathf.Max(1, currentGun.GetMaxAmmoOnClip());
-        int ammo = Mathf.Clamp(currentGun.currentAmmoOnClip, 0, maxAmmo);
+        int ammo = Mathf.Clamp(currentAmmo.Rounds, 0, maxAmmo);
         if (maxAmmo != previousMaxAmmo) RebuildBulletSlots(maxAmmo);
 
         if (previousAmmo > ammo)
@@ -256,12 +257,13 @@ public class GunInfoOnHUD : MonoBehaviour
 
     private void RefreshCurrentGun()
     {
-        if (currentGun != null) currentGun.OnAmmoChange -= RefreshCurrentAmmo;
+        if (currentAmmo != null) currentAmmo.Changed -= RefreshCurrentAmmo;
         currentGun = gunInventory != null ? gunInventory.GetCurrentEquipedGun() : null;
+        currentAmmo = gunInventory != null ? gunInventory.GetAmmo(currentGun) : null;
         previousAmmo = -1;
         previousMaxAmmo = -1;
 
-        if (currentGun != null) currentGun.OnAmmoChange += RefreshCurrentAmmo;
+        if (currentAmmo != null) currentAmmo.Changed += RefreshCurrentAmmo;
         if (campaignHudRoot != null) campaignHudRoot.SetActive(campaignHudActive && currentGun != null);
     }
 }

@@ -11,7 +11,7 @@ namespace TINS.Campaign
         [SerializeField] private TMP_Text instruction;
 
         private PlayerInputHandler player;
-        private GunData weapon;
+        private GunAmmo ammo;
         private CampaignMissionRuntime mission;
         private PurificationReveal light;
         private Vector2 initialPosition;
@@ -28,8 +28,8 @@ namespace TINS.Campaign
             if (player == null) return;
             initialPosition = player.transform.position;
             initialRadius = light.Radius;
-            weapon = player.GetComponentInChildren<GunManager>()?.GetEquipedGun();
-            initialAmmo = weapon != null ? weapon.currentAmmoOnClip : 0;
+            ammo = player.GetComponentInChildren<GunManager>()?.Ammo;
+            initialAmmo = ammo?.Rounds ?? 0;
             lesson = Lesson.Move;
             gameObject.SetActive(true);
             Redraw();
@@ -55,7 +55,7 @@ namespace TINS.Campaign
             Lesson next = lesson;
             if (light.Radius > initialRadius + .01f) next = Lesson.Explore;
             else if (mission.SoulsCollected > 0) next = Lesson.Deliver;
-            else if (weapon != null && weapon.currentAmmoOnClip < initialAmmo) next = Lesson.Collect;
+            else if (ammo != null && ammo.Rounds < initialAmmo) next = Lesson.Collect;
             else if (lesson == Lesson.Move && ((Vector2)player.transform.position - initialPosition).sqrMagnitude >= .36f)
                 next = Lesson.Fire;
 

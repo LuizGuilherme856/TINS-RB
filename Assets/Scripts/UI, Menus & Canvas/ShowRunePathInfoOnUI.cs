@@ -141,7 +141,7 @@ public class ShowRunePathInfoOnUI : MonoBehaviour
         float price = rerollPrice * runData.currentWaveNumber;
         price = (price * rollsCount) / 3; //Double the price every three rerolls.
 
-        price *= globalStats.globalPriceMultiplier;
+        price *= globalStats.ForCurrentRun.globalPriceMultiplier;
         // Check affordability and color the price accordingly.
         int priceInt = Mathf.FloorToInt(price);
         if (pointManager.currentPoints >= price)

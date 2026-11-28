@@ -29,9 +29,9 @@ public class HandlePlayerReviveScreen : MonoBehaviour
 
     public void ShowReviveScreen()
     {
-        if(globalStats.FreeRevives > 0) //Skill allowing one revival after death.
+        if(globalStats.ForCurrentRun.FreeRevives > 0) //Skill allowing one revival after death.
         {
-            globalStats.ChangeFreeRevives(-1, OperationType.AddUp);
+            globalStats.ForCurrentRun.ChangeFreeRevives(-1, OperationType.AddUp);
             playerHolder.GetPlayerDeathScript().ReEnablePlayerSprites();
             playerHolder.GetRevivePlayer().Revive();
             timesRevived++;

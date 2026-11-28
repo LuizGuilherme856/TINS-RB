@@ -35,7 +35,7 @@ public class MoveTowardsPlayer : MonoBehaviour
         target = isEnemy && CampaignMissionRuntime.Active != null ? CampaignMissionRuntime.Active.DefenseCore : targetObject?.transform;
         statusEffectOnEnemy = GetComponent<StatusEffectOnEnemy>();
         enemyHealth = GetComponent<EnemyHealth>();
-        purificationReveal = FindFirstObjectByType<PurificationReveal>();
+        purificationReveal = CampaignMissionRuntime.Active?.TowerLight;
 
         if (hasSecondForm) bossNextForm = GetComponent<BossNextForm>();
 
@@ -43,11 +43,23 @@ public class MoveTowardsPlayer : MonoBehaviour
     private void OnEnable()
     {
         //Observe state changes and update the cached value.
-        if(isEnemy) statusEffectOnEnemy.OnStatusChange += () => currentStatusEffect = statusEffectOnEnemy.GetCurrentStatus();
+        if (isEnemy && statusEffectOnEnemy != null)
+        {
+            currentStatusEffect = statusEffectOnEnemy.GetCurrentStatus();
+            statusEffectOnEnemy.OnStatusChange += RefreshStatus;
+        }
 
         if(hasparticles) particles.Play();//Emit a particle trail.
 
     }
+
+    private void OnDisable()
+    {
+        if (statusEffectOnEnemy != null) statusEffectOnEnemy.OnStatusChange -= RefreshStatus;
+        pausedForTowerAttack = false;
+    }
+
+    private void RefreshStatus() => currentStatusEffect = statusEffectOnEnemy.GetCurrentStatus();
 
     private void FixedUpdate()
     {
@@ -63,7 +75,7 @@ public class MoveTowardsPlayer : MonoBehaviour
         if (pausedForTowerAttack) return;
         if (target == null || rb2d == null || enemyData == null) return;
         if (CampaignCombatRules.IsCampaignMission && purificationReveal == null)
-            purificationReveal = FindFirstObjectByType<PurificationReveal>();
+            purificationReveal = CampaignMissionRuntime.Active?.TowerLight;
         if (currentStatusEffect == StatusEffect.Frozen || canMove == false || currentStatusEffect == StatusEffect.Electrocuted) return;
         
             //Find direction

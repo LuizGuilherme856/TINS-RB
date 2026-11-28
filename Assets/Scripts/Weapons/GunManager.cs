@@ -35,6 +35,25 @@ public class GunManager : MonoBehaviour
     public event Action OnStartReloading, OnCancelReloading, OnFinishReload, OnReloadWithEmptyMagazine;
 
     private Aim aim;
+    private GunInventory inventory;
+    private GunData standaloneGun;
+    private GunAmmo standaloneAmmo;
+
+    public GunAmmo Ammo
+    {
+        get
+        {
+            if (gunData == null) return null;
+            if (inventory != null) return inventory.GetAmmo(gunData);
+            if (standaloneGun != gunData)
+            {
+                standaloneGun = gunData;
+                standaloneAmmo = new GunAmmo();
+                standaloneAmmo.Reset(gunData);
+            }
+            return standaloneAmmo;
+        }
+    }
     private bool infiniteReserveAmmo => !playerClone && TINS.Campaign.CampaignCombatRules.IsCampaignMission;
     private bool isShootButtonHeldDown = false, isReloading = false;
     private float currentFireRateTimer = 0;
@@ -61,6 +80,7 @@ public class GunManager : MonoBehaviour
         // The campaign player keeps an inexhaustible reserve, but still empties and reloads each magazine.
         if (infiniteReserveAmmo) infiniteAmmo = false;
 
+        inventory = GetComponentInParent<GunInventory>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         shootingHandler = GetComponent<ShootingHandler>();
         handleGunSFX = GetComponent<HandleGunSFX>();
@@ -83,6 +103,9 @@ public class GunManager : MonoBehaviour
         playerInput.OnShootButtonDown -= TriggerShooting;
         playerInput.OnReload -= TryManualReload;
         playerInput.OnShootButtonUp -= StopShooting;
+        CancelReload_TechBooh(false);
+        isShootButtonHeldDown = false;
+        shootBurst = false;
     }
 
     private void Start()
@@ -93,7 +116,6 @@ public class GunManager : MonoBehaviour
             return;
         }
         Refresh();
-        if (infiniteReserveAmmo && gunData.currentSpareAmmo <= 0) gunData.SetMaxSpareAmmo();
         firePoint.localPosition = gunData.firePointOffset;
         gunTransform.localPosition = gunData.posOffset;
     }
@@ -143,7 +165,7 @@ public class GunManager : MonoBehaviour
         }
 
         //Clamp ammunition after reload to prevent exceeding capacity.
-        if (gunData.currentAmmoOnClip > gunData.GetMaxAmmoOnClip()) gunData.SetAmmoOnClip( gunData.GetMaxAmmoOnClip());
+        if (Ammo.Rounds > gunData.GetMaxAmmoOnClip()) Ammo.SetRounds( gunData.GetMaxAmmoOnClip());
 
     }
 
@@ -153,19 +175,12 @@ public class GunManager : MonoBehaviour
         //At least one magazine round is required. If a shot costs more than remains,
         //take the remainder from reserves: a three-round shot with two in the magazine
         //consumes two magazine rounds and one reserve round.
-        if (gunData.currentAmmoOnClip >= 1 || infiniteAmmo)
+        if (Ammo.Rounds >= 1 || infiniteAmmo)
         {
             CancelReload_TechBooh();
 
-            if(gunData.gunType == GunType.hoveringShot)
-            {
-                hoveringShotManager.StartShooting();
-                shootingHandler.InstantiateShot(firePoint.position, playerInput.GetAimAngle());
-            }
-            else
-            {
-                shootingHandler.InstantiateShot(firePoint.position, playerInput.GetAimAngle());
-            }
+            if (gunData.gunType == GunType.hoveringShot) hoveringShotManager.StartShooting();
+            shootingHandler.InstantiateShot(firePoint.position, playerInput.GetAimAngle(), Ammo.Rounds);
 
             //Consume ammunition only when this weapon manager is not using infinite ammo.
             if (!infiniteAmmo)
@@ -177,24 +192,24 @@ public class GunManager : MonoBehaviour
                 }
                 else
                 {
-                    if (infiniteReserveAmmo)
-                        gunData.SetAmmoOnClip(Mathf.Max(0, gunData.currentAmmoOnClip - CampaignCombatRules.RoundsPerShot(gunData)));
-                    else
-                        gunData.DecreaseAmmoOnClip();
+                    int spent = infiniteReserveAmmo
+                        ? CampaignCombatRules.RoundsPerShot(gunData)
+                        : gunData.GetAmmoConsumedPerShot();
+                    Ammo.Spend(spent, !infiniteReserveAmmo);
                 }
             }
 
             currentFireRateTimer = gunData.fireRate;
 
             //Reload automatically when the magazine is empty.
-            if (!infiniteAmmo && gunData.currentAmmoOnClip < 1 && (gunData.currentSpareAmmo > 0 || infiniteReserveAmmo))
+            if (!infiniteAmmo && Ammo.Rounds < 1 && (Ammo.Reserve > 0 || infiniteReserveAmmo))
             {
                 TriggerReload();
             }
 
-            //Aux.Print(gunData.currentAmmoOnClip.ToString(), showDebug);
+            //Aux.Print(Ammo.Rounds.ToString(), showDebug);
         }
-        else if (gunData.currentSpareAmmo > 0 || infiniteReserveAmmo)
+        else if (Ammo.Reserve > 0 || infiniteReserveAmmo)
         {
             TriggerReload();
         }
@@ -248,9 +263,9 @@ public class GunManager : MonoBehaviour
     {
         if (gunData == null) return;
 
-        if (isReloading == false && gunData.currentAmmoOnClip < gunData.GetMaxAmmoOnClip())
+        if (isReloading == false && Ammo.Rounds < gunData.GetMaxAmmoOnClip())
         {
-            if(gunData.currentSpareAmmo > 0 || infiniteReserveAmmo)
+            if(Ammo.Reserve > 0 || infiniteReserveAmmo)
             {
                 // TechBooh:
                 // Stop an existing reload coroutine before starting another.
@@ -260,67 +275,30 @@ public class GunManager : MonoBehaviour
 
                 OnStartReloading?.Invoke();
 
-                if (gunData.currentAmmoOnClip == 0)
+                if (Ammo.Rounds == 0)
                 {
                     OnReloadWithEmptyMagazine?.Invoke();
                 }
 
                 isReloading = true;
-                if (infiniteReserveAmmo)
-                {
-                    hoveringShotManager?.StopShooting();
-                    reloadCoroutine_TechBooh = StartCoroutine(Reload(
-                        statsCalculator.CalculateNewReloadTime(gunData.reloadTime), gunData.GetMaxAmmoOnClip(), 0));
-                    return;
-                }
-
-                //Fill the magazine from reserves, limited by available ammunition.
-                int ammoForTheClip = gunData.currentSpareAmmo >= gunData.GetMaxAmmoOnClip() - gunData.currentAmmoOnClip
-                    ? gunData.GetMaxAmmoOnClip() : gunData.currentSpareAmmo;
-                int ammoToDecreaseFromSpareAmmo = ammoForTheClip;
-
-                if(gunData.currentAmmoOnClip != 0)
-                {
-                    ammoToDecreaseFromSpareAmmo -= gunData.currentAmmoOnClip;
-                    ammoToDecreaseFromSpareAmmo = Mathf.Abs(ammoToDecreaseFromSpareAmmo);
-
-                    if (gunData.GetMaxAmmoOnClip() - gunData.currentAmmoOnClip > gunData.currentSpareAmmo) ammoToDecreaseFromSpareAmmo = 100000; //Use a large value to force the timer to zero.
-
-                    if(ammoToDecreaseFromSpareAmmo > gunData.currentSpareAmmo) ammoToDecreaseFromSpareAmmo = gunData.currentSpareAmmo;
-                }
-
-                if (ammoForTheClip + gunData.currentAmmoOnClip > gunData.GetMaxAmmoOnClip())
-                {
-                    ammoForTheClip = gunData.GetMaxAmmoOnClip();
-                }
-                else
-                {
-                    ammoForTheClip += gunData.currentAmmoOnClip;
-                }
-
-                float reloadTime = statsCalculator.CalculateNewReloadTime(gunData.reloadTime);
-
                 hoveringShotManager?.StopShooting();
-                reloadCoroutine_TechBooh = StartCoroutine(Reload(reloadTime, ammoForTheClip, ammoToDecreaseFromSpareAmmo));
+                float reloadTime = statsCalculator.CalculateNewReloadTime(gunData.reloadTime);
+                reloadCoroutine_TechBooh = StartCoroutine(Reload(reloadTime, gunData, Ammo));
             }
         }
     }
 
-
-    private IEnumerator Reload(float timer, int ammoForTheClip, int ammoToDecreaseFromSpareAmmo)
+    private IEnumerator Reload(float timer, GunData weapon, GunAmmo ammo)
     {
         yield return new WaitForSeconds(timer);
-        
-        if(isReloading == true) //Cancel reload when changing weapons.
-        {
-            isReloading = false;
-            reloadCoroutine_TechBooh = null;
-            //OnCancelReloading?.Invoke();
-            gunData.SetAmmoOnClip(ammoForTheClip);
-            if (!infiniteReserveAmmo) gunData.DecreaseSpareAmmo(ammoToDecreaseFromSpareAmmo);
-            OnFinishReload?.Invoke();
+        if (!isReloading || gunData != weapon || Ammo != ammo) yield break;
 
-        }
+        isReloading = false;
+        reloadCoroutine_TechBooh = null;
+        int room = Mathf.Max(0, weapon.GetMaxAmmoOnClip() - ammo.Rounds);
+        int loaded = infiniteReserveAmmo ? room : Mathf.Min(room, ammo.Reserve);
+        ammo.Reload(ammo.Rounds + loaded, infiniteReserveAmmo ? 0 : loaded);
+        OnFinishReload?.Invoke();
     }
 
     public void ChangeGun(GunData gunData)
@@ -379,7 +357,7 @@ public class GunManager : MonoBehaviour
 
     public bool IsShooting()
     {
-        if(isShootButtonHeldDown && gunData.currentAmmoOnClip > 0)
+        if(isShootButtonHeldDown && Ammo?.Rounds > 0)
         {
             return true;
         }

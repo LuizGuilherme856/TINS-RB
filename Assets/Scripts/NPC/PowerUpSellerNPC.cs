@@ -108,7 +108,7 @@ public class PowerUpSellerNPC : InteractWithPlayer
             return price;
         }
 
-        return (int)(price * globalStats.globalPriceMultiplier);
+        return (int)(price * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
 
     private void TryResolveGlobalStats_TechBooh()

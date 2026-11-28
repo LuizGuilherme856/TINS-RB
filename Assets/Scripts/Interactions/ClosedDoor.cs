@@ -378,7 +378,7 @@ public class ClosedDoor : InteractWithPlayer
     {
         try
         {
-            if (globalStats != null && globalStats.RefilAmmoOnOpenDoor && player != null)
+            if (globalStats != null && globalStats.ForCurrentRun.RefilAmmoOnOpenDoor && player != null)
             {
                 GunInventory gunInventory = player.GetComponent<GunInventory>();
                 if (gunInventory != null)
@@ -496,7 +496,7 @@ public class ClosedDoor : InteractWithPlayer
             return price;
         }
 
-        return (int)(price * globalStats.doorPriceMultiplier * globalStats.globalPriceMultiplier);
+        return (int)(price * globalStats.ForCurrentRun.doorPriceMultiplier * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
 
 }

@@ -36,6 +36,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
     private IObjectPool<PoolCreator> regularPool;
     private IObjectPool<PoolCreator> elitePool;
     private IObjectPool<PoolCreator> finalBossPool;
+    private TowerController campaignTower;
     private EnemyHealth finalBossInstance;
     private bool finalBossDefeated;
     private Transform inactivePoolRoot;
@@ -140,17 +141,28 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
         enemy.GetComponent<EnemyHealth>()?.SetCampaignElite(elite);
         enemy.gameObject.SetActive(true);
-        Transform defenseCore = CampaignMissionRuntime.Active?.DefenseCore;
-        if (defenseCore != null && enemy.TryGetComponent(out ChangeTarget targeting))
-            targeting.SetNewTarget(defenseCore);
+        if (campaignTower != null)
+        {
+            if (enemy.TryGetComponent(out ChangeTarget targeting))
+                targeting.SetNewTarget(campaignTower.transform);
+            else
+            {
+                if (enemy.TryGetComponent(out EnemyAI ai)) ai.SetTarget(campaignTower.transform);
+                if (enemy.TryGetComponent(out MoveTowardsPlayer chaser)) chaser.SetTarget(campaignTower.transform);
+            }
+            if (enemy.TryGetComponent(out EnemyTowerAttack attack)) attack.SetTargetTower(campaignTower);
+        }
         activeEnemies++;
         return enemy.gameObject;
     }
 
-    public void StartCampaignSpawning(CampaignMissionEnemies settings, float goalRadius)
+    public void StartCampaignSpawning(CampaignMissionEnemies settings, float goalRadius,
+        TowerController tower = null, PurificationReveal reveal = null)
     {
         StopAutomaticSpawning();
         campaignSettings = settings;
+        campaignTower = tower;
+        if (reveal != null) purificationManager = reveal;
         initialLightRadius = CurrentPressureRadius;
         campaignGoalRadius = goalRadius;
         campaignPools.Clear();

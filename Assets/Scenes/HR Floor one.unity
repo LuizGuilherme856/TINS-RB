@@ -4819,6 +4819,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5486224884018677144, guid: 964c3e90e186fb246a0a4df737970b01, type: 3}
+      propertyPath: mainCamera
+      value:
+      objectReference: {fileID: 7393173769579422157}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13964,6 +13968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebb9401a5cd86d49a61bb90642165c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignMissionRuntime
+  statsDefinition: {fileID: 11400000, guid: 9279a94017906e842a77a5ca9f4e2026, type: 2}
+  runes: {fileID: 11400000, guid: 13e4275437844f34a9dcb1435ac894c1, type: 2}
+  darkness: {fileID: 737268293}
+  spawner: {fileID: 6363811817394973018}
   catalog: {fileID: 11400000, guid: 63121f65fe0e3c846a6170b3251b2819, type: 2}
   tower: {fileID: 8291459603767950300}
   deposit: {fileID: 2009265102}
@@ -40133,6 +40141,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd90762d1244d9d41b9071d13ea6d8f2, type: 3}
+--- !u!114 &6363811817394973018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5165342941302286263, guid: cd90762d1244d9d41b9071d13ea6d8f2, type: 3}
+  m_PrefabInstance: {fileID: 6363811817394973016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cd2e648b0ffa841b25f08d64ec9927, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &6363811817394973017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2852690308746096507, guid: cd90762d1244d9d41b9071d13ea6d8f2, type: 3}

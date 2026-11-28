@@ -46,14 +46,12 @@ public sealed class PurificationReveal : MonoBehaviour
 
     private void OnEnable()
     {
-        ApplyMaskToRoots();
         ApplyRadius();
     }
 
     private void OnValidate()
     {
         radius = Mathf.Max(0.01f, radius);
-        ApplyMaskToRoots();
         ApplyRadius();
     }
 
@@ -106,23 +104,4 @@ public sealed class PurificationReveal : MonoBehaviour
         }
     }
 
-    private static void ApplyMaskToRoots()
-    {
-        // Roots are scene decorations rather than purification tiles, so they
-        // need to opt into the same SpriteMask explicitly.
-        GameObject[] sceneObjects = FindObjectsOfType<GameObject>(true);
-        foreach (GameObject sceneObject in sceneObjects)
-        {
-            if (!sceneObject.name.StartsWith("roots", System.StringComparison.OrdinalIgnoreCase))
-            {
-                continue;
-            }
-
-            SpriteRenderer[] renderers = sceneObject.GetComponentsInChildren<SpriteRenderer>(true);
-            foreach (SpriteRenderer renderer in renderers)
-            {
-                renderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
-            }
-        }
-    }
 }

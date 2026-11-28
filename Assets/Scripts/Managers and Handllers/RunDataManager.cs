@@ -20,43 +20,37 @@ public class RunDataManager : MonoBehaviour
     {
         if (onMenu) return; //Do nothing in menus.
 
-        playerDataHolder = FindFirstObjectByType<PlayerDataHolder>();
+        playerDataHolder = GetComponent<PlayerDataHolder>();
         characterDataManager = GetComponent<CharacterDataManager>();
         pointManager = FindFirstObjectByType<PointManager>();
         gunInventory = GetComponent<GunInventory>();
 
         if (globalStats == null) globalStats = AssetFinder.GetGlobalStats();
 
-        if (pointManager == null)
-        {
-            pointManager = FindFirstObjectByType<PointManager>();
-            Debug.LogError("Erro nao achou o point manager");
-        }
-
         health = GetComponent<Health>();
-        health.OnHealthChange += UpdateHealth;
-
-        try
-        {
-            pointManager.OnPointChange += UpdatePoints;
-
-        }
-        catch (System.Exception)
-        {
-
-            Debug.Log("Consertar");
-        }
-        gunInventory.OnWeaponChange += UpdateGuns;
-        
-          if(runData.currentCharacter == null) runData.currentCharacter = defaultCharacterData;
+        // StartNewRun checks health in Start. Restore it before any Start runs.
+        health?.SetCurrentHealth(runData.currentHp);
+        if (runData.currentCharacter == null) runData.currentCharacter = defaultCharacterData;
     }
 
-
-    void Start()
+    private void OnEnable()
     {
-        if(onMenu) return; //Do nothing in menus.
-        health.SetCurrentHealth(runData.currentHp);
-        pointManager.SetPoints(runData.currentpoints);
+        if (onMenu) return;
+        if (health != null) health.OnHealthChange += UpdateHealth;
+        if (pointManager != null) pointManager.OnPointChange += UpdatePoints;
+        if (gunInventory != null) gunInventory.OnWeaponChange += UpdateGuns;
+    }
+
+    private void OnDisable()
+    {
+        if (health != null) health.OnHealthChange -= UpdateHealth;
+        if (pointManager != null) pointManager.OnPointChange -= UpdatePoints;
+        if (gunInventory != null) gunInventory.OnWeaponChange -= UpdateGuns;
+    }
+
+    private void Start()
+    {
+        if (!onMenu) pointManager?.SetPoints(runData.currentpoints);
     }
 
     // Reset the temporary attempt state here, not permanent PlayerData unlocks. Internal scene changes
@@ -73,7 +67,7 @@ public class RunDataManager : MonoBehaviour
         runData.waveStatistics.Clear();
 
         runData.SetXp(0);
-        runData.currentHp = playerData.GetInitialHealth();
+        runData.currentHp = playerData.GetInitialHealth(characterDataManager);
 
         runData.currentpoints = pointManager.GetInitialPoints(characterData.initialPoints);
 
@@ -104,9 +98,9 @@ public class RunDataManager : MonoBehaviour
 
     private void AddRandomGunToPlayer()
     {
-        if (globalStats.numberOfRandomGunsToStartWith > 0)
+        if (globalStats.ForCurrentRun.numberOfRandomGunsToStartWith > 0)
         {
-            for (int i = 0; i < globalStats.numberOfRandomGunsToStartWith; i++)
+            for (int i = 0; i < globalStats.ForCurrentRun.numberOfRandomGunsToStartWith; i++)
             {
                 int count = 0;
                 GunData randomGun;
@@ -124,7 +118,7 @@ public class RunDataManager : MonoBehaviour
 
                     #endregion
 
-                    randomGun = globalStats.GetRandomGun();
+                    randomGun = globalStats.ForCurrentRun.GetRandomGun();
                 }
                 while (gunInventory.HasThisGun(randomGun) == true);
 
@@ -146,7 +140,8 @@ public class RunDataManager : MonoBehaviour
 
     private void UpdateGuns()
     {
-        runData.guns = gunInventory.GetGuns();
+        if (!gunInventory.IsCampaignLoadout)
+            runData.guns = gunInventory.GetGuns();
     }
 
     public RunData GetRunData()

@@ -4,6 +4,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     private PlayerData playerData;
+    private CharacterDataManager characters;
+    private float currentHealth;
     private float campaignMaxHealthBonus;
 
     [SerializeField] private bool isTutorial = false;
@@ -19,12 +21,12 @@ public class Health : MonoBehaviour
     protected virtual void Awake()
     {
         playerData = GetComponent<PlayerDataHolder>().GetPlayerData();
+        characters = GetComponent<CharacterDataManager>();
         invulnerableTimer = 0;
     }
 
     private void Start()
     {
-        playerData.TriggerUpdateHealth();
         OnHealthChange += CheckIfIsDead;
     }
 
@@ -63,7 +65,7 @@ public class Health : MonoBehaviour
 
     public void ReplenishHealth(float amount)
     {
-        playerData.AddHealthPoint(amount);
+        currentHealth += amount;
         OnHealthChange?.Invoke();
     }
 
@@ -138,21 +140,19 @@ public class Health : MonoBehaviour
 
     public void ResetHealth() //Call only when starting a run.
     {
-        playerData.ResetHealth();
-        if (campaignMaxHealthBonus > 0f) playerData.AddHealthPoint(campaignMaxHealthBonus);
+        currentHealth = playerData.GetInitialHealth(characters) + campaignMaxHealthBonus;
         OnHealthChange?.Invoke();
 
     }
 
     public float GetCurrentHealth()
     {
-        //Debug.Log("retornando currentHealth: " + playerData.GetCurrentHealth());
-        return playerData.GetCurrentHealth();
+        return currentHealth;
     }
 
     public void SetCurrentHealth(float health)
     {
-        playerData.SetCurrentHealth(health);
+        currentHealth = health;
     }
 
     public void SetCampaignMaxHealthBonus(float bonus)

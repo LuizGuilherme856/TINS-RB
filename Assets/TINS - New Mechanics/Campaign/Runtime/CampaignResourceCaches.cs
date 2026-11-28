@@ -7,14 +7,14 @@ namespace TINS.Campaign
 {
     internal sealed class CampaignResourceCaches
     {
-        private const float InteractionRadius = 1.25f;
         private const float PixelsPerUnit = 16f;
-        private const float TimingDuration = 1.5f;
         private const float ResultDuration = .55f;
         private readonly List<SpriteRenderer> remaining = new();
         private readonly Vector2 center;
         private readonly Sprite depletedSprite;
         private readonly int resourcePerCache;
+        private readonly float interactionRadius;
+        private readonly float timingDuration;
         private readonly TextMeshPro prompt;
         private readonly SkillCheckBar skillCheck;
         private SpriteRenderer nearbyCache;
@@ -22,12 +22,16 @@ namespace TINS.Campaign
         private float hideResultAt;
 
         public int Collected { get; private set; }
+        public event System.Action CollectedChanged;
 
-        public CampaignResourceCaches(Transform parent, Vector2 center, CampaignPlanet planet, Sprite depletedSprite)
+        public CampaignResourceCaches(Transform parent, Vector2 center, CampaignPlanet planet, Sprite depletedSprite,
+            float interactionRadius, float timingDuration)
         {
             this.center = center;
             this.depletedSprite = depletedSprite;
             resourcePerCache = Mathf.Max(1, planet.resourcePerCache);
+            this.interactionRadius = Mathf.Max(.01f, interactionRadius);
+            this.timingDuration = Mathf.Max(.1f, timingDuration);
 
             var group = new GameObject("Resource Caches");
             group.transform.SetParent(parent);
@@ -98,7 +102,7 @@ namespace TINS.Campaign
                 hideResultAt = 0f;
             }
 
-            float bestDistance = InteractionRadius * InteractionRadius;
+            float bestDistance = interactionRadius * interactionRadius;
             foreach (SpriteRenderer cache in remaining)
             {
                 if (!InRange(cache, playerPosition, reachableRadiusSquared)) continue;
@@ -128,7 +132,7 @@ namespace TINS.Campaign
             activeCache = nearbyCache;
             nearbyCache = null;
             prompt.gameObject.SetActive(false);
-            skillCheck.BeginSkillCheckAt(Random.Range(.35f, .82f), TimingDuration);
+            skillCheck.BeginSkillCheckAt(Random.Range(.35f, .82f), timingDuration);
         }
 
         public void Cancel()
@@ -144,7 +148,7 @@ namespace TINS.Campaign
         {
             Vector2 position = cache.transform.position;
             return (position - center).sqrMagnitude < reachableRadiusSquared &&
-                (position - playerPosition).sqrMagnitude <= InteractionRadius * InteractionRadius;
+                (position - playerPosition).sqrMagnitude <= interactionRadius * interactionRadius;
         }
 
         private void ResolveTiming(SkillCheckBar.SkillCheckResult result)
@@ -152,6 +156,7 @@ namespace TINS.Campaign
             if (result.hitTarget && activeCache != null && remaining.Remove(activeCache))
             {
                 Collected += resourcePerCache;
+                CollectedChanged?.Invoke();
                 activeCache.sprite = depletedSprite;
                 TowerAudioFeedbacks.Instance?.PlayCrystalPickup();
             }

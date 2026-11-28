@@ -28,6 +28,6 @@ public class DashStats : MeleeStats
 
     public override DamageType GetDamageType()
     {
-        return globalStats.dashDamageType;
+        return globalStats.ForCurrentRun.dashDamageType;
     }
 }

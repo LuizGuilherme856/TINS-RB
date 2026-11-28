@@ -68,7 +68,7 @@ public class UpgradeData : GenericData
         // Debug.Log("Applying all active effects");
         foreach (var activeEffectsItem in activeEffects)
         {
-            activeEffectsItem.TriggerActiveEffect(upgradeManager, globalStats);
+            activeEffectsItem.TriggerActiveEffect(upgradeManager, globalStats.ForCurrentRun);
         }
     }
 
@@ -93,7 +93,7 @@ public class UpgradeData : GenericData
                     Debug.LogWarning("StatsChangeItem is null! UpgradeData: " + name);
                     continue;
                 }
-                 statsChangeItem.ExecuteStatsChange(globalStats);
+                 statsChangeItem.ExecuteStatsChange(globalStats.ForCurrentRun);
             }
         }
         else
@@ -105,7 +105,7 @@ public class UpgradeData : GenericData
                     Debug.LogWarning("StatsChangeItem is null! UpgradeData: " + name);
                     continue;
                 }
-                statsChangeItem.ExecuteStatsChange(globalStats);
+                statsChangeItem.ExecuteStatsChange(globalStats.ForCurrentRun);
             }
 
         }

@@ -60,7 +60,12 @@ namespace TINS.Campaign
         [Min(1f)] public float resourceCostGrowth = 1.4f;
         [Tooltip("Optional exact material amounts by paid rank. Empty entries use the growth multiplier.")]
         public int[] resourceCostsByRank = Array.Empty<int>();
-        public string unlockedWeaponResourcePath;
+        public GunData unlockedWeapon;
+        [HideInInspector, SerializeField] private string unlockedWeaponResourcePath;
+
+        public GunData GetUnlockedWeapon() => unlockedWeapon != null || string.IsNullOrWhiteSpace(unlockedWeaponResourcePath)
+            ? unlockedWeapon
+            : Resources.Load<GunData>(unlockedWeaponResourcePath);
 
         [Header("Effect per level")]
         public CampaignSkillEffectType effectType;

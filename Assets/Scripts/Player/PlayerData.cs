@@ -59,8 +59,7 @@ public class PlayerData : ScriptableObject
     
     public int numberOfTimesKilledLucifer = 0; //Number of Lucifer defeats; also indicates whether he has been defeated before.
     public bool isEndlessModeOn = false; //Whether Endless mode is enabled.
-    private float currentHealth;
-    public event Action OnHornsChange, OnUpdateHealth;
+    public event Action OnHornsChange;
     public event Action OnSkillPointsChange;
     // Achivement Related
     public event Action OnRegisterDeath; //Player-death achievements are checked here.
@@ -239,46 +238,11 @@ public class PlayerData : ScriptableObject
     }
 
 
-    //Explicitly initialize the listener from gameplay rather than relying on ScriptableObject activation timing.
-    public void TriggerUpdateHealth() 
+    public int GetInitialHealth(CharacterDataManager characters = null)
     {
-        runeUpgradeManager.OnBuyRune += UpdateHealth;
-    }
-
-    public void UpdateHealth()
-    {
-        //SetCurrentHealth(runeUpgradeManager.CalculateMaxHealthpoints((int)currentHealth));
-        OnUpdateHealth?.Invoke();
-    }
-    
-    
-    public int GetInitialHealth()
-    {
-        //Relatively expensive lookup, but performed only once here.
-        int defaultHealth = (int)FindFirstObjectByType<CharacterDataManager>().GetCurrentCharacterData().defaultHp;
+        if (characters == null) characters = FindFirstObjectByType<CharacterDataManager>();
+        int defaultHealth = (int)(characters?.GetCurrentCharacterData()?.defaultHp ?? 0f);
         return statsCalculator.CalculatePlayerInitialHealthPoints(defaultHealth);
-        
-    }
-    
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-
-    public void AddHealthPoint(float amount)
-    {
-        currentHealth += amount;
-    }
-
-    public void SetCurrentHealth(float hp)
-    {
-        currentHealth = hp;
-    }
-
-    public void ResetHealth()
-    {
-        currentHealth = GetInitialHealth();
     }
 
     public int GetSkillPoints()

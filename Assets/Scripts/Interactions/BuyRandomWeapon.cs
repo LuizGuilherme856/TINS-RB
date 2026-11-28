@@ -354,7 +354,7 @@ public class BuyRandomWeapon : InteractWithPlayer
 
     public int GetPrice()
     {
-        return (int)(price * globalStats.globalPriceMultiplier);
+        return (int)(price * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
     
 

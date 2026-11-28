@@ -208,17 +208,17 @@ public class EnemyHealth : MonoBehaviour
                     break;
                 case EnemyHealthUpdateMode.increaseEveryWaveWithCurve:
                     float curveMultiplier = enemyData.healthIncreaseCurve.Evaluate(currentWave);
-                    currentHealth = maxHealth * curveMultiplier * globalStats.enemyHealthMultiplier;
+                    currentHealth = maxHealth * curveMultiplier * globalStats.ForCurrentRun.enemyHealthMultiplier;
                     break;
                 case EnemyHealthUpdateMode.increaseEveryWaveWithHordeManager:
                     healthIncreaseCoefficient = UpdateHealthIncreaseCoefficient(healthIncreaseCoefficient, currentWave);
-                    currentHealth = maxHealth + maxHealth * healthIncreaseCoefficient * effectiveWave * globalStats.enemyHealthMultiplier;
+                    currentHealth = maxHealth + maxHealth * healthIncreaseCoefficient * effectiveWave * globalStats.ForCurrentRun.enemyHealthMultiplier;
                     break;
                 case EnemyHealthUpdateMode.increaseEveryWaveWithCustomCoefficient:
-                    currentHealth = maxHealth + maxHealth * enemyData.healthIncreaseCustomCoefficient * effectiveWave * globalStats.enemyHealthMultiplier;
+                    currentHealth = maxHealth + maxHealth * enemyData.healthIncreaseCustomCoefficient * effectiveWave * globalStats.ForCurrentRun.enemyHealthMultiplier;
                     break;
                 case EnemyHealthUpdateMode.setHpToWaveValue:
-                    currentHealth = enemyData.healthIncreaseCurve.Evaluate(currentWave) * globalStats.enemyHealthMultiplier;
+                    currentHealth = enemyData.healthIncreaseCurve.Evaluate(currentWave) * globalStats.ForCurrentRun.enemyHealthMultiplier;
                     break;
                 default:
                     break;

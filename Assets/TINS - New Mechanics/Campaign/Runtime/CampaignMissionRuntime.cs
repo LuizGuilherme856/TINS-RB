@@ -49,9 +49,13 @@ namespace TINS.Campaign
         [SerializeField] private CampaignMissionTutorial tutorial;
         [Header("Defeat Transition")]
         [SerializeField, Min(0.1f)] private float defeatTransitionDuration = .85f;
-        [Header("Tower")]
+        [Header("Campaign Tower")]
+        [Tooltip("Campaign starting and maximum life, before the Reinforced Tower upgrade. TowerSO controls immunity.")]
         [SerializeField, Min(1)] private int towerBaseMaxLife = 5;
         [SerializeField, Min(1)] private int soulsPerTowerHeal = 10;
+        [Header("Resource Caches")]
+        [SerializeField, Min(.01f)] private float cacheInteractionRadius = 1.25f;
+        [SerializeField, Min(.1f)] private float cacheTimingDuration = 1.5f;
         [Header("Purification Burst")]
         [SerializeField] private AudioClip purificationBurstSound;
         [SerializeField, Min(0.1f)] private float purificationBurstDuration = 0.9f;
@@ -80,8 +84,10 @@ namespace TINS.Campaign
         private BeamMeleeUsesManager playerCharges;
         private CampaignProfile profile;
         private CampaignPlanet planet;
-        private CampaignDarknessBands darkness;
-        private EnemySpawnManager spawner;
+        [SerializeField] private CampaignDarknessBands darkness;
+        [SerializeField] private EnemySpawnManager spawner;
+        [SerializeField] private GlobalStats statsDefinition;
+        [SerializeField] private RuneInventory runes;
         private CampaignResourceCaches resourceCaches;
         private PlayerInputHandler playerInput;
         private float extractionEndsAt;
@@ -96,6 +102,7 @@ namespace TINS.Campaign
 
         public static CampaignMissionRuntime Active { get; private set; }
         public Transform DefenseCore => tower != null ? tower.transform : null;
+        public PurificationReveal TowerLight => lightReveal;
         internal float EnemySpawnBoundary => darkness != null ? darkness.BreuRadius : lightReveal.Radius;
         internal float EnemyPressureRadius => lightReveal != null ? lightReveal.Radius : 0f;
         internal float ProjectedPurificationRadius => !resolved && deposit != null
@@ -150,15 +157,16 @@ namespace TINS.Campaign
             }
             if (profileChanged) profile.Save();
 
-            planet.ValidateRadii();
+            planet = planet.CopyForMission();
             // Set the win threshold before Radius, whose setter can invoke the win event.
             lightReveal.WinRadius = planet.missionTargetRadius;
             lightReveal.Radius = planet.initialLightRadius;
-            darkness = FindFirstObjectByType<CampaignDarknessBands>();
+            if (darkness == null) darkness = FindFirstObjectByType<CampaignDarknessBands>();
             darkness?.ConfigurePlanet(planet);
             if (darkness != null && planet.resourceCacheCount > 0 && planet.resourceCacheSprite != null &&
                 catalog.depletedCacheSprite != null && !string.IsNullOrWhiteSpace(planet.rewardResourceId))
-                resourceCaches = new CampaignResourceCaches(transform, lightReveal.transform.position, planet, catalog.depletedCacheSprite);
+                resourceCaches = new CampaignResourceCaches(transform, lightReveal.transform.position, planet,
+                    catalog.depletedCacheSprite, cacheInteractionRadius, cacheTimingDuration);
             CampaignMissionEnemies settings = planet.enemySettings;
             initialWave = Wave;
             CampaignCombatRules.SetMissionActive(true,
@@ -170,8 +178,10 @@ namespace TINS.Campaign
                 lastInventoryCount = soulInventory.Count;
                 soulInventory.OnCountChanged += TrackCollectedSouls;
             }
-            AssetFinder.GetGlobalStats()?.ResetValues();
-            AssetFinder.GetRuneInventory()?.ResetUpgrades();
+            if (statsDefinition == null) statsDefinition = AssetFinder.GetGlobalStats();
+            if (runes == null) runes = AssetFinder.GetRuneInventory();
+            statsDefinition?.ForCurrentRun.ResetValues();
+            runes?.ResetUpgrades();
             playerCharges = playerHealth.GetComponent<BeamMeleeUsesManager>();
             playerInput = playerHealth.GetComponent<PlayerInputHandler>();
             if (playerInput != null && CampaignMissionVignette.IsLoading)
@@ -180,7 +190,11 @@ namespace TINS.Campaign
                 playerInput.SetPauseInputBlocked(true);
                 StartCoroutine(EnableInputAfterTravel());
             }
-            if (resourceCaches != null && playerInput != null) playerInput.OnInteract += InteractWithCache;
+            if (resourceCaches != null)
+            {
+                if (playerInput != null) playerInput.OnInteract += InteractWithCache;
+                resourceCaches.CollectedChanged += RefreshObjective;
+            }
             ApplyCampaignSkills();
             flashHud?.Bind(profile.HasFlash ? playerCharges : null);
             tower.maxLife = Mathf.Max(1, towerBaseMaxLife + Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.TowerHealth).x));
@@ -188,7 +202,7 @@ namespace TINS.Campaign
             towerHealthHud?.Bind(tower);
             playerHealth.GetComponent<EnsureStartingPistol>()?.Equip(catalog, profile);
             playerHealth.ResetHealth();
-            spawner = FindFirstObjectByType<EnemySpawnManager>();
+            if (spawner == null) spawner = FindFirstObjectByType<EnemySpawnManager>();
             float growth = planet.lightGrowthPerSoul * (1f + SkillEffect(CampaignSkillEffectType.LightGrowth).x);
             deposit?.Configure(growth, soulsPerTowerHeal, spawner);
             lightReveal.enemySlowDownPercentage = Mathf.Clamp(lightReveal.enemySlowDownPercentage, 0f, 100f);
@@ -207,11 +221,12 @@ namespace TINS.Campaign
             foreach (MoveTowardsPlayer enemy in simpleChasers)
                 if (enemy != null) enemy.SetTarget(tower.transform);
 
-            spawner?.StartCampaignSpawning(settings, planet.missionTargetRadius);
+            spawner?.StartCampaignSpawning(settings, planet.missionTargetRadius, tower, lightReveal);
             missionTimeline?.Bind(this, planet, spawner);
             if (!profile.firstExpeditionSettled && catalog.IndexOf(planet.id) == 0)
                 tutorial?.Begin(this, playerInput, lightReveal);
-            RefreshLabels();
+            if (missionLabel != null) missionLabel.text = $"MISSÃO  ·  {planet.displayName}";
+            RefreshObjective();
         }
 
         public float GetEnemyHealthWaveMultiplier()
@@ -249,7 +264,6 @@ namespace TINS.Campaign
             }
             if (resourceCaches != null && darkness != null)
                 resourceCaches.Update(playerHealth.transform.position, darkness.BreuRadius);
-            RefreshLabels();
         }
 
         private void InteractWithCache()
@@ -262,6 +276,7 @@ namespace TINS.Campaign
         {
             if (currentCount > lastInventoryCount) soulsCollected += currentCount - lastInventoryCount;
             lastInventoryCount = currentCount;
+            RefreshObjective();
         }
 
         private void OnDefenseCoreDestroyed() => Finish(false, "O centro de luz foi destruído.");
@@ -272,9 +287,7 @@ namespace TINS.Campaign
             resolved = true;
             defenses?.StopDefenses();
             resourceCaches?.Cancel();
-            if (playerInput != null) playerInput.OnInteract -= InteractWithCache;
-            if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
-            if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
+            UnbindMissionEvents();
 
             int returnedSouls = success ? soulsCollected : Mathf.CeilToInt(soulsCollected * soulsKeptOnFailure);
             if (success) returnedSouls += planet.victorySouls;
@@ -516,7 +529,7 @@ namespace TINS.Campaign
                 foreach (MeleeManager action in playerHealth.GetComponentsInChildren<MeleeManager>())
                     action.RefillCampaignDash();
 
-            GlobalStats stats = AssetFinder.GetGlobalStats();
+            GlobalStats stats = statsDefinition?.ForCurrentRun;
             if (stats != null) stats.AddToPlayerInitialHealth += Mathf.RoundToInt(SkillEffect(CampaignSkillEffectType.PlayerHealth).x);
         }
 
@@ -524,16 +537,19 @@ namespace TINS.Campaign
             ? $"{prefix}{CampaignCatalog.ResourceIcon(planet.rewardResourceId)}+{amount} {planet.rewardResourceName}"
             : string.Empty;
 
-        private void RefreshLabels()
+        private void RefreshObjective()
         {
-            if (resolved || planet == null) return;
-            if (missionLabel != null) missionLabel.text = $"MISSÃO  ·  {planet.displayName}";
-            if (objectiveLabel != null)
-            {
-                const string objective = "Entregue almas ao núcleo";
-                objectiveLabel.text = $"{objective}\n{CampaignCatalog.ResourceIcon("almas")}{soulInventory?.Count ?? 0} almas" +
-                    ResourceRewardText(resourceCaches?.Collected ?? 0, "\n");
-            }
+            if (resolved || planet == null || objectiveLabel == null) return;
+            objectiveLabel.text = $"Entregue almas ao núcleo\n{CampaignCatalog.ResourceIcon("almas")}{soulInventory?.Count ?? 0} almas" +
+                ResourceRewardText(resourceCaches?.Collected ?? 0, "\n");
+        }
+
+        private void UnbindMissionEvents()
+        {
+            if (playerInput != null) playerInput.OnInteract -= InteractWithCache;
+            if (resourceCaches != null) resourceCaches.CollectedChanged -= RefreshObjective;
+            if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
+            if (tower != null) tower.OnTowerDeath?.RemoveListener(OnDefenseCoreDestroyed);
         }
 
         private void OnDestroy()
@@ -541,10 +557,12 @@ namespace TINS.Campaign
             if (defeatFade != null) Destroy(defeatFade);
             RestoreDefeatTimeScale();
             if (playerInput != null) playerInput.OnInteract -= TryBoardExtraction;
-            if (soulInventory != null) soulInventory.OnCountChanged -= TrackCollectedSouls;
-            if (tower != null && tower.OnTowerDeath != null) tower.OnTowerDeath.RemoveListener(OnDefenseCoreDestroyed);
-            if (Active == this) Active = null;
-            CampaignCombatRules.SetMissionActive(false);
+            UnbindMissionEvents();
+            if (Active == this)
+            {
+                Active = null;
+                CampaignCombatRules.SetMissionActive(false);
+            }
         }
     }
 }

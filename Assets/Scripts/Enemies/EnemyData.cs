@@ -96,12 +96,6 @@ public class EnemyData : GenericData
 
     public virtual float GetSpeed( bool secondForm =false)
     {
-        if(maxSpeed < speed)
-        {
-            Debug.LogWarning("Max speed � menor que speed. Reveja os valores em " + name);
-            maxSpeed = speed;
-        }
-
         float newSpeed = speed;
 
 
@@ -117,9 +111,8 @@ public class EnemyData : GenericData
             newSpeed = newSpeed + (newSpeed * runData.currentWaveNumber) /70f; //Increase speed as waves progress.
         }
 
-        if (newSpeed > maxSpeed) newSpeed = maxSpeed;
 
-        return newSpeed;
+        return Mathf.Min(newSpeed, Mathf.Max(maxSpeed, speed));
 
 
     }

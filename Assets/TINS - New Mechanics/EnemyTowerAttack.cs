@@ -8,6 +8,7 @@ public sealed class EnemyTowerAttack : MonoBehaviour
     [SerializeField] private Animator attackAnimator;
     [SerializeField] private TowerController targetTower;
     [SerializeField, Min(0.1f)] private float attackRange = 1.1f;
+    [SerializeField, Min(1)] private int towerDamage = 1;
     [SerializeField, Min(0f)] private float attackCooldown = 1f;
     [SerializeField, Min(0.1f)] private float attackAnimationDuration = .7f;
     [SerializeField, Min(0.05f)] private float simulatedWindup = .3f;
@@ -29,6 +30,8 @@ public sealed class EnemyTowerAttack : MonoBehaviour
 
     public bool IsAttacking { get; private set; }
 
+    internal void SetTargetTower(TowerController tower) => targetTower = tower;
+
     private void Awake()
     {
         if (attackAnimator == null) attackAnimator = GetComponent<Animator>();
@@ -37,7 +40,7 @@ public sealed class EnemyTowerAttack : MonoBehaviour
         enemyHealth = GetComponent<EnemyHealth>();
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        ResolveTower();
+        if (targetTower == null) ResolveTower();
     }
 
     private void Update()
@@ -45,7 +48,6 @@ public sealed class EnemyTowerAttack : MonoBehaviour
         if (IsAttacking || Time.time < nextAttackTime || CannotAttack()) return;
         if (useAnimationEvent && (attackAnimator == null || !attackAnimator.isActiveAndEnabled ||
                                   !attackAnimator.isInitialized)) return;
-        if (targetTower == null) ResolveTower();
         if (TowerWithinRange()) BeginAttack();
     }
 
@@ -98,7 +100,7 @@ public sealed class EnemyTowerAttack : MonoBehaviour
         if (!IsAttacking || impactApplied || CannotAttack() || !TowerWithinRange()) return;
         impactApplied = true;
         ClearWindupTint();
-        targetTower.TryTakeDamageFromEnemy();
+        targetTower.TryTakeDamageFromEnemy(towerDamage);
     }
 
     private IEnumerator AttackSequence()

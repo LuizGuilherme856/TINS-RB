@@ -148,15 +148,15 @@ public class AttackPlayer : MonoBehaviour
 
     protected void ThornDamage()
     {
-        if (globalStats.ThornDamage > 0)
+        if (globalStats.ForCurrentRun.ThornDamage > 0)
         {
-            var newDamage = globalStats.ThornDamage + globalStats.IncreaseGlobalDamageBy;
-            handleAttackOnEnemy.AttackEnemy_SimpleVersion(globalStats.ThornDamageType, newDamage);
+            var newDamage = globalStats.ForCurrentRun.ThornDamage + globalStats.ForCurrentRun.IncreaseGlobalDamageBy;
+            handleAttackOnEnemy.AttackEnemy_SimpleVersion(globalStats.ForCurrentRun.ThornDamageType, newDamage);
         }
 
-        if (Random.Range(0.1f, 1f) < globalStats.ThornInstaKillChance)
+        if (Random.Range(0.1f, 1f) < globalStats.ForCurrentRun.ThornInstaKillChance)
         {
-            handleAttackOnEnemy.InstaKill(globalStats.ThornDamageType);
+            handleAttackOnEnemy.InstaKill(globalStats.ForCurrentRun.ThornDamageType);
         }
     }
 

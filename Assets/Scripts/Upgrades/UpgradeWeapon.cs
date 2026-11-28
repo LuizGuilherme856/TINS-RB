@@ -248,7 +248,7 @@ public class UpgradeWeapon : InteractWithPlayer
 
     public int GetPrice()
     {
-        return (int)(price * globalStats.gunUpgradePriceMultiplier * globalStats.globalPriceMultiplier);
+        return (int)(price * globalStats.ForCurrentRun.gunUpgradePriceMultiplier * globalStats.ForCurrentRun.globalPriceMultiplier);
     }
 
     private enum UpgradeWeaponState { noWeapon, upgrading, weaponReady }

@@ -5,6 +5,37 @@ using UnityEngine;
 // order matter: permanent skills and temporary runes must not accumulate across unrelated runs.
 public class GlobalStats : ScriptableObject
 {
+    private static readonly Dictionary<GlobalStats, GlobalStats> LegacyStats = new();
+    private static readonly Dictionary<GlobalStats, GlobalStats> CampaignStats = new();
+    [System.NonSerialized] private bool isSessionCopy;
+
+    public GlobalStats ForCurrentRun
+    {
+        get
+        {
+            if (!Application.isPlaying || isSessionCopy) return this;
+            var session = TINS.Campaign.CampaignCombatRules.IsCampaignMission ? CampaignStats : LegacyStats;
+            if (session.TryGetValue(this, out GlobalStats copy) && copy != null) return copy;
+
+            copy = Instantiate(this);
+            copy.isSessionCopy = true;
+            copy.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontSaveInBuild;
+            copy.orbitalUpgrades ??= new List<OrbitalUpgrade_ActiveEffect>();
+            session[this] = copy;
+            return copy;
+        }
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ClearSessionStats()
+    {
+        foreach (GlobalStats stats in LegacyStats.Values)
+            if (stats != null) Destroy(stats);
+        foreach (GlobalStats stats in CampaignStats.Values)
+            if (stats != null) Destroy(stats);
+        LegacyStats.Clear();
+        CampaignStats.Clear();
+    }
     private readonly float MIN_FLOAT = 0.001f;
 
     public RuneData[] runeDatas;

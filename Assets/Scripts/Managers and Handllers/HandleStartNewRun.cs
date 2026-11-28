@@ -74,7 +74,7 @@ public class HandleStartNewRun : MonoBehaviour
         {
             playerData.RegisterRunStart_TechBooh();
         }
-        globalStats.ResetValues();
+        globalStats.ForCurrentRun.ResetValues();
 
         try
         {
@@ -113,11 +113,11 @@ public class HandleStartNewRun : MonoBehaviour
 
         TryBeginNewRunScoreTracking();
 
-        if (globalStats.numberOfRandomRunesToStartWith > 0)
+        if (globalStats.ForCurrentRun.numberOfRandomRunesToStartWith > 0)
         {
-            for (int i = 0; i < globalStats.numberOfRandomRunesToStartWith; i++)
+            for (int i = 0; i < globalStats.ForCurrentRun.numberOfRandomRunesToStartWith; i++)
             {
-                runeInventory.AddUpgrade(globalStats.GetRandomRune());
+                runeInventory.AddUpgrade(globalStats.ForCurrentRun.GetRandomRune());
             }
         }
     }

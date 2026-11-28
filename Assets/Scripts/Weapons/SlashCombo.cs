@@ -8,7 +8,8 @@ public sealed class SlashStep
     [Min(0f)] public float windup, activeTime, recovery;
     [Min(0.1f)] public float reach;
     [Range(1f, 180f)] public float arc;
-    [Min(0f)] public float lungeSpeed, damage, push, hitStop;
+    [Min(0f)] public float lungeSpeed, push, hitStop;
+    [Min(0f), InspectorName("Damage Multiplier")] public float damage;
 
     public SlashStep(float windup, float activeTime, float recovery, float reach, float arc,
         float lungeSpeed, float damage, float push, float hitStop)

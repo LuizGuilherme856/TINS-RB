@@ -35,9 +35,9 @@ public class ExplosionOnReload : MonoBehaviour
         if (mission != null && mission.IsResolved) return;
 
         bool unlockedInCampaign = (mission?.SkillEffect(CampaignSkillEffectType.ExplosiveReload).x ?? 0f) > 0f;
-        if (!unlockedInCampaign && !globalStats.explosionOnReload) return;
+        if (!unlockedInCampaign && !globalStats.ForCurrentRun.explosionOnReload) return;
 
-        ExplosiveData data = unlockedInCampaign ? defaultExplosion : GetExplosionData(globalStats.explosionOnReloadDamageType);
+        ExplosiveData data = unlockedInCampaign ? defaultExplosion : GetExplosionData(globalStats.ForCurrentRun.explosionOnReloadDamageType);
         if (explosion == null || data == null) return;
         explosion.SetExplosiveData(data);
         explosion.TriggerExplosion();

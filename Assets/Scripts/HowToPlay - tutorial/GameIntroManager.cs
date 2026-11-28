@@ -40,7 +40,7 @@ public class GameIntroManager : MonoBehaviour
     {
         playerInputHandler.SetCanMove(false); // Disable player movement during the introduction.
 
-        globalStats.ResetValues();
+        globalStats.ForCurrentRun.ResetValues();
 
         runDataManager = FindAnyObjectByType<RunDataManager>();
         runDataManager.ResetRunData();

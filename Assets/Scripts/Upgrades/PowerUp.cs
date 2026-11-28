@@ -23,7 +23,7 @@ public class PowerUp : MonoBehaviour
     private void OnEnable()
     {
         hasBeenCollected = false;
-        nearPlayerDetector.radius = 5 * globalStats.powerUpGoTowardsPlayerMaxDistanceMultiplier;
+        nearPlayerDetector.radius = 5 * globalStats.ForCurrentRun.powerUpGoTowardsPlayerMaxDistanceMultiplier;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

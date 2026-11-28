@@ -51,11 +51,11 @@ public class OrbitalUpgradeManager : MonoBehaviour
         }
 
         // Recreate previously acquired orbital objects when entering another scene.
-        foreach (var orbitalUpgradeItem in globalStats.orbitalUpgrades)
+        foreach (var orbitalUpgradeItem in globalStats.ForCurrentRun.orbitalUpgrades)
         {
             try
             {
-                orbitalUpgradeItem.TriggerActiveEffect(upgradeManager, globalStats);
+                orbitalUpgradeItem.TriggerActiveEffect(upgradeManager, globalStats.ForCurrentRun);
             }
             catch (System.Exception e)
             {

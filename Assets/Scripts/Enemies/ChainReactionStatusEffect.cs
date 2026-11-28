@@ -82,7 +82,7 @@ public class ChainReactionStatusEffect : MonoBehaviour
         Collider2D[] targetsHit = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
         foreach (Collider2D target in targetsHit)
         {
-            if (numberOfReactions >= globalStats.maxChainReactions) return;
+            if (numberOfReactions >= globalStats.ForCurrentRun.maxChainReactions) return;
 
             if (target.CompareTag("Enemy"))
             {

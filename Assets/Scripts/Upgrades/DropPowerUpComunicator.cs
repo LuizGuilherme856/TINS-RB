@@ -39,7 +39,7 @@ public class DropPowerUpComunicator : MonoBehaviour
             return;
         }
 
-        float bonusDropChance = globalStats != null ? globalStats.AddTodropChance : 0f;
+        float bonusDropChance = globalStats != null ? globalStats.ForCurrentRun.AddTodropChance : 0f;
         if (Random.Range(0f, 100f) < spawnChance + bonusDropChance)
         {
             powerUpDropManager.SpawnPowerUp(transform.position);

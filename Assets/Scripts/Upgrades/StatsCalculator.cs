@@ -20,19 +20,19 @@ public class StatsCalculator : ScriptableObject
     #region STATUS
     public float CalculateNewStatusChance(float statusChance)
     {
-        float value = statusChance * globalStats.statusChanceMultiplier;
+        float value = statusChance * globalStats.ForCurrentRun.statusChanceMultiplier;
         return Aux.ReturnZeroIfNegative(value);
     }
 
     public float CalculateNewStatusDamage(float statusDamage)
     {
-        float value = statusDamage * globalStats.statusDamageMultiplier;
+        float value = statusDamage * globalStats.ForCurrentRun.statusDamageMultiplier;
         return Aux.ReturnZeroIfNegative(value);
     }
 
     public float CalculateNewStatusDuration(float statusDuration)
     {
-        float value = statusDuration * globalStats.statusDurationMultiplier;
+        float value = statusDuration * globalStats.ForCurrentRun.statusDurationMultiplier;
 
         return Aux.ReturnZeroIfNegative(value);
     }
@@ -44,7 +44,7 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculatePlayerSpeed(float defaultSpeed)
     {
-        float newSpeed = defaultSpeed * globalStats.playerWalkSpeedMultiplier;
+        float newSpeed = defaultSpeed * globalStats.ForCurrentRun.playerWalkSpeedMultiplier;
         //Minimum speed is 1.
         if (newSpeed < 1) newSpeed = 1;
         return newSpeed;
@@ -52,13 +52,13 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateIgnoreDamageChance(float baseChance)
     {
-        float chance = ChanceMultiplierHandler(baseChance, globalStats.ChanceOfIgnoreDamage_Multiplier) + globalStats.IncreaseChanceOfIgnoreDamageBy;
+        float chance = ChanceMultiplierHandler(baseChance, globalStats.ForCurrentRun.ChanceOfIgnoreDamage_Multiplier) + globalStats.ForCurrentRun.IncreaseChanceOfIgnoreDamageBy;
         Aux.Print("CalculateIgnoreDamageChance: " + chance, showDebug);
 
-        if (chance > globalStats.maxIgnoreDamageChance)
+        if (chance > globalStats.ForCurrentRun.maxIgnoreDamageChance)
         {
-            Debug.Log("Atingiu o máximo de chance de ignorar dano. Setando a chance pro valor máximo de: " + globalStats.maxIgnoreDamageChance);
-            return globalStats.maxIgnoreDamageChance;
+            Debug.Log("Atingiu o máximo de chance de ignorar dano. Setando a chance pro valor máximo de: " + globalStats.ForCurrentRun.maxIgnoreDamageChance);
+            return globalStats.ForCurrentRun.maxIgnoreDamageChance;
         }
         else return chance;
 
@@ -66,7 +66,7 @@ public class StatsCalculator : ScriptableObject
 
     public int CalculatePlayerInitialHealthPoints(int defaultHp)
     {
-        var hp = defaultHp + globalStats.AddToPlayerInitialHealth;
+        var hp = defaultHp + globalStats.ForCurrentRun.AddToPlayerInitialHealth;
 
         Aux.Print("CalculatePlayerInitialHealthPoints: " + hp, showDebug);
         return Aux.ReturnOneIfLessThanOne(hp);
@@ -74,7 +74,7 @@ public class StatsCalculator : ScriptableObject
 
     public int CalculateMaxHealthpoints(int defaultHp)
     {
-        var hp = defaultHp + globalStats.IncreasePlayerMaxHealthBy + globalStats.AddToPlayerInitialHealth;
+        var hp = defaultHp + globalStats.ForCurrentRun.IncreasePlayerMaxHealthBy + globalStats.ForCurrentRun.AddToPlayerInitialHealth;
         Aux.Print("CalculateMaxHealthpoints: " + hp, showDebug);
         return Aux.ReturnOneIfLessThanOne(hp);
     }
@@ -85,34 +85,34 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateOrbitalSpeed(float speed)
     {
-        return speed * globalStats.OrbitalSpeed_Multiplier + globalStats.IncreaseOrbitalSpeedBy;
+        return speed * globalStats.ForCurrentRun.OrbitalSpeed_Multiplier + globalStats.ForCurrentRun.IncreaseOrbitalSpeedBy;
     }
 
 
     public float CalculateOrbitalCorrectionSpeed(float speed)
     {
-        return speed * globalStats.OrbitalCorrectionSpeed_Multiplier + globalStats.IncreaseOrbitalCorrectionSpeedBy;
+        return speed * globalStats.ForCurrentRun.OrbitalCorrectionSpeed_Multiplier + globalStats.ForCurrentRun.IncreaseOrbitalCorrectionSpeedBy;
     }
 
 
     public float CalculateOrbitalBladeRadius(float radius)
     {
-        float newRadius = radius * globalStats.OrbitalRadius_Multiplier;
+        float newRadius = radius * globalStats.ForCurrentRun.OrbitalRadius_Multiplier;
 
-        if (newRadius < globalStats.orbitalBladeMinRadius) newRadius = globalStats.orbitalBladeMinRadius;
+        if (newRadius < globalStats.ForCurrentRun.orbitalBladeMinRadius) newRadius = globalStats.ForCurrentRun.orbitalBladeMinRadius;
         return newRadius;
     }
 
     public float CalculateOrbitalBladeInstaKillChance(float weaponDefaultChance)
     {
-        var gs = globalStats; //Local values keep formulas readable.
+        var gs = globalStats.ForCurrentRun; //Local values keep formulas readable.
         float newChance = (weaponDefaultChance + gs.OrbitalBladeInstaKillChance) * gs.OrbitalBladeInstaKillChance_Multiplier;
         return newChance;
     }
 
     public float CalculateOrbitalBladeDamage(float damage)
     {
-        var gs = globalStats;
+        var gs = globalStats.ForCurrentRun;
         float newDamage = (damage + gs.IncreaseOrbitalBladeDamageBy) * gs.OrbitalBladeDamage_Multiplier;
 
         newDamage = CalculateGlobalDamage(newDamage);
@@ -127,14 +127,14 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateGlobalDamage(float damage)
     {
-        float newDamage = damage * globalStats.GlobalDamage_Multiplier + globalStats.IncreaseGlobalDamageBy;
+        float newDamage = damage * globalStats.ForCurrentRun.GlobalDamage_Multiplier + globalStats.ForCurrentRun.IncreaseGlobalDamageBy;
 
         Aux.Print("CalculateGlobalDamage: " + newDamage, showDebug);
         return Aux.ReturnZeroIfNegative(newDamage);
     }
     #endregion
 
-    public int MaxDashActions => globalStats.maxDashActionQuantity + Mathf.RoundToInt(
+    public int MaxDashActions => globalStats.ForCurrentRun.maxDashActionQuantity + Mathf.RoundToInt(
         CampaignMissionRuntime.Active?.SkillEffect(CampaignSkillEffectType.ExtraDash).x ?? 0f);
 
     #region ActionRelated
@@ -144,11 +144,11 @@ public class StatsCalculator : ScriptableObject
         switch (playerAction)
         {
             case PlayerAction.melee:
-                return Aux.MinValueToReturn( baseAttackRate * globalStats.maxMeleeActionQuantity * globalStats.MeleeAttackRateMultiplier, minAttackRate);
+                return Aux.MinValueToReturn( baseAttackRate * globalStats.ForCurrentRun.maxMeleeActionQuantity * globalStats.ForCurrentRun.MeleeAttackRateMultiplier, minAttackRate);
             case PlayerAction.special:
-                return Aux.MinValueToReturn(baseAttackRate * globalStats.maxSpecialActionQuantity * globalStats.SpecialAbilityCooldownMultiplier, minSpecialAbilityCooldown);
+                return Aux.MinValueToReturn(baseAttackRate * globalStats.ForCurrentRun.maxSpecialActionQuantity * globalStats.ForCurrentRun.SpecialAbilityCooldownMultiplier, minSpecialAbilityCooldown);
             case PlayerAction.dash:
-                return Aux.MinValueToReturn(baseAttackRate * MaxDashActions * globalStats.DashAbilityCooldownMultiplier, minDashCooldown);
+                return Aux.MinValueToReturn(baseAttackRate * MaxDashActions * globalStats.ForCurrentRun.DashAbilityCooldownMultiplier, minDashCooldown);
 
             default:
                 Debug.LogError("No momento do calculo do Tempo Maximo De uma a��o,uma a��o n�o registrada foi pedida");
@@ -160,11 +160,11 @@ public class StatsCalculator : ScriptableObject
         switch (playerAction)
         {
             case PlayerAction.melee:
-                return baseAttackRate * globalStats.MeleeAttackRateMultiplier;
+                return baseAttackRate * globalStats.ForCurrentRun.MeleeAttackRateMultiplier;
             case PlayerAction.special:
-                return baseAttackRate * globalStats.SpecialAbilityCooldownMultiplier;
+                return baseAttackRate * globalStats.ForCurrentRun.SpecialAbilityCooldownMultiplier;
             case PlayerAction.dash:
-                return baseAttackRate * globalStats.DashAbilityCooldownMultiplier;
+                return baseAttackRate * globalStats.ForCurrentRun.DashAbilityCooldownMultiplier;
             default:
                 Debug.LogError("No momento do calculo do CoolDown de uma a��o,uma a��o n�o registrada foi pedida");
                 return 1;
@@ -182,33 +182,33 @@ public class StatsCalculator : ScriptableObject
         switch (playerAction)
         {
             case PlayerAction.melee:
-                if (globalStats.maxMeleeActionQuantity > maxActionCap)
+                if (globalStats.ForCurrentRun.maxMeleeActionQuantity > maxActionCap)
                 {
-                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.MeleeAttackRateMultiplier;
+                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.ForCurrentRun.MeleeAttackRateMultiplier;
                 }
                 else
                 {
-                    totalAttackRate = baseAttackRate * globalStats.maxMeleeActionQuantity * globalStats.MeleeAttackRateMultiplier;
+                    totalAttackRate = baseAttackRate * globalStats.ForCurrentRun.maxMeleeActionQuantity * globalStats.ForCurrentRun.MeleeAttackRateMultiplier;
                 }
                 break;
             case PlayerAction.special:
-                if (globalStats.maxSpecialActionQuantity > maxActionCap)
+                if (globalStats.ForCurrentRun.maxSpecialActionQuantity > maxActionCap)
                 {
-                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.SpecialAbilityCooldownMultiplier;
+                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.ForCurrentRun.SpecialAbilityCooldownMultiplier;
                 }
                 else
                 {
-                    totalAttackRate = baseAttackRate * globalStats.maxSpecialActionQuantity * globalStats.SpecialAbilityCooldownMultiplier;
+                    totalAttackRate = baseAttackRate * globalStats.ForCurrentRun.maxSpecialActionQuantity * globalStats.ForCurrentRun.SpecialAbilityCooldownMultiplier;
                 }
                 break;
             case PlayerAction.dash:
                 if (MaxDashActions > maxActionCap)
                 {
-                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.DashAbilityCooldownMultiplier;
+                    totalAttackRate = baseAttackRate * maxActionCap * globalStats.ForCurrentRun.DashAbilityCooldownMultiplier;
                 }
                 else
                 {
-                    totalAttackRate = baseAttackRate * MaxDashActions * globalStats.DashAbilityCooldownMultiplier;
+                    totalAttackRate = baseAttackRate * MaxDashActions * globalStats.ForCurrentRun.DashAbilityCooldownMultiplier;
                 }
                 break;
             default:
@@ -226,7 +226,7 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateDashDamage(float defaultDamage)
     {
-        float newDamage = defaultDamage * globalStats.dashDamageMultiplier;
+        float newDamage = defaultDamage * globalStats.ForCurrentRun.dashDamageMultiplier;
         return CalculateGlobalDamage(newDamage);
     }
     #endregion
@@ -236,9 +236,9 @@ public class StatsCalculator : ScriptableObject
     public float CalculateNewGunDamage(float damage, DamageType damageType)
     {
 
-        float elementalMultiplier = globalStats.GetElementalDamageMultiplier(damageType);
+        float elementalMultiplier = globalStats.ForCurrentRun.GetElementalDamageMultiplier(damageType);
 
-        float newDamage = damage * elementalMultiplier * globalStats.GunDamage_Multiplier + globalStats.IncreaseGunDamageBy;
+        float newDamage = damage * elementalMultiplier * globalStats.ForCurrentRun.GunDamage_Multiplier + globalStats.ForCurrentRun.IncreaseGunDamageBy;
 
         newDamage = CalculateGlobalDamage(newDamage);
 
@@ -251,17 +251,17 @@ public class StatsCalculator : ScriptableObject
     {
         CampaignMissionRuntime mission = CampaignMissionRuntime.Active;
         return mission != null ? Mathf.Clamp(mission.SkillEffect(CampaignSkillEffectType.GunCritical).x, 0f, 100f) :
-            chance * globalStats.GunCriticalChance_Multiplier;
+            chance * globalStats.ForCurrentRun.GunCriticalChance_Multiplier;
     }
 
     public float CalculateNewGunCriticalMultiplier(float criticalMultiplier)
     {
-        return criticalMultiplier * globalStats.GunCriticalDamage_Multiplier;
+        return criticalMultiplier * globalStats.ForCurrentRun.GunCriticalDamage_Multiplier;
     }
 
     public float CalculateNewFireRate(float fireRate)
     {
-        return fireRate * globalStats.GunCriticalDamage_Multiplier;
+        return fireRate * globalStats.ForCurrentRun.GunCriticalDamage_Multiplier;
     }
 
     #endregion
@@ -270,10 +270,10 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateNewMeleeDamage(float damage, DamageType damageType)
     {
-        float elementalMultiplier = globalStats.GetElementalDamageMultiplier(damageType);
+        float elementalMultiplier = globalStats.ForCurrentRun.GetElementalDamageMultiplier(damageType);
         float newDamage = damage * elementalMultiplier;
 
-        newDamage = newDamage * globalStats.MeleeDamage_Multiplier + globalStats.IncreaseMeleeDamageBy;
+        newDamage = newDamage * globalStats.ForCurrentRun.MeleeDamage_Multiplier + globalStats.ForCurrentRun.IncreaseMeleeDamageBy;
 
         newDamage = CalculateGlobalDamage(newDamage);
 
@@ -282,12 +282,12 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateNewMeleeCriticalChance(float chance)
     {
-        return chance * globalStats.MeleeCriticalChance_Multiplier;
+        return chance * globalStats.ForCurrentRun.MeleeCriticalChance_Multiplier;
     }
 
     public float CalculateNewMeleeCriticalMultiplier(float criticalDamage)
     {
-        return criticalDamage * globalStats.MeleeCriticalDamage_Multiplier;
+        return criticalDamage * globalStats.ForCurrentRun.MeleeCriticalDamage_Multiplier;
     }
 
     #endregion
@@ -297,14 +297,14 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateNewReloadTime(float defaultTime)
     {
-        float newReloadTime = defaultTime * globalStats.ReloadTime_Multiplier + globalStats.IncreaseReloadTimeBy;
+        float newReloadTime = defaultTime * globalStats.ForCurrentRun.ReloadTime_Multiplier + globalStats.ForCurrentRun.IncreaseReloadTimeBy;
 
         return Aux.ReturnZeroIfNegative(newReloadTime);
     }
 
     public int CalculateNewSpareAmmo(int spareAmmo)
     {
-        float newSpareAmmo = spareAmmo * globalStats.GunSpareAmmo_Multiplier + globalStats.increaseMaxSpareAmmoBy;
+        float newSpareAmmo = spareAmmo * globalStats.ForCurrentRun.GunSpareAmmo_Multiplier + globalStats.ForCurrentRun.increaseMaxSpareAmmoBy;
 
         if (newSpareAmmo < 1) newSpareAmmo = 1;
         return Mathf.CeilToInt(newSpareAmmo);
@@ -312,7 +312,7 @@ public class StatsCalculator : ScriptableObject
 
     public int CalculateNewAmmoOnClip(int ammoOnClip)
     {
-        float newAmmoOnClip = ammoOnClip * globalStats.GunMaxAmmoOnClip_Multiplier + globalStats.increaseMaxAmmoOnClipBy;
+        float newAmmoOnClip = ammoOnClip * globalStats.ForCurrentRun.GunMaxAmmoOnClip_Multiplier + globalStats.ForCurrentRun.increaseMaxAmmoOnClipBy;
 
         if (newAmmoOnClip < 1) newAmmoOnClip = 1;
         return Mathf.CeilToInt(newAmmoOnClip);
@@ -323,7 +323,7 @@ public class StatsCalculator : ScriptableObject
         //Limit the burst to available magazine ammunition to avoid trapping the player.
         //TODO: Review the case where a one-bullet weapon fires 50 upgraded projectiles but consumes only one round.
         //if (newConsumedPershot > maxSpareAmmo) return maxSpareAmmo;
-        float newAmmoConsumedPerShot = ammoConsumed * globalStats.GunAmmoConsumedPerShot_Multiplier + globalStats.increaseAmmoConsumedPerShot;
+        float newAmmoConsumedPerShot = ammoConsumed * globalStats.ForCurrentRun.GunAmmoConsumedPerShot_Multiplier + globalStats.ForCurrentRun.increaseAmmoConsumedPerShot;
         if (newAmmoConsumedPerShot < 1) newAmmoConsumedPerShot = 1;
 
         return Mathf.CeilToInt(newAmmoConsumedPerShot);
@@ -331,8 +331,8 @@ public class StatsCalculator : ScriptableObject
 
     public float CalculateChanceOfNotConsumingAmmo(float baseChance)
     {
-        float chance = baseChance * ChanceMultiplierHandler(baseChance, globalStats.ChanceOfNotConsumingAmmo_Multiplier);
-        chance += globalStats.IncreaseChanceOfNotConsumingAmmoBy;
+        float chance = baseChance * ChanceMultiplierHandler(baseChance, globalStats.ForCurrentRun.ChanceOfNotConsumingAmmo_Multiplier);
+        chance += globalStats.ForCurrentRun.IncreaseChanceOfNotConsumingAmmoBy;
 
         if (chance < 0) chance = 0;
         else if (chance > 1) chance = 1;
@@ -352,7 +352,7 @@ public class StatsCalculator : ScriptableObject
 
     public int CalculateScatteredBulletsAmount(int weaponScatteredBulletsBaseValue)
     {
-        int newValue = weaponScatteredBulletsBaseValue + globalStats.IncreaseScatteredBulletsBy;
+        int newValue = weaponScatteredBulletsBaseValue + globalStats.ForCurrentRun.IncreaseScatteredBulletsBy;
         newValue = Aux.MaxValueToReturn(newValue, 80);
         return Aux.ReturnOneIfLessThanOne(newValue);
     }
@@ -362,7 +362,7 @@ public class StatsCalculator : ScriptableObject
     /// </summary>
     public int CalculateLinedUpBulletsAmount(int weaponLinedUpBulletsBaseValue)
     {
-        int newValue = weaponLinedUpBulletsBaseValue + globalStats.IncreaseLinedUpBulletsBy;
+        int newValue = weaponLinedUpBulletsBaseValue + globalStats.ForCurrentRun.IncreaseLinedUpBulletsBy;
         newValue = Aux.MaxValueToReturn(newValue, 30);
         return Aux.ReturnZeroIfNegative(newValue);
     }
