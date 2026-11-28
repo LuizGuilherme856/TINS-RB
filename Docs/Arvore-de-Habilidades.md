@@ -52,9 +52,9 @@ A árvore abre com **Flash de Luz**, **Passos Livres** e **Vigor Solar**. Os ní
 | Mira Precisa | Dá +5 pontos percentuais de crítico por nível. No nível 4, 15% dos críticos viram supercríticos. | 4 |
 | Disparo Duplo | Dá 18% de chance por nível de disparar outra bala sem gastar munição extra. | 2 |
 | Disparo Espalhado | Adiciona dois projéteis e consome um cartucho extra. Cada projétil causa 60% do dano normal. | 1 |
-| Pistola Astral | Desbloqueia a arma por 180 almas e 4 Éter de Vharn. | 1 |
-| Pistola de Rajada | Desbloqueia a arma por 450 almas e 3 Cristais Frios de Khal-Neth. | 1 |
-| Lâminas Guardiãs | Uma lâmina por nível protege a torre. Cada golpe recebido remove uma lâmina. O nível 2 custa também 4 Fragmentos Umbrais de Ulthrem. | 2 |
+| Pistola Astral | Desbloqueia a arma por 180 almas e 4 Éter de Velária. | 1 |
+| Pistola de Rajada | Desbloqueia a arma por 450 almas e 3 Cristais Frios de Nivora. | 1 |
+| Lâminas Guardiãs | Uma lâmina por nível protege a torre. Cada golpe recebido remove uma lâmina. O nível 2 custa também 4 Fragmentos Umbrais de Dorsália. | 2 |
 | Luz Nutrida | Aumenta em 8% o crescimento da luz por alma entregue a cada nível. A partir do nível 2, exige Éter. | 4 |
 | Colheita de Almas | Aumenta em 3 pontos percentuais a chance de um inimigo deixar uma alma por nível, até 100%. Exige Cristal Frio. | 3 |
 

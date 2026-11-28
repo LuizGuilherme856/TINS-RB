@@ -162,7 +162,8 @@ namespace TINS.Campaign
 
                 var marker = campaignOrder[i];
                 if (marker != null)
-                    marker.ShowProgress(state, DestinationColor(state), profile.MissionsOn(planet.id), planet.missionsToPurify);
+                    marker.ShowProgress(planet.displayName, state, DestinationColor(state),
+                        profile.MissionsOn(planet.id), planet.missionsToPurify);
             }
 
             if (campaignProgress != null)
@@ -189,7 +190,6 @@ namespace TINS.Campaign
             CampaignPlanet planet = catalog.planets[index];
             CampaignPlanet prerequisite = profile.FirstUnpurifiedPrerequisite(catalog, index);
             bool unlocked = profile.IsUnlocked(catalog, index);
-            bool protect = profile.IsPurified(planet);
             PlaySound(unlocked ? selectSound : lockedSound);
             focusedPlanet.sprite = marker.PlanetArt.sprite;
             focusedPlanet.color = marker.PlanetArt.color;
@@ -201,9 +201,7 @@ namespace TINS.Campaign
             progress.text = prerequisite != null
                 ? $"Conclua {prerequisite.missionsToPurify} missões em {prerequisite.displayName} ({profile.MissionsOn(prerequisite.id)}/{prerequisite.missionsToPurify})."
                 : !unlocked ? "Rota indisponível."
-                : protect
-                    ? $"Mantenha o centro de luz ativo por {Mathf.CeilToInt(planet.protectionDuration)} s."
-                    : $"Purificação  {profile.MissionsOn(planet.id)}/{planet.missionsToPurify}";
+                : $"Purificação  {profile.MissionsOn(planet.id)}/{planet.missionsToPurify}";
             launchButton.interactable = unlocked;
             if (detailMeter != null)
             {
@@ -219,12 +217,12 @@ namespace TINS.Campaign
                 detailStatus.text = marker.State switch
                 {
                     CampaignDestinationState.Locked => "ROTA BLOQUEADA",
-                    CampaignDestinationState.Purified => "MISSÃO DE PROTEÇÃO",
+                    CampaignDestinationState.Purified => "PLANETA PURIFICADO",
                     _ => "EXPEDIÇÃO DISPONÍVEL"
                 };
             }
             if (launchButton.GetComponentInChildren<TMP_Text>() is TMP_Text launchLabel)
-                launchLabel.text = unlocked ? protect ? "Proteger" : "Iniciar missão" : "Missão bloqueada";
+                launchLabel.text = unlocked ? "Iniciar missão" : "Missão bloqueada";
 
             RectTransform art = marker.PlanetArt.rectTransform;
             RectTransform focus = focusedPlanet.rectTransform;

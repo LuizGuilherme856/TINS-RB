@@ -23,28 +23,33 @@ MonoBehaviour:
   minimumSpawnInterval: 0.68
   spawnBandWidth: 10.6
   extraHealthPerWave: 0.18
+  waveRadii:
+  - 10
+  waveEnemyCount: 4
+  waveWarningSeconds: 3
+  waveRecoverySeconds: 6
   spawnsBetweenReinforcements: 3
   extraEnemiesInGroup: 2
   minimumReinforcementRadius: 12
   fourDirectionChance: 0.5
   enemies:
-  - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
-    fourDirectionPrefab: {fileID: 0}
-    weight: 65
-    minimumLightRadius: 7
+  - prefab: {fileID: 200768228200508016, guid: be920016a0c2b8b41882ba1f39e57971, type: 3}
+    fourDirectionPrefab: {fileID: 4590534129446485992, guid: 47ea88e814da40a4fb2b09732c7b6373, type: 3}
+    weight: 55
+    minimumLightRadius: 0
     isElite: 0
-  - prefab: {fileID: 4749819838516141246, guid: 3df2d28f37eca3943afd9fbee380f0b6, type: 3}
-    fourDirectionPrefab: {fileID: 0}
+  - prefab: {fileID: 5308068399814661026, guid: e611fc406536e4a48b9d10ebc63b3876, type: 3}
+    fourDirectionPrefab: {fileID: 7961925949224153581, guid: f656dfb009eb87048a31190520fdfdcd, type: 3}
     weight: 35
     minimumLightRadius: 0
     isElite: 0
-  - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
-    fourDirectionPrefab: {fileID: 0}
+  - prefab: {fileID: 6995047779684293138, guid: 97678915f3000a74bb0b5e8597b5a40f, type: 3}
+    fourDirectionPrefab: {fileID: 3592130329762380995, guid: 3c3574174aa4eea4992df49844eb2c69, type: 3}
+    weight: 30
+    minimumLightRadius: 7
+    isElite: 0
+  - prefab: {fileID: 4878158565967111162, guid: 0757c3e1527965d4f83f1e42f648b8c3, type: 3}
+    fourDirectionPrefab: {fileID: 7193247438388322712, guid: bc15f941da68db3479c2e7b95e7aa0b6, type: 3}
     weight: 25
     minimumLightRadius: 15.5
     isElite: 1
-  - prefab: {fileID: 200768228200508016, guid: be920016a0c2b8b41882ba1f39e57971, type: 3}
-    fourDirectionPrefab: {fileID: 4590534129446485992, guid: 47ea88e814da40a4fb2b09732c7b6373, type: 3}
-    weight: 38
-    minimumLightRadius: 0
-    isElite: 0

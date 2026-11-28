@@ -1,0 +1,817 @@
+{
+  "camera_size_px": [
+    1280,
+    720
+  ],
+  "render_scale": 4,
+  "coordinates_origin": "top-left",
+  "layer_order_back_to_front": [
+    "espaco",
+    "planeta_da_missao",
+    "voo",
+    "fade"
+  ],
+  "sampling": "nearest",
+  "planeta": {
+    "source": "mission.destination_sprite",
+    "sample_file": "planeta-asterim.png",
+    "center_px": [
+      368,
+      304
+    ],
+    "screen_origin_px": [
+      160,
+      96
+    ],
+    "display_size_px": [
+      416,
+      416
+    ],
+    "campaign_source_size_px": [
+      104,
+      104
+    ]
+  },
+  "voo": {
+    "source": "voo-spritesheet.png",
+    "layout": "cropped-grid",
+    "cell_size_px": [
+      544,
+      244
+    ],
+    "columns": 6,
+    "rows": 9,
+    "frames": [
+      {
+        "index": 0,
+        "rect_px": [
+          1,
+          1,
+          435,
+          239
+        ],
+        "screen_origin_px": [
+          812,
+          466
+        ]
+      },
+      {
+        "index": 1,
+        "rect_px": [
+          545,
+          1,
+          433,
+          237
+        ],
+        "screen_origin_px": [
+          811,
+          466
+        ]
+      },
+      {
+        "index": 2,
+        "rect_px": [
+          1089,
+          1,
+          429,
+          235
+        ],
+        "screen_origin_px": [
+          811,
+          466
+        ]
+      },
+      {
+        "index": 3,
+        "rect_px": [
+          1633,
+          1,
+          426,
+          234
+        ],
+        "screen_origin_px": [
+          810,
+          466
+        ]
+      },
+      {
+        "index": 4,
+        "rect_px": [
+          2177,
+          1,
+          422,
+          233
+        ],
+        "screen_origin_px": [
+          809,
+          465
+        ]
+      },
+      {
+        "index": 5,
+        "rect_px": [
+          2721,
+          1,
+          419,
+          230
+        ],
+        "screen_origin_px": [
+          808,
+          465
+        ]
+      },
+      {
+        "index": 6,
+        "rect_px": [
+          1,
+          245,
+          416,
+          228
+        ],
+        "screen_origin_px": [
+          807,
+          465
+        ]
+      },
+      {
+        "index": 7,
+        "rect_px": [
+          545,
+          245,
+          412,
+          226
+        ],
+        "screen_origin_px": [
+          806,
+          465
+        ]
+      },
+      {
+        "index": 8,
+        "rect_px": [
+          1089,
+          245,
+          407,
+          223
+        ],
+        "screen_origin_px": [
+          805,
+          465
+        ]
+      },
+      {
+        "index": 9,
+        "rect_px": [
+          1633,
+          245,
+          402,
+          220
+        ],
+        "screen_origin_px": [
+          804,
+          465
+        ]
+      },
+      {
+        "index": 10,
+        "rect_px": [
+          2177,
+          245,
+          397,
+          218
+        ],
+        "screen_origin_px": [
+          803,
+          465
+        ]
+      },
+      {
+        "index": 11,
+        "rect_px": [
+          2721,
+          245,
+          392,
+          214
+        ],
+        "screen_origin_px": [
+          801,
+          465
+        ]
+      },
+      {
+        "index": 12,
+        "rect_px": [
+          1,
+          489,
+          386,
+          213
+        ],
+        "screen_origin_px": [
+          799,
+          464
+        ]
+      },
+      {
+        "index": 13,
+        "rect_px": [
+          545,
+          489,
+          380,
+          208
+        ],
+        "screen_origin_px": [
+          797,
+          464
+        ]
+      },
+      {
+        "index": 14,
+        "rect_px": [
+          1089,
+          489,
+          373,
+          205
+        ],
+        "screen_origin_px": [
+          796,
+          464
+        ]
+      },
+      {
+        "index": 15,
+        "rect_px": [
+          1633,
+          489,
+          366,
+          200
+        ],
+        "screen_origin_px": [
+          793,
+          464
+        ]
+      },
+      {
+        "index": 16,
+        "rect_px": [
+          2177,
+          489,
+          358,
+          196
+        ],
+        "screen_origin_px": [
+          790,
+          464
+        ]
+      },
+      {
+        "index": 17,
+        "rect_px": [
+          2721,
+          489,
+          350,
+          193
+        ],
+        "screen_origin_px": [
+          788,
+          463
+        ]
+      },
+      {
+        "index": 18,
+        "rect_px": [
+          1,
+          733,
+          345,
+          187
+        ],
+        "screen_origin_px": [
+          784,
+          462
+        ]
+      },
+      {
+        "index": 19,
+        "rect_px": [
+          545,
+          733,
+          348,
+          182
+        ],
+        "screen_origin_px": [
+          781,
+          462
+        ]
+      },
+      {
+        "index": 20,
+        "rect_px": [
+          1089,
+          733,
+          349,
+          177
+        ],
+        "screen_origin_px": [
+          777,
+          460
+        ]
+      },
+      {
+        "index": 21,
+        "rect_px": [
+          1633,
+          733,
+          354,
+          171
+        ],
+        "screen_origin_px": [
+          772,
+          460
+        ]
+      },
+      {
+        "index": 22,
+        "rect_px": [
+          2177,
+          733,
+          354,
+          164
+        ],
+        "screen_origin_px": [
+          768,
+          459
+        ]
+      },
+      {
+        "index": 23,
+        "rect_px": [
+          2721,
+          733,
+          356,
+          158
+        ],
+        "screen_origin_px": [
+          762,
+          456
+        ]
+      },
+      {
+        "index": 24,
+        "rect_px": [
+          1,
+          977,
+          357,
+          151
+        ],
+        "screen_origin_px": [
+          756,
+          455
+        ]
+      },
+      {
+        "index": 25,
+        "rect_px": [
+          545,
+          977,
+          365,
+          150
+        ],
+        "screen_origin_px": [
+          748,
+          453
+        ]
+      },
+      {
+        "index": 26,
+        "rect_px": [
+          1089,
+          977,
+          367,
+          151
+        ],
+        "screen_origin_px": [
+          741,
+          450
+        ]
+      },
+      {
+        "index": 27,
+        "rect_px": [
+          1633,
+          977,
+          371,
+          151
+        ],
+        "screen_origin_px": [
+          732,
+          448
+        ]
+      },
+      {
+        "index": 28,
+        "rect_px": [
+          2177,
+          977,
+          377,
+          153
+        ],
+        "screen_origin_px": [
+          721,
+          444
+        ]
+      },
+      {
+        "index": 29,
+        "rect_px": [
+          2721,
+          977,
+          381,
+          155
+        ],
+        "screen_origin_px": [
+          711,
+          440
+        ]
+      },
+      {
+        "index": 30,
+        "rect_px": [
+          1,
+          1221,
+          387,
+          158
+        ],
+        "screen_origin_px": [
+          698,
+          435
+        ]
+      },
+      {
+        "index": 31,
+        "rect_px": [
+          545,
+          1221,
+          395,
+          160
+        ],
+        "screen_origin_px": [
+          683,
+          430
+        ]
+      },
+      {
+        "index": 32,
+        "rect_px": [
+          1089,
+          1221,
+          403,
+          164
+        ],
+        "screen_origin_px": [
+          668,
+          424
+        ]
+      },
+      {
+        "index": 33,
+        "rect_px": [
+          1633,
+          1221,
+          411,
+          168
+        ],
+        "screen_origin_px": [
+          650,
+          417
+        ]
+      },
+      {
+        "index": 34,
+        "rect_px": [
+          2177,
+          1221,
+          423,
+          174
+        ],
+        "screen_origin_px": [
+          630,
+          408
+        ]
+      },
+      {
+        "index": 35,
+        "rect_px": [
+          2721,
+          1221,
+          436,
+          180
+        ],
+        "screen_origin_px": [
+          607,
+          398
+        ]
+      },
+      {
+        "index": 36,
+        "rect_px": [
+          1,
+          1465,
+          450,
+          186
+        ],
+        "screen_origin_px": [
+          582,
+          388
+        ]
+      },
+      {
+        "index": 37,
+        "rect_px": [
+          545,
+          1465,
+          466,
+          195
+        ],
+        "screen_origin_px": [
+          554,
+          375
+        ]
+      },
+      {
+        "index": 38,
+        "rect_px": [
+          1089,
+          1465,
+          486,
+          205
+        ],
+        "screen_origin_px": [
+          521,
+          361
+        ]
+      },
+      {
+        "index": 39,
+        "rect_px": [
+          1633,
+          1465,
+          506,
+          217
+        ],
+        "screen_origin_px": [
+          488,
+          343
+        ]
+      },
+      {
+        "index": 40,
+        "rect_px": [
+          2177,
+          1465,
+          541,
+          233
+        ],
+        "screen_origin_px": [
+          439,
+          321
+        ]
+      },
+      {
+        "index": 41,
+        "rect_px": [
+          2721,
+          1465,
+          524,
+          227
+        ],
+        "screen_origin_px": [
+          439,
+          321
+        ]
+      },
+      {
+        "index": 42,
+        "rect_px": [
+          1,
+          1709,
+          506,
+          220
+        ],
+        "screen_origin_px": [
+          439,
+          321
+        ]
+      },
+      {
+        "index": 43,
+        "rect_px": [
+          545,
+          1709,
+          488,
+          213
+        ],
+        "screen_origin_px": [
+          439,
+          321
+        ]
+      },
+      {
+        "index": 44,
+        "rect_px": [
+          1089,
+          1709,
+          468,
+          205
+        ],
+        "screen_origin_px": [
+          439,
+          321
+        ]
+      },
+      {
+        "index": 45,
+        "rect_px": [
+          1633,
+          1709,
+          445,
+          196
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 46,
+        "rect_px": [
+          2177,
+          1709,
+          421,
+          185
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 47,
+        "rect_px": [
+          2721,
+          1709,
+          396,
+          175
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 48,
+        "rect_px": [
+          1,
+          1953,
+          367,
+          164
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 49,
+        "rect_px": [
+          545,
+          1953,
+          337,
+          152
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 50,
+        "rect_px": [
+          1089,
+          1953,
+          305,
+          138
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 51,
+        "rect_px": [
+          1633,
+          1953,
+          271,
+          123
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 52,
+        "rect_px": [
+          2177,
+          1953,
+          233,
+          107
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      },
+      {
+        "index": 53,
+        "rect_px": [
+          2721,
+          1953,
+          192,
+          89
+        ],
+        "screen_origin_px": [
+          439,
+          322
+        ]
+      }
+    ]
+  },
+  "timeline": {
+    "frame_count": 54,
+    "frame_duration_ms": 75,
+    "loop": false
+  },
+  "fade": {
+    "color_rgb": [
+      7,
+      8,
+      20
+    ],
+    "alpha_by_frame": [
+      255,
+      246,
+      223,
+      189,
+      149,
+      106,
+      66,
+      32,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17,
+      38,
+      60,
+      82,
+      105,
+      129,
+      154,
+      179,
+      204,
+      229,
+      255
+    ]
+  }
+}

@@ -59,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
     private bool campaignFlashStunned;
     private float campaignFlashStunTimer;
     private float campaignRepulsionUntil;
-    public bool IsCampaignFlashRepelled => Time.time < campaignRepulsionUntil;
+    public bool IsCampaignRepelled => Time.time < campaignRepulsionUntil;
     private bool campaignHealthScaleApplied;
     private bool campaignElite;
     public void SetCampaignElite(bool value) => campaignElite = value;
@@ -541,13 +541,17 @@ public class EnemyHealth : MonoBehaviour
         campaignFlashStunTimer = Mathf.Max(campaignFlashStunTimer, duration);
     }
 
-    public void ApplyCampaignFlashRepulsion(Vector2 direction, float speed)
+    public void ApplyCampaignFlashRepulsion(Vector2 direction, float speed) => ApplyCampaignKnockback(direction, speed, .22f);
+
+    public void ApplyCampaignKnockback(Vector2 direction, float speed, float movementLockDuration)
     {
         if (!CampaignCombatRules.IsCampaignMission || speed <= 0f || currentHealth <= 0f ||
             !TryGetComponent(out Rigidbody2D body) || body.bodyType != RigidbodyType2D.Dynamic) return;
-        campaignRepulsionUntil = Time.time + .22f;
-        Vector2 impulse = direction.normalized * speed * body.mass;
-        if (TryGetComponent(out EnemyAI ai)) ai.ApplyExternalKnockback(impulse, .22f);
+        campaignRepulsionUntil = Mathf.Max(campaignRepulsionUntil, Time.time + movementLockDuration);
+        direction.Normalize();
+        float inwardSpeed = Mathf.Min(0f, Vector2.Dot(body.linearVelocity, direction));
+        Vector2 impulse = direction * (speed - inwardSpeed) * body.mass;
+        if (TryGetComponent(out EnemyAI ai)) ai.ApplyExternalKnockback(impulse, movementLockDuration);
         else body.AddForce(impulse, ForceMode2D.Impulse);
     }
 

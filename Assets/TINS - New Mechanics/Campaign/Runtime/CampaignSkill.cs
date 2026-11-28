@@ -26,7 +26,8 @@ namespace TINS.Campaign
         MonkeyDecoy,
         GunCritical,
         LightGrowth,
-        SoulDropChance
+        SoulDropChance,
+        TowerHealth
     }
 
     [Serializable]
@@ -113,6 +114,8 @@ namespace TINS.Campaign
                         $"Derrotar um elite ou chefe devolve {bonus.x:0.#} carga(s) de Flash, até o limite.",
                     CampaignSkillEffectType.BladeTurret =>
                         $"{description} Intervalo de {bonus.x:0.#} s.",
+                    CampaignSkillEffectType.TowerHealth =>
+                        $"+{bonus.x:0.#} de vida máxima da torre por nível.",
                     _ => description
                 };
             }

@@ -6,7 +6,7 @@ using MoreMountains.Feedbacks;
 
 namespace TINS.Campaign
 {
-    public sealed class CampaignSkillTreeNodeView : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
+    public sealed class CampaignSkillTreeNodeView : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [SerializeField] private CampaignSkill skill;
         [SerializeField] private string skillId;
@@ -31,6 +31,7 @@ namespace TINS.Campaign
         public bool IsPurchased { get; private set; }
 
         private Action<CampaignSkillTreeNodeView> selectHandler;
+        private Action<CampaignSkillTreeNodeView> purchaseHandler;
         private Action hoverHandler;
         private bool hasBeenRevealed;
         private bool hovered;
@@ -43,7 +44,7 @@ namespace TINS.Campaign
         }
 
         public void Bind(CampaignSkill data, CampaignProfile profile, Action<CampaignSkillTreeNodeView> select,
-            Action hover, bool visible, bool canPurchase, bool isSelected)
+            Action<CampaignSkillTreeNodeView> purchase, Action hover, bool visible, bool canPurchase, bool isSelected)
         {
             bool newlyRevealed = data != null && visible && !hasBeenRevealed && !data.visibleAtStart;
             hasBeenRevealed = visible;
@@ -53,6 +54,7 @@ namespace TINS.Campaign
             skill = data;
             skillId = data.id;
             selectHandler = select;
+            purchaseHandler = purchase;
             hoverHandler = hover;
             int rank = profile.Rank(skillId);
             IsPurchased = rank > 0;
@@ -122,6 +124,13 @@ namespace TINS.Campaign
         }
 
         public void OnPointerExit(PointerEventData eventData) => hovered = false;
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2 &&
+                button != null && button.IsActive() && button.IsInteractable())
+                purchaseHandler?.Invoke(this);
+        }
 
         public void OnSelect(BaseEventData eventData)
         {

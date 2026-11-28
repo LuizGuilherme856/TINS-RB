@@ -12,44 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9072f0df0242c0b4b9e37d34d45a834c, type: 3}
   m_Name: Planeta 6
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignMissionEnemies
-  initialEnemyCount: 5
-  initialActiveEnemyLimit: 12
-  initialSpawnInterval: 1.32
-  movementSpeedMultiplier: 1.76
-  healthMultiplier: 1.6
-  maximumActiveEnemies: 25
+  initialEnemyCount: 3
+  initialActiveEnemyLimit: 8
+  initialSpawnInterval: 1.58
+  movementSpeedMultiplier: 1.68
+  healthMultiplier: 1.15
+  maximumActiveEnemies: 17
   extraActiveEnemiesPerLightUnit: 1.3
-  secondsRemovedPerLightUnit: 0.034
-  minimumSpawnInterval: 0.64
-  spawnBandWidth: 11
-  extraHealthPerWave: 0.2
-  spawnsBetweenReinforcements: 2
-  extraEnemiesInGroup: 2
-  minimumReinforcementRadius: 13
+  secondsRemovedPerLightUnit: 0.048
+  minimumSpawnInterval: 0.8
+  spawnBandWidth: 9.4
+  extraHealthPerWave: 0.12
+  waveRadii:
+  - 9.5
+  waveEnemyCount: 3
+  waveWarningSeconds: 3
+  waveRecoverySeconds: 6
+  spawnsBetweenReinforcements: 0
+  extraEnemiesInGroup: 0
+  minimumReinforcementRadius: 0
   fourDirectionChance: 0.5
   enemies:
-  - prefab: {fileID: 699325470938656562, guid: b47ccc6adc45ef942aa0a4678821912e, type: 3}
-    fourDirectionPrefab: {fileID: 0}
+  - prefab: {fileID: 2781055476388443356, guid: 8af89795579948e4385c7968ac8237be, type: 3}
+    fourDirectionPrefab: {fileID: 912540676306654203, guid: 58e2cb029695a3b458d68ed375d557e3, type: 3}
     weight: 60
-    minimumLightRadius: 22
-    isElite: 1
-  - prefab: {fileID: 4749819838516141246, guid: ba95b3bd47a979f4a9a6b494ca75bc2b, type: 3}
-    fourDirectionPrefab: {fileID: 0}
-    weight: 40
     minimumLightRadius: 0
     isElite: 0
-  - prefab: {fileID: 4749819838516141246, guid: 35131b9ad504fcf4e856b89f3e02c57d, type: 3}
-    fourDirectionPrefab: {fileID: 0}
-    weight: 25
-    minimumLightRadius: 11
-    isElite: 1
-  - prefab: {fileID: 4749819838516141246, guid: d3f3dbad3f3d67f4586891adc48334a4, type: 3}
-    fourDirectionPrefab: {fileID: 0}
-    weight: 35
+  - prefab: {fileID: 5308068399814661026, guid: e611fc406536e4a48b9d10ebc63b3876, type: 3}
+    fourDirectionPrefab: {fileID: 7961925949224153581, guid: f656dfb009eb87048a31190520fdfdcd, type: 3}
+    weight: 42
+    minimumLightRadius: 0
+    isElite: 0
+  - prefab: {fileID: 3371356132132565513, guid: 7633e2d35f89ca649821db9e45d06e88, type: 3}
+    fourDirectionPrefab: {fileID: 4376657725309285770, guid: 614e6636cd6bb6141ba5a7c3bfc2eeff, type: 3}
+    weight: 30
     minimumLightRadius: 7
     isElite: 0
   - prefab: {fileID: 3468317559294717084, guid: 30dcf5251e9ca614a8ab0f5eec8dca2c, type: 3}
     fourDirectionPrefab: {fileID: 3553949417788762528, guid: f21f551f1a0ac154a8e1e3b7686b0e05, type: 3}
     weight: 28
-    minimumLightRadius: 16
+    minimumLightRadius: 14
     isElite: 1

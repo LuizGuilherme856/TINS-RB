@@ -7,10 +7,10 @@ using UnityEngine;
 public sealed class BlueCrystalInventory : MonoBehaviour
 {
     [SerializeField, Min(0)] private int count;
-    [Header("Player crystal orbit (More Mountains MM Auto Rotate)")]
+    [Header("Player crystal orbit")]
     [SerializeField, Min(0.01f)] private float playerOrbitRadius = 1.1f;
-    [SerializeField] private float playerOrbitSpeed = 85f;
-    [SerializeField, Min(0f)] private float playerOrbitSpeedDifference = 8f;
+    [SerializeField] private float playerOrbitSpeed = 24f;
+    [SerializeField, Min(0f)] private float playerOrbitSpeedDifference = 2f;
     [SerializeField] private float playerOrbitPhaseStep = 137.5f;
     [Header("Tower deposit animation")]
     [SerializeField, Min(0.01f)] private float absorptionDuration = 0.32f;

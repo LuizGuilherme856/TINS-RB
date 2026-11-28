@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TINS.Campaign
@@ -41,7 +39,9 @@ namespace TINS.Campaign
         private BaseStationInteractable[] stations;
         private BaseStationInteractable nearbyStation;
         private CampaignProfile profile;
+        private CampaignMissionVignette.FlightAssets flightAssets;
         private Panel currentPanel;
+        private bool launchingMission;
         private string statusMessage;
         private TMP_Text campaignSkillsWallet;
         private TMP_Text campaignSkillsFeedback;
@@ -77,6 +77,7 @@ namespace TINS.Campaign
 
         private void Start()
         {
+            flightAssets = new CampaignMissionVignette.FlightAssets();
             if (catalog == null) catalog = Resources.Load<CampaignCatalog>("CampaignCatalog");
             if (catalog == null)
             {
@@ -227,6 +228,7 @@ namespace TINS.Campaign
 
         private void Update()
         {
+            if (launchingMission) return;
             UpdateNearbyStation();
             bool escape = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
             bool back = Gamepad.current?.buttonEast.wasPressedThisFrame == true;
@@ -277,7 +279,7 @@ namespace TINS.Campaign
 
         private void InteractWithNearestStation()
         {
-            if (!isActiveAndEnabled) return;
+            if (!isActiveAndEnabled || launchingMission) return;
             UpdateNearbyStation();
             if (nearbyStation != null) nearbyStation.Open();
         }
@@ -337,6 +339,7 @@ namespace TINS.Campaign
 
         public void ClosePanels()
         {
+            if (launchingMission) return;
             currentPanel = Panel.None;
             if (mainMenu != null) mainMenu.gameObject.SetActive(false);
             if (planetNavigation != null) planetNavigation.gameObject.SetActive(false);
@@ -350,6 +353,7 @@ namespace TINS.Campaign
 
         private void LaunchMission(int index)
         {
+            if (launchingMission || CampaignMissionVignette.IsLoading) return;
             if (catalog == null || profile == null || index < 0 || index >= catalog.planets.Length || !profile.IsUnlocked(catalog, index))
             {
                 statusMessage = "Purifique os planetas indicados para liberar esta rota.";
@@ -357,9 +361,32 @@ namespace TINS.Campaign
                 return;
             }
 
-            CampaignTravel.QueueMission(catalog.planets[index].id);
-            if (playerInput != null) playerInput.SetCanMove(true);
-            SceneManager.LoadScene(CampaignTravel.MissionScene);
+            if (!Application.CanStreamedLevelBeLoaded(CampaignTravel.MissionScene))
+            {
+                statusMessage = "A cena da expedição não está disponível.";
+                Refresh();
+                return;
+            }
+
+            launchingMission = true;
+            SetPlayerPaused(true);
+            playerInput?.SetPauseInputBlocked(true);
+            EventSystem.current?.SetSelectedGameObject(null);
+            CampaignPlanet planet = catalog.planets[index];
+            CampaignTravel.QueueMission(planet.id);
+            int stage = CampaignPlanetRotation.StageFor(profile.MissionsOn(planet.id), planet.missionsToPurify);
+            TMP_FontAsset font = statusLabel != null ? statusLabel.font : null;
+            CampaignMissionVignette.LoadMission(flightAssets, planet.id, stage, font, OnMissionLoadFailed);
+        }
+
+        private void OnMissionLoadFailed()
+        {
+            CampaignTravel.ConsumeMission();
+            launchingMission = false;
+            playerInput?.SetPauseInputBlocked(false);
+            SetPlayerPaused(currentPanel != Panel.None);
+            statusMessage = "Não foi possível carregar a expedição.";
+            Refresh();
         }
 
         private void BuySkill(int index)

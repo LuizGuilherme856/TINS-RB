@@ -15,7 +15,7 @@ namespace TINS.Campaign
         public float weight = 1f;
         [Min(0f), Tooltip("Set to zero to make this enemy available from the start.")]
         public float minimumLightRadius;
-        [Tooltip("Spawn this elite once when its light radius is reached. It appears as a marker on the mission bar.")]
+        [Tooltip("Lead an announced wave when this light radius is reached, unless a delivery crosses the entire elite band.")]
         public bool isElite;
     }
 
@@ -43,6 +43,20 @@ namespace TINS.Campaign
         public float spawnBandWidth = 9f;
         [Min(0f), Tooltip("Additional fraction of initial health per wave. 0.2 adds 20% each wave.")]
         public float extraHealthPerWave = 0.10f;
+
+        [Header("Purification waves")]
+        [Tooltip("Light radii that unlock an announced group of regular enemies. Elite waves are set in the roster.")]
+        public List<float> waveRadii = new List<float>();
+        [Min(0.01f), Tooltip("Light radius range an individual delivery must cross to skip an unannounced elite wave.")]
+        public float eliteWaveSkipWidth = 1f;
+        [Min(1), Tooltip("Enemies in an announced wave, including its elite when present.")]
+        public int waveEnemyCount = 3;
+        [Min(0.5f), Tooltip("Seconds of warning before the wave enters.")]
+        public float waveWarningSeconds = 3f;
+        [Min(0f), Tooltip("Seconds of slower regular spawns after each announced wave.")]
+        public float waveRecoverySeconds = 6f;
+        [Tooltip("Optional boss in the last wave. Reaching the target radius unlocks the wave, and defeating the boss completes the mission.")]
+        public GameObject finalBoss;
 
         [Header("Reinforcements")]
         [Min(0), Tooltip("After this many successful regular spawns, send a group. Zero disables groups.")]

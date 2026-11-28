@@ -12,8 +12,6 @@ namespace TINS.Campaign
         [Min(1)] public int missionsToPurify = 5;
         [Tooltip("IDs of the planets that must be purified to unlock this route.")]
         public string[] prerequisitePlanetIds = Array.Empty<string>();
-        [Min(10f), Tooltip("Seconds to defend the light on this planet after it is purified.")]
-        public float protectionDuration = 75f;
         [Header("Light and Penumbra (world units from the tower)")]
         [Min(0.01f), Tooltip("Illuminated radius at the start of this planet's missions.")]
         public float initialLightRadius = 3.5f;
@@ -69,12 +67,12 @@ namespace TINS.Campaign
     {
         public CampaignPlanet[] planets =
         {
-            new CampaignPlanet { id="velaria", displayName="Vharn", initialLightRadius=4f, initialPenumbraRadius=12.17f, missionTargetRadius=15.4f, finalPenumbraRadius=20.4f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=5, mapX=.26f, mapY=.65f },
-            new CampaignPlanet { id="nivora", displayName="Khal-Neth", prerequisitePlanetIds=new[] { "velaria" }, missionTargetRadius=20f, finalPenumbraRadius=23.5f, lightGrowthPerSoul=.17f, soulDropChance=.82f, enemySpeedMultiplier=1.68f, victorySouls=55, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=6, mapX=.42f, mapY=.30f },
-            new CampaignPlanet { id="asterim", displayName="Oth-Zai", prerequisitePlanetIds=new[] { "velaria" }, missionTargetRadius=22f, finalPenumbraRadius=26f, lightGrowthPerSoul=.18f, soulDropChance=.85f, enemySpeedMultiplier=1.7f, victorySouls=76, rewardResourceId="poeira-solar", rewardResourceName="Poeira Estelar", rewardPerMission=7, mapX=.61f, mapY=.68f },
-            new CampaignPlanet { id="dorsalia", displayName="Ulthrem", prerequisitePlanetIds=new[] { "nivora" }, missionTargetRadius=24f, finalPenumbraRadius=28.5f, lightGrowthPerSoul=.19f, soulDropChance=.88f, enemySpeedMultiplier=1.72f, victorySouls=98, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=8, mapX=.72f, mapY=.43f },
-            new CampaignPlanet { id="varkora", displayName="Ghorvath", prerequisitePlanetIds=new[] { "asterim" }, missionTargetRadius=26f, finalPenumbraRadius=31f, lightGrowthPerSoul=.2f, soulDropChance=.9f, enemySpeedMultiplier=1.74f, victorySouls=126, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=9, mapX=.83f, mapY=.69f },
-            new CampaignPlanet { id="marevia", displayName="Nhalassar", prerequisitePlanetIds=new[] { "dorsalia", "varkora" }, missionTargetRadius=28f, finalPenumbraRadius=33.5f, lightGrowthPerSoul=.2f, soulDropChance=.92f, enemySpeedMultiplier=1.76f, victorySouls=158, rewardResourceId="sal-estelar", rewardResourceName="Granalita", rewardPerMission=10, mapX=.18f, mapY=.38f }
+            new CampaignPlanet { id="velaria", displayName="Velária", initialLightRadius=4f, initialPenumbraRadius=12.17f, missionTargetRadius=15.4f, finalPenumbraRadius=20.4f, enemySpeedMultiplier=1.65f, victorySouls=22, rewardResourceId="ether", rewardResourceName="Éter", rewardPerMission=5, mapX=.26f, mapY=.65f },
+            new CampaignPlanet { id="nivora", displayName="Nivora", prerequisitePlanetIds=new[] { "velaria" }, missionTargetRadius=20f, finalPenumbraRadius=23.5f, lightGrowthPerSoul=.17f, soulDropChance=.82f, enemySpeedMultiplier=1.68f, victorySouls=55, rewardResourceId="cristal-frio", rewardResourceName="Cristal Frio", rewardPerMission=4, mapX=.42f, mapY=.30f },
+            new CampaignPlanet { id="asterim", displayName="Asterim", prerequisitePlanetIds=new[] { "nivora" }, missionTargetRadius=22f, finalPenumbraRadius=26f, lightGrowthPerSoul=.18f, soulDropChance=.85f, enemySpeedMultiplier=1.7f, victorySouls=76, rewardResourceId="poeira-solar", rewardResourceName="Poeira Estelar", rewardPerMission=2, mapX=.61f, mapY=.68f },
+            new CampaignPlanet { id="dorsalia", displayName="Dorsália", prerequisitePlanetIds=new[] { "marevia" }, missionTargetRadius=24f, finalPenumbraRadius=28.5f, lightGrowthPerSoul=.19f, soulDropChance=.88f, enemySpeedMultiplier=1.72f, victorySouls=98, rewardResourceId="fragmento-umbral", rewardResourceName="Fragmento Umbral", rewardPerMission=3, mapX=.72f, mapY=.43f },
+            new CampaignPlanet { id="varkora", displayName="Varkora", prerequisitePlanetIds=new[] { "asterim", "dorsalia" }, missionTargetRadius=26f, finalPenumbraRadius=31f, lightGrowthPerSoul=.2f, soulDropChance=.9f, enemySpeedMultiplier=1.74f, victorySouls=126, rewardResourceId="nucleo-rubro", rewardResourceName="Núcleo Rubro", rewardPerMission=1, mapX=.83f, mapY=.69f },
+            new CampaignPlanet { id="marevia", displayName="Marévia", prerequisitePlanetIds=new[] { "velaria" }, missionTargetRadius=21f, finalPenumbraRadius=25f, lightGrowthPerSoul=.17f, soulDropChance=.83f, enemySpeedMultiplier=1.68f, victorySouls=60, rewardResourceId="sal-estelar", rewardResourceName="Granalita", rewardPerMission=6, mapX=.18f, mapY=.38f }
         };
 
         public const string FlashAreaSkillId = "flash-area";

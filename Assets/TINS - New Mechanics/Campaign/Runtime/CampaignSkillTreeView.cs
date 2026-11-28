@@ -91,7 +91,7 @@ namespace TINS.Campaign
             {
                 if (node == null) continue;
                 CampaignSkill skill = node.SkillAsset != null ? node.SkillAsset : FindCatalogSkill(node.SkillId);
-                node.Bind(skill, profile, SelectNode, PlayHover, profile.IsSkillVisible(skill), CanPurchase(skill), node == selected);
+                node.Bind(skill, profile, SelectNode, BuyNode, PlayHover, profile.IsSkillVisible(skill), CanPurchase(skill), node == selected);
             }
             foreach (CampaignSkillTreeConnectionView connection in connections)
                 if (connection != null) connection.RefreshVisibility();
@@ -120,8 +120,11 @@ namespace TINS.Campaign
         {
             bool changed = selected != node;
             selected = node;
-            status = string.Empty;
-            if (changed) selectionFeedback?.PlayFeedbacks();
+            if (changed)
+            {
+                status = string.Empty;
+                selectionFeedback?.PlayFeedbacks();
+            }
             PlaySound(selectSound, .42f);
             ScrollSelectedNodeIntoView();
             Refresh();
@@ -280,6 +283,7 @@ namespace TINS.Campaign
                 case CampaignSkillEffectType.FlashRecharge: return $"−{primary * 100f:0.#}% de recarga";
                 case CampaignSkillEffectType.MovementSpeed: return $"+{primary * 100f:0.#}% de velocidade";
                 case CampaignSkillEffectType.PlayerHealth: return $"+{primary:0.#} de vida";
+                case CampaignSkillEffectType.TowerHealth: return $"+{primary:0.#} de vida máxima da torre";
                 case CampaignSkillEffectType.ExtraDash: return $"+{primary:0.#} carga de dash";
                 case CampaignSkillEffectType.CrystalMagnet: return $"+{primary:0.#} un. de alcance";
                 case CampaignSkillEffectType.GuardianBlades: return $"{primary:0.#} lâmina(s)";
@@ -288,6 +292,12 @@ namespace TINS.Campaign
                 case CampaignSkillEffectType.SoulDropChance: return $"+{primary * 100f:0.#} p.p. de chance de cair alma";
                 default: return string.Empty;
             }
+        }
+
+        private void BuyNode(CampaignSkillTreeNodeView node)
+        {
+            if (selected != node) SelectNode(node);
+            BuySelected();
         }
 
         private void BuySelected()

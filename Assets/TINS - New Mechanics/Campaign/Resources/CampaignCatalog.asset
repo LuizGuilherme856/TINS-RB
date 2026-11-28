@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TINS.Campaign.CampaignCatalog
   planets:
   - id: velaria
-    displayName: Vharn
+    displayName: "Vel\xE1ria"
     description: "Vales cobertos por n\xE9voa escondem veios de \xC9ter. As primeiras
       expedi\xE7\xF5es partiram daqui."
     missionsToPurify: 5
     prerequisitePlanetIds: []
-    protectionDuration: 75
     initialLightRadius: 4
     missionTargetRadius: 15.4
     initialPenumbraRadius: 12.17
@@ -40,13 +39,12 @@ MonoBehaviour:
     resourceCacheCount: 3
     resourcePerCache: 1
   - id: nivora
-    displayName: Khal-Neth
-    description: Sob as geleiras de Khal-Neth crescem cristais que brilham mesmo
+    displayName: Nivora
+    description: Sob as geleiras de Nivora crescem cristais que brilham mesmo
       longe da luz.
     missionsToPurify: 5
     prerequisitePlanetIds:
     - velaria
-    protectionDuration: 75
     initialLightRadius: 3.5
     missionTargetRadius: 20
     initialPenumbraRadius: 6
@@ -59,7 +57,7 @@ MonoBehaviour:
     enemySettings: {fileID: 11400000, guid: ee63b83d17f79bf4097033892eafc7ed, type: 2}
     rewardResourceId: cristal-frio
     rewardResourceName: Cristal Frio
-    rewardPerMission: 6
+    rewardPerMission: 4
     victorySouls: 55
     mapX: 0.42
     mapY: 0.3
@@ -67,13 +65,12 @@ MonoBehaviour:
     resourceCacheCount: 3
     resourcePerCache: 1
   - id: asterim
-    displayName: Oth-Zai
+    displayName: Asterim
     description: "Antigos impactos espalharam Poeira Estelar pelos c\xE2nions de
-      Oth-Zai."
+      Asterim."
     missionsToPurify: 5
     prerequisitePlanetIds:
-    - velaria
-    protectionDuration: 75
+    - nivora
     initialLightRadius: 3.5
     missionTargetRadius: 22
     initialPenumbraRadius: 6
@@ -86,7 +83,7 @@ MonoBehaviour:
     enemySettings: {fileID: 11400000, guid: 0ea2c6ba3cf0ad947834a9123e8ffdd9, type: 2}
     rewardResourceId: poeira-solar
     rewardResourceName: Poeira Estelar
-    rewardPerMission: 7
+    rewardPerMission: 2
     victorySouls: 76
     mapX: 0.61
     mapY: 0.68
@@ -94,13 +91,12 @@ MonoBehaviour:
     resourceCacheCount: 3
     resourcePerCache: 1
   - id: dorsalia
-    displayName: Ulthrem
-    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Ulthrem. Seus fragmentos
+    displayName: "Dors\xE1lia"
+    description: "A infesta\xE7\xE3o tomou as plan\xEDcies de Dors\xE1lia. Seus fragmentos
       se acumulam nas fendas."
     missionsToPurify: 5
     prerequisitePlanetIds:
-    - nivora
-    protectionDuration: 75
+    - marevia
     initialLightRadius: 3.5
     missionTargetRadius: 24
     initialPenumbraRadius: 6
@@ -113,7 +109,7 @@ MonoBehaviour:
     enemySettings: {fileID: 11400000, guid: 53aebfcc6da0a9545bc829f58fe7983d, type: 2}
     rewardResourceId: fragmento-umbral
     rewardResourceName: Fragmento Umbral
-    rewardPerMission: 8
+    rewardPerMission: 3
     victorySouls: 98
     mapX: 0.72
     mapY: 0.43
@@ -121,13 +117,13 @@ MonoBehaviour:
     resourceCacheCount: 3
     resourcePerCache: 1
   - id: varkora
-    displayName: Ghorvath
+    displayName: Varkora
     description: "Fendas vulc\xE2nicas exp\xF5em N\xFAcleos Rubros sob a crosta de
-      Ghorvath."
+      Varkora."
     missionsToPurify: 5
     prerequisitePlanetIds:
     - asterim
-    protectionDuration: 75
+    - dorsalia
     initialLightRadius: 3.5
     missionTargetRadius: 26
     initialPenumbraRadius: 6
@@ -140,7 +136,7 @@ MonoBehaviour:
     enemySettings: {fileID: 11400000, guid: 09ec12876c955ba448077a70db91c6b0, type: 2}
     rewardResourceId: nucleo-rubro
     rewardResourceName: "N\xFAcleo Rubro"
-    rewardPerMission: 9
+    rewardPerMission: 1
     victorySouls: 126
     mapX: 0.83
     mapY: 0.69
@@ -148,28 +144,26 @@ MonoBehaviour:
     resourceCacheCount: 3
     resourcePerCache: 1
   - id: marevia
-    displayName: Nhalassar
-    description: "As mar\xE9s de Nhalassar deixam dep\xF3sitos de Granalita nas ilhas
+    displayName: "Mar\xE9via"
+    description: "As mar\xE9s de Mar\xE9via deixam dep\xF3sitos de Granalita nas ilhas
       quando recuam."
     missionsToPurify: 5
     prerequisitePlanetIds:
-    - dorsalia
-    - varkora
-    protectionDuration: 75
+    - velaria
     initialLightRadius: 3.5
-    missionTargetRadius: 28
+    missionTargetRadius: 21
     initialPenumbraRadius: 6
-    finalPenumbraRadius: 33.5
+    finalPenumbraRadius: 25
     floorTiles: {fileID: 0}
     purifiedGrassRadiusRatio: 0.6
-    lightGrowthPerSoul: 0.2
-    soulDropChance: 0.92
-    enemySpeedMultiplier: 1.76
+    lightGrowthPerSoul: 0.17
+    soulDropChance: 0.83
+    enemySpeedMultiplier: 1.68
     enemySettings: {fileID: 11400000, guid: 270d1f0b1d6bdc248af725822c4991ce, type: 2}
     rewardResourceId: sal-estelar
     rewardResourceName: Granalita
-    rewardPerMission: 10
-    victorySouls: 158
+    rewardPerMission: 6
+    victorySouls: 60
     mapX: 0.18
     mapY: 0.38
     resourceCacheSprite: {fileID: 21300000, guid: 6421fc0287f44df4684019ab3d460fbf, type: 3}
@@ -199,3 +193,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af6af6c3ddc65846ae7e618685110828, type: 2}
   - {fileID: 11400000, guid: c6ca6601c77bc514e9fe47a5a9bfdc8a, type: 2}
   - {fileID: 11400000, guid: dd1fde97a5082984f966dcd98aed1a11, type: 2}
+  - {fileID: 11400000, guid: f73c54c6c3ba4954ea493441fc8c4548, type: 2}

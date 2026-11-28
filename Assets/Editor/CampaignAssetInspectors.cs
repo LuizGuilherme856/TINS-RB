@@ -20,7 +20,7 @@ public sealed class CampaignPlanetDrawer : PropertyDrawer
             if (change.target == root) planet.isExpanded = change.newValue;
         });
         root.TrackPropertyValue(name, value => root.text = value.stringValue);
-        AddFields(root, planet, "displayName", "description", "missionsToPurify", "protectionDuration");
+        AddFields(root, planet, "displayName", "description", "missionsToPurify");
 
         var light = AddGroup(root, "Iluminação e terreno");
         AddFields(light, planet, "initialLightRadius", "missionTargetRadius", "initialPenumbraRadius",

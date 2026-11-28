@@ -88,10 +88,14 @@ namespace GraveyardShift.Gameplay
         private float requestedTravelDuration = 2.5f;
         private PlayerInputHandler lockedPlayerInput;
         private bool movementLockApplied;
-        private bool IsExternallyActivated => GetComponent<LightRadiusSkillCheckActivator>() != null;
+        private string manualPrompt;
+        private bool IsExternallyActivated => manualPrompt != null || GetComponent<LightRadiusSkillCheckActivator>() != null;
 
         public float CurrentTargetPosition => targetPosition;
+        public float CurrentMarkerPosition => currentMarkerPosition;
         public bool IsRunning => isRunning;
+
+        public void ConfigureManualPrompt(string prompt) => manualPrompt = prompt;
 
 #if UNITY_EDITOR
         private void OnEnable()
@@ -247,7 +251,7 @@ namespace GraveyardShift.Gameplay
             }
 
             if (promptLabel != null)
-                promptLabel.text = IsExternallyActivated ? "USE O FLASH   ·   ACERTE A MARCA" : "SPACE   HIT TARGET ZONE";
+                promptLabel.text = manualPrompt ?? (IsExternallyActivated ? "USE O FLASH   ·   ACERTE A MARCA" : "SPACE   HIT TARGET ZONE");
 
             Started?.Invoke();
         }

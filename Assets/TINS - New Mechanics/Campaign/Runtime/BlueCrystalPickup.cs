@@ -1,7 +1,6 @@
 using UnityEngine;
 using TINS.Campaign;
 using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
 
 /// <summary>Simple generated blue-crystal pickup; no external art asset required.</summary>
 [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
@@ -15,9 +14,9 @@ public sealed class BlueCrystalPickup : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D pickupCollider;
     private Rigidbody2D body;
-    private MMAutoRotate playerOrbit;
     private BlueCrystalInventory carrier;
     private int followIndex;
+    private float carriedOrbitAngle;
     private bool isCarried;
     private bool isOrbiting;
     private Vector3 orbitCenter;
@@ -39,7 +38,6 @@ public sealed class BlueCrystalPickup : MonoBehaviour
         ApplyPickupRadius();
         body = GetComponent<Rigidbody2D>();
         skillCheckFailurePlayer = GetComponent<MMF_Player>();
-        playerOrbit = GetComponent<MMAutoRotate>();
 
         if (spriteRenderer != null)
         {
@@ -100,6 +98,7 @@ public sealed class BlueCrystalPickup : MonoBehaviour
 
     public void SetAsCarried(BlueCrystalInventory inventory, int index)
     {
+        bool joiningOrbit = inventory != carrier || !isCarried || isOrbiting || isAbsorbing;
         carrier = inventory;
         followIndex = index;
         isCarried = true;
@@ -113,44 +112,12 @@ public sealed class BlueCrystalPickup : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.sortingOrder = 25 + index;
 
-        ConfigurePlayerOrbit();
-    }
-
-    private void ConfigurePlayerOrbit()
-    {
-        if (carrier == null) return;
-
-        if (playerOrbit == null)
-            playerOrbit = gameObject.AddComponent<MMAutoRotate>();
-
-        float phase = carrier.GetPlayerOrbitPhase(followIndex);
-        float angleRadians = phase * Mathf.Deg2Rad;
-        float radius = carrier.PlayerOrbitRadius;
-        Vector3 center = carrier.transform.position;
-
-        // MMAutoRotate advances from the crystal's current position, so place it
-        // on its orbit first to give every collected crystal a distinct phase.
-        transform.position = center + new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians), 0f) * radius;
-
-        playerOrbit.Rotating = true;
-        playerOrbit.RotationSpace = Space.Self;
-        playerOrbit.RotationSpeed = new Vector3(0f, 0f, rotationSpeed);
-        playerOrbit.UpdateMode = MMAutoRotate.UpdateModes.Update;
-        playerOrbit.OrbitCenterTransform = carrier.transform;
-        playerOrbit.OrbitCenterOffset = Vector3.zero;
-        playerOrbit.OrbitRotationAxis = Vector3.forward;
-        playerOrbit.OrbitRadius = radius;
-        playerOrbit.OrbitRotationSpeed = carrier.GetPlayerOrbitSpeed(followIndex);
-        playerOrbit.OrbitCorrectionSpeed = 12f;
-        playerOrbit.AdditiveOrbitRotation = false;
-        playerOrbit.Orbit(true);
+        if (joiningOrbit && carrier != null)
+            carriedOrbitAngle = carrier.GetPlayerOrbitPhase(index);
     }
 
     public void SetOrbit(Vector3 center, float radius, float degreesPerSecond, float phase)
     {
-        if (playerOrbit != null)
-            playerOrbit.Orbit(false);
-
         isOrbiting = true;
         orbitCenter = center;
         orbitRadius = Mathf.Max(0f, radius);
@@ -160,9 +127,6 @@ public sealed class BlueCrystalPickup : MonoBehaviour
 
     public void BeginAbsorption(Vector3 center, float duration)
     {
-        if (playerOrbit != null)
-            playerOrbit.Orbit(false);
-
         isOrbiting = false;
         isAbsorbing = true;
         absorbElapsed = 0f;
@@ -211,10 +175,11 @@ public sealed class BlueCrystalPickup : MonoBehaviour
             return;
         }
 
-        // The More Mountains MMAutoRotate component owns the normal carried
-        // motion. The fallback only covers an unexpected missing component.
-        if (playerOrbit == null || !playerOrbit.Orbiting)
-            ConfigurePlayerOrbit();
+        carriedOrbitAngle = Mathf.Repeat(carriedOrbitAngle + carrier.GetPlayerOrbitSpeed(followIndex) * Time.deltaTime, 360f);
+        float radians = carriedOrbitAngle * Mathf.Deg2Rad;
+        Vector3 offset = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f) * carrier.PlayerOrbitRadius;
+        transform.position = carrier.transform.position + offset;
+        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
     }
 
     private void AttractToCollector()

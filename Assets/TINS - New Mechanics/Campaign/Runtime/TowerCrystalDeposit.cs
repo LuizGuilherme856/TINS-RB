@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GraveyardShift.Gameplay;
+using TINS.Campaign;
 
-/// <summary>Automatically transfers carried ether to the defense core when the player approaches.</summary>
+/// <summary>Automatically delivers carried souls to the defense core when the player approaches.</summary>
 [RequireComponent(typeof(TowerController))]
 public sealed class TowerCrystalDeposit : MonoBehaviour
 {
@@ -21,14 +22,27 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
     private PlayerInputHandler nearbyPlayer;
     private BlueCrystalInventory nearbyInventory;
     private bool depositSequenceRunning;
+    private float depositTargetRadius;
+    private int soulsPerTowerHeal;
+    private int soulsTowardHeal;
+    private EnemySpawnManager waveSpawner;
     private Vector3 baseScale;
 
     public bool IsDepositing => depositSequenceRunning;
 
-    public void ConfigureGrowth(float radiusPerSoul)
+    public void Configure(float radiusPerSoul, int soulsPerHeal, EnemySpawnManager spawner)
     {
         radiusPerCrystal = Mathf.Max(0.01f, radiusPerSoul);
+        soulsPerTowerHeal = Mathf.Max(1, soulsPerHeal);
+        waveSpawner = spawner;
     }
+
+    public float ProjectedRadius(int carriedSouls) => depositSequenceRunning
+        ? depositTargetRadius
+        : purificationReveal != null ? RadiusAfterSouls(purificationReveal.Radius, carriedSouls) : 0f;
+
+    private float RadiusAfterSouls(float startingRadius, int souls) =>
+        Mathf.Min(purificationReveal.WinRadius, startingRadius + souls * radiusPerCrystal);
 
     private void Awake()
     {
@@ -42,6 +56,7 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
 
     private void Update()
     {
+        if (CampaignMissionRuntime.Active?.IsResolved == true) return;
         if (nearbyPlayer == null || !nearbyPlayer.isActiveAndEnabled || nearbyPlayer.GetIsClone())
             FindNearbyPlayer();
 
@@ -78,28 +93,42 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
         depositSequenceRunning = true;
         BlueCrystalInventory inventory = nearbyInventory;
         Vector3 targetPosition = purificationReveal != null ? purificationReveal.transform.position : transform.position;
-        int delivered = 0;
-        // Entering the tower's radius commits carried crystals to the full
-        // sequence, so walking through the area is enough to deliver them all.
-        while (inventory != null && inventory.Count > 0)
+        int deliverySize = inventory.Count;
+        float startingRadius = purificationReveal != null ? purificationReveal.Radius : 0f;
+        depositTargetRadius = purificationReveal != null ? RadiusAfterSouls(startingRadius, deliverySize) : startingRadius;
+        // Only the souls carried on arrival count toward crossing an elite band in one delivery.
+        for (int delivered = 0; delivered < deliverySize && inventory != null; delivered++)
         {
+            if (CampaignMissionRuntime.Active?.IsResolved == true) break;
             float duration = crystalTravelDuration / (1f + delivered * accelerationPerDeliveredCrystal);
             duration = Mathf.Max(0.04f, duration);
             if (!inventory.TryAbsorbOneAt(targetPosition, duration, out IEnumerator transfer)) break;
+            if (delivered == 0)
+                waveSpawner?.SkipEliteWavesCrossedByDelivery(startingRadius, depositTargetRadius);
             yield return transfer;
 
-            delivered++;
-            TowerAudioFeedbacks.Instance?.PlayCrystalDepositPitch(Mathf.Min(1.8f, 0.86f + delivered * 0.06f));
+            if (CampaignMissionRuntime.Active?.IsResolved == true) break;
+            HealTowerWithSoul();
+            int deliveredCount = delivered + 1;
+            TowerAudioFeedbacks.Instance?.PlayCrystalDepositPitch(Mathf.Min(1.8f, 0.86f + deliveredCount * 0.06f));
             if (purificationReveal != null)
             {
                 float oldRadius = purificationReveal.Radius;
-                float newRadius = Mathf.Min(purificationReveal.WinRadius, oldRadius + radiusPerCrystal);
+                float newRadius = RadiusAfterSouls(startingRadius, deliveredCount);
                 yield return AnimateExpansion(oldRadius, newRadius);
                 PushEnemiesAway(newRadius, 1);
             }
         }
 
         depositSequenceRunning = false;
+    }
+
+    private void HealTowerWithSoul()
+    {
+        if (soulsPerTowerHeal <= 0 || ++soulsTowardHeal < soulsPerTowerHeal) return;
+        soulsTowardHeal = 0;
+        if (tower.currentLife > 0 && tower.currentLife < tower.maxLife)
+            tower.currentLife++;
     }
 
     private IEnumerator AnimateExpansion(float from, float to)
@@ -123,6 +152,20 @@ public sealed class TowerCrystalDeposit : MonoBehaviour
         if (radius <= 0f || deliveredCrystals <= 0 || knockbackImpulsePerCrystal <= 0f) return;
         Vector2 center = purificationReveal != null ? purificationReveal.transform.position : transform.position;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
+        if (CampaignCombatRules.IsCampaignMission)
+        {
+            var affectedEnemies = new HashSet<EnemyHealth>();
+            foreach (Collider2D hit in colliders)
+            {
+                EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();
+                if (enemy == null || !affectedEnemies.Add(enemy)) continue;
+                Vector2 direction = (Vector2)enemy.transform.position - center;
+                if (direction.sqrMagnitude < 0.0001f) direction = Vector2.up;
+                enemy.ApplyCampaignKnockback(direction, knockbackImpulsePerCrystal * deliveredCrystals, knockbackMovementLockDuration);
+            }
+            return;
+        }
+
         HashSet<EnemyAI> affected = new HashSet<EnemyAI>();
         foreach (Collider2D hit in colliders)
         {

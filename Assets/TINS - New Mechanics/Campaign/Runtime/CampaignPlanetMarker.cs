@@ -68,8 +68,9 @@ namespace TINS.Campaign
             if (statusLabel != null) statusLabel.enabled = zoom >= .7f;
         }
 
-        internal void ShowProgress(CampaignDestinationState state, Color tint, int completed, int goal)
+        internal void ShowProgress(string displayName, CampaignDestinationState state, Color tint, int completed, int goal)
         {
+            if (caption != null) caption.text = displayName;
             State = state;
             Goal = Mathf.Max(1, goal);
             Completed = Mathf.Clamp(completed, 0, Goal);

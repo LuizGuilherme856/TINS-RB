@@ -35,15 +35,34 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
     private IObjectPool<PoolCreator> regularPool;
     private IObjectPool<PoolCreator> elitePool;
+    private IObjectPool<PoolCreator> finalBossPool;
+    private EnemyHealth finalBossInstance;
+    private bool finalBossDefeated;
     private Transform inactivePoolRoot;
     private Coroutine spawnRoutine;
     private int activeEnemies;
     private CampaignMissionEnemies campaignSettings;
     private float initialLightRadius;
+    private float campaignGoalRadius;
+    private float waveWarningEndsAt;
+    private float waveRecoveryEndsAt;
     private readonly List<(CampaignEnemyEntry entry, IObjectPool<PoolCreator> original, IObjectPool<PoolCreator> fourDirections)> campaignPools = new();
-    public int EliteMilestoneCount { get; private set; }
-    public int SpawnedEliteMilestones { get; private set; }
-    public float EliteMilestoneRadius(int index) => campaignPools[index].entry.minimumLightRadius;
+    private readonly List<(float radius, int elitePoolIndex)> waveMilestones = new();
+    private readonly HashSet<int> skippedEliteWaves = new();
+    private int elitePoolCount;
+    private int nextWaveMilestone;
+    public int WaveMilestoneCount => waveMilestones.Count;
+    public float WaveMilestoneRadius(int index) => waveMilestones[index].radius;
+    public bool IsEliteWave(int index) => waveMilestones[index].elitePoolIndex >= 0 || IsFinalBossWave(index);
+    public bool IsFinalBossWave(int index) => finalBossPool != null && index == waveMilestones.Count - 1;
+    public bool CanFinishCampaign => finalBossPool == null || finalBossDefeated;
+    public bool IsBossWaveAnnounced => WaveDirection != Vector2Int.zero && IsFinalBossWave(nextWaveMilestone);
+    public string ActiveBossName => finalBossInstance != null ? finalBossInstance.enemyData.EnemyName : null;
+    public float EliteWaveEndRadius(int index) => Mathf.Min(campaignGoalRadius,
+        WaveMilestoneRadius(index) + Mathf.Max(0.01f, campaignSettings.eliteWaveSkipWidth));
+    public bool IsWaveMilestonePending(int index) => index >= nextWaveMilestone && !skippedEliteWaves.Contains(index);
+    public Vector2Int WaveDirection { get; private set; }
+    public float WaveWarningRemaining => Mathf.Max(0f, waveWarningEndsAt - Time.time);
 
     private void Awake()
     {
@@ -90,19 +109,25 @@ public sealed class EnemySpawnManager : MonoBehaviour
     }
 
     /// <summary>Spawns one enemy chosen from the current adaptive elite chance.</summary>
-    public GameObject SpawnEnemy()
+    public GameObject SpawnEnemy() => SpawnEnemy(Vector2Int.zero);
+
+    private GameObject SpawnEnemy(Vector2Int direction, int elitePoolIndex = -1, bool finalBoss = false)
     {
         UpdateAdaptiveWaveSettings();
-        if (activeEnemies >= maxEnemies) return null;
-        Transform chosenSpawn = GetRandomValidSpawnSpot();
-        if (chosenSpawn == null && (campaignSettings == null || IsValid(spawnPoint))) chosenSpawn = spawnPoint;
-        if (chosenSpawn == null) return null;
+        if (!finalBoss && activeEnemies >= maxEnemies) return null;
+        Transform chosenSpawn = GetRandomValidSpawnSpot(direction);
+        if (chosenSpawn == null && direction == Vector2Int.zero && (campaignSettings == null || IsValid(spawnPoint)))
+            chosenSpawn = spawnPoint;
+        if (chosenSpawn == null && !finalBoss) return null;
 
-        IObjectPool<PoolCreator> selectedPool = SelectEnemyPool(out bool elite);
+        bool elite = true;
+        IObjectPool<PoolCreator> selectedPool = finalBoss ? finalBossPool : SelectEnemyPool(elitePoolIndex, out elite);
         if (selectedPool == null) return null;
         PoolCreator enemy = selectedPool.Get();
         enemy.transform.SetParent(transform, true);
-        enemy.transform.SetPositionAndRotation(chosenSpawn.position, chosenSpawn.rotation);
+        Vector3 position = chosenSpawn != null ? chosenSpawn.position
+            : centerLocation.position + (Vector3)(Vector2)direction * MinimumSpawnDistance;
+        enemy.transform.SetPositionAndRotation(position, chosenSpawn != null ? chosenSpawn.rotation : Quaternion.identity);
 
         Rigidbody2D body = enemy.GetComponent<Rigidbody2D>();
         if (body != null)
@@ -119,18 +144,24 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (defenseCore != null && enemy.TryGetComponent(out ChangeTarget targeting))
             targeting.SetNewTarget(defenseCore);
         activeEnemies++;
-        if (elite && campaignSettings != null) SpawnedEliteMilestones++;
         return enemy.gameObject;
     }
 
-    public void StartCampaignSpawning(CampaignMissionEnemies settings)
+    public void StartCampaignSpawning(CampaignMissionEnemies settings, float goalRadius)
     {
         StopAutomaticSpawning();
         campaignSettings = settings;
         initialLightRadius = CurrentPressureRadius;
+        campaignGoalRadius = goalRadius;
         campaignPools.Clear();
-        EliteMilestoneCount = 0;
-        SpawnedEliteMilestones = 0;
+        waveMilestones.Clear();
+        skippedEliteWaves.Clear();
+        if (finalBossInstance != null) finalBossInstance.OnZeroHealth -= HandleFinalBossDefeated;
+        finalBossInstance = null;
+        finalBossPool = null;
+        finalBossDefeated = false;
+        elitePoolCount = 0;
+        nextWaveMilestone = 0;
 
         if (settings != null)
         {
@@ -143,11 +174,26 @@ public sealed class EnemySpawnManager : MonoBehaviour
                     ? PoolFor(entry.fourDirectionPrefab)
                     : null;
                 campaignPools.Add((entry, original, fourDirections));
-                if (entry.isElite) EliteMilestoneCount++;
+                if (entry.isElite) elitePoolCount++;
             }
             campaignPools.Sort((left, right) => left.entry.isElite == right.entry.isElite
                 ? left.entry.minimumLightRadius.CompareTo(right.entry.minimumLightRadius)
                 : right.entry.isElite.CompareTo(left.entry.isElite));
+
+            for (int i = 0; i < elitePoolCount; i++)
+            {
+                float radius = Mathf.Max(initialLightRadius, campaignPools[i].entry.minimumLightRadius);
+                if (radius < goalRadius) waveMilestones.Add((radius, i));
+            }
+            foreach (float radius in settings.waveRadii)
+                if (radius >= initialLightRadius && radius < goalRadius)
+                    waveMilestones.Add((radius, -1));
+            waveMilestones.Sort((left, right) => left.radius.CompareTo(right.radius));
+            if (settings.finalBoss != null && ValidatePrefab(settings.finalBoss, "Campaign final boss"))
+            {
+                finalBossPool = CreatePool(settings.finalBoss);
+                waveMilestones.Add((goalRadius, -1));
+            }
 
             IObjectPool<PoolCreator> PoolFor(GameObject prefab)
             {
@@ -163,7 +209,23 @@ public sealed class EnemySpawnManager : MonoBehaviour
         if (spawnOnStart) StartAutomaticSpawning();
     }
 
-    private IObjectPool<PoolCreator> SelectEnemyPool(out bool elite)
+    public void SkipEliteWavesCrossedByDelivery(float startingRadius, float targetRadius)
+    {
+        // A wave that has already announced its direction is committed.
+        int firstUnannounced = WaveDirection == Vector2Int.zero ? nextWaveMilestone : nextWaveMilestone + 1;
+        for (int i = firstUnannounced; i < waveMilestones.Count; i++)
+        {
+            float bandStart = WaveMilestoneRadius(i);
+            if (targetRadius < bandStart) break;
+            if (IsFinalBossWave(i) || !IsEliteWave(i) || startingRadius > bandStart) continue;
+
+            float bandEnd = EliteWaveEndRadius(i);
+            if (targetRadius >= bandEnd || Mathf.Approximately(targetRadius, bandEnd))
+                skippedEliteWaves.Add(i);
+        }
+    }
+
+    private IObjectPool<PoolCreator> SelectEnemyPool(int elitePoolIndex, out bool elite)
     {
         elite = false;
         if (campaignSettings == null)
@@ -173,15 +235,15 @@ public sealed class EnemySpawnManager : MonoBehaviour
             return elite ? elitePool : regularPool;
         }
 
-        float radius = CurrentPressureRadius;
-        if (SpawnedEliteMilestones < EliteMilestoneCount && EliteMilestoneRadius(SpawnedEliteMilestones) <= radius)
+        if (elitePoolIndex >= 0)
         {
             elite = true;
-            return CampaignVariant(SpawnedEliteMilestones);
+            return CampaignVariant(elitePoolIndex);
         }
 
+        float radius = CurrentPressureRadius;
         float totalWeight = 0f;
-        for (int i = EliteMilestoneCount; i < campaignPools.Count; i++)
+        for (int i = elitePoolCount; i < campaignPools.Count; i++)
         {
             CampaignEnemyEntry entry = campaignPools[i].entry;
             if (entry.minimumLightRadius <= radius) totalWeight += entry.weight;
@@ -190,7 +252,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
         float roll = Random.Range(0f, totalWeight);
         int selection = -1;
-        for (int i = EliteMilestoneCount; i < campaignPools.Count; i++)
+        for (int i = elitePoolCount; i < campaignPools.Count; i++)
         {
             var candidate = campaignPools[i];
             if (candidate.entry.minimumLightRadius > radius || candidate.entry.weight <= 0f) continue;
@@ -212,6 +274,9 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
     public void StopAutomaticSpawning()
     {
+        WaveDirection = Vector2Int.zero;
+        waveWarningEndsAt = 0f;
+        waveRecoveryEndsAt = 0f;
         if (spawnRoutine == null)
             return;
 
@@ -237,8 +302,23 @@ public sealed class EnemySpawnManager : MonoBehaviour
         while (true)
         {
             UpdateAdaptiveWaveSettings();
-            yield return new WaitForSeconds(Mathf.Max(0.1f, spawnInterval));
-            if (SpawnEnemy() == null || campaignSettings == null ||
+            bool recovering = Time.time < waveRecoveryEndsAt;
+            yield return new WaitForSeconds(Mathf.Max(0.1f, spawnInterval) * (recovering ? 2f : 1f));
+            if (campaignSettings != null && CurrentPressureRadius >= campaignGoalRadius && CanFinishCampaign) yield break;
+            while (skippedEliteWaves.Contains(nextWaveMilestone))
+                nextWaveMilestone++;
+            if (Time.time >= waveRecoveryEndsAt && nextWaveMilestone < waveMilestones.Count &&
+                CurrentPressureRadius >= WaveMilestoneRadius(nextWaveMilestone))
+            {
+                Transform point = GetRandomValidSpawnSpot();
+                if (point != null || IsFinalBossWave(nextWaveMilestone))
+                {
+                    spawnsSinceGroup = 0;
+                    yield return RunAnnouncedWave(point != null ? DirectionOf(point) : Vector2Int.up);
+                    continue;
+                }
+            }
+            if (SpawnEnemy() == null || recovering || campaignSettings == null ||
                 campaignSettings.spawnsBetweenReinforcements <= 0 || CurrentPressureRadius < campaignSettings.minimumReinforcementRadius)
                 continue;
             if (++spawnsSinceGroup < campaignSettings.spawnsBetweenReinforcements) continue;
@@ -247,6 +327,51 @@ public sealed class EnemySpawnManager : MonoBehaviour
             for (int i = 0; i < campaignSettings.extraEnemiesInGroup; i++)
                 if (SpawnEnemy() == null) break;
         }
+    }
+
+    private IEnumerator RunAnnouncedWave(Vector2Int direction)
+    {
+        WaveDirection = direction;
+        float warning = Mathf.Max(0.5f, campaignSettings.waveWarningSeconds);
+        waveWarningEndsAt = Time.time + warning;
+        yield return new WaitForSeconds(warning);
+
+        UpdateAdaptiveWaveSettings();
+        int count = Mathf.Clamp(campaignSettings.waveEnemyCount, 1, maxEnemies);
+        bool finalBoss = IsFinalBossWave(nextWaveMilestone);
+        // Leave room for the full group without exceeding the planet's active-enemy cap.
+        while (!finalBoss && activeEnemies + count > maxEnemies)
+        {
+            yield return null;
+            UpdateAdaptiveWaveSettings();
+        }
+
+        int elitePoolIndex = waveMilestones[nextWaveMilestone].elitePoolIndex;
+        GameObject leader = SpawnEnemy(direction, elitePoolIndex, finalBoss);
+        if (leader != null)
+        {
+            if (finalBoss)
+            {
+                finalBossInstance = leader.GetComponent<EnemyHealth>();
+                finalBossInstance.OnZeroHealth += HandleFinalBossDefeated;
+            }
+            for (int i = 1; i < count; i++)
+            {
+                yield return new WaitForSeconds(0.25f);
+                if (SpawnEnemy(direction) == null) break;
+            }
+            nextWaveMilestone++;
+            waveRecoveryEndsAt = Time.time + Mathf.Max(0f, campaignSettings.waveRecoverySeconds);
+        }
+        WaveDirection = Vector2Int.zero;
+        waveWarningEndsAt = 0f;
+    }
+
+    private void HandleFinalBossDefeated()
+    {
+        finalBossInstance.OnZeroHealth -= HandleFinalBossDefeated;
+        finalBossInstance = null;
+        finalBossDefeated = true;
     }
 
     public float FarthestSpawnDistance(Vector2 origin)
@@ -353,7 +478,16 @@ public sealed class EnemySpawnManager : MonoBehaviour
         return true;
     }
 
-    protected Transform GetRandomValidSpawnSpot()
+    private Vector2Int DirectionOf(Transform point)
+    {
+        Transform center = centerLocation != null ? centerLocation : purificationManager?.transform;
+        Vector2 offset = point.position - (center != null ? center.position : transform.position);
+        if (Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
+            return offset.x >= 0f ? Vector2Int.right : Vector2Int.left;
+        return offset.y >= 0f ? Vector2Int.up : Vector2Int.down;
+    }
+
+    protected Transform GetRandomValidSpawnSpot(Vector2Int direction = default)
     {
         validSpawnPoints.Clear();
         Transform nearest = null;
@@ -364,7 +498,7 @@ public sealed class EnemySpawnManager : MonoBehaviour
 
         foreach (Transform target in spawnPoints)
         {
-            if (target == null) continue;
+            if (target == null || (direction != Vector2Int.zero && DirectionOf(target) != direction)) continue;
             float distance = lightCenter != null ? Vector2.Distance(lightCenter.position, target.position) : float.PositiveInfinity;
             if (distance < bandStart) continue;
             if (campaignSettings != null && lightCenter != null)

@@ -30,6 +30,8 @@ public sealed class PurificationReveal : MonoBehaviour
     [SerializeField] private SpriteRenderer edgeGlow;
     private bool hasInvokedWinGame;
 
+    public Light2D PurificationLight => purificationLight;
+
     public float Radius
     {
         get => radius;

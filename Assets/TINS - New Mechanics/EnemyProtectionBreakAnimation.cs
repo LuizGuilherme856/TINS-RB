@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using TINS.Campaign;
 using UnityEngine;
 
 /// <summary>Plays the one-shot protection-break sprite clip on an enemy.</summary>
@@ -144,7 +145,7 @@ public sealed class EnemyProtectionBreakAnimation : MonoBehaviour
 
         Vector2 offset = (Vector2)transform.position - (Vector2)purificationReveal.transform.position;
         bool outsideLight = offset.sqrMagnitude > purificationReveal.Radius * purificationReveal.Radius;
-        bool shouldShow = !enemyHealth.IsProtectedUntilPlayerMelee && outsideLight;
+        bool shouldShow = !CampaignCombatRules.IsCampaignMission && !enemyHealth.IsProtectedUntilPlayerMelee && outsideLight;
         if (crystalObject.activeSelf != shouldShow)
             crystalObject.SetActive(shouldShow);
     }

@@ -51,7 +51,7 @@ public sealed class EnemyTowerAttack : MonoBehaviour
 
     private bool CannotAttack()
         => CampaignMissionRuntime.Active?.IsResolved == true ||
-           (enemyHealth != null && (enemyHealth.currentHealth <= 0f || enemyHealth.IsCampaignFlashStunned));
+           (enemyHealth != null && (enemyHealth.currentHealth <= 0f || enemyHealth.IsCampaignFlashStunned || enemyHealth.IsCampaignRepelled));
 
     private bool TowerWithinRange()
     {

@@ -117,7 +117,7 @@ namespace TINS.Campaign
             if (catalog == null || catalog.planets == null || index < 0 || index >= catalog.planets.Length) return false;
             CampaignPlanet planet = catalog.planets[index];
             if (planet == null) return false;
-            if (planet.prerequisitePlanetIds == null) return true;
+            if (MissionsOn(planet.id) > 0 || planet.prerequisitePlanetIds == null) return true;
             foreach (string requiredId in planet.prerequisitePlanetIds)
                 if (!IsPurified(catalog.GetPlanet(requiredId))) return false;
             return true;
